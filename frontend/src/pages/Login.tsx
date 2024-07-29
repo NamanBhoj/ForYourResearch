@@ -12,7 +12,7 @@
   }
   ```
 */
-export default function Signup() {
+export default function Login() {
   return (
     <>
       {/*
