@@ -1,3 +1,4 @@
+import React from 'react';
 import FeatureSection from '../components/FeatureSection';
 import Footer from '../components/Footer';
 import MainSection from '../components/MainSection';
