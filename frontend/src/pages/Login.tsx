@@ -1,30 +1,31 @@
+import { useState } from 'react';
+import { auth } from '../firebase/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { XCircleIcon } from '@heroicons/react/16/solid';
 
-
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 export default function Signup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [signInError, setSignInError] = useState(false);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setSignInError(false);
+
+    try {
+      let userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredential);
+    } catch (error) {
+      console.log(error);
+      setSignInError(true);
+    }
+  };
   return (
     <>
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-white">
-          <body class="h-full">
-          ```
-        */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -38,7 +39,7 @@ export default function Signup() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} method="POST" className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -51,6 +52,8 @@ export default function Signup() {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -80,13 +83,33 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-
+            {signInError ? (
+              <div className="rounded-md bg-red-50 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <XCircleIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 text-red-400"
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">
+                      Your email or password was incorrect
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
             <div>
               <button
                 type="submit"

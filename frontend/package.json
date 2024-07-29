@@ -14,6 +14,7 @@
     "@heroicons/react": "^2.1.5",
     "ambient-cbg": "^1.0.4",
     "ambient-cbg-ts": "^1.0.6",
+    "firebase": "^10.12.4",
     "headlessui": "^0.0.0",
     "heroicons": "^2.1.5",
     "react": "^18.3.1",
