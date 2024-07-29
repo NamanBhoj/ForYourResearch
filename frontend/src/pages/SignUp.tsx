@@ -140,8 +140,7 @@ export default function Signup() {
 
                         {passwordMismatchError ? (
                           <li>
-                            Your password must include at least one pro
-                            wrestling finishing move
+                            Your passwords don't match
                           </li>
                         ) : (
                           ''
