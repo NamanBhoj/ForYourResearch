@@ -4,7 +4,6 @@ import MainSection from '../components/MainSection';
 import Navbar from '../components/Navbar';
 // import SignUp from '../pages/SignUp'
 // import Login from '../pages/Login'
-// import GetEarlyAccess from "../pages/GetEarlyAccess"
 function Home() {
   return (
     <div>
