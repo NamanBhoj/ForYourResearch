@@ -6,11 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
-import { setPersistence, browserLocalPersistence } from 'firebase/auth';
-import { auth } from './firebase/firebase';
 
-// User stays logged in even if browser window is closed
-await setPersistence(auth, browserLocalPersistence);
 
 function App() {
   return (

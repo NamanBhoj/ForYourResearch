@@ -1,4 +1,3 @@
-
 export default function FeatureCard(props: any) {
   return (
     <div className="flex flex-col overflow-hidden rounded-lg bg-white shadow w-full">
@@ -15,7 +14,7 @@ export default function FeatureCard(props: any) {
       </div>
 
       {/* <div className="flex flex-row"> */}
-        <img src={props.image} alt="Image Description" />
+      <img src={props.image} alt="Image Description" />
       {/* </div> */}
     </div>
   );
