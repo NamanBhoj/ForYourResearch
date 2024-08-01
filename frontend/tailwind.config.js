@@ -5,5 +5,8 @@ export default {
     extend: {},
   },
   plugins: ['@tailwindcss/forms'],
+  animation: {
+    'spin-slow': 'spin 3s linear infinite',
+  }
 };
 
