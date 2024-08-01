@@ -4,31 +4,49 @@ import { auth } from '../firebase/firebase';
 import { XCircleIcon } from '@heroicons/react/16/solid';
 
 export default function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordLengthError, setPasswordLengthError] = useState(false);
-  const [passwordMismatchError, setPasswordMismatchError] = useState(false);
+  const [userCredentials, setUserCredentials] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [errors, setErrors] = useState({
+    passwordLengthError: false,
+    passwordMismatchError: false,
+  });
+
+  const handleCredentials = (e: any) => {
+    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setPasswordLengthError(false);
-    setPasswordMismatchError(false);
 
-    if (password.length < 6) {
-      setPasswordLengthError(true);
+    setErrors({
+      passwordLengthError: false,
+      passwordMismatchError: false,
+    });
+
+    if (userCredentials.password.length < 6) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        passwordLengthError: true,
+      }));
       return;
     }
 
-    if (password !== confirmPassword) {
-      setPasswordMismatchError(true);
+    if (userCredentials.password !== userCredentials.confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        passwordMismatchError: true,
+      }));
       return;
     }
 
     let userCredential = await createUserWithEmailAndPassword(
       auth,
-      email,
-      password
+      userCredentials.email,
+      userCredentials.password
     );
     // get rid
     console.log(userCredential);
@@ -62,8 +80,8 @@ export default function Signup() {
                   id="email"
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={userCredentials.email}
+                  onChange={(e) => handleCredentials(e.target.value)}
                   required
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -85,8 +103,8 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={userCredentials.password}
+                  onChange={(e) => handleCredentials(e.target.value)}
                   required
                   autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -108,8 +126,8 @@ export default function Signup() {
                   id="confirm-password"
                   name="confirm-password"
                   type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={userCredentials.confirmPassword}
+                  onChange={(e) => handleCredentials(e.target.value)}
                   required
                   autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -117,7 +135,7 @@ export default function Signup() {
               </div>
             </div>
             {/*  */}
-            {passwordLengthError || passwordMismatchError ? (
+            {errors.passwordLengthError || errors.passwordMismatchError ? (
               <div className="rounded-md bg-red-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
@@ -132,13 +150,13 @@ export default function Signup() {
                     </h3>
                     <div className="mt-2 text-sm text-red-700">
                       <ul role="list" className="list-disc space-y-1 pl-5">
-                        {passwordLengthError ? (
+                        {errors.passwordLengthError ? (
                           <li>Your password must be at least 6 characters</li>
                         ) : (
                           ''
                         )}
 
-                        {passwordMismatchError ? (
+                        {errors.passwordMismatchError ? (
                           <li>
                             Your password must include at least one pro
                             wrestling finishing move
