@@ -2,17 +2,25 @@ import { useState } from 'react';
 import { auth } from '../firebase/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { XCircleIcon } from '@heroicons/react/16/solid';
-
+import { useUserAuth } from '../contexts/UserAuthContext';
+import { useNavigate } from 'react-router-dom';
 export default function Signup() {
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
   });
 
+  const navigate = useNavigate();
   const [signInError, setSignInError] = useState(false);
 
-  const handleCredentials = (e: any) => {
-    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+  const { signIn } = useUserAuth();
+
+  const handleCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserCredentials((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e: any) => {
@@ -20,11 +28,11 @@ export default function Signup() {
     setSignInError(false);
 
     try {
-      let userCredential = await signInWithEmailAndPassword(
-        auth,
+      let userCredential = await signIn(
         userCredentials.email,
         userCredentials.password
       );
+      navigate('/library');
       console.log(userCredential);
     } catch (error) {
       console.log(error);
@@ -60,7 +68,7 @@ export default function Signup() {
                   name="email"
                   type="email"
                   value={userCredentials.email}
-                  onChange={(e) => handleCredentials(e.target.value)}
+                  onChange={handleCredentials}
                   required
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -91,7 +99,7 @@ export default function Signup() {
                   name="password"
                   type="password"
                   value={userCredentials.password}
-                  onChange={(e) => handleCredentials(e.target.value)}
+                  onChange={handleCredentials}
                   required
                   autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
