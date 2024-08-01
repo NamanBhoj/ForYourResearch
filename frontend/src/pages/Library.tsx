@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { useUserAuth } from '../contexts/UserAuthContext';
 
 export default function Library() {
-  const [email, setEmail] = useState<string>('');
   const { user, signOut } = useUserAuth();
   const handleLogout = async () => {
     try {
