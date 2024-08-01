@@ -15,15 +15,14 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 
-// Define context type
 interface UserAuthContextType {
-  user: User; // Replace `any` with the appropriate user type
+  user: User | null;
   signUp: (email: string, password: string) => Promise<UserCredential>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signOut: () => Promise<void>;
+  pending: boolean;
 }
 
-// Initialize context with a default value
 const userAuthContext = createContext<UserAuthContextType | undefined>(
   undefined
 );
@@ -31,15 +30,14 @@ const userAuthContext = createContext<UserAuthContextType | undefined>(
 export const UserAuthContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<any>(null); // Replace `any` with the appropriate user type
+  const [user, setUser] = useState<User | null>(null);
+  const [pending, setPending] = useState(true);
 
   const signUp = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email: string, password: string) => {
-    console.log(email);
-
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -50,6 +48,7 @@ export const UserAuthContextProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setPending(false);
     });
 
     return () => {
@@ -58,7 +57,9 @@ export const UserAuthContextProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ user, signUp, signIn, signOut: logout }}>
+    <userAuthContext.Provider
+      value={{ user, signUp, signIn, signOut: logout, pending }}
+    >
       {children}
     </userAuthContext.Provider>
   );

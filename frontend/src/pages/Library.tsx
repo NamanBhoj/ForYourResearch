@@ -13,7 +13,7 @@ export default function Library() {
     {
       name: 'Lindsay Walton',
       title: 'Front-end Developer',
-      email: user.email,
+      email: user?.email,
       role: 'Member',
     },
     // More people...

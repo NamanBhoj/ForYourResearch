@@ -6,15 +6,19 @@ export const ProtectedRoute: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const navigate = useNavigate();
-  const { user } = useUserAuth();
+  const { user, pending } = useUserAuth();
 
   useEffect(() => {
-    if (!user) {
+    if (!pending && !user) {
       navigate('/');
     }
-  }, [user, navigate]);
+  }, [user, pending, navigate]);
 
   // Return null or a fallback UI while checking the user authentication
+  if (pending) {
+    return <div>Loading...</div>;
+  }
+
   if (!user) {
     return null;
   }
