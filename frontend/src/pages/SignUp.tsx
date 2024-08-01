@@ -29,6 +29,7 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setPending(true);
     e.preventDefault();
     setPending(true);
     setErrors({
@@ -41,6 +42,7 @@ export default function Signup() {
         ...prevErrors,
         passwordLengthError: true,
       }));
+      setPending(false);
       return;
     }
 
@@ -49,6 +51,7 @@ export default function Signup() {
         ...prevErrors,
         passwordMismatchError: true,
       }));
+      setPending(false);
       return;
     }
 
@@ -62,6 +65,7 @@ export default function Signup() {
       console.log(userCredential);
     } catch (error) {
       console.error(error);
+      setPending(false);
     }
   };
 

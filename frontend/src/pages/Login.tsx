@@ -10,6 +10,7 @@ export default function Signup() {
 
   const navigate = useNavigate();
   const [signInError, setSignInError] = useState(false);
+  const [pending, setPending] = useState(false);
 
   const { signIn } = useUserAuth();
 
@@ -22,6 +23,7 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e: any) => {
+    setPending(true);
     e.preventDefault();
     setSignInError(false);
 
@@ -35,6 +37,7 @@ export default function Signup() {
     } catch (error) {
       console.log(error);
       setSignInError(true);
+      setPending(false);
     }
   };
   return (
@@ -125,6 +128,7 @@ export default function Signup() {
             )}
             <div>
               <button
+                disabled={pending}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-slate-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
