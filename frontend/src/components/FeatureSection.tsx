@@ -5,7 +5,7 @@ function FeatureSection() {
   const collectionFeatureCardContent = {
     heading: 'Collect',
     content:
-      'Input your search string and let Zarathustra, our AI Agent powered by the State-of-Art Large Models find and collect relevant information from knowledge sources  ',
+      'Input your search string as shown below and Let our AI Agent powered by the State-of-Art Large Models find and collect relevant information from knowledge sources of over a billion papers',
     image: Collect  
   };
 
