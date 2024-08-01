@@ -5,7 +5,7 @@ import Library from './pages/Library';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { UserAuthContextProvider } from './contexts/UserAuthContext';
+import { UserAuthContextProvider } from './contexts/AuthContext';
 import { setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { auth } from './firebase/firebase';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/16/solid';
-import { useUserAuth } from '../contexts/UserAuthContext';
+import { useUserAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {

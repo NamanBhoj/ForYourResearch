@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/16/solid';
-import { useUserAuth } from '../contexts/UserAuthContext';
+import { useUserAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 export default function Signup() {
   const [userCredentials, setUserCredentials] = useState({
@@ -132,7 +132,6 @@ export default function Signup() {
               </button>
             </div>
           </form>
-          
 
           {/* <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{' '}

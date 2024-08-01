@@ -1,4 +1,4 @@
-import { useUserAuth } from '../contexts/UserAuthContext';
+import { useUserAuth } from '../contexts/AuthContext';
 
 export default function Library() {
   const { user, signOut } = useUserAuth();
