@@ -10,7 +10,9 @@
   ],
   "compilerOptions": {
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "jsx": "react-jsx"
+      
     // ... other options
   }
 }

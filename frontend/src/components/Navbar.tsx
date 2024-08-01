@@ -3,12 +3,10 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react';
+import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useNavigate } from 'react-router-dom';
 
-export default function Navbar() {
-  const navigate = useNavigate();
-
+export default function Example() {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -62,18 +60,16 @@ export default function Navbar() {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <button
-                onClick={() => navigate('/login')}
                 type="button"
                 className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-200 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-4"
               >
-                Sign in
+                <Link to="/login">Log in</Link>
               </button>
               <button
-                onClick={() => navigate('/signup')}
                 type="button"
                 className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign up
+                <Link to="/signup">Sign Up</Link>
               </button>
             </div>
             <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
