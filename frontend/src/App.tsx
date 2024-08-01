@@ -1,8 +1,32 @@
-import { RouterProvider } from 'react-router-dom';
-import routes from './routes/routes';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Library from './pages/Library';
+import ProtectedRoute from './components/ProtectedRoute';
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import { UserAuthContextProvider } from './contexts/AuthContext';
 
 function App() {
-  return <RouterProvider router={routes}></RouterProvider>;
+  return (
+    <>
+      <UserAuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/library"
+            element={
+              <ProtectedRoute>
+                <Library />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </UserAuthContextProvider>
+    </>
+  );
 }
 
 export default App;

@@ -1,13 +1,10 @@
-
-
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  
 } from '@headlessui/react';
-import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function Example() {
   return (
@@ -66,13 +63,13 @@ export default function Example() {
                 type="button"
                 className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-200 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-4"
               >
-                 <Link to= "/login">Sign In</Link>
+                <Link to="/login">Log in</Link>
               </button>
               <button
                 type="button"
                 className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                <Link to= "/login">Log in</Link>
+                <Link to="/signup">Sign Up</Link>
               </button>
             </div>
             <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">

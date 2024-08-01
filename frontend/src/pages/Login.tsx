@@ -1,27 +1,43 @@
 import { useState } from 'react';
-import { auth } from '../firebase/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { XCircleIcon } from '@heroicons/react/16/solid';
-
+import { useUserAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 export default function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [userCredentials, setUserCredentials] = useState({
+    email: '',
+    password: '',
+  });
+
+  const navigate = useNavigate();
   const [signInError, setSignInError] = useState(false);
+  const [pending, setPending] = useState(false);
+
+  const { signIn } = useUserAuth();
+
+  const handleCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserCredentials((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e: any) => {
+    setPending(true);
     e.preventDefault();
     setSignInError(false);
 
     try {
-      let userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
+      let userCredential = await signIn(
+        userCredentials.email,
+        userCredentials.password
       );
+      navigate('/library');
       console.log(userCredential);
     } catch (error) {
       console.log(error);
       setSignInError(true);
+      setPending(false);
     }
   };
   return (
@@ -52,11 +68,11 @@ export default function Signup() {
                   id="email"
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={userCredentials.email}
+                  onChange={handleCredentials}
                   required
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -83,11 +99,11 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={userCredentials.password}
+                  onChange={handleCredentials}
                   required
                   autoComplete="current-password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -112,8 +128,9 @@ export default function Signup() {
             )}
             <div>
               <button
+                disabled={pending}
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-slate-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-slate-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Login
               </button>
