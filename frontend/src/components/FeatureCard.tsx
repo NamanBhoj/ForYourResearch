@@ -10,7 +10,7 @@ export default function FeatureCard(props: any) {
           {props.heading}
         </span>
       </div>
-      <div className="flex-grow font-bold bg-slate-50 px-4 py-5 sm:p-6 text-base sm:text-lg md:text-xl lg:text-xl">
+      <div className="flex-grow font-medium hover:scale-105 bg-slate-50 px-4 py-5 sm:p-6 text-base sm:text-lg md:text-xl lg:text-xl">
         {props.content}
       </div>
 
