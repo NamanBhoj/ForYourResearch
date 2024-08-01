@@ -3,7 +3,6 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Library from './pages/Library';
 import ProtectedRoute from './components/ProtectedRoute';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
 
