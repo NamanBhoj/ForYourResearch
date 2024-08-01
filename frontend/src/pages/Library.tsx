@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import { useUserAuth } from '../contexts/AuthContext';
 
 export default function Library() {
   const { user, signOut } = useUserAuth();
+  const [pending, setPending] = useState(false);
+
   const handleLogout = async () => {
+    setPending(true);
     try {
       await signOut();
     } catch (error) {
       console.log(error);
+      setPending(false);
     }
   };
   const people = [
@@ -32,6 +37,7 @@ export default function Library() {
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
+            disabled={pending}
             type="button"
             onClick={handleLogout}
             className="block rounded-md bg-red-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
