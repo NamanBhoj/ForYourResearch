@@ -29,9 +29,9 @@ function App() {
 
       <div id="what-we-do" className="space-y-12 px-4 md:px-12 lg:px-24 mt-12">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-gray-800">What We Do</h1>
+          <h1 className="text-5xl font-extrabold text-gray-800">How we do it!</h1>
           <p className="text-lg text-gray-600 mt-4">
-            Discover the unique features and services we offer.
+            Fastest way to conduct your Literature Reviews.
           </p>
           <div className="w-24 h-1 mx-auto bg-indigo-600 mt-4 rounded"></div>
         </div>

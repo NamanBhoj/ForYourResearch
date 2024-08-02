@@ -5,10 +5,12 @@ import {
 } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import {BookingCard} from './BookingCard.tsx'
 
 export default function Example() {
   return (
     <Disclosure as="nav" className="bg-white shadow">
+     
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
@@ -42,6 +44,8 @@ export default function Example() {
               >
                 Home
               </a>
+             
+            
               {/* <a
                 href="#"
                 className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
