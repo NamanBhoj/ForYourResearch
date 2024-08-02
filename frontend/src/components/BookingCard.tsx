@@ -44,7 +44,7 @@ export default function Example() {
                 </DialogTitle>
                 <div className="mt-2">
                   <p className="text-sm text-slate-900-500">
-                      Our system will go over <b>1000 paper</b>. The review will contain key insights including <b>Future Work </b>from each highly relevant paper <b>saving atleast 100 hours of reading effort.</b>  
+                      Our AI agents will go over <b>1000 paper</b> and generate key insights including <b>Future Work </b>from each highly relevant paper <b>saving atleast 100 hours of reading effort.</b>  
                   </p>
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function Example() {
                 onClick={() => setOpen(false)}
                 className="mt-3 inline-flex w-full justify-center animate-bounce rounded-md bg-green-100 px-3 py-2 text-sm font-semibold text-slate-950 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-200 sm:mt-0 sm:w-auto"
               >
-                I am In
+                I am in!
               </button>
               </a>
             </div>
