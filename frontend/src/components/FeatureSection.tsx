@@ -1,64 +1,61 @@
-import FeatureCard from './FeatureCard';
-import Collect from "../assets/Collect.svg"
-import Arrow from "../assets/Arrow.svg"
-import Analyse from "../assets/analyse.svg";
-import Answer from "../assets/Answer.svg";
-function FeatureSection() {
-  const collectionFeatureCardContent = {
-    heading: 'Collect',
-    content:
-      'Input your search string as shown below and Let our AI Agent powered by the State-of-Art Large Models find and collect relevant information from knowledge sources of over a billion papers',
-    image: Collect  
-  };
+import Analyse from '../assets/svg/Analyse';
+import Answer from '../assets/svg/Answer';
+import Collect from '../assets/svg/Collect';
 
-  const analysisFeatureCardContent = {
-    heading: 'Analyze',
-    content:
-      'Analyze your research papers analyze your research papers analyze your research papers analyze your research papers analyze your research papers',
-      image: Analyse
-  };
+const features = [
+  {
+    title: 'Collect',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, aut quis? Tempora asperiores enim autem fugit? Rem, quo ipsam. Dolores corrupti odio esse saepe magni corporis ea incidunt, consequatur alias.',
+    svgComponent: <Collect />,
+  },
+  {
+    title: 'Analyse',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, aut quis? Tempora asperiores enim autem fugit? Rem, quo ipsam. Dolores corrupti odio esse saepe magni corporis ea incidunt, consequatur alias.',
+    svgComponent: <Analyse />,
+  },
+  {
+    title: 'Answer',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, aut quis? Tempora asperiores enim autem fugit? Rem, quo ipsam. Dolores corrupti odio esse saepe magni corporis ea incidunt, consequatur alias.',
+    svgComponent: <Answer />,
+  },
+];
 
-  const answerFeatureCardContent = {
-    heading: 'Answer',
-    content:
-      'Answer your research questions answer your research questions answer your research questions answer your research questions answer your research questions',
-      image: Answer
-  };
-
+function App() {
   return (
-    <div className="flex flex-col items-center mt-14 mb-8">
-      <span className="mt-24 text-5xl font-extrabold text-slate-900 animate">
-        What we do
-      </span>
-      <img src={Arrow} alt="" className='animate-pulse' />
-      <div className="mt-12 mb-12 ">
-        <FeatureCard
-          heading={collectionFeatureCardContent.heading}
-          content={collectionFeatureCardContent.content}
-          image = {collectionFeatureCardContent.image}
-        />
-      </div>
-      <div className="mt-24">
-        <FeatureCard
-          heading={analysisFeatureCardContent.heading}
-          content={analysisFeatureCardContent.content}
-          image = {analysisFeatureCardContent.image}
-        />
-      </div>
-      <div className="mt-24">
-        <FeatureCard
-          heading={answerFeatureCardContent.heading}
-          content={answerFeatureCardContent.content}
-          image = {answerFeatureCardContent.image}
-        />
-      </div>
+    <div className="w-screen py-12 bg-gray-100">
 
-     
-      
+      <div id="what-we-do" className="space-y-12 px-4 md:px-12 lg:px-24 mt-12">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-gray-800">What We Do</h1>
+          <p className="text-lg text-gray-600 mt-4">
+            Discover the unique features and services we offer.
+          </p>
+          <div className="w-24 h-1 mx-auto bg-indigo-600 mt-4 rounded"></div>
+        </div>
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="flex flex-col md:flex-row items-center bg-white shadow-lg border border-slate-300 hover:shadow-2xl transition transform duration-500 hover:-translate-y-2 hover:scale-105 w-full rounded-lg overflow-hidden"
+          >
+            <div className="w-full md:w-1/5 p-6 order-2 md:order-1 flex flex-col items-start">
+              <h2 className="text-4xl font-bold mb-4 text-left text-gray-800">
+                {feature.title}
+              </h2>
+              <p className="text-slate-700 text-xl text-left">
+                {feature.description}
+              </p>
+            </div>
+            <div className="w-full md:w-4/5 flex justify-center items-center bg-slate-100 p-6 order-1 md:order-2">
+              {feature.svgComponent}
+            </div>
+          </div>
+        ))}
       </div>
-
-  
+    </div>
   );
 }
 
-export default FeatureSection;
+export default App;
