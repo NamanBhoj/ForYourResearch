@@ -1,6 +1,8 @@
 import FeatureCard from './FeatureCard';
 import Collect from "../assets/Collect.svg"
 import Arrow from "../assets/Arrow.svg"
+import Analyse from "../assets/analyse.svg";
+import Answer from "../assets/Answer.svg";
 function FeatureSection() {
   const collectionFeatureCardContent = {
     heading: 'Collect',
@@ -9,17 +11,19 @@ function FeatureSection() {
     image: Collect  
   };
 
-  // const analysisFeatureCardContent = {
-  //   heading: 'Analyze',
-  //   content:
-  //     'Analyze your research papers analyze your research papers analyze your research papers analyze your research papers analyze your research papers',
-  // };
+  const analysisFeatureCardContent = {
+    heading: 'Analyze',
+    content:
+      'Analyze your research papers analyze your research papers analyze your research papers analyze your research papers analyze your research papers',
+      image: Analyse
+  };
 
-  // const answerFeatureCardContent = {
-  //   heading: 'Answer',
-  //   content:
-  //     'Answer your research questions answer your research questions answer your research questions answer your research questions answer your research questions',
-  // };
+  const answerFeatureCardContent = {
+    heading: 'Answer',
+    content:
+      'Answer your research questions answer your research questions answer your research questions answer your research questions answer your research questions',
+      image: Answer
+  };
 
   return (
     <div className="flex flex-col items-center mt-14 mb-8">
@@ -27,11 +31,25 @@ function FeatureSection() {
         What we do
       </span>
       <img src={Arrow} alt="" className='animate-pulse' />
-      <div className="mt-15 w-full max-w-7xl sm:px-6 lg:px-8">
+      <div className="mt-12 mb-12 ">
         <FeatureCard
           heading={collectionFeatureCardContent.heading}
           content={collectionFeatureCardContent.content}
           image = {collectionFeatureCardContent.image}
+        />
+      </div>
+      <div className="mt-24">
+        <FeatureCard
+          heading={analysisFeatureCardContent.heading}
+          content={analysisFeatureCardContent.content}
+          image = {analysisFeatureCardContent.image}
+        />
+      </div>
+      <div className="mt-24">
+        <FeatureCard
+          heading={answerFeatureCardContent.heading}
+          content={answerFeatureCardContent.content}
+          image = {answerFeatureCardContent.image}
         />
       </div>
 

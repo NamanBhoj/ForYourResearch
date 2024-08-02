@@ -6,7 +6,7 @@ export default function FeatureCard(props: any) {
         <span className="text-slate-950 text-4xl font-bold px-2 py-1 rounded ">
           We
         </span>
-        <span className="ml-2 text-2xl text-red-500 font-bold sm:text-xl md:text-2xl lg:text-3xl">
+        <span className="ml-2 text-6xl text-red-500 font-bold sm:text-xl md:text-2xl lg:text-3xl">
           {props.heading}
         </span>
       </div>
