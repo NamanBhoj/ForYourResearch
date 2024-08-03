@@ -44,7 +44,7 @@ export default function Example() {
                 </DialogTitle>
                 <div className="mt-2">
                   <p className="text-sm text-slate-900-500">
-                      Our AI agents will go over <b>1000 paper</b> and generate key insights including <b>Future Work </b>from each highly relevant paper <b>saving atleast 100 hours of reading effort.</b>  
+                      Submit your research question and get a report with key insights saving atleast <b>100 hours</b> of reading effort. 
                   </p>
                 </div>
               </div>
