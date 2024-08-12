@@ -6,7 +6,7 @@ const features = [
   {
     title: 'We Collect',
     description:
-      'Our AI agent, takes your input and goes to the knowledge sources to collect relevant papers in your own database, which you can then annotate easily by you.',
+      'Our AI agent, takes your input and goes to the knowledge sources to collect relevant papers and stores them in your library. \n \n You can then  easily annotate.',
     svgComponent: <Collect />,
   },
   {
