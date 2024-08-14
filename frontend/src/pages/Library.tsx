@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useUserAuth } from '../contexts/AuthContext';
+// import { useUserAuth } from '../contexts/AuthContext';
 import KeywordInputField from '../components/KeywordInputField';
 import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
 import RelevanceDropdown from '../components/RelevanceDropdown';
 
 export default function Library() {
-  const { user, signOut } = useUserAuth();
+  // const { user, signOut } = useUserAuth();
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState<string[]>([]);
   const [query, setQuery] = useState('');
@@ -111,13 +111,13 @@ export default function Library() {
     ],
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await signOut();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleAddKeyword = () => {
     if (keyword.trim() !== '') {
@@ -133,8 +133,8 @@ export default function Library() {
       const response = await axios.get(
         `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
       );
-      setPapers(response.data); // Update to set papers
-      console.log(response.data);
+      setPapers(response.data);
+      console.log(papers);
     } catch (error) {
       console.error('Error fetching papers:', error);
     }
@@ -195,7 +195,7 @@ export default function Library() {
                       id="query"
                       name="query"
                       placeholder=""
-                      className="px-1.5 py-1.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="px-1.5 py-1.5 block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <button
@@ -211,77 +211,71 @@ export default function Library() {
           </div>
         </div>
       </div>
-      <div className="mx-12 mt-12 overflow-hidden rounded-lg bg-white shadow-lg">
+      <div className="mx-12 mt-12 overflow-hidden rounded-lg shadow border border-slate-300 shadow-lg">
         <div className="px-4 py-5 sm:p-6">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
-              {/* <div className="sm:flex-auto">
-                <p className="mt-2 text-sm text-gray-700">
-                  A list of all the papers in your library including their title,
-                  abstract, year of publishing, and relevance.
-                </p>
-              </div>
-              <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                <button
-                  type="button"
-                  className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Add paper
-                </button>
-              </div> */}
+              {/*  can add title and other info of the table */}
             </div>
             <div className="-mx-4 mt-8 sm:-mx-0">
-              <table className="min-w-full divide-y divide-gray-300">
+              <table className="min-w-full table-fixed divide-y divide-slate-300">
                 <thead>
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6"
                     >
                       Title
                     </th>
                     <th
                       scope="col"
-                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-gray-900 sm:table-cell max-w-[200px] truncate"
+                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-slate-900 sm:table-cell max-w-[200px] truncate"
                     >
                       Abstract
                     </th>
                     <th
                       scope="col"
-                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell max-w-[100px] truncate"
+                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-slate-900 lg:table-cell max-w-[100px] truncate"
                     >
                       Year
                     </th>
                     <th
                       scope="col"
-                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell max-w-[100px] truncate"
+                      className="hidden px-3 py-3.5 text-center text-sm font-semibold text-slate-900 lg:table-cell max-w-[100px] truncate"
                     >
                       Relevance
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="bg-white divide-y divide-slate-300 bg-slate-50">
                   {paperObj.data.map((paper) => (
-                    <tr key={paper.paperId}>
-                      <td className=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 max-w-[100px]">
+                    <tr
+                      key={paper.paperId}
+                      className="hover:bg-slate-100 transition-colors duration-150"
+                    >
+                      <td className="py-4 pl-4 pr-3 text-sm font-medium text-slate-900 sm:pl-6 max-w-[100px] align-top">
                         <a
-                          className="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline"
+                          className="font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
                           href={paper.url}
                           target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {paper.title}
                         </a>
                       </td>
-                      <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell max-w-[200px]">
+                      <td className="hidden px-3 py-4 text-sm text-black sm:table-cell max-w-[200px]">
                         {paper.abstract}
                       </td>
-                      <td className="hidden text-center px-3 py-4 text-sm text-gray-500 lg:table-cell max-w-[100px] truncate">
+                      <td className="hidden text-center px-3 py-4 text-sm text-black lg:table-cell max-w-[100px] truncate align-top">
                         {paper.year}
                       </td>
-                      <td className="py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-0 max-w-[50px]">
+                      <td className="py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6 max-w-[50px] align-top">
                         <RelevanceDropdown
-                          relevance={paperRelevance[paper.paperId] || ''}
-                          onRelevanceChange={(newRelevance: string) =>
+                          relevance={
+                            (paperRelevance[paper.paperId] as any) ||
+                            'Unselected'
+                          }
+                          onRelevanceChange={(newRelevance: any) =>
                             handleRelevanceChange(paper.paperId, newRelevance)
                           }
                         />
