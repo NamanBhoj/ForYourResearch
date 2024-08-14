@@ -251,7 +251,7 @@ export default function Library() {
                   {paperObj.data.map((paper) => (
                     <tr
                       key={paper.paperId}
-                      className="hover:bg-slate-100 transition-colors duration-150"
+                      className="hover:bg-slate-50 transition-colors duration-150"
                     >
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-slate-900 sm:pl-6 max-w-[100px] align-top">
                         <a
