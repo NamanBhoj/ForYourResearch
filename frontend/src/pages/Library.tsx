@@ -4,6 +4,7 @@ import KeywordInputField from '../components/KeywordInputField';
 import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
 import RelevanceDropdown from '../components/RelevanceDropdown';
+import QueryChip from '../components/QueryChip';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -14,8 +15,7 @@ export default function Library() {
   const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
     {}
   );
-
-  const paperObj = {
+  const [paperObj, setPaperObj] = useState({
     total: 175648,
     offset: 0,
     next: 10,
@@ -109,7 +109,7 @@ export default function Library() {
         year: 2023,
       },
     ],
-  };
+  });
 
   // const handleLogout = async () => {
   //   try {
@@ -134,7 +134,7 @@ export default function Library() {
         `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
       );
       setPapers(response.data);
-      console.log(papers);
+      console.log(response.data);
     } catch (error) {
       console.error('Error fetching papers:', error);
     }
@@ -148,10 +148,39 @@ export default function Library() {
     setQuery(updatedKeywordList.join(' '));
   };
 
+  const handleDeleteQuery = () => {
+    setKeywordList([]);
+    setQuery('');
+  };
+
   const handleRelevanceChange = (paperId: string, relevance: string) => {
     setPaperRelevance((prevRelevance) => ({
       ...prevRelevance,
       [paperId]: relevance,
+    }));
+  };
+
+  const handleSortByRelevance = (): void => {
+    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Unselected';
+    const sortOrder = {
+      Relevant: 0,
+      Uncertain: 1,
+      Irrelevant: 2,
+      Unselected: 3,
+    };
+
+    const sortedData = paperObj.data.sort((a, b) => {
+      const relevanceA = (paperRelevance[a.paperId] ||
+        'Unselected') as Relevance;
+      const relevanceB = (paperRelevance[b.paperId] ||
+        'Unselected') as Relevance;
+
+      return sortOrder[relevanceA] - sortOrder[relevanceB];
+    });
+
+    setPaperObj((prevPaperObj) => ({
+      ...prevPaperObj,
+      data: sortedData,
     }));
   };
 
@@ -179,43 +208,57 @@ export default function Library() {
                 </div>
               </div>
               <div className="px-4 py-5 sm:p-6">
-                {keywordList.map((keyword, index) => (
-                  <KeywordChip
-                    key={index}
-                    text={keyword}
-                    handleDelete={handleDelete}
-                  />
-                ))}
+                <div className="flex flex-wrap gap-2">
+                  {keywordList.map((keyword, index) => (
+                    <KeywordChip
+                      key={index}
+                      text={keyword}
+                      handleDelete={handleDelete}
+                    />
+                  ))}
+                </div>
               </div>
               <div className="px-4 py-5 sm:p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-grow">
-                    <input
-                      value={query}
-                      id="query"
-                      name="query"
-                      placeholder=""
-                      className="px-1.5 py-1.5 block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                <div className="flex flex-col space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-grow">
+                      <div className="flex flex-col space-y-2">
+                        <span className="text-sm font-medium text-gray-600">
+                          Search query:
+                        </span>
+                        <QueryChip
+                          handleDelete={handleDeleteQuery}
+                          text={query}
+                        />
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
+                      onClick={handleSearch}
+                    >
+                      Search
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="mt-auto inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                    onClick={handleSearch}
-                  >
-                    Search
-                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="mx-12 mt-12 overflow-hidden rounded-lg shadow border border-slate-300 shadow-lg">
         <div className="px-4 py-5 sm:p-6">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
               {/*  can add title and other info of the table */}
+              <button
+                type="button"
+                className="mt-auto ml-auto inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                onClick={handleSortByRelevance}
+              >
+                Sort by relevance
+              </button>
             </div>
             <div className="-mx-4 mt-8 sm:-mx-0">
               <table className="min-w-full table-fixed divide-y divide-slate-300">
@@ -243,7 +286,7 @@ export default function Library() {
                       scope="col"
                       className="hidden px-3 py-3.5 text-center text-sm font-semibold text-slate-900 lg:table-cell max-w-[100px] truncate"
                     >
-                      Relevance
+                      Relevance<button> ⌄</button>
                     </th>
                   </tr>
                 </thead>
