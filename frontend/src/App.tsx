@@ -1,12 +1,13 @@
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
 import Library from './pages/Library';
+import PapersTable from './pages/PapersTable';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
-
 
 function App() {
   return (
@@ -17,13 +18,16 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route
-            path="/library"
+            path="/dashboard"
             element={
               <ProtectedRoute>
-                <Library />
+                <Dashboard />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route path="library" element={<Library />} />
+            <Route path="search" element={<PapersTable />} />
+          </Route>
         </Routes>
       </UserAuthContextProvider>
     </>

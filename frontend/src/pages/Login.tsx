@@ -32,7 +32,7 @@ export default function Signup() {
         userCredentials.email,
         userCredentials.password
       );
-      navigate('/library');
+      navigate('/dashboard');
       console.log(userCredential);
     } catch (error) {
       console.log(error);
