@@ -123,7 +123,7 @@ export default function Library() {
                     className="mt-auto inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     onClick={handleAddKeyword}
                   >
-                    Add keyword
+                    Add Keyword
                   </button>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function Library() {
                     <div className="flex-grow">
                       <div className="flex flex-col space-y-2">
                         <span className="text-sm font-medium text-gray-600">
-                          Search query:
+                          Full Search Query:
                         </span>
                         <QueryChip
                           handleDelete={handleDeleteQuery}
