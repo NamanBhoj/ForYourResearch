@@ -1,7 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-export default function Example() {
+export default function SortByDropdown(props: any) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -18,22 +18,28 @@ export default function Example() {
         transition
         className="absolute mt-1 z-10 right- overflow-auto h-[155px] w-[120px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
       >
-        {/* <div className="px-4 py-3">
-          <p className="text-sm">Sort by:</p>
-        </div> */}
         <div className="py-1">
           <MenuItem>
-            <a className="block px-4 py-2 bg-green-200 text-sm text-gray-700 data-[focus]:bg-green-300 data-[focus]:text-gray-900">
+            <a
+              className="block px-4 py-2 bg-green-200 text-sm text-gray-700 data-[focus]:bg-green-300 data-[focus]:text-gray-900"
+              onClick={props.handleSortByRelevant}
+            >
               Relevant first
             </a>
           </MenuItem>
           <MenuItem>
-            <a className="bg-yellow-200 block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-yellow-300 data-[focus]:text-gray-900">
+            <a
+              onClick={props.handleSortByUncertain}
+              className="bg-yellow-200 block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-yellow-300 data-[focus]:text-gray-900"
+            >
               Uncertain first
             </a>
           </MenuItem>
           <MenuItem>
-            <a className="block bg-red-200 px-4 py-2 text-sm text-gray-700 data-[focus]:bg-red-300 data-[focus]:text-gray-900">
+            <a
+              onClick={props.handleSortByIrrelevant}
+              className="block bg-red-200 px-4 py-2 text-sm text-gray-700 data-[focus]:bg-red-300 data-[focus]:text-gray-900"
+            >
               Irrelevant first
             </a>
           </MenuItem>

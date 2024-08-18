@@ -5,7 +5,6 @@ import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
 import RelevanceDropdown from '../components/RelevanceDropdown';
 import QueryChip from '../components/QueryChip';
-import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import SortByDropdown from '../components/SortByDropdown';
 
 export default function Library() {
@@ -84,14 +83,41 @@ export default function Library() {
     window.open(href, '_blank');
   };
 
-  const handleSortByRelevance = (): void => {
-    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Unselected';
-    const sortOrder = {
+  const sortRelevantFirst = () => {
+    handleSortByRelevance({
       Relevant: 0,
       Uncertain: 1,
       Irrelevant: 2,
       Unselected: 3,
-    };
+    });
+  };
+
+  const sortUncertainFirst = () => {
+    handleSortByRelevance({
+      Relevant: 1,
+      Uncertain: 0,
+      Irrelevant: 2,
+      Unselected: 3,
+    });
+  };
+
+  const sortIrrelevantFirst = () => {
+    handleSortByRelevance({
+      Relevant: 2,
+      Uncertain: 1,
+      Irrelevant: 0,
+      Unselected: 3,
+    });
+  };
+
+  const handleSortByRelevance = (sortOrder: any): void => {
+    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Unselected';
+    // const sortOrder = {
+    //   Relevant: 0,
+    //   Uncertain: 1,
+    //   Irrelevant: 2,
+    //   Unselected: 3,
+    // };
 
     const sortedData = paperObj.data.sort((a, b) => {
       const relevanceA = (paperRelevance[a.paperId] ||
@@ -180,7 +206,11 @@ export default function Library() {
                 {/* add text for table info */}
                 <div className="z-20 mt-4">
                   {' '}
-                  <SortByDropdown />
+                  <SortByDropdown
+                    handleSortByRelevant={sortRelevantFirst}
+                    handleSortByUncertain={sortUncertainFirst}
+                    handleSortByIrrelevant={sortIrrelevantFirst}
+                  />
                 </div>
               </div>
               <div className="mt-8 flow-root">
@@ -213,12 +243,6 @@ export default function Library() {
                           >
                             <div className="flex items-center justify-center">
                               Relevance
-                              {/* <SortByDropdown /> */}
-                              {/* <ChevronDownIcon
-                                onClick={handleSortByRelevance}
-                                aria-hidden="true"
-                                className="cursor-pointer hover:bg-neutral-100 hover:rounded-lg hover:text-neutral-900 ml-1 h-5 w-5 text-neutral-400"
-                              /> */}
                             </div>
                           </th>
                         </tr>

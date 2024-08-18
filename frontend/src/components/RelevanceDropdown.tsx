@@ -1,7 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-type Relevance = 'Irrelevant' | 'Uncertain' | 'Relevant' | 'Unselected';
+type Relevance = 'Irrelevant' | 'Uncertain' | 'Relevant' | 'Untag';
 
 interface RelevanceDropdownProps {
   relevance?: Relevance;
@@ -9,7 +9,7 @@ interface RelevanceDropdownProps {
 }
 
 export default function RelevanceDropdown({
-  relevance = 'Unselected',
+  relevance = 'Untag',
   onRelevanceChange,
 }: RelevanceDropdownProps) {
   const relevanceOptions: Record<Relevance, string> = {
@@ -19,7 +19,7 @@ export default function RelevanceDropdown({
       'bg-yellow-200 text-yellow-800 ring-yellow-600/20 hover:bg-yellow-100 hover:text-yellow-900',
     Irrelevant:
       'bg-red-200 text-red-700 ring-red-600/10 hover:bg-red-100 hover:text-red-800',
-    Unselected: 'bg-white text-slate-700 ring-slate-300 hover:text-slate-800',
+    Untag: 'bg-white text-slate-700 ring-slate-300 hover:text-slate-800',
   };
 
   const getColor = () => relevanceOptions[relevance];
@@ -30,7 +30,7 @@ export default function RelevanceDropdown({
         <MenuButton
           className={`inline-flex w-full justify-center gap-x-1.5 rounded-3xl px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset hover:bg-gray-50 ${getColor()}`}
         >
-          {relevance === 'Unselected' ? 'Select Relevance' : relevance}
+          {relevance === 'Untag' ? 'Tag Relevance' : relevance}
           <ChevronDownIcon
             aria-hidden="true"
             className="-mr-1 h-5 w-5 text-slate-400"
