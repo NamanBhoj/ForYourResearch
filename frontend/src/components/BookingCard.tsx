@@ -43,7 +43,7 @@ export default function Example() {
                   Get a Free Literature Review done!
                 </DialogTitle>
                 <div className="mt-2">
-                  <p className="text-sm text-slate-900-500">
+                  <p className="text-sm text-neutral-900-500">
                       Submit your research question and get a report with key insights saving atleast <b>100 hours</b> of reading effort. 
                   </p>
                 </div>
@@ -55,7 +55,7 @@ export default function Example() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="mt-3 inline-flex w-full justify-center animate-bounce rounded-md bg-green-100 px-3 py-2 text-sm font-semibold text-slate-950 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-200 sm:mt-0 sm:w-auto"
+                className="mt-3 inline-flex w-full justify-center animate-bounce rounded-md bg-green-100 px-3 py-2 text-sm font-semibold text-neutral-950 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-200 sm:mt-0 sm:w-auto"
               >
                 I am in!
               </button>

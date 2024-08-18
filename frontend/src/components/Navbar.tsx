@@ -39,7 +39,7 @@ export default function Example() {
               {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
               <a
                 href="#"
-                className="inline-flex items-center border-b-2 border-slate-950 px-1 pt-1 text-sm font-medium text-gray-900"
+                className="inline-flex items-center border-b-2 border-neutral-950 px-1 pt-1 text-sm font-medium text-gray-900"
               >
                 Home
               </a>
@@ -64,13 +64,13 @@ export default function Example() {
             <div className="flex-shrink-0">
               <button
                 type="button"
-                className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-200 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-4"
+                className="relative inline-flex items-center gap-x-1.5 rounded-md bg-neutral-200 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-neutral-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-4"
               >
                 <Link to="/login">Log in</Link>
               </button>
               <button
                 type="button"
-                className="relative inline-flex items-center gap-x-1.5 rounded-md bg-slate-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="relative inline-flex items-center gap-x-1.5 rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <Link to="/signup">Sign Up</Link>
               </button>

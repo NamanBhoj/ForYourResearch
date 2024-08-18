@@ -109,7 +109,7 @@ export default function Library() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4">
         <div className="flex justify-center">
           <div className="max-w-lg w-full flex items-center space-x-4">
-            <div className="divide-y divide-slate-200 overflow-hidden rounded-lg shadow border border-slate-300 w-full">
+            <div className="divide-y divide-neutral-200 overflow-hidden rounded-lg shadow border border-neutral-300 w-full">
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-grow">
@@ -178,29 +178,29 @@ export default function Library() {
                 <div className="border rounded-lg shadow  overflow-auto max-h-[700px] max-w-full">
                   <div className="inline-block min-w-full align-middle">
                     <table className="min-w-full divide-y divide-gray-300">
-                      <thead className="bg-slate-200 sticky top-0 z-10">
+                      <thead className="bg-neutral-200 sticky top-0 z-10">
                         <tr>
                           <th
                             scope="col"
-                            className="py-2 pl-3 pr-2 text-left text-sm font-semibold text-slate-900 sm:pl-4"
+                            className="py-2 pl-3 pr-2 text-left text-sm font-semibold text-neutral-900 sm:pl-4"
                           >
                             Title
                           </th>
                           <th
                             scope="col"
-                            className="hidden px-2 py-2 text-center text-sm font-semibold text-slate-900 sm:table-cell max-w-[200px] truncate"
+                            className="hidden px-2 py-2 text-center text-sm font-semibold text-neutral-900 sm:table-cell max-w-[200px] truncate"
                           >
                             Abstract
                           </th>
                           <th
                             scope="col"
-                            className="hidden px-2 py-2 text-center text-sm font-semibold text-slate-900 lg:table-cell max-w-[100px] truncate"
+                            className="hidden px-2 py-2 text-center text-sm font-semibold text-neutral-900 lg:table-cell max-w-[100px] truncate"
                           >
                             Year
                           </th>
                           <th
                             scope="col"
-                            className="z-auto hidden px-2 py-2 text-center text-sm font-semibold text-slate-900 lg:table-cell max-w-[100px] truncate"
+                            className="z-auto hidden px-2 py-2 text-center text-sm font-semibold text-neutral-900 lg:table-cell max-w-[100px] truncate"
                           >
                             <div className="flex items-center justify-center">
                               Relevance
@@ -208,20 +208,20 @@ export default function Library() {
                               <ChevronDownIcon
                                 onClick={handleSortByRelevance}
                                 aria-hidden="true"
-                                className="cursor-pointer hover:bg-slate-100 hover:rounded-lg hover:text-slate-900 ml-1 h-5 w-5 text-slate-400"
+                                className="cursor-pointer hover:bg-neutral-100 hover:rounded-lg hover:text-neutral-900 ml-1 h-5 w-5 text-neutral-400"
                               />
                             </div>
                           </th>
                         </tr>
                       </thead>
 
-                      <tbody className="bg-white divide-y divide-slate-300 bg-slate-50">
+                      <tbody className="bg-white divide-y divide-neutral-300 bg-neutral-50">
                         {paperObj.data.map((paper) => (
                           <tr
                             key={paper.paperId}
-                            className="hover:bg-slate-50 transition-colors duration-150"
+                            className="hover:bg-neutral-50 transition-colors duration-150"
                           >
-                            <td className="py-3 pl-3 pr-2 text-sm font-medium text-slate-900 sm:pl-4 max-w-[100px] align-top">
+                            <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
                               <a
                                 className="font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
                                 href={paper.openAccessPdf?.url || ''}

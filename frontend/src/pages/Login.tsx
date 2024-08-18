@@ -88,7 +88,7 @@ export default function Signup() {
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-semibold text-slate-900 hover:bg-slate-300"
+                    className="font-semibold text-neutral-900 hover:bg-neutral-300"
                   >
                     Forgot password?
                   </a>
@@ -130,7 +130,7 @@ export default function Signup() {
               <button
                 disabled={pending}
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-slate-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-neutral-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Login
               </button>

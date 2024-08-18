@@ -44,17 +44,17 @@ function App() {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row items-center bg-white shadow-lg border border-slate-300 hover:shadow-2xl transition transform duration-500 hover:-translate-y-2 hover:scale-105 w-full rounded-lg overflow-hidden"
+            className="flex flex-col md:flex-row items-center bg-white shadow-lg border border-neutral-300 hover:shadow-2xl transition transform duration-500 hover:-tranneutral-y-2 hover:scale-105 w-full rounded-lg overflow-hidden"
           >
             <div className="w-full md:w-1/5 p-6 order-2 md:order-1 flex flex-col items-start">
-              <h2 className="text-4xl animate-pulse font-bold mb-4 text-left text-slate-800">
+              <h2 className="text-4xl animate-pulse font-bold mb-4 text-left text-neutral-800">
                 {feature.title}
               </h2>
-              <p className="text-slate-700 font-semibold text-xl text-left">
+              <p className="text-neutral-700 font-semibold text-xl text-left">
                 {feature.description}
               </p>
             </div>
-            <div className="w-full md:w-4/5 flex justify-center items-center bg-slate-100 p-6 order-1 md:order-2">
+            <div className="w-full md:w-4/5 flex justify-center items-center bg-neutral-100 p-6 order-1 md:order-2">
               {feature.svgComponent}
             </div>
           </div>

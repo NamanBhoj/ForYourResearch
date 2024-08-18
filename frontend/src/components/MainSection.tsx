@@ -12,10 +12,10 @@ function MainSection() {
       <div className="!scroll-smooth">
       <BookingCard></BookingCard>
         <div className="text-center mb-14 mt-12">
-          <h1 className="text-7xl font-bold text-slate-900 mb-4">
+          <h1 className="text-7xl font-bold text-neutral-900 mb-4">
             Automating tedious parts of literature reviews
           </h1>
-          <p className="text-lg font-bold text-slate-700 mb-8 mt-2">
+          <p className="text-lg font-bold text-neutral-700 mb-8 mt-2">
             Save time, effort and avoid frustration while conducting Literature
             Reviews
           </p>
