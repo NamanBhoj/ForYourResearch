@@ -23,7 +23,7 @@ async def search(query: str):
     query_params = {
         "query": query,
         "limit": 100,
-        "fields": "title,abstract,year,openAccessPdf",
+        "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
     }
 
     # Directly define the API key (Reminder: Securely handle API keys in production environments)
@@ -36,6 +36,6 @@ async def search(query: str):
 
     # Send the API request
     response = requests.get(url, params=query_params, headers=headers)
-    
+
     paperObject = response.json()
     return paperObject

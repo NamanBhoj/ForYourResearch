@@ -15,6 +15,7 @@ export default function Library() {
     abstract: string;
     openAccessPdf: { url: string; status: string };
     year: number;
+    isOpenAccess: string;
   }
 
   interface PaperResponse {
@@ -77,6 +78,10 @@ export default function Library() {
       ...prevRelevance,
       [paperId]: relevance,
     }));
+  };
+
+  const openPdf = (href: string) => {
+    window.open(href, '_blank');
   };
 
   const handleSortByRelevance = (): void => {
@@ -170,15 +175,19 @@ export default function Library() {
       {paperObj.data.length > 0 && (
         <div className="bg-white py-10">
           <div className="mx-auto max-w-7xl">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <div className="sm:flex sm:items-center">
+            <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
+              <div className=" mr-2 flex flex-row-reverse sm:flex sm:items-center">
                 {/* add text for table info */}
+                <div className="z-20 mt-4">
+                  {' '}
+                  <SortByDropdown />
+                </div>
               </div>
               <div className="mt-8 flow-root">
                 <div className="border rounded-lg shadow  overflow-auto max-h-[700px] max-w-full">
                   <div className="inline-block min-w-full align-middle">
                     <table className="min-w-full divide-y divide-gray-300">
-                      <thead className="bg-neutral-200 sticky top-0 z-10">
+                      <thead className="bg-neutral-50 sticky top-0 z-10">
                         <tr>
                           <th
                             scope="col"
@@ -192,12 +201,12 @@ export default function Library() {
                           >
                             Abstract
                           </th>
-                          <th
+                          {/* <th
                             scope="col"
-                            className="hidden px-2 py-2 text-center text-sm font-semibold text-neutral-900 lg:table-cell max-w-[100px] truncate"
+                            className="hidden px-2 py-2 pb-24 text-center text-sm font-semibold text-neutral-900 lg:table-cell max-w-[100px] truncate"
                           >
                             Year
-                          </th>
+                          </th> */}
                           <th
                             scope="col"
                             className="z-auto hidden px-2 py-2 text-center text-sm font-semibold text-neutral-900 lg:table-cell max-w-[100px] truncate"
@@ -205,11 +214,11 @@ export default function Library() {
                             <div className="flex items-center justify-center">
                               Relevance
                               {/* <SortByDropdown /> */}
-                              <ChevronDownIcon
+                              {/* <ChevronDownIcon
                                 onClick={handleSortByRelevance}
                                 aria-hidden="true"
                                 className="cursor-pointer hover:bg-neutral-100 hover:rounded-lg hover:text-neutral-900 ml-1 h-5 w-5 text-neutral-400"
-                              />
+                              /> */}
                             </div>
                           </th>
                         </tr>
@@ -223,10 +232,13 @@ export default function Library() {
                           >
                             <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
                               <a
-                                className="font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
-                                href={paper.openAccessPdf?.url || ''}
-                                target="_blank"
+                                className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
+                                // href={paper.openAccessPdf?.url || ''}
+                                // target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() =>
+                                  openPdf(paper.openAccessPdf?.url || '')
+                                }
                               >
                                 {paper.title}
                               </a>
@@ -234,9 +246,7 @@ export default function Library() {
                             <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
                               {paper.abstract}
                             </td>
-                            <td className="hidden text-center px-2 py-3 text-sm text-black lg:table-cell max-w-[100px] truncate align-top">
-                              {paper.year}
-                            </td>
+
                             <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
                               <RelevanceDropdown
                                 relevance={
@@ -262,7 +272,6 @@ export default function Library() {
           </div>
         </div>
       )}{' '}
-      <SortByDropdown />
     </>
   );
 }
