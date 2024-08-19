@@ -1,41 +1,995 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-import requests
-
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+# Initialize the Firestore client
+cred = credentials.Certificate(
+    "/Users/rajamuhammedomar/FYR/ForYourResearch/backend/for-your-research-68124-firebase-adminsdk-bwf0n-77eed70bd8.json"
 )
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
+# Create or update a document in the 'users' collection
+users_collection = db.collection("Users").document("321123zz")
+user_data = {"userId": "321123zz"}  # Replace with actual data
+users_collection.set(user_data)
 
-@app.get("/search/")
-async def search(query: str):
+# Add a subcollection 'Library' under the 'osyfbvgsogy' document
+library_collection = db.collection("Users").document("321123zz").collection("Library")
 
-    # Define the API endpoint URL
-    url = "https://api.semanticscholar.org/graph/v1/paper/search"
-
-    # More specific query parameter
-    query_params = {
-        "query": query,
-        "limit": 100,
-        "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
-    }
-
-    # Directly define the API key (Reminder: Securely handle API keys in production environments)
-    api_key = (
-        "Gvkbt2QFvx2QZwQBigWqJTzOa5TPS6v1kAdrpaBf"  # Replace with the actual API key
-    )
-
-    # Define headers with API key
-    headers = {"x-api-key": api_key}
-
-    # Send the API request
-    response = requests.get(url, params=query_params, headers=headers)
-
-    paperObject = response.json()
-    return paperObject
+# Document data to add to the 'Library' subcollection
+data = {
+    "total": 5310094,
+    "offset": 0,
+    "next": 100,
+    "data": [
+        {
+            "paperId": "deb7b0e89ea0baefa3cbd6e2b9b138cfbb6f4573",
+            "title": "N,N‐dimethyltryptamine and Amazonian ayahuasca plant medicine",
+            "abstract": "Reports have indicated possible uses of ayahuasca for the treatment of conditions including depression, addictions, post‐traumatic stress disorder, anxiety and specific psychoneuroendocrine immune system pathologies. The article assesses potential ayahuasca and N,N‐dimethyltryptamine (DMT) integration with contemporary healthcare. The review also seeks to provide a summary of selected literature regarding the mechanisms of action of DMT and ayahuasca; and assess to what extent the state of research can explain reports of unusual phenomenology.",
+            "year": 2022,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/hup.2835",
+                "status": "HYBRID",
+            },
+        },
+        {
+            "paperId": "9190947addc735d363676f241b0952ae2c2de78e",
+            "title": "Progress of Plant Medicine Derived Extracts and Alkaloids on Modulating Viral Infections and Inflammation",
+            "abstract": "Abstract Viral infectious diseases are serious threats to human health in both developing and developed countries. Although there is the continued development of new drugs from synthetic sources as antiviral agents, medicinal plants continue to provide the basic raw materials for some of the most important antiviral drugs. Alkaloids are a class of pharmacologically active plant compounds that are usually alkaline in nature. In this review, we tried to summarize recent progress in herb-based antiviral research, the advantages of using active plant compounds as antiviral agents, and the inflammatory responses initiated by alkaloids, based on the literature from 2009 to 2019, for the treatment of conditions, including influenza, human immunodeficiency virus, herpes simplex virus, hepatitis, and coxsackievirus infections. Articles are retrieved from PubMed, Google Scholar, and Web of Science using relevant keywords. In particular, the alkaloids from medicinal plants responsible for the molecular mechanisms of anti-inflammatory actions are identified and discussed. This review can provide a theoretical basis and approaches for using various alkaloids as antiviral treatments. More research is needed to develop alkaloidal compounds as antiviral therapeutic agents and potential regulators of the anti-inflammatory response.",
+            "year": 2021,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.dovepress.com/getfile.php?fileID=68154",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "d87c2aa62961cb6266605da70bee2967b49e0ee8",
+            "title": "Potential Role of Natural Plant Medicine Cyclocarya paliurus in the Treatment of Type 2 Diabetes Mellitus",
+            "abstract": "Type 2 diabetes mellitus (T2DM) is a common chronic metabolic disease that has become increasingly prevalent worldwide. It poses a serious threat to human health and places a considerable burden on global social medical work. To meet the increasing demand for T2DM treatment, research on hypoglycemic drugs is rapidly developing. Cyclocarya paliurus (Batal.) Iljinskaja is a medicinal plant that grows in China. The leaves of C. paliurus contain polysaccharides, triterpenoids, and other chemical components, which have numerous health benefits. Therefore, the use of this plant has attracted extensive attention in the medical community. Over the past few decades, contemporary pharmacological studies on C. paliurus extracts have revealed that it has abundant biological activities. Multiple in vitro and in vivo experiments have shown that C. paliurus extracts are safe and can play a therapeutic role in T2DM through anti-inflammatory and antioxidation activities, and intestinal flora regulation. Its efficacy is closely related to many factors, such as extraction, separation, purification, and modification. Based on summarizing the existing extraction methods, this article further reviews the potential mechanism of C. paliurus extracts in T2DM treatment, and we aimed to provide a reference for future research on natural plant medicine for the prevention and treatment of T2DM and its related complications.",
+            "year": 2021,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/jdr/2021/1655336.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c87055e7c9e0731b0d690eb14b253fcd3ba4e5c1",
+            "title": "Ceremonial ‘Plant Medicine’ use and its relationship to recreational drug use: an exploratory study",
+            "abstract": "Abstract Background: The ceremonial use of psychoactive/hallucinogenic plant based drugs, such as ayahuasca, psilocybin and others, is a growing trend in the United States (US) and globally. To date, there has been little research documenting how many people are using psychoactive substances in this context, who the users are, what benefits/risks exist in the use of these drugs and the relationship between ceremonial drug use and recreational drug use. In this paper we describe a cohort of plant medicine facilitators in the US and explore how they differentiate plant medicine use from recreational drug use. Methods: Using modified ethnography, individual interviews were conducted in 2016 with 15 participants who are currently facilitating plant medicine ceremonies in the US. Descriptive content analysis was performed to discover themes and to inform a larger mixed-method study. Results: Ceremonial drug use was seen by participants as a natural healing and treatment modality used in the context of community and ritual. Three main themes were identified relating to participants’ differentiation between ceremonial plant medicine use and recreational drug use: (1) participants see a clear delineation between plant medicine use and recreational drug use; (2) plant medicine is seen as a potential treatment for addiction, but concerns exist regarding potential interference with recovery; and (3) plant medicine use may influence recreational use. Conclusions: More research is needed on who is using plant medicine, motivators for use, perceived and real risks and benefits of plant medicine use and harm reduction techniques regarding safe ingestion.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.tandfonline.com/doi/pdf/10.1080/16066359.2018.1455187?needAccess=True",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "8a26a2055170eb393e47387c4c6e90692dfd6399",
+            "title": "Perspective of Plant Medicine in Therapy of Rheumatoid Arthritis",
+            "abstract": "Rheumatoid Arthritis is a systemic autoimmune disease characterized by chronic, inflammatory condition. The adverse effects of long-term use of presently available anti-arthritic or non-steroidal anti-inflammatory drugs are gastrointestinal symptoms, cardiovascular complications, renal impairment, myelosuppression etc. and this requires continuous monitoring and eventually increasing the cost of treatment. Thus complementary and alternative medicines may fulfill the demand for patients suffering from this disease. Moreover, herbal therapy has been safe and effective enough to treat rheumatoid arthritis. With these backgrounds, the present review includes different 37 plants reported for anti-arthritic or anti-inflammatory effect. Also enlisted 37 bioactive principals reported for anti-arthritic effect with their source, mechanism of action and commercial herbal products available in the market for treatment of rheumatoid arthritis. The compiled information regarding plants and their role in the treatment of rheumatoid arthritis will help to justify the use of plant-derived medicine in the therapy of rheumatoid arthritis in future.",
+            "year": 2020,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.ijpsonline.com/articles/perspective-of-plant-medicine-in-therapy-of-rheumatoid-arthritis.pdf",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "ab30a19ff196a6fe508a0d91ed380280afb64e6e",
+            "title": "Mechanism of retained placenta and its treatment by plant medicine in ruminant animals in Oromia, Ethiopia",
+            "abstract": "Retained placenta is the abnormal condition in animal reproduction in which fetal membrane failed to detach from maternal uterine wall after postpartum. The retention of placenta can create some disorders within reproductive organ of animals by allowing microorganisms to grow inside the uterus causing inflammation of uterus, fever, weight loss, decreasing milk yield, longer calving intervals and if the case is severe animals may die. The pathogenesis pathway of retained placenta development commences with an imbalance of antioxidant or oxidant capacity, decrease in estrogen production, decreased prostaglandin F2 alpha, and accumulation of arachidonic and linoleic acids in the placental tissue. Retained placenta can be treated with different methods such as manual removal, administration of intrauterine antibiotics, administration of hormonal therapy, and the use of plant medicine. The most common parts of plants used for drugs preparation are the leave, bark, root, stem and seed of the specific plant. The route of drug administration to animal is oral and vagina infusion. The herbal or plant prescriptions for treatment of placenta retention are characterized as antibiosis, antiphlogosis, immune enhancement and fertility improvement without endometrial injuries.  The plants which have been used as treatment of retained placenta in Ethiopia are Flax seed, Vernonia amygdalia, Dodonea angustifolia, Solanum acaule, Solanum acuminatum, Dovyalis spp., Galinsoga quadriradiata, Plumbago zeylanica, Momordica spp., Colocasia esculenta, Bryophyllum pinnatu and Urera hypselodendron. The main objective of this paper is to illustrate the mechanism of retained placenta and its treatment using plant medicine in current status which helps the pastoral and clinician at remote areas and also to give enough information on the plant species that are sources of different chemical ingredient for future production of modern drug treatment for retained placenta. \n \n Key words: Antibiosis, antiphlogosis, ethinoveterinarian, retained of placenta, treatment.",
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "a1386b6d723c11cf3876689e232b214fa4f11336",
+            "title": "Phytochemical and biological activities of an anticancer plant medicine: Brucea javanica.",
+            "abstract": "In this review, the literature data on recent advances of the medicinal plant Brucea javanica (L.) Merr. (Simaroubaceae), both phytochemical and biological investigations, are compiled. Brucea javanica is an evergreen shrub distributed widely in Southeast Asia and northern Australia. In China, the seeds of Brucea javanica have been used as traditional herbal medicine due to its multifaceted activities. To date, 153 compounds have been reported from the seeds and aerial parts of Brucea javanica. Quassinoids are the main constituents of this species. The extract of Brucea javanica and the isolated compounds especially quassinoids exhibited various biological properties, such as antitumor and antimalarial effects.",
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "46ee00f6268e07f1a2c26eae3860470d5f892ad8",
+            "title": "Diabetic Complications and Plant Medicine",
+            "abstract": "Diabetes mellitus is probably the single most important metabolic disease and is widely recognized as one of the leading causes of death and disability in the different countries of the World. It affects every cell in the body and the essential biochemical processes that go on there. Even in normal individuals, significant weight gain results in carbohydrate intolerance, higher insulin levels and insulin insensitivity in the fat and muscle tissues. Weight loss can correct all of these abnormalities in many instances and significantly improves the metabolic disturbance of diabetes in most of cases. Diabetes is characterized by three well-known syndromes, polydipsia (excessive thirst), polyphagia (excessive hunger) and polyuria (excessive urination). Although different medicines are available for treatment of all kinds of diabetes including its complications, however, trend local medicines is increasing day by day due to its non or very less sides effects us well as due to low cost.",
+            "year": 2012,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "39fea759c3873bcd33e7b4a3c69eff8a428fe408",
+            "title": "Antimicrobial evaluation of Huilliche plant medicine used to treat wounds.",
+            "abstract": None,
+            "year": 2011,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "f8e29324c6f4bf24f72bc876cd0e32ab7a75269c",
+            "title": "Simultaneous Separation and Determination of Benzoic Acid Compounds in the Plant Medicine by High Performance Capillary Electrophoresis",
+            "abstract": "A simple and inexpensive high performance capillary electrophoresis (HPCE) was applied to separate five benzoic acid compounds simultaneously. The investigation was carried out by micellar electrokinetic capillary chromatography (MECC). To avoid a time-consuming and tedious procedure, orthogonal experimental design OA 9 (3 4 ) for separation experiments was applied to find the optimal conditions in terms of the resolution and analytical time. The best conditions for separation were obtained using a 20 mM borax and 30 mM sodium dodecyl sulfate (SDS) buffer (pH 9.8) containing 2 mM β-CD and 4% methanol (v/v). Online UV detection was performed at 250 nm. A voltage of 16 kV was applied and the temperature was controlled at 25 °C. Injection was performed for 5 s. The method was validated for the quantification of benzoic acid, salicylic acid and ortho-aminobenzoic acid in Radix Isatidis, a traditional plant medicine with removal of endotoxin. The separation and determination were satisfactory and quick.",
+            "year": 2010,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "a36dd56ba195ea197a921b60430fedffe58b2109",
+            "title": "Plant and bacterial nanocellulose: production, properties and applications in medicine, food, cosmetics, electronics and engineering. A review",
+            "abstract": None,
+            "year": 2020,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "2b133497b4728931ee7670ee8e0d783e42dc9c87",
+            "title": "Application of Plant Viruses in Biotechnology, Medicine, and Human Health",
+            "abstract": "Plant-based nanotechnology programs using virus-like particles (VLPs) and virus nanoparticles (VNPs) are emerging platforms that are increasingly used for a variety of applications in biotechnology and medicine. Tobacco mosaic virus (TMV) and potato virus X (PVX), by virtue of having high aspect ratios, make ideal platforms for drug delivery. TMV and PVX both possess rod-shaped structures and single-stranded RNA genomes encapsidated by their respective capsid proteins and have shown great promise as drug delivery systems. Cowpea mosaic virus (CPMV) has an icosahedral structure, and thus brings unique benefits as a nanoparticle. The uses of these three plant viruses as either nanostructures or expression vectors for high value pharmaceutical proteins such as vaccines and antibodies are discussed extensively in the following review. In addition, the potential uses of geminiviruses in medical biotechnology are explored. The uses of these expression vectors in plant biotechnology applications are also discussed. Finally, in this review, we project future prospects for plant viruses in the fields of medicine, human health, prophylaxis, and therapy of human diseases.",
+            "year": 2021,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1999-4915/13/9/1697/pdf?version=1630565903",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "22b1417aef2f98d4854b98a1f6a80569214ceb14",
+            "title": "‘African potato’ (Hypoxis hemerocallidea corm): a plant‐medicine for modern and 21st century diseases of mankind? – a review",
+            "abstract": "The traditional uses, therapeutic attributes, phytochemical and pharmacological profiles of ‘African potato’ (Hypoxis hemerocallidea corm) extracts have been reviewed. Available biomedical evidence suggests that ‘African potato’ is a potential plant‐medicine for some modern and 21st century diseases of mankind. Thus far, biomedical evidence has revealed that ‘African potato’ extracts possess antiinflammatory, antineoplastic, antioxidant, antidiabetic and antiinfective properties in vivo and in vitro. However, more laboratory and clinical studies are required to clarify these observations, and to isolate, purify and characterize the active chemical constituents responsible for the herb's pharmaco‐therapeutic effects. Copyright © 2008 John Wiley & Sons, Ltd.",
+            "year": 2009,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "fe7abf124876516a215f838a800f909374640e0c",
+            "title": "Butterfly Pea (Clitoria ternatea), a Cyclotide-Bearing Plant With Applications in Agriculture and Medicine",
+            "abstract": "The perennial leguminous herb Clitoria ternatea (butterfly pea) has attracted significant interest based on its agricultural and medical applications, which range from use as a fodder and nitrogen fixing crop, to applications in food coloring and cosmetics, traditional medicine and as a source of an eco-friendly insecticide. In this article we provide a broad multidisciplinary review that includes descriptions of the physical appearance, distribution, taxonomy, habitat, growth and propagation, phytochemical composition and applications of this plant. Notable amongst its repertoire of chemical components are anthocyanins which give C. ternatea flowers their characteristic blue color, and cyclotides, ultra-stable macrocyclic peptides that are present in all tissues of this plant. The latter are potent insecticidal molecules and are implicated as the bioactive agents in a plant extract used commercially as an insecticide. We include a description of the genetic origin of these peptides, which interestingly involve the co-option of an ancestral albumin gene to produce the cyclotide precursor protein. The biosynthesis step in which the cyclic peptide backbone is formed involves an asparaginyl endopeptidase, of which in C. ternatea is known as butelase-1. This enzyme is highly efficient in peptide ligation and has been the focus of many recent studies on peptide ligation and cyclization for biotechnological applications. The article concludes with some suggestions for future studies on this plant, including the need to explore possible synergies between the various peptidic and non-peptidic phytochemicals.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.frontiersin.org/articles/10.3389/fpls.2019.00645/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "efcad944d516d0a9a1cea188c2027e9c61c43c8a",
+            "title": "Contribution to the knowledge of the folk plant medicine in Calabria region (Southern Italy).",
+            "abstract": None,
+            "year": 2007,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "0326d8b7363b1d63c757c8eed3fa31e7d5462778",
+            "title": "New Pest Management Frontiers: Linking Plant Medicine to Traditional Knowledge",
+            "abstract": "An exciting new plant protection degree, the Doctor of Plant Medicine, has been born in the United States. This infant degree is modeled after the current conventional medicine model promoted by the American Medical Association. Recently, conventional physicians have begun to recognize some value in other medical models. So, we suggest that in the early years of its development, the “parents” of this newborn degree explore the value that traditional herbal medicine (THM) models may have for the growth and enrichment of this degree. THM models are frequently couched in mystery, nonscientific terms, and unfamiliar concepts. Nevertheless, THM has much in common with pest management practices rooted in the tenets of agroecology, sustainable agriculture, and evolutionary biology. This forum article attempts to distill those practices and concepts into useable terms that will stimulate further creative thought and discussion not only by the parents of the new plant medicine degree, but all entomologists involved in issues of plant protection.",
+            "year": 2003,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "954580bb93bdf6d48c617ecc8c71d31c96d05f88",
+            "title": "Prospects and scope of plant medicine in health care",
+            "abstract": None,
+            "year": 1989,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "24740817ec6890ee8c48859e293a514c93513260",
+            "title": "Making Plant Medicine",
+            "abstract": "Rather than enjoying a fine ebook afterward a cup of coffee in the afternoon, on the other hand they juggled gone some harmful virus inside their computer. Making Plant Medicine is manageable in our digital library an online right of entry to it is set as public thus you can download it instantly. Our digital library saves in merged countries, allowing you to get the most less latency time to download any of our books similar to this one. Merely said, the Making Plant Medicine is universally compatible next any devices to read.",
+            "year": 2000,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "1dd4f46433822d89382beafd54cf93e630fbf0af",
+            "title": "Airborne medicine - bacterial volatiles and their influence on plant health.",
+            "abstract": "Like most other eukaryotes, plants do not live alone but in close association with a diverse microflora. These plant-associated microbes contribute to plant health in many different ways ranging from modulation of hormonal pathways to direct antibiosis of plant pathogens. Over the last fifteen years, the importance of volatile organic compounds as mediators of mutualistic interactions between plant-associated bacteria and their hosts has become evident. This review summarizes current knowledge concerning bacterial volatile-mediated plant protection against abiotic and biotic stresses. It then discusses the translational potential of such metabolites or of their emitters for sustainable crop protection, the possible ways to harness this potential and the major challenges still preventing us from doing so. Finally, the review concludes with highlighting the most pressing scientific gaps that need to be filled in order to enable a better understanding of i) the molecular mechanisms underlying the biosynthesis of bacterial volatiles, ii) the complex regulation of bacterial volatile emission in natural communities, iii) the perception of bacterial volatiles by plants, and iv) the modes of actions of bacterial volatiles on their host.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://nph.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/nph.16282",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "269eeaf55ef680afeacd88e34e57e556e7491a5a",
+            "title": "Status of Plant Protein-Based Green Scaffolds for Regenerative Medicine Applications",
+            "abstract": "In recent decades, regenerative medicine has merited substantial attention from scientific and research communities. One of the essential requirements for this new strategy in medicine is the production of biocompatible and biodegradable scaffolds with desirable geometric structures and mechanical properties. Despite such promise, it appears that regenerative medicine is the last field to embrace green, or environmentally-friendly, processes, as many traditional tissue engineering materials employ toxic solvents and polymers that are clearly not environmentally friendly. Scaffolds fabricated from plant proteins (for example, zein, soy protein, and wheat gluten), possess proper mechanical properties, remarkable biocompatibility and aqueous stability which make them appropriate green biomaterials for regenerative medicine applications. The use of plant-derived proteins in regenerative medicine has been especially inspired by green medicine, which is the use of environmentally friendly materials in medicine. In the current review paper, the literature is reviewed and summarized for the applicability of plant proteins as biopolymer materials for several green regenerative medicine and tissue engineering applications.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/2218-273X/9/10/619/pdf?version=1571561137",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "00703b71ef29a892d348d0dad1c25ea49cace9f6",
+            "title": "Memory, Wisdom and Healing: The History of Domestic Plant Medicine",
+            "abstract": "Plant medicine in Britain what do we know about country remedies? simple plant remedies: characteristics of domestic plant medicine the people themselves - the users of domestic medicine magic and medicine warts and all hedgerow or herb patch: sources of plants used in domestic medicine old cures, new healing - the effectiveness of plant remedies.",
+            "year": 1999,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "3f8171190cb551e901c1aa915e3f55685d6973d4",
+            "title": "Plant medicine and folklore",
+            "abstract": None,
+            "year": 1975,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "bc0c7d0f2b81049e73e7d5763d5fd5e8d0a0936d",
+            "title": "[Severe lead poisoning due to Ayurvedic indian plant medicine].",
+            "abstract": "HISTORY AND CLINICAL FINDINGS\nA 39-year-old woman with a history of slowly progressive muscular dystrophia was transferred to us for further evaluations of a hypochromic, microcytic anaemia. The patient complained about progressive muscle weakness, loss of appetite and constipation, sleep disorders as well as muscle and back pain. Clinical examination revealed a tetraparesis without any detectable muscle reflexes and atrophic muscles of the extremities. A bilateral radial paresis was found with a loss of power.\n\n\nINVESTIGATIONS\nShe presented with a hypochromic, microcytic anaemia with a haemoglobin of 7.9 g/dl. Re-evaluation of her peripheral blood smear showed basophilic stippling of the erythrocytes. Bone marrow biopsy revealed a marked dyserythropoiesis with 50% ring sideroblasts. After the examination of the bone marrow, the blood lead level was found to be grossly elevated up to 880 microg/l.\n\n\nDIAGNOSIS\nRe-evaluation of the patient's history revealed that she had been to India for an Ayurvedic treatment approach to improve her muscle dystrophia. She had taken regularly 4 different natural plant pills which she had bought in an Ayurvedic health centre. Toxicologic analysis of these pills revealed one to have a lead concentration of 50.4 mg/g.\n\n\nTREATMENT AND COURSE\nThe patient was treated with 16 infusions of sodium-EDTA followed by a 4-week treatment with dimercaptopropionic acid orally. Her neurological condition improved and the radial paresis resolved gradually so that she could return to work. Her haematological parameters normalized.\n\n\nCONCLUSION\nThis case report underscores the importance, while asking patients for their drug history, to ask additionally if natural plant medicine is taken or applied regularly. The report reveals that Ayurvedic pills from India may have a high concentration of lead and may cause severe poisoning.",
+            "year": 2003,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "758e1e7acc57451fa5da812f679473f61050651b",
+            "title": "Chinese plant medicine.",
+            "abstract": "Developed by the ordinary people through centuries of fighting disease herbal medicine is a component part of traditional Chinese medicine and pharmacology. The Chinese had already stored up a profound knowledge of medicinal plants by 400 BC. The development of traditional medicine is linked with the evolution of a comprehensive record of all the primary substances on which that medical system depends for preventing and treating diseases. Doctors of traditional medicine continue to use herbal preparations and other related means of prevention and treatment according to the needs of the individual patients. They have made a significant contribution to China in promoting the peoples well-being and creating a flourishing culture. Various provinces municipalities and districts have their own handbooks on traditional medicine and useful plants. Herbs are frequently planted roadside or at the edge of cultivated fields where they are accessible to local health units. The health workers systematically collect and cultivate the herbs and they are trained to select prescriptions according to the proven therapeutic effect of the plants. In addition they prepare various forms of patent medicines for clinical use. Chinas pharamceutical industry has been built up and uses medicinal plants in all their variety of forms. Herbal medicines are also being used in more difficult cases and they prove safer than some of the more sophisticated drugs which tend to have serious side-effects.",
+            "year": 1978,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "dc77c12a9fd913d461ba96f91b086f315a0a0e57",
+            "title": "Plant medicine for infants",
+            "abstract": None,
+            "year": 2004,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "676adf2fd9618e3c6465e65477a3c50e30174fd2",
+            "title": "Ethnobotanical Studies of Reputed Aphrodisiac Plants Used in Traditional Medicine in Haut-Katanga in DR of Congo",
+            "abstract": "The goal of this study is to identify the plants used to treat sexual dysfunction in Haut-Katanga (DRC). Since most couples in sexual distress believe that resolving sexual dysfunction (SD) is the key to happiness, an ethnobotanical survey using a questionnaire guide was conducted among 36 traditional practitioners in four sites in Haut-Katanga province, including Lubumbashi, the provincial capital. The survey identified 52 species of aphrodisiac plants that are used to treat SD. Of these, 51 have been scientifically identified; they belong to 45 different genera and are contained in 28 families, with the Fabaceae having the highest representation (15.7%). These species are employed singly or in combination to prepare eighty recipes; the most common plant organ was the root bark (63%) in these recipes. Aqueous decoction (44%) and oral administration (75.3%) are the most commonly used routes of drug preparation and administration. Nearly 80 additional indications for the same plant species were discovered to be employed, such as sexually transmitted infections (7.17%), diabetes (3.69%), and hemorrhoids (4.07%). For every species, the Informant Consensus Factor (ICF) was determined. The plants with higher values (ICF≥0.17) included Bersama abyssinica Fres, Garcinia huillensis Welw, Cassia petersiana Bolle, Chenopodium album L, Clerodendrum capitatum (Willd) Schumach, Dialiopsis africana Radlk., Albizia adianthifolia (Schum.) W. Wight, and Crossopteryx febrifuga Mull.Arg.",
+            "year": 2024,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "a182f7132aace0e52db2def61cfb21f64c7434ea",
+            "title": "Antimicrobial activity of some plant materials used in Armenian traditional medicine",
+            "abstract": None,
+            "year": 2017,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://bmccomplementalternmed.biomedcentral.com/track/pdf/10.1186/s12906-017-1573-y",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "e168c572995b720dba1192f2c6d43738ea335398",
+            "title": "Roles of Plant-Associated Microbiota in Traditional Herbal Medicine.",
+            "abstract": None,
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "http://manuscript.elsevier.com/S1360138518300979/pdf/S1360138518300979.pdf",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "90e12e2e2d9775f8483d780c06abfa2930e4563c",
+            "title": "Phytochemical and Pharmacological Importance of Plant Secondary Metabolites in Modern Medicine",
+            "abstract": None,
+            "year": 2018,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "53b35f51fa3cd6eb9f8cf64bddea9caf83cf475c",
+            "title": "Plant synthetic biology could drive a revolution in biofuels and medicine",
+            "abstract": "Population growth, climate change, and dwindling finite resources are amongst the major challenges which are facing the planet. Requirements for food, materials, water, and energy will soon exceed capacity. Green biotechnology, fueled by recent plant synthetic biology breakthroughs, may offer solutions. This review summarizes current progress towards robust and predictable engineering of plants. I then discuss applications from the lab and field, with a focus on bioenergy, biomaterials, and medicine. Impact statement The plant synthetic biology field has exploded in the last five years, in part driven by techniques such as CRISPR and cheap DNA synthesis. This review summarizes the current state of research in plant synthetic biology, and how it is being applied to two topics: renewable fuels and chemicals, and medicine.",
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://journals.sagepub.com/doi/pdf/10.1177/1535370218793890",
+                "status": "HYBRID",
+            },
+        },
+        {
+            "paperId": "2203b662ea3d3864d87b3ed402e272fc613be987",
+            "title": "Identification of philippine herbal medicine plant leaf using artificial neural network",
+            "abstract": "The study described in this paper consists of a system that involves image processing techniques to extract relevant features related to leaf in conjunction with using artificial neural network in order to detect and identify some Philippine herbal plants. Real samples of twelve different herbal medicine plant leaves are collected where each leaf are isolated in single image. Several features are extracted using techniques in image processing. With the artificial neural network acting as autonomous brain network, the system can identify the species of the herbal medicine plant leaves being tested. The system can also provide information about the diseases the herbal plant can cure. For the training, a features dataset of 600 images coming from 50 images per herbal plant are used. With the aid of Python, a neural network model with optimized parameters are established producing 98.16 % identification for the whole dataset. To evaluate the actual performance of the system, a separate 72 sample images of herbal plants are tested with the neural network model implemented in MATLAB. Experimental results demonstrate a 98.61 % accuracy of herbal plant identification.",
+            "year": 2017,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "9a421b12cdda173da821a728f608b539cfba4b6e",
+            "title": "Traditional plant use in Burkina Faso (West Africa): a national-scale analysis with focus on traditional medicine",
+            "abstract": None,
+            "year": 2015,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://ethnobiomed.biomedcentral.com/counter/pdf/10.1186/1746-4269-11-9",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c51e2bf8e7d64e9afbd7dbbbc93754a196194567",
+            "title": "Applications of Essential Oils and Plant Extracts in Different Industries",
+            "abstract": "Essential oils (EOs) and plant extracts are sources of beneficial chemical compounds that have potential applications in medicine, food, cosmetics, and the agriculture industry. Plant medicines were the only option for preventing and treating mankind’s diseases for centuries. Therefore, plant products are fundamental sources for producing natural drugs. The extraction of the EOs is the first important step in preparing these compounds. Modern extraction methods are effective in the efficient development of these compounds. Moreover, the compounds extracted from plants have natural antimicrobial activity against many spoilage and disease-causing bacteria. Also, the use of plant compounds in cosmetics and hygiene products, in addition to their high marketability, has been helpful for many beauty problems. On the other hand, the agricultural industry has recently shifted more from conventional production systems to authenticated organic production systems, as consumers prefer products without any pesticide and herbicide residues, and certified organic products command higher prices. EOs and plant extracts can be utilized as ingredients in plant antipathogens, biopesticides, and bioherbicides for the agricultural sector. Considering the need and the importance of using EOs and plant extracts in pharmaceutical and other industries, this review paper outlines the different aspects of the applications of these compounds in various sectors.",
+            "year": 2022,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/27/24/8999/pdf?version=1671610468",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "d41955ec75d25858aad5a2adf2aaeff1c407e666",
+            "title": "Plant MicroRNAs—Novel Players in Natural Medicine?",
+            "abstract": "MicroRNAs (miRNAs) represent a class of small non-coding RNAs that act as efficient gene expression regulators and thus play many important roles in living organisms. Due to their involvement in several known human pathological and pathogenic states, miRNA molecules have become an important issue in medicine and gained the attention of scientists from the pharmaceutical industry. In recent few years, a growing number of studies have provided evidence that miRNAs may be transferred from one species to another and regulate gene expression in the recipients’ cells. The most intriguing results revealed that stable miRNAs derived from food plants may enter the mammals’ circulatory system and, after reaching the target, inhibit the production of specific mammalian protein. Part of the scientific community has perceived this as an attractive hypothesis that may provide a foundation for novel therapeutic approaches. In turn, others are convinced about the “False positive” effect of performed experiments from which the mentioned results were achieved. In this article, we review the recent literature that provides evidence (from both fronts) of dietary, plant miRNA uptake and functionality in various consumers. Additionally, we discuss possible miRNA transport mechanisms from plant food sources to human cells.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1422-0067/18/1/9/pdf?version=1482397190",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "27fd73bcbd84b19f5e3f2d4f3040627cf8ce4ed8",
+            "title": "Response of Plant Secondary Metabolites to Environmental Factors",
+            "abstract": "Plant secondary metabolites (SMs) are not only a useful array of natural products but also an important part of plant defense system against pathogenic attacks and environmental stresses. With remarkable biological activities, plant SMs are increasingly used as medicine ingredients and food additives for therapeutic, aromatic and culinary purposes. Various genetic, ontogenic, morphogenetic and environmental factors can influence the biosynthesis and accumulation of SMs. According to the literature reports, for example, SMs accumulation is strongly dependent on a variety of environmental factors such as light, temperature, soil water, soil fertility and salinity, and for most plants, a change in an individual factor may alter the content of SMs even if other factors remain constant. Here, we review with emphasis how each of single factors to affect the accumulation of plant secondary metabolites, and conduct a comparative analysis of relevant natural products in the stressed and unstressed plants. Expectantly, this documentary review will outline a general picture of environmental factors responsible for fluctuation in plant SMs, provide a practical way to obtain consistent quality and high quantity of bioactive compounds in vegetation, and present some suggestions for future research and development.",
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/23/4/762/pdf?version=1525345345",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "d56288ae07672c62e33510d0708ed4d03a353e3a",
+            "title": "Cannabis sativa: The Plant of the Thousand and One Molecules",
+            "abstract": "Cannabis sativa L. is an important herbaceous species originating from Central Asia, which has been used in folk medicine and as a source of textile fiber since the dawn of times. This fast-growing plant has recently seen a resurgence of interest because of its multi-purpose applications: it is indeed a treasure trove of phytochemicals and a rich source of both cellulosic and woody fibers. Equally highly interested in this plant are the pharmaceutical and construction sectors, since its metabolites show potent bioactivities on human health and its outer and inner stem tissues can be used to make bioplastics and concrete-like material, respectively. In this review, the rich spectrum of hemp phytochemicals is discussed by putting a special emphasis on molecules of industrial interest, including cannabinoids, terpenes and phenolic compounds, and their biosynthetic routes. Cannabinoids represent the most studied group of compounds, mainly due to their wide range of pharmaceutical effects in humans, including psychotropic activities. The therapeutic and commercial interests of some terpenes and phenolic compounds, and in particular stilbenoids and lignans, are also highlighted in view of the most recent literature data. Biotechnological avenues to enhance the production and bioactivity of hemp secondary metabolites are proposed by discussing the power of plant genetic engineering and tissue culture. In particular two systems are reviewed, i.e., cell suspension and hairy root cultures. Additionally, an entire section is devoted to hemp trichomes, in the light of their importance as phytochemical factories. Ultimately, prospects on the benefits linked to the use of the -omics technologies, such as metabolomics and transcriptomics to speed up the identification and the large-scale production of lead agents from bioengineered Cannabis cell culture, are presented.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.frontiersin.org/articles/10.3389/fpls.2016.00019/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "e9001e8ff34d2a9557dcc2b403a26ba27b5b2157",
+            "title": "The Traditional Medicine and Modern Medicine from Natural Products",
+            "abstract": "Natural products and traditional medicines are of great importance. Such forms of medicine as traditional Chinese medicine, Ayurveda, Kampo, traditional Korean medicine, and Unani have been practiced in some areas of the world and have blossomed into orderly-regulated systems of medicine. This study aims to review the literature on the relationship among natural products, traditional medicines, and modern medicine, and to explore the possible concepts and methodologies from natural products and traditional medicines to further develop drug discovery. The unique characteristics of theory, application, current role or status, and modern research of eight kinds of traditional medicine systems are summarized in this study. Although only a tiny fraction of the existing plant species have been scientifically researched for bioactivities since 1805, when the first pharmacologically-active compound morphine was isolated from opium, natural products and traditional medicines have already made fruitful contributions for modern medicine. When used to develop new drugs, natural products and traditional medicines have their incomparable advantages, such as abundant clinical experiences, and their unique diversity of chemical structures and biological activities.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/21/5/559/pdf?version=1461933148",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "cc91b55b20f7b5c4b3493bb4ae19929448a0771a",
+            "title": "Bioactive Compounds in Anti-Diabetic Plants: From Herbal Medicine to Modern Drug Discovery",
+            "abstract": "Natural products, including organisms (plants, animals, or microorganisms) have been shown to possess health benefits for animals and humans. According to the estimation of the World Health Organization, in developing countries, 80% of the population has still depended on traditional medicines or folk medicines which are mostly prepared from the plant for prevention or treatment diseases. Traditional medicine from plant extracts has proved to be more affordable, clinically effective and relatively less adverse effects than modern drugs. Literature shows that the attention on the application of phytochemical constituents of medicinal plants in the pharmaceutical industry has increased significantly. Plant-derived secondary metabolites are small molecules or macromolecules biosynthesized in plants including steroids, alkaloids, phenolic, lignans, carbohydrates and glycosides, etc. that possess a diversity of biological properties beneficial to humans, such as their antiallergic, anticancer, antimicrobial, anti-inflammatory, antidiabetic and antioxidant activities Diabetes mellitus is a chronic disease result of metabolic disorders in pancreas β-cells that have hyperglycemia. Hyperglycemia can be caused by a deficiency of insulin production by pancreatic (Type 1 diabetes mellitus) or insufficiency of insulin production in the face of insulin resistance (Type 2 diabetes mellitus). The current medications of diabetes mellitus focus on controlling and lowering blood glucose levels in the vessel to a normal level. However, most modern drugs have many side effects causing some serious medical problems during a period of treating. Therefore, traditional medicines have been used for a long time and play an important role as alternative medicines. Moreover, during the past few years, some of the new bioactive drugs isolated from plants showed antidiabetic activity with more efficacy than oral hypoglycemic agents used in clinical therapy. Traditional medicine performed a good clinical practice and is showing a bright future in the therapy of diabetes mellitus. World Health Organization has pointed out this prevention of diabetes and its complications is not only a major challenge for the future, but essential if health for all is to be attained. Therefore, this paper briefly reviews active compounds, and pharmacological effects of some popular plants which have been widely used in diabetic treatment. Morphological data from V-herb database of each species was also included for plant identification.",
+            "year": 2020,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/2079-7737/9/9/252/pdf?version=1598609411",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "046af8f1244c51dde3b0f599eb202a6ee0ddbc74",
+            "title": "Flavonoids as Important Molecules of Plant Interactions with the Environment",
+            "abstract": "Flavonoids are small molecular secondary metabolites synthesized by plants with various biological activities. Due to their physical and biochemical properties, they are capable of participating in plants’ interactions with other organisms (microorganisms, animals and other plants) and their reactions to environmental stresses. The majority of their functions result from their strong antioxidative properties. Although an increasing number of studies focus on the application of flavonoids in medicine or the food industry, their relevance for the plants themselves also deserves extensive investigations. This review summarizes the current knowledge on the functions of flavonoids in the physiology of plants and their relations with the environment.",
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/19/10/16240/pdf?version=1412942266",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "8947769b2a43cd7b33489258d0428817dacded67",
+            "title": "Novel plant bioresources : applications in food, medicine and cosmetics",
+            "abstract": "In a climate of growing awareness about the perils of biodiversity loss, the world is witnessing an unprecedented interest in novel plants, which are increasingly prized for their potential use in aromas, dyes, foods, medicines and cosmetics. This book highlights these plants and their uses. After an introductory section which sets the scene with an overview of the historical and legislative importance of under-utilized plants, the main four parts of the book are dedicated to the diverse potential application of novel plant bioresources in Food, Medicine, Ethnoveterinary Medicine and Cosmetics.",
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "6e45b669654170a64fe105951c19fd7e3cfb2075",
+            "title": "Plant Products as Antimicrobial Agents",
+            "abstract": "SUMMARY The use of and search for drugs and dietary supplements derived from plants have accelerated in recent years. Ethnopharmacologists, botanists, microbiologists, and natural-products chemists are combing the Earth for phytochemicals and “leads” which could be developed for treatment of infectious diseases. While 25 to 50% of current pharmaceuticals are derived from plants, none are used as antimicrobials. Traditional healers have long used plants to prevent or cure infectious conditions; Western medicine is trying to duplicate their successes. Plants are rich in a wide variety of secondary metabolites, such as tannins, terpenoids, alkaloids, and flavonoids, which have been found in vitro to have antimicrobial properties. This review attempts to summarize the current status of botanical screening efforts, as well as in vivo studies of their effectiveness and toxicity. The structure and antimicrobial properties of phytochemicals are also addressed. Since many of these compounds are currently available as unregulated botanical preparations and their use by the public is increasing rapidly, clinicians need to consider the consequences of patients self-medicating with these preparations.",
+            "year": 1999,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://cmr.asm.org/content/cmr/12/4/564.full.pdf",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "f92ea65fa3771a913f8e3d7aff52c03fed0ae833",
+            "title": "Plant polyphenols as dietary antioxidants in human health and disease",
+            "abstract": "Polyphenols are secondary metabolites of plants and are generally involved in defense against ultraviolet radiation or aggression by pathogens. In the last decade, there has been much interest in the potential health benefits of dietary plant polyphenols as antioxidant. Epidemiological studies and associated meta-analyses strongly suggest that long term consumption of diets rich in plant polyphenols offer protection against development of cancers, cardiovascular diseases, diabetes, osteoporosis and neurodegenerative diseases. Here we present knowledge about the biological effects of plant polyphenols in the context of relevance to human health.",
+            "year": 2009,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/omcl/2009/897484.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "e1dec200e1147d5dbf4d4b38a9f98f5477f1e7e4",
+            "title": "Present scenario, challenges and future perspectives in plant based medicine development",
+            "abstract": "The flora of India remains to be explored and documented to a substantial extent. Pharmaceutical potential of only a small fraction of the plant species has been studied in spite of the existence of vast traditional knowledge on medicinal use, taxonomical clues and the advancement in throughput screening for specific bioactivities. Medicinal plant research should be focused on to produ ce useful healthca re products (phytomedicines/ nutraceuticals/ food supplements/ conventional drugs) from medicinal and food plants for human welfare. Herbal drugs should be commercially viable and internationa lly acceptable in light of modern medica l sciences. Development of such phytomedicines based on ethnomedical leads is relatively more easy and relevant to our economic conditions, compared to pure chemical entity drug development. Mission oriented mu ltidisciplina ry team is required for the development of medicines from plants. Herbal drug research and production of useful healthcare products from locally available plants will lead to improvement in healthcare and economic progress including establishment of herbal drug based industries. Production of good quality plant raw materials (through appropriate cultivation methods and/or biotechnological intervention) and development of commercially successful plant based healthcare products will substantially contribute towards multidimensional socioeconomic progress.",
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "9ea06bc01a5fcaa5ae1767cfe0cc4559a0989f6c",
+            "title": "Plant Polyphenols, More than Just Simple Natural Antioxidants: Oxidative Stress, Aging and Age-Related Diseases",
+            "abstract": "The present editorial serves as an introduction to the Special Issue “Antioxidant and Anti-aging Action of Plant Polyphenols”. It also provides a summary of the polyphenols, their biological properties and possible functions as medicines, the importance of traditional medicines as a source of inspiration, the rationalization of new uses of plant extracts which lead to applications in modern medicine, the status of modern green-chemistry extraction methods, and some reflections on future prospects. Here, the articles from this Special Issue, and the main aspects of the antioxidant and anti-aging effects of plant polyphenols are discussed in the form of seven questions.",
+            "year": 2020,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/2305-6320/7/5/26/pdf?version=1590641760",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "ce9f00edc831c3d517344c7c089f211c4eea5075",
+            "title": "In vitro plant tissue culture: means for production of biological active compounds",
+            "abstract": None,
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://link.springer.com/content/pdf/10.1007/s00425-018-2910-1.pdf",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "1cd2bf3020ae80b9967e9c0c3665253511aaf374",
+            "title": "The effects of plant flavonoids on mammalian cells: implications for inflammation, heart disease, and cancer.",
+            "abstract": "Flavonoids are nearly ubiquitous in plants and are recognized as the pigments responsible for the colors of leaves, especially in autumn. They are rich in seeds, citrus fruits, olive oil, tea, and red wine. They are low molecular weight compounds composed of a three-ring structure with various substitutions. This basic structure is shared by tocopherols (vitamin E). Flavonoids can be subdivided according to the presence of an oxy group at position 4, a double bond between carbon atoms 2 and 3, or a hydroxyl group in position 3 of the C (middle) ring. These characteristics appear to also be required for best activity, especially antioxidant and antiproliferative, in the systems studied. The particular hydroxylation pattern of the B ring of the flavonoles increases their activities, especially in inhibition of mast cell secretion. Certain plants and spices containing flavonoids have been used for thousands of years in traditional Eastern medicine. In spite of the voluminous literature available, however, Western medicine has not yet used flavonoids therapeutically, even though their safety record is exceptional. Suggestions are made where such possibilities may be worth pursuing.",
+            "year": 2000,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "1cf51476911502ac3dc6ee5501aa9a3538afc621",
+            "title": "Medically Useful Plant Terpenoids: Biosynthesis, Occurrence, and Mechanism of Action",
+            "abstract": "Specialized plant terpenoids have found fortuitous uses in medicine due to their evolutionary and biochemical selection for biological activity in animals. However, these highly functionalized natural products are produced through complex biosynthetic pathways for which we have a complete understanding in only a few cases. Here we review some of the most effective and promising plant terpenoids that are currently used in medicine and medical research and provide updates on their biosynthesis, natural occurrence, and mechanism of action in the body. This includes pharmacologically useful plastidic terpenoids such as p-menthane monoterpenoids, cannabinoids, paclitaxel (taxol®), and ingenol mebutate which are derived from the 2-C-methyl-d-erythritol-4-phosphate (MEP) pathway, as well as cytosolic terpenoids such as thapsigargin and artemisinin produced through the mevalonate (MVA) pathway. We further provide a review of the MEP and MVA precursor pathways which supply the carbon skeletons for the downstream transformations yielding these medically significant natural products.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/24/21/3961/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "29f3474accb3d671e045d4a8739277aa93a0a5bb",
+            "title": "Clinical aspects and health benefits of ginger (Zingiber officinale) in both traditional Chinese medicine and modern industry",
+            "abstract": "ABSTRACT Ginger (Zingiber officinale) has been used as a spice and medicine for over 200 years in Traditional Chinese Medicine. It is an important plant with several medicinal, and nutritional values used in Asian and Chinese Tradition medicine. Ginger and its general compounds such as Fe, Mg, Ca, vitamin C, flavonoids, phenolic compounds (gingerdiol, gingerol, gingerdione and shogaols), sesquiterpenes, paradols has long been used as an herbal medicine to treat various symptoms including vomiting, pain, cold symptoms and it has been shown to have anti-inflammatory, anti-apoptotic, anti-tumour activities, anti-pyretic, anti-platelet, anti-tumourigenic, anti-hyperglycaemic, antioxidant anti-diabetic, anti-clotting and analgesic properties, cardiotonic, cytotoxic. It has been widely used for arthritis, cramps, sprains, sore throats, rheumatism, muscular aches, pains, vomiting, constipation, indigestion, hypertension, dementia, fever and infectious diseases. Ginger leaves have also been used for food-flavouring and Asian Traditional Medicine especially in China. Ginger oil also used as food-flavouring agent in soft drink, as spices in bakery products, in confectionary items, pickles, sauces and as preservatives. Ginger is available in three forms, namely fresh root ginger, preserved ginger and dried ginger. The pharmacological activities of ginger were mainly attributed to its active phytocompounds 6-gingerol, 6-shogaol, zingerone beside other phenolics and flavonoids. Gingerol and shogaol in particular, is known to have anti-oxidant and anti-inflammatory properties. In both Traditional Chinese Medicine, and modern China, Ginger is used in about half of all herbal prescriptions. Traditional medicinal plants are often cheaper, locally available and easily consumable raw and as simple medicinal preparations. The obtained findings suggest potential of ginger extract as an additive in the food and pharmaceutical industries.",
+            "year": 2019,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "e218179ffcae43d6c2cb9ba4b53d6f8306b8a802",
+            "title": "Cinnamon: A Multifaceted Medicinal Plant",
+            "abstract": "Cinnamon (Cinnamomum zeylanicum, and Cinnamon cassia), the eternal tree of tropical medicine, belongs to the Lauraceae family. Cinnamon is one of the most important spices used daily by people all over the world. Cinnamon primarily contains vital oils and other derivatives, such as cinnamaldehyde, cinnamic acid, and cinnamate. In addition to being an antioxidant, anti-inflammatory, antidiabetic, antimicrobial, anticancer, lipid-lowering, and cardiovascular-disease-lowering compound, cinnamon has also been reported to have activities against neurological disorders, such as Parkinson's and Alzheimer's diseases. This review illustrates the pharmacological prospective of cinnamon and its use in daily life.",
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/ecam/2014/642942.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "5eb92f5354e2c6eb820fd70bb4559447ca89e449",
+            "title": "Demystifying traditional herbal medicine with modern approach",
+            "abstract": None,
+            "year": 2017,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "56ce081f1b4820df6f135ffdd7f9255424e208e8",
+            "title": "The fascinating facets of plant selenium accumulation - biochemistry, physiology, evolution and ecology.",
+            "abstract": "Contents 1582 I. 1582 II. 1583 III. 1588 IV. 1590 V. 1592 1592 References 1592 SUMMARY: The importance of selenium (Se) for medicine, industry and the environment is increasingly apparent. Se is essential for many species, including humans, but toxic at elevated concentrations. Plant Se accumulation and volatilization may be applied in crop biofortification and phytoremediation. Topics covered here include beneficial and toxic effects of Se on plants, mechanisms of Se accumulation and tolerance in plants and algae, Se hyperaccumulation, and ecological and evolutionary aspects of these processes. Plant species differ in the concentration and forms of Se accumulated, Se partitioning at the whole-plant and tissue levels, and the capacity to distinguish Se from sulfur. Mechanisms of Se hyperaccumulation and its adaptive significance appear to involve constitutive up-regulation of sulfate/selenate uptake and assimilation, associated with elevated concentrations of defense-related hormones. Hyperaccumulation has evolved independently in at least three plant families, probably as an elemental defense mechanism and perhaps mediating elemental allelopathy. Elevated plant Se protects plants from generalist herbivores and pathogens, but also gives rise to the evolution of Se-resistant specialists. Plant Se accumulation affects ecological interactions with herbivores, pollinators, neighboring plants, and microbes. Hyperaccumulation tends to negatively affect Se-sensitive ecological partners while facilitating Se-resistant partners, potentially affecting species composition and Se cycling in seleniferous ecosystems.",
+            "year": 2017,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://rss.onlinelibrary.wiley.com/doi/am-pdf/10.1111/nph.14378",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "2954fa7b829211ee29f8953f87aad0aae26703b9",
+            "title": "Bmc Complementary and Alternative Medicine in Vitro Antibacterial Activity of Some Plant Essential Oils",
+            "abstract": "Background: To evaluate the antibacterial activity of 21 plant essential oils against six bacterial species.",
+            "year": None,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "3a6bdb0e6554ae2b3bb90c36711bdfaa596e34a0",
+            "title": "The Application of Medicinal Plants in Traditional and Modern Medicine: A Review of Thymus vulgaris",
+            "abstract": "Medicinal plants have played an essential role in the development of human culture. Medicinal plants are resources of traditional medicines and many of the modern medicines are produced indirectly from plants. This study illustrates the importance of traditional and modern medicines in the treatment and management of human diseases and ailments. It has been confirmed by WHO that herbal medicines serve the health needs of about 80 percent of the world’s population; especially for millions of people in the vast rural areas of developing countries. Meanwhile, consumers in developed countries are becoming disillusioned with modern health care and are seeking alternatives. Thymus vulgaris is a species of flowering plant in the mint family Lamiacea. Thymus is a widely used medicinal plant in food and pharmaceutical industries. Among different species of Thymus, Thymus vulgaris is used more than other species in therapeutic dosage forms. In Traditional medicine T. vulgaris is cultivated in many countries by most people especially in rural areas depending on herbal medicines to treat many diseases including inflammation-related ailments such as rheumatism, muscle swelling, insect bites, pains, etc. Also the modern medicine in essential oil of thyme has demonstrated that the compounds have shown anti-inflammatory, antioxidant, antibacterial and antifungal properties. In this review the objective is to consider the past and present value of medicinal plants such as Thymus vulgar is used in traditional and modern medical practices as bioactive natural compounds.",
+            "year": 2015,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "http://www.scirp.org/journal/PaperDownload.aspx?paperID=59593",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "4d7d6111f3a93fe6824866a2d11f872a238b2963",
+            "title": "Ethnobotanical survey of medicinal plant species used by communities around Mabira Central Forest Reserve, Uganda",
+            "abstract": None,
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://ethnobiomed.biomedcentral.com/track/pdf/10.1186/s13002-015-0077-4",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "70c0541452254eaed66b19526884bcc9f179bb82",
+            "title": "The value of plants used in traditional medicine for drug discovery.",
+            "abstract": "In this review we describe and discuss several approaches to selecting higher plants as candidates for drug development with the greatest possibility of success. We emphasize the role of information derived from various systems of traditional medicine (ethnomedicine) and its utility for drug discovery purposes. We have identified 122 compounds of defined structure, obtained from only 94 species of plants, that are used globally as drugs and demonstrate that 80% of these have had an ethnomedical use identical or related to the current use of the active elements of the plant. We identify and discuss advantages and disadvantages of using plants as starting points for drug development, specifically those used in traditional medicine.",
+            "year": 2001,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "da41403939cca746664609a781cd319bb069fb6d",
+            "title": "Nephrotoxicity and Chinese Herbal Medicine.",
+            "abstract": "Chinese herbal medicine has been practiced for the prevention, treatment, and cure of diseases for thousands of years. Herbal medicine involves the use of natural compounds, which have relatively complex active ingredients with varying degrees of side effects. Some of these herbal medicines are known to cause nephrotoxicity, which can be overlooked by physicians and patients due to the belief that herbal medications are innocuous. Some of the nephrotoxic components from herbs are aristolochic acids and other plant alkaloids. In addition, anthraquinones, flavonoids, and glycosides from herbs also are known to cause kidney toxicity. The kidney manifestations of nephrotoxicity associated with herbal medicine include acute kidney injury, CKD, nephrolithiasis, rhabdomyolysis, Fanconi syndrome, and urothelial carcinoma. Several factors contribute to the nephrotoxicity of herbal medicines, including the intrinsic toxicity of herbs, incorrect processing or storage, adulteration, contamination by heavy metals, incorrect dosing, and interactions between herbal medicines and medications. The exact incidence of kidney injury due to nephrotoxic herbal medicine is not known. However, clinicians should consider herbal medicine use in patients with unexplained AKI or progressive CKD. In addition, exposure to herbal medicine containing aristolochic acid may increase risk for future uroepithelial cancers, and patients require appropriate postexposure screening.",
+            "year": 2018,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://cjasn.asnjournals.org/content/clinjasn/13/10/1605.full.pdf",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "e91455fff952858f0e9744ad7e30d269be9e48b2",
+            "title": "Therapeutic Uses of Triphala in Ayurvedic Medicine",
+            "abstract": "Abstract Aim: The aim of this article is to review the current literature on the therapeutic uses and efficacy of Triphala. Herbal remedies are among the most ancient medicines used in traditional systems of healthcare such as Ayurveda. Triphala, a well-recognized and highly efficacious polyherbal Ayurvedic medicine consisting of fruits of the plant species Emblica officinalis (Amalaki), Terminalia bellerica (Bibhitaki), and Terminalia chebula (Haritaki), is a cornerstone of gastrointestinal and rejuvenative treatment. Methods: A search of the PubMed database was conducted. Results: In addition, numerous additional therapeutic uses described both in the Ayurvedic medical literature and anecdotally are being validated scientifically. In addition to laxative action, Triphala research has found the formula to be potentially effective for several clinical uses such as appetite stimulation, reduction of hyperacidity, antioxidant, anti-inflammatory, immunomodulating, antibacterial, antimutagenic, adaptogenic, hypoglycemic, antineoplastic, chemoprotective, and radioprotective effects, and prevention of dental caries. Polyphenols in Triphala modulate the human gut microbiome and thereby promote the growth of beneficial Bifidobacteria and Lactobacillus while inhibiting the growth of undesirable gut microbes. The bioactivity of Triphala is elicited by gut microbiota to generate a variety of anti-inflammatory compounds. Conclusions: This review summarizes recent data on pharmacological properties and clinical effects of Triphala while highlighting areas in need of additional investigation and clinical development.",
+            "year": 2017,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.liebertpub.com/doi/pdf/10.1089/acm.2017.0083",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "df44470c000d141aa379c19031e38b3a24e6f771",
+            "title": "Plant-derived nanostructures: types and applications",
+            "abstract": "Plant-derived nanostructures and nanoparticles (NPs) have functional applications in numerous disciplines such as health care, food and feed, cosmetics, biomedical science, energy science, drug-gene delivery, environmental health, and so on. Consequently, it is imperative for researchers to understand that plants are cost-effective, sustainable and renewable platforms, and therefore, they are ideal sources for production of natural NPs. This critical review discusses significant recent developments pertaining to plant-derived nanostructures, their classes, and vital applications. The aim is to provide insight into the use of plants as bio-renewable, sustainable, diversified resources and as platforms for the production of useful nanostructures and NPs, with functions in various fields including medicine, industry, agriculture, and pharmaceuticals.",
+            "year": 2016,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "eb9f796e45e0c8f2cf52f618fb081b575fec3eef",
+            "title": "Current knowledge of Schisandra chinensis (Turcz.) Baill. (Chinese magnolia vine) as a medicinal plant species: a review on the bioactive components, pharmacological properties, analytical and biotechnological studies",
+            "abstract": None,
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://link.springer.com/content/pdf/10.1007%2Fs11101-016-9470-4.pdf",
+                "status": "HYBRID",
+            },
+        },
+        {
+            "paperId": "f27620c2122be8a7c80fdb87c12baa9bebc1ada3",
+            "title": "A survey of ethnomedicinal plants used to treat cancer by traditional medicine practitioners in Zimbabwe",
+            "abstract": None,
+            "year": 2020,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://bmccomplementmedtherapies.biomedcentral.com/track/pdf/10.1186/s12906-020-03046-8",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "f81476f0fdad756a4bd232cb11cf2dfc302d4071",
+            "title": "Effective Medicinal Plant in Cancer Treatment, Part 2: Review Study",
+            "abstract": "Cancer is the second cause of death after cardiovascular diseases. With due attention to rapid progress in the phytochemical study of plants, they are becoming popular because of their anticancer effects. The aim of this study was to investigate the effective medicinal plants in the treatment of cancer and study their mechanism of action. In order to gather information the keywords “traditional medicine,” “plant compounds,” “medicinal plant,” “medicinal herb,” “toxicity,” “anticancer effect,” “cell line,” and “treatment” were searched in international databases such as ScienceDirect, PubMed, and Scopus and national databases such as Magiran, Sid, and Iranmedex, and a total of 228 articles were collected. In this phase, 49 nonrelevant articles were excluded. Enhancement P53 protein expression, reducing the expression of proteins P27, P21, NFκB expression and induction of apoptosis, inhibition of the PI3K/Akt pathway, and reduction of the level of acid phosphatase and lipid peroxidation are the most effective mechanisms of herbal plants that can inhibit cell cycle and proliferation. Common treatments such as radiotherapy and chemotherapy can cause some complications. According to results of this study, herbal extracts have antioxidant compounds that can induce apoptosis and inhibit cell proliferation by the investigated mechanisms.",
+            "year": 2017,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://journals.sagepub.com/doi/pdf/10.1177/2156587217696927",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "14ccf3490f1071cbb75a0bbd87e70d0bc97e56e7",
+            "title": "Steroidal Lactones from Withania somnifera, an Ancient Plant for Novel Medicine",
+            "abstract": "Withania somnifera, commonly known as Ashwagandha, is an important medicinal plant that has been used in Ayurvedic and indigenous medicine for over 3,000 years. In view of its varied therapeutic potential, it has also been the subject of considerable modern scientific attention. The major chemical constituents of the Withania genus, the withanolides, are a group of naturally occurring C28-steroidal lactone triterpenoids built on an intact or rearranged ergostane framework, in which C-22 and C-26 are appropriately oxidized to form a six-membered lactone ring. In recent years, numerous pharmacological investigations have been carried out into the components of W. somnifera extracts. We present here an overview of the chemical structures of triterpenoid components and their biological activity, focusing on two novel activities, tumor inhibition and antiangiogenic properties of withaferin A and the effects of withanolide A on Alzheimer's disease. The most recent attempts in biotechnological production of withanolides are also discussed.",
+            "year": 2009,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/14/7/2373/pdf?version=1403112567",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "7de5d41792a851e0a16cbdf2c0545d6fe2e12186",
+            "title": "Plant metabolic clusters - from genetics to genomics.",
+            "abstract": "Contents 771 I. 771 II. 772 III. 780 IV. 781 V. 786 786 References 786 SUMMARY: Plant natural products are of great value for agriculture, medicine and a wide range of other industrial applications. The discovery of new plant natural product pathways is currently being revolutionized by two key developments. First, breakthroughs in sequencing technology and reduced cost of sequencing are accelerating the ability to find enzymes and pathways for the biosynthesis of new natural products by identifying the underlying genes. Second, there are now multiple examples in which the genes encoding certain natural product pathways have been found to be grouped together in biosynthetic gene clusters within plant genomes. These advances are now making it possible to develop strategies for systematically mining multiple plant genomes for the discovery of new enzymes, pathways and chemistries. Increased knowledge of the features of plant metabolic gene clusters - architecture, regulation and assembly - will be instrumental in expediting natural product discovery. This review summarizes progress in this area.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://europepmc.org/articles/pmc5449196?pdf=render",
+                "status": "GREEN",
+            },
+        },
+        {
+            "paperId": "defbee7085a3171c2dad262729f13f7c62ab1e33",
+            "title": "A small plant with big benefits: Fenugreek (Trigonella foenum‐graecum Linn.) for disease prevention and health promotion",
+            "abstract": "Plant-derived natural products have long-standing utility toward treating degenerative diseases. It is estimated that about two-thirds of world population depend on traditional medicine for primary medical needs. Fenugreek (Trigonella foenum-graecum Linn.), a short-living annual medicinal plant belonging to Fabaceae family, is used extensively in various parts of the world as herb, food, spice, and traditional medicine. Fenugreek is considered as one of the oldest medicinal plants and its health-promoting effects have been cited in Ayurveda and traditional Chinese medicine. The investigations into the chemical composition and pharmacological actions have seen a renaissance in recent years. Extensive preclinical and clinical research have outlined the pharmaceutical uses of fenugreek as antidiabetic, antihyperlipidemic, antiobesity, anticancer, anti-inflammatory, antioxidant, antifungal, antibacterial, galactogogue and for miscellaneous pharmacological effects, including improving women's health. The pharmacological actions of fenugreek are attributed to diverse array of phytoconstituents. The phytochemical analysis reveals the presence of steroids, alkaloids, saponins, polyphenols, flavonoids, lipids, carbohydrates, amino acids, and hydrocarbons. This review aims to summarize and critically analyze the current available literature to understand the potential of fenugreek for disease prevention and health improvement with special emphasis on cellular and molecular mechanisms. Current challenges and new directions of research on fenugreek are also discussed.",
+            "year": 2017,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "0d218c3840abe44a2c7afa7f4c23417068106063",
+            "title": "Antibiofilm Activity of Plant Polyphenols",
+            "abstract": "In the history of human medicine, antibiotics represent epochal examples of medical progress. However, with an approaching antibiotic crisis due to the emergence and extensive spread of antimicrobial resistance among bacterial agents, as well as to increasing number of patients with chronic and recalcitrant bacterial biofilm-associated infections, the naturally occurring molecules may become new sources of antibacterial and antibiofilm drugs for clinical usage. Polyphenols represent a class of plant natural products which are important in plant defense against microbial pathogens. The main focus of the review is on the antibiofilm activities of phenolic compounds against bacteria which play an essential role in medical device biofilm-associated infections. The other, not negligible part of the review is devoted to polyphenols’ activity against bacterial agents that cause dental caries and periodontal disease.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/21/12/1717/pdf?version=1481626327",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "caefdcc86a0f07eebbccc6315d627d6f6918c72d",
+            "title": "Evolutionary Diversification of Primary Metabolism and Its Contribution to Plant Chemical Diversity",
+            "abstract": "Plants produce a diverse array of lineage-specific specialized (secondary) metabolites, which are synthesized from primary metabolites. Plant specialized metabolites play crucial roles in plant adaptation as well as in human nutrition and medicine. Unlike well-documented diversification of plant specialized metabolic enzymes, primary metabolism that provides essential compounds for cellular homeostasis is under strong selection pressure and generally assumed to be conserved across the plant kingdom. Yet, some alterations in primary metabolic pathways have been reported in plants. The biosynthetic pathways of certain amino acids and lipids have been altered in specific plant lineages. Also, two alternative pathways exist in plants for synthesizing primary precursors of the two major classes of plant specialized metabolites, terpenoids and phenylpropanoids. Such primary metabolic diversities likely underlie major evolutionary changes in plant metabolism and chemical diversity by acting as enabling or associated traits for the evolution of specialized metabolic pathways.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.frontiersin.org/articles/10.3389/fpls.2019.00881/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "b6ef0062e3f1481ad525750424f5fc70f66ebfa9",
+            "title": "Medicinal Plants Traded in Informal Herbal Medicine Markets of the Limpopo Province, South Africa",
+            "abstract": "Trading of herbal medicines generates economic opportunities for vulnerable groups living in periurban, rural, and marginalized areas. This study was aimed at identifying medicinal plant species traded in the Limpopo province in South Africa, including traded plant parts, conservation statutes of the species, and harvesting methods used to collect the species. Semistructured questionnaire supplemented by field observation was used to collect data from owners of 35 informal herbal medicine markets in the Limpopo province. A total of 150 medicinal plant products representing at least 79 plant species belonging to 45 botanical families, mainly the Fabaceae (11.4%), Asteraceae (7.6%), and Hyacinthaceae (6.3%), were traded in the study area. Roots (50.0%), bulbs (19.0%), and bark (16.0%) were the most frequently sold plant parts. Some of the traded species which include Alepidea amatymbica, Bowiea volubilis, Brackenridgea zanguebarica, Clivia caulescens, Dioscorea sylvatica, Elaeodendron transvaalense, Encephalartos woodii, Eucomis pallidiflora subsp. pole-evansii, Merwilla plumbea, Mondia whitei, Prunus africana, Siphonochilus aethiopicus, Synaptolepis oliveriana, and Warburgia salutaris are of conservation concern and listed on the South African Red Data List. Findings of this study call for effective law enforcement to curb illegal removal of wild plants especially those species that are at the verge of extinction.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "http://downloads.hindawi.com/journals/ecam/2019/2609532.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "e45776dc578debbe23f41da19a6eba7bba1f51e5",
+            "title": "Diversity, equity, and access in psychedelic medicine",
+            "abstract": "Although it is exciting to witness the culmination of decades of drug policy advocacy and clinical research, the psychedelic science movement struggles with many of the same social issues that plague healthcare in general. The healing properties of plant medicines and their derivatives were originally brought to Western consciousness by indigenous cultures from all over the world. These practices are now being adapted to Western models of healthcare, in part, to achieve governmental approval as medical treatments. The current models of psychedelic psychotherapy being utilized in clinical trials are resource-intensive and therefore likely to remain out of reach for the socioeconomically disadvantaged if approved as medical treatments. Moreover, people of color and women are uncommon in leadership positions in the psychedelic research community, and few people of color are included as research participants in psychedelic studies. This piece introduces a special issue with a focus on issues of diversity, equity, and accessibility in psychedelic medicine.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://akjournals.com/downloadpdf/journals/2054/4/1/article-p1.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "026b9a7962f705a3c8cb8c021df9952ab247cd94",
+            "title": "Medicinal plants used in traditional medicine by Oromo people, Ghimbi District, Southwest Ethiopia",
+            "abstract": None,
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://ethnobiomed.biomedcentral.com/counter/pdf/10.1186/1746-4269-10-40",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c498f62b2cf2a7956cbef04b7802bb8976f4676c",
+            "title": "Antimicrobial and toxicological activities of five medicinal plant species from Cameroon Traditional Medicine",
+            "abstract": None,
+            "year": 2011,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://bmccomplementmedtherapies.biomedcentral.com/counter/pdf/10.1186/1472-6882-11-70",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "411f48791d4725a3614943677cf65e22feb149e5",
+            "title": "Ethiopian Common Medicinal Plants: Their Parts and Uses in Traditional Medicine - Ecology and Quality Control",
+            "abstract": "The main purpose of this review is to document medicinal plants used for traditional treatments with their parts, use, ecology, and quality control. Accordingly, 80 medicinal plant species were reviewed; leaves and roots are the main parts of the plants used for preparation of traditional medicines. The local practitioners provided various traditional medications to their patients’ diseases such as stomach-aches, asthma, dysentery, malaria, evil eyes, cancer, skin diseases, and headaches. The uses of medicinal plants for human and animal treatments are practiced from time immemorial. Stream/riverbanks, cultivated lands, disturbed sites, bushlands, forested areas and their margins, woodlands, grasslands, and home gardens are major habitats of medicinal plants. Generally, medicinal plants used for traditional medicine play a significant role in the healthcare of the majority of the people in Ethiopia. The major threats to medicinal plants are habitat destruction, urbanization, agricultural expansion, investment, road construction, and deforestation. Because of these, medicinal plants are being declined and lost with their habitats. Community- and research-based conservation mechanisms could be an appropriate approach for mitigating the problems pertinent to the loss of medicinal plants and their habitats and for documenting medicinal plants. Chromatography; electrophoretic, macroscopic, and microscopic techniques; and pharmaceutical practice are mainly used for quality control of herbal medicines.",
+            "year": 2019,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.intechopen.com/citation-pdf-url/66996",
+                "status": "HYBRID",
+            },
+        },
+        {
+            "paperId": "1d6d300a552805c5cde08695459ea21ef249455f",
+            "title": "Melissa officinalis L., a valuable medicine plant: A review",
+            "abstract": "Melissa officinalis L., a valuable medicinal plant in herbal medicine is native to the eastern Mediterranean Region and western Asia. The constituent of the essential oil of the plant in various climates is different, but citral (geranial and neral), citronellal, geraniol are main components. Many parameters influencing essential oil composition and yield, such as light intensity, nutrient, temperature, cultural practice genotype, plant part age, harvesting time. Lemon balm has been traditionally used for different medical purposes as tonic, antispasmodic, carminative, diaphoretic, surgical dressing for wounds, sedative-hypnotic strengthening the memory, and relief of stress induced headache, but in modern pharmacology is value in the management of mild to moderate Alzheimer’s, against migraine and rheumatism, antitumel and antioxidant activities. \n \n   \n \n Key words: Melissa officinalis, essential oil, pharmacology and antioxidant.",
+            "year": 2010,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "d019f2d81994a682ddfa1e415abaeaa3c1ec17bb",
+            "title": "Herbal Medicine in Ischemic Stroke: Challenges and Prospective",
+            "abstract": None,
+            "year": 2018,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "3a50fde420a545e50e6a97d7b7cf0affa790cdac",
+            "title": "Biosynthesis of gold nanoparticles using plant extracts",
+            "abstract": None,
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "fa245ac576c25d82d118d6ad54e7bbe5cd8342bb",
+            "title": "Plant antimicrobial peptides",
+            "abstract": "Pathogens, like fungi, nematodes, virus and bacterial are responsible for several human and plant diseases. According FAO, around 20 to 40 percent of crops yields are lost, per year, due plant diseases and pest. Besides this, only USA spend 30 billion dollars a year with hospital infections, and the numbers are increasing as the infection are becoming more and more resistant to conventional antibiotics. Antimicrobial peptides (AMPs) are found in different species: insects, mammals, amphibians, fish, birds and plants. Plant antimicrobial peptides have an important action in plants metabolism: defense against pathogens. Some examples of this class of peptides are: defensins, cyclotides, glycine-rich proteins, thionins and lipid transfer proteins. Usually, the target for AMPs are the DNA, RNA and proteins and they should have selectivity against bacterial cells and not been effective against mammal or plant cells. The interest on AMPs is growing, especially on their structure and mechanism of action. The use as medicine of AMPs is limited and still remaining some open questions that need to be answered: the oral bioavailability improvement, peptidase degradation, before they became an antimicrobial drug.",
+            "year": 2015,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "0de9e3a6f33b25832d6b91edc30bba8569547d0f",
+            "title": "From economic survival to recreation: contemporary uses of wild food and medicine in rural Sweden, Ukraine and NW Russia",
+            "abstract": None,
+            "year": 2015,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://ethnobiomed.biomedcentral.com/track/pdf/10.1186/s13002-015-0036-0",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "38bb5641b695b56df64d82e62b96d6258ba025e5",
+            "title": "Combating Pathogenic Microorganisms Using Plant-Derived Antimicrobials: A Minireview of the Mechanistic Basis",
+            "abstract": "The emergence of antibiotic resistance in pathogenic bacteria has led to renewed interest in exploring the potential of plant-derived antimicrobials (PDAs) as an alternative therapeutic strategy to combat microbial infections. Historically, plant extracts have been used as a safe, effective, and natural remedy for ailments and diseases in traditional medicine. Extensive research in the last two decades has identified a plethora of PDAs with a wide spectrum of activity against a variety of fungal and bacterial pathogens causing infections in humans and animals. Active components of many plant extracts have been characterized and are commercially available; however, research delineating the mechanistic basis of their antimicrobial action is scanty. This review highlights the potential of various plant-derived compounds to control pathogenic bacteria, especially the diverse effects exerted by plant compounds on various virulence factors that are critical for pathogenicity inside the host. In addition, the potential effect of PDAs on gut microbiota is discussed.",
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/bmri/2014/761741.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c1dba1948722b2745e0a119dd42c99dd555acf2f",
+            "title": "Metabolic engineering for the production of plant isoquinoline alkaloids.",
+            "abstract": "Several plant isoquinoline alkaloids (PIAs) possess powerful pharmaceutical and biotechnological properties. Thus, PIA metabolism and its fascinating molecules, including morphine, colchicine and galanthamine, have attracted the attention of both the industry and researchers involved in plant science, biochemistry, chemical bioengineering and medicine. Currently, access and availability of high-value PIAs [commercialized (e.g. galanthamine) or not (e.g. narciclasine)] is limited by low concentration in nature, lack of cultivation or geographic access, seasonal production and risk of overharvesting wild plant species. Nevertheless, most commercial PIAs are still extracted from plant sources. Efforts to improve the production of PIA have largely been impaired by the lack of knowledge on PIA metabolism. With the development and integration of next-generation sequencing technologies, high-throughput proteomics and metabolomics analyses and bioinformatics, systems biology was used to unravel metabolic pathways allowing the use of metabolic engineering and synthetic biology approaches to increase production of valuable PIAs. Metabolic engineering provides opportunity to overcome issues related to restricted availability, diversification and productivity of plant alkaloids. Engineered plant, plant cells and microbial cell cultures can act as biofactories by offering their metabolic machinery for the purpose of optimizing the conditions and increasing the productivity of a specific alkaloid. In this article, is presented an update on the production of PIA in engineered plant, plant cell cultures and heterologous micro-organisms.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/pbi.12494",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "721b04a3d9891f53018694d80bfc94f293dc3501",
+            "title": "Isolation of ACC deaminase-producing habitat-adapted symbiotic bacteria associated with halophyte Limonium sinense (Girard) Kuntze and evaluating their plant growth-promoting activity under salt stress",
+            "abstract": None,
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "a52d2c1f7cb69a12be9b1137170bb96500b76ee7",
+            "title": "Useful Plants – Medicines: At Least 28,187 Plant Species are Currently Recorded as Being of Medicinal Use",
+            "abstract": "In many regions of the world, people still rely on traditional plant-based medicines for their primary healthcare[1,2]. This is especially True for many rural communities in Africa, parts of Asia, and Central and South America, where plants and knowledge of their traditional use are accessible and affordable. In other countries, many of these traditional plant-based medicines are being integrated through regulations into mainstream health systems[3,4]. For example, in December 2016 the Chinese government announced their aim to integrate Traditional Chinese Medicine (TCM) into their healthcare system by 2020[5], recognising improved scientific understanding of the plants and their value in treating chronic conditions. In Europe, there is also a trend towards using traditional plant-based (‘herbal’) medicines alongside pharmaceutical drugs; in Germany, for example, it is estimated that 90% of the population use herbal medicines[2].Precise figures for the value of international trade in medicinal plants are difficult to obtain[6,7], but it is clear that the industry is growing fast[8,9]. In 2000, US$17 billion was spent in the US on traditional herbal medicines. In 2003, the World Health Organisation estimated the annual global market for herbal medicines to be worth US$60 billion[2] and by 2012 the global industry in TCM alone was reported to be worth US$83 billion[4].In this chapter we examine the regulation of these herbal medicines and the importance of having an accurate plant species name linked to them. The need for more research evaluating the medicinal properties of these plants is also covered, as well as their potential as new drugs.",
+            "year": 2017,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "495d23d060fa979a6a2965eb8604d6e85d752a60",
+            "title": "Availability, diversification and versatility explain human selection of introduced plants in Ecuadorian traditional medicine",
+            "abstract": "Globally, a majority of people use plants as a primary source of healthcare and introduced plants are increasingly discussed as medicine. Protecting this resource for human health depends upon understanding which plants are used and how use patterns will change over time. The increasing use of introduced plants in local pharmacopoeia has been explained by their greater abundance or accessibility (availability hypothesis), their ability to cure medical conditions that are not treated by native plants (diversification hypothesis), or as a result of the introduced plants’ having many different simultaneous roles (versatility hypothesis). In order to describe the role of introduced plants in Ecuador, and to test these three hypotheses, we asked if introduced plants are over-represented in the Ecuadorian pharmacopoeia, and if their use as medicine is best explained by the introduced plants’ greater availability, different therapeutic applications, or greater number of use categories. Drawing on 44,585 plant-use entries, and the checklist of >17,000 species found in Ecuador, we used multi-model inference to test if more introduced plants are used as medicines in Ecuador than expected by chance, and examine the support for each of the three hypotheses above. We find nuanced support for all hypotheses. More introduced plants are utilized than would be expected by chance, which can be explained by geographic distribution, their strong association with cultivation, diversification (except with regard to introduced diseases), and therapeutic versatility, but not versatility of use categories. Introduced plants make a disproportionately high contribution to plant medicine in Ecuador. The strong association of cultivation with introduced medicinal plant use highlights the importance of the maintenance of human-mediated environments such as homegardens and agroforests for the provisioning of healthcare services.",
+            "year": 2017,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0184369&type=printable",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "290ac934449363313c52d44a432c6d0abbe59e65",
+            "title": "The Potential Power of Bar-HRM Technology in Herbal Medicine Identification",
+            "abstract": "The substitution of low-cost or adulterated herbal products for high-priced herbs makes it important to be able to identify and trace herbal plant species and their processed products in the drug supply chain. PCR-based methods play an increasing role in monitoring the safety of herbal medicines by detecting adulteration. Recent studies have shown the potential of DNA barcoding combined with high resolution melting (Bar-HRM) analysis in herbal medicine identification. This method involves precisely monitoring the change in fluorescence caused by the release of an intercalating DNA dye from a DNA duplex as it is denatured by a gradual increase in temperature. Since the melting profile depends on the GC content, length, and strand complementarity of the amplification product, Bar-HRM analysis opens up the possibility of detecting single-base variants or species-specific differences in a short region of DNA. This review summarizes key factors affecting Bar-HRM analysis and describes how Bar-HRM is performed. We then discuss advances in Bar-HRM analysis of medicinal plant ingredients (herbal materia medica) as a contribution toward safe and effective herbal medicines.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.frontiersin.org/articles/10.3389/fpls.2016.00367/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "bd48e2c952538d7cc739b07cddb19a755cf6e6ee",
+            "title": "Sustainable Utilization of Traditional Chinese Medicine Resources: Systematic Evaluation on Different Production Modes",
+            "abstract": "The usage amount of medicinal plant rapidly increased along with the development of traditional Chinese medicine industry. The higher market demand and the shortage of wild herbal resources enforce us to carry out large-scale introduction and cultivation. Herbal cultivation can ease current contradiction between medicinal resources supply and demand while they bring new problems such as pesticide residues and plant disease and pests. Researchers have recently placed high hopes on the application of natural fostering, a new method incorporated herbal production and diversity protecting practically, which can solve the problems brought by artificial cultivation. However no modes can solve all problems existing in current herbal production. This study evaluated different production modes including cultivation, natural fostering, and wild collection to guide the traditional Chinese medicine production for sustainable utilization of herbal resources.",
+            "year": 2015,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/ecam/2015/218901.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "03d4575a77d093e23ce308a8d433a27eda452549",
+            "title": "Plants Producing Ribosome-Inactivating Proteins in Traditional Medicine",
+            "abstract": "Ribosome-inactivating proteins (RIPs) are enzymes that deadenylate nucleic acids and are broadly distributed in the plant kingdom. Many plants that contain RIPs are listed in the pharmacopoeias of folk medicine all over the world, mostly because of their toxicity. This review analyses the position occupied in traditional medicine by plants from which RIPs have been isolated. The overview starts from the antique age of the Mediterranean area with ancient Egypt, followed by the Greek and Roman classic period. Then, the ancient oriental civilizations of China and India are evaluated. More recently, Unani medicine and European folk medicine are examined. Finally, the African and American folk medicines are taken into consideration. In conclusion, a list of RIP-expressing plants, which have been used in folk medicine, is provided with the geographical distribution and the prescriptions that are recommended by traditional healers. Some final considerations are provided on the present utilization of such herbal treatments, both in developing and developed countries, often in the absence of scientific validation. The most promising prospect for the medicinal use of RIP-expressing plants is the conjugation of purified RIPs to antibodies that recognise tumour antigens for cancer therapy.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.mdpi.com/1420-3049/21/11/1560/pdf?version=1479465508",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c48818fe67a3726e9385ad2ce2fff0d40b6c82b5",
+            "title": "Chinese Drugs of Plant Origin: Chemistry, Pharmacology, and Use in Traditional and Modern Medicine",
+            "abstract": None,
+            "year": 1992,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "7f7d5fab757ac55e7c2972d513fb9ff776163d0b",
+            "title": "Jatropha gossypiifolia L. (Euphorbiaceae): A Review of Traditional Uses, Phytochemistry, Pharmacology, and Toxicology of This Medicinal Plant",
+            "abstract": "Jatropha gossypiifolia L. (Euphorbiaceae), widely known as “bellyache bush,” is a medicinal plant largely used throughout Africa and America. Several human and veterinary uses in traditional medicine are described for different parts and preparations based on this plant. However, critical reviews discussing emphatically its medicinal value are missing. This review aims to provide an up-to-date overview of the traditional uses, as well as the phytochemistry, pharmacology, and toxicity data of J. gossypiifolia species, in view of discussing its medicinal value and potential application in complementary and alternative medicine. Pharmacological studies have demonstrated significant action of different extracts and/or isolated compounds as antimicrobial, anti-inflammatory, antidiarrheal, antihypertensive, and anticancer agents, among others, supporting some of its popular uses. No clinical trial has been detected to date. Further studies are necessary to assay important folk uses, as well as to find new bioactive molecules with pharmacological relevance based on the popular claims. Toxicological studies associated with phytochemical analysis are important to understand the eventual toxic effects that could reduce its medicinal value. The present review provides insights for future research aiming for both ethnopharmacological validation of its popular use and its exploration as a new source of herbal drugs and/or bioactive natural products.",
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/ecam/2014/369204.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "c5f070994da972408dcb13476a5a6b070025b208",
+            "title": "Zingiber officinale: A Potential Plant against Rheumatoid Arthritis",
+            "abstract": "Rheumatoid arthritis (RA) is an autoimmune disease particularly affecting elderly people which leads to massive bone destruction with consequent inflammation, pain, and debility. Allopathic medicine can provide only symptomatic relief. However, Zingiber officinale is a plant belonging to the Zingiberaceae family, which has traditionally been used for treatment of RA in alternative medicines of many countries. Many of the phytochemical constituents of the rhizomes of this plant have therapeutic benefits including amelioration of RA. This review attempts to list those phytochemical constituents with their reported mechanisms of action. It is concluded that these phytochemicals can form the basis of discovery of new drugs, which not only can provide symptomatic relief but also may provide total relief from RA by stopping RA-induced bone destruction. As the development of RA is a complex process, further research should be continued towards elucidating the molecular details leading to RA and drugs that can stop or reverse these processes by phytoconstituents of ginger.",
+            "year": 2014,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "http://downloads.hindawi.com/archive/2014/159089.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "28d3149374a59cbab85b1ce300855d1228f118cb",
+            "title": "Food as medicine: potential therapeutic tendencies of plant derived polyphenolic compounds.",
+            "abstract": "The last two decades have witnessed a major drift in the interests of the scientific community towards explaining better means to containing the health risks of the human race. The century old chemotherapies against various disorders have never been a success, albeit not a total failure. Such therapies have a major drawback of side effects that give rise to unseen disorders that emerge as a new challenge. In this regard, the concept of foodstuffs as natural medicines is very attractive. Epidemiological studies suggest that the vegeteranian food habit is associated with reduced risk of cancer, cardiovascular and neurodegenerative disorders. Consistent with this hypothesis is the fact that the incidence of these disorders is least in Asian populations where fruits, vegetables and spices are the major elements in the human diet. Recent research has shown that plant-derived polyphenolic compounds are promising nutraceuticals for control of various disorders such as cardiovascular,neurological and neoplastic disease. The richness of the polyphenolic contents of green tea and red wine has made them popular choice for associated anticancer and cardiovascular health benefits. The present article is a brief review of the promises plant polyphenols, bioactive components of our food, hold for the future.",
+            "year": 2008,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "cd3eeb911617dd22ee6f0d1843e19ba1d255e133",
+            "title": "Loop-Mediated Isothermal Amplification (LAMP): Emergence As an Alternative Technology for Herbal Medicine Identification",
+            "abstract": "Correct identification of medicinal plant ingredients is essential for their safe use and for the regulation of herbal drug supply chain. Loop-mediated isothermal amplification (LAMP) is a recently developed approach to identify herbal medicine species. This novel molecular biology technique enables timely and accurate testing, especially in settings where infrastructures to support polymerase chain reaction facilities are lacking. Studies that used this method have altered our view on the extent and complexity of herbal medicine identification. In this review, we give an introduction into LAMP analysis, covers the basic principles and important aspects in the development of LAMP analysis method. Then we presented a critical review of the application of LAMP-based methods in detecting and identifying raw medicinal plant materials and their processed products. We also provide a practical standard operating procedure (SOP) for the utilization of the LAMP protocol in herbal authentication, and consider the prospects of LAMP technology in the future developments of herbal medicine identification and the challenges associated with its application.",
+            "year": 2016,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.frontiersin.org/articles/10.3389/fpls.2016.01956/pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "d6cff309a5ac55fd4b073f7037166e8ca8fbea79",
+            "title": "Prospects for Plant Anthelmintics in Tropical Veterinary Medicine",
+            "abstract": None,
+            "year": 1997,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "33fa720984bfc289df09de5e9a8f8f39a168c7b5",
+            "title": "Tinospora cordifolia: a multipurpose medicinal plant- A review",
+            "abstract": "Traditional systems of medicine such as Ayurvedic, Uninai, Siddha and Homeopathy (AYUSH) have been in practice in a great account. Owing to population rise, inadequate supply of drugs, prohibitive cost of treatments, side effects of several allopathic drugs and development of resistance to currently used drugs for diseases have led to increased emphasis on the use of plant materials as a source of medicines for a wide variety of human ailments as witnessed by the use of folk medicines in the present scenario. This review article describes the prominence of a medicinal plant Tinospora cordifolia in therapeutics such as use of crude extract of plant for the amelioration of various diseases, morphology, growth constraints, biochemical composition, biological activities, research work done, projects sanctioned to this plant species and the future prospects of this important neglected plant species for research in the field of plant tissue culture, natural products and nano-biotechnology. Keyword: Medicinal Plants, Plant Extract, Tissue Culture, Natural Products, Biodiversity.",
+            "year": 2014,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "85b6281e1dad0fb7e1c21c9fb59f64ec5e3d327f",
+            "title": "Plant-derived antimicrobial compounds: alternatives to antibiotics.",
+            "abstract": "The increasing incidence of drug-resistant pathogens has drawn the attention of the pharmaceutical and scientific communities towards studies on the potential antimicrobial activity of plant-derived substances, an untapped source of antimicrobial chemotypes, which are used in traditional medicine in different countries. The aim of this review is to provide recent insights regarding the possibilities of the most important natural antimicrobial compounds derived from plant sources containing a wide variety of secondary metabolites, which are useful as alternative strategies to control infectious diseases. This review will focus on natural plant products as a useful source of antimicrobial molecules, active in particular, on bacteria and fungi. When considering that many of these compounds, which have been used for centuries, are a source of new drugs and that there are ever-increasing technical breakthroughs, it can be envisaged that in the next years some different molecules discovered by ingenious screening programs and obtained from different plant oils and extracts will become useful therapeutic tools.",
+            "year": 2012,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "acf3e67c5012a5cf15dd611f2223cb3b9ae51b6b",
+            "title": "Toxicity profile of traditional herbal medicine",
+            "abstract": "Medicines obtained from natural sources have become the basis for pharmaceutical drugs. Traditional herbal medicines are naturally occurring plant derived substances; these have been used for treatment and cure of various diseases and as a nutraceuticals. Toxicological research and testing help to live safely and predict benefit from synthetic and natural substance while avoiding harm. The toxicity study is done for data profiling and safety of the herbal drugs, the toxicity study of various plant and herbal formulation are reported. This review briefly discusses the need of toxicity study, toxicity produced by plants and safe traditional herbal medicine.",
+            "year": 2015,
+            "isOpenAccess": True,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "a304a2fef7ee22a9c272d9a201b2c922f4332563",
+            "title": "Antibacterial Activities of Some Plant Extracts Utilized in Popular Medicine in Palestine",
+            "abstract": "The antibacterial activities of hot water, methanol and ethanol extracts of 5 plant extracts utilized in Palestine in popular medicine were studied. The dried extracts of Syzyium aromaticum (Myrtaceae) (seed), Cinnamomum cassia (Lauraceae) (cassia bark, Chinese cinnamon) (bark), Salvia officinalis (Lamiaceaea) (leaf), Thymus vulgaris (Lamiaceaea) (leaf) and Rosmarinus officinalis (Labiatae) (leaf) were tested in vitro against 4 bacterial species by disk diffusion and micro-dilution. The patterns of inhibition varied with the plant extract, the solvent used for extraction, and the organism tested. Methicillin-resistant Staphylococcus aureus (MRSA) and Bacillus subtilis ATCC 6633 were the most inhibited microorganisms. S. aromaticum extract was the most active against multi-drug resistant Pseudomonas aeruginosa and enterohemorrhagic Escherichia coli O157 EHEC. The combinations of ethanolic extracts of S. officinalis with R. officinalis and of R. officinalis with T. vulgaris on bacterial species tested exhibited a higher effect than that of any individual extract. Results of this kind herald the interesting promise of designing a potentially active antibacterial synergized agent of plant origin.",
+            "year": 2004,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "89e8082503dfa8abf106c2dae9920ffa7961e441",
+            "title": "Traditional Medicinal Plant Extracts and Natural Products with Activity against Oral Bacteria: Potential Application in the Prevention and Treatment of Oral Diseases",
+            "abstract": "Oral diseases are major health problems with dental caries and periodontal diseases among the most important preventable global infectious diseases. Oral health influences the general quality of life and poor oral health is linked to chronic conditions and systemic diseases. The association between oral diseases and the oral microbiota is well established. Of the more than 750 species of bacteria that inhabit the oral cavity, a number are implicated in oral diseases. The development of dental caries involves acidogenic and aciduric Gram-positive bacteria (mutans streptococci, lactobacilli and actinomycetes). Periodontal diseases have been linked to anaerobic Gram-negative bacteria (Porphyromonas gingivalis, Actinobacillus, Prevotella and Fusobacterium). Given the incidence of oral disease, increased resistance by bacteria to antibiotics, adverse affects of some antibacterial agents currently used in dentistry and financial considerations in developing countries, there is a need for alternative prevention and treatment options that are safe, effective and economical. While several agents are commercially available, these chemicals can alter oral microbiota and have undesirable side-effects such as vomiting, diarrhea and tooth staining. Hence, the search for alternative products continues and natural phytochemicals isolated from plants used as traditional medicines are considered as good alternatives. In this review, plant extracts or phytochemicals that inhibit the growth of oral pathogens, reduce the development of biofilms and dental plaque, influence the adhesion of bacteria to surfaces and reduce the symptoms of oral diseases will be discussed further. Clinical studies that have investigated the safety and efficacy of such plant-derived medicines will also be described.",
+            "year": 2011,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://downloads.hindawi.com/journals/ecam/2011/680354.pdf",
+                "status": "GOLD",
+            },
+        },
+        {
+            "paperId": "602b2f8214f0f14528b20fbd380916e170dc54d6",
+            "title": "Blending Traditional and Western Medicine: Medicinal plant use among patients at Clinica Anticona in El Porvenir, Peru",
+            "abstract": "Medicinal plants have been used in Peru for millennia for a variety of uses, but, over the last century, modern technology has deterred the increased growth of this valuable knowledge. The present study attempts to look at a clinic in El Porvenir, on the north coast of Peru to discover what kind of medicines are preferred and the factors determining choices made. Previous studies have shown that medicinal plants still play an important role in treatment. However, the results of our study demonstrate that pharmaceutical medicine plays a larger role when compared to the use of medicinal plants. Thus, while many patients feel pharmaceutical medicine is faster and more effective, there are still a large number of plants that are commonly used by patients. As a result, there is evidence that more research in this area should be done in order to learn what factors determine medical choices and what factors might lead to an increase the use of medicinal plants.",
+            "year": 2007,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://ethnobotanyjournal.org/index.php/era/article/download/129/114",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "b8f9f26e455680ae200c9fc06b6e169a6855caae",
+            "title": "Antibacterial Activities of Some Plant Extracts Used in Folk Medicine",
+            "abstract": "The antibacterial activities of ethyl acetate, methanol, chloroform, and acetone extracts of four plant species were studied. The dried extracts of the whole plant of Artemisia absinthium (Compositae/Asteraceae) and Urtica dioica (Urticaceae), flowering plants of Fumaria officinalis (Papaveraceae/Fumariaceae) and the leaves of Rosmarinus officinalis (Labiatae/Lamiaceae) were tested in vitro against 12 bacterial species and strains by the agar diffusion method. Bacillus brevis FMC 3, Bacillus megaterium DSM 32, Bacillus subtilis IMG 22, Bacillus subtilis var. niger ATCC 10, Micrococcus luteus LA 2971, Mycobacterium smegmatus RUT, Escherichia coli DM, Listeria monocytogenes SCOTT A, Staphylococcus aureus ATCC 25923, Streptococcus thermophilus, Pseudomonas fluorescens, and Yersinia enterocolitica O:3 P 41797 were used in this investigation. The results indicated that neither the whole plant extracts of Urtica dioica nor Fumaria officinalis showed antibacterial activity against the test micro-organisms. All the extracts of the leaves of Rosmarinus officinalis showed various inhibitory effects (7-16 mm/20 µl inhibition zone), except the acetone extract against Yersinia enterocolitica. The whole plant ethyl acetate and chloroform extracts of Artemisia absinthium inhibited some of the test micro-organisms (8-16 mm/20 µml inhibition zone).",
+            "year": 2002,
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://www.tandfonline.com/doi/pdf/10.1076/phbi.40.4.269.8474?needAccess=True",
+                "status": "BRONZE",
+            },
+        },
+        {
+            "paperId": "559d264ca5b9266237abe5b8ab384fd8cf294a57",
+            "title": "Edible plant vaccines: applications for prophylactic and therapeutic molecular medicine.",
+            "abstract": None,
+            "year": 2002,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "f248fee1aa7aaaee65d910deb79f5066729d5383",
+            "title": "Antibacterial activity of plant extracts used externally in traditional medicine.",
+            "abstract": None,
+            "year": 1994,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+        {
+            "paperId": "cf467e0f224af6ba745768e89802d54e23e07cb8",
+            "title": "Patented antiinﬂammatory plant drug development from traditional medicine",
+            "abstract": "Patents secured on antiinﬂammatory plant drugs derived from 38 plants are reviewed. An attempt has been made to compare the modern and traditional use of plant drugs and to establish the relevance of folk claims in developing modern drugs. The role of plant botanicals such as polysaccharides, terpenes, curcuminoids, alkaloids, etc. in alleviating inﬂammatory diseases including arthritis, rheumatism, acne skin allergy and ulcers is highlighted. Chemicals that alleviate swelling are derived from plants including grape, boswellia, turmeric, devil's claw and some essential oils such as clove, eucalyptus, rosemary, lavender, mint, myrrh, millefolia and pine have been patented and used as mixed formulations. Plants containing polysaccharides are the most potent in curing inﬂammatory diseases. Copyright © 2004 John Wiley & Sons, Ltd.",
+            "year": 2004,
+            "isOpenAccess": False,
+            "openAccessPdf": None,
+        },
+    ],
+}  # Replace with actual da
+library_collection.add(data)
