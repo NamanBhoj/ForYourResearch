@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useUserAuth } from '../contexts/AuthContext';
+import { useUserAuth } from '../contexts/AuthContext';
 import KeywordInputField from '../components/KeywordInputField';
 import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
@@ -15,20 +15,26 @@ export default function Library() {
     openAccessPdf: { url: string; status: string };
     year: number;
     isOpenAccess: string;
+    relevance?: string;
   }
 
   interface PaperResponse {
     data: Paper[];
+    total: number;
   }
   // const { user, signOut } = useUserAuth();
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState<string[]>([]);
   const [query, setQuery] = useState('');
-  // const [papers, setPapers] = useState<any[]>([]);
   const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
     {}
   );
-  const [paperObj, setPaperObj] = useState<PaperResponse>({ data: [] });
+
+  const [paperObj, setPaperObj] = useState<PaperResponse>({
+    data: [],
+    total: 0,
+  });
+  const { user } = useUserAuth();
 
   // const handleLogout = async () => {
   //   try {
@@ -48,15 +54,22 @@ export default function Library() {
   };
 
   const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
-      );
-      setPaperObj(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error fetching papers:', error);
-    }
+    // try {
+    const response = await axios.get(
+      `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
+    );
+
+    const data = response.data;
+    const paperArray = data['papersArray'];
+    const newPaperObj = {
+      data: paperArray.map((paper: Paper) => ({
+        ...paper,
+        relevance: 'Untagged',
+      })),
+      total: data.length,
+    };
+    setPaperObj(newPaperObj);
+    console.log(newPaperObj);
   };
 
   const handleDelete = (chip: string) => {
@@ -77,6 +90,16 @@ export default function Library() {
       ...prevRelevance,
       [paperId]: relevance,
     }));
+
+    const newPaperObj = {
+      ...paperObj,
+      data: paperObj.data.map((paper) =>
+        paper.paperId === paperId ? { ...paper, relevance } : paper
+      ),
+    };
+
+    setPaperObj(newPaperObj);
+    console.log(newPaperObj);
   };
 
   const openPdf = (href: string) => {
@@ -88,7 +111,7 @@ export default function Library() {
       Relevant: 0,
       Uncertain: 1,
       Irrelevant: 2,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
@@ -97,7 +120,7 @@ export default function Library() {
       Relevant: 1,
       Uncertain: 0,
       Irrelevant: 2,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
@@ -106,24 +129,16 @@ export default function Library() {
       Relevant: 2,
       Uncertain: 1,
       Irrelevant: 0,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
   const handleSortByRelevance = (sortOrder: any): void => {
-    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Unselected';
-    // const sortOrder = {
-    //   Relevant: 0,
-    //   Uncertain: 1,
-    //   Irrelevant: 2,
-    //   Unselected: 3,
-    // };
+    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Untagged';
 
     const sortedData = paperObj.data.sort((a, b) => {
-      const relevanceA = (paperRelevance[a.paperId] ||
-        'Unselected') as Relevance;
-      const relevanceB = (paperRelevance[b.paperId] ||
-        'Unselected') as Relevance;
+      const relevanceA = (paperRelevance[a.paperId] || 'Untagged') as Relevance;
+      const relevanceB = (paperRelevance[b.paperId] || 'Untagged') as Relevance;
 
       return sortOrder[relevanceA] - sortOrder[relevanceB];
     });
@@ -132,6 +147,24 @@ export default function Library() {
       ...prevPaperObj,
       data: sortedData,
     }));
+  };
+
+  const getTotalNumberOfPapers = () => {
+    return paperObj.total >= 1000 ? 1000 : paperObj.total;
+  };
+
+  const handleSaveToLibrary = async () => {
+    const json = {
+      uid: user?.uid,
+      data: paperObj,
+      searchQuery: query,
+    };
+    const response = await axios.post(
+      `http://127.0.0.1:8000/saveToLibrary/`,
+      json
+    );
+
+    console.log(response);
   };
 
   return (
@@ -212,6 +245,18 @@ export default function Library() {
                     handleSortByIrrelevant={sortIrrelevantFirst}
                   />
                 </div>
+                <button
+                  type="button"
+                  className="mt-auto mr-2 rounded bg-green-600 px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={handleSaveToLibrary}
+                >
+                  Save to library
+                </button>{' '}
+                <div className="mr-auto">
+                  <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                    Total Papers: {getTotalNumberOfPapers()}
+                  </span>
+                </div>
               </div>
               <div className="mt-8 flow-root">
                 <div className="border rounded-lg shadow  overflow-auto max-h-[700px] max-w-full">
@@ -275,7 +320,7 @@ export default function Library() {
                               <RelevanceDropdown
                                 relevance={
                                   (paperRelevance[paper.paperId] as any) ||
-                                  'Unselected'
+                                  'Untagged'
                                 }
                                 onRelevanceChange={(newRelevance: any) =>
                                   handleRelevanceChange(

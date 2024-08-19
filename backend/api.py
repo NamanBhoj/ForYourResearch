@@ -9,6 +9,7 @@ from pydantic import BaseModel
 class RequestObject(BaseModel):
     uid: str
     data: dict
+    searchQuery: str
 
 
 cred = credentials.Certificate(
@@ -38,7 +39,15 @@ async def saveToLibrary(request: RequestObject):
         db.collection("Users").document(request.uid).collection("Library")
     )
 
-    library_collection.add(request.data)
+    library_collection.add({"data": request.data, "searchQuery": request.searchQuery})
+
+
+@app.get("/fetchUserLibrary/")
+async def fetchUserLibrary(uid: str):
+    library_collection = db.collection("Users").document(uid).collection("Library")
+    documents = library_collection.stream()
+    jsonDocs = [document.to_dict() for document in documents]
+    return jsonDocs
 
 
 @app.get("/search/")
