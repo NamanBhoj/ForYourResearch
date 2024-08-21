@@ -4,6 +4,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 export default function RelevanceDropdown({
   relevance = 'Untag',
   onRelevanceChange,
+  isDisabled = false,
 }) {
   const relevanceOptions = {
     Relevant:
@@ -21,13 +22,16 @@ export default function RelevanceDropdown({
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton
+          disabled={isDisabled}
           className={`cursor-pointer inline-flex w-full justify-center gap-x-1.5 rounded-3xl px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset hover:bg-gray-50 ${getColor()}`}
         >
           {relevance === 'Untag' ? 'Tag Relevance' : relevance}
-          <ChevronDownIcon
-            aria-hidden="true"
-            className="-mr-1 h-5 w-5 text-slate-400"
-          />
+          {!isDisabled && (
+            <ChevronDownIcon
+              aria-hidden="true"
+              className="-mr-1 h-5 w-5 text-slate-400"
+            />
+          )}
         </MenuButton>
       </div>
 
@@ -38,7 +42,7 @@ export default function RelevanceDropdown({
               {({ close }) => (
                 <a
                   className={
-                    'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
+                    'cursor-pointer block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
                   }
                   onClick={(event) => {
                     event.preventDefault();

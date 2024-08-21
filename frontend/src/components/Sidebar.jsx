@@ -10,15 +10,16 @@ import {
 import {
   Bars3Icon,
   FolderIcon,
-  HomeIcon,
   XMarkIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
+import { Link, useLocation } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Search', link: 'search', icon: MagnifyingGlassIcon, current: true },
   {
     name: 'Library',
-    href: '/dashboard/library',
+    link: 'library',
     icon: FolderIcon,
     current: false,
   },
@@ -30,6 +31,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <>
@@ -42,11 +44,10 @@ export default function Example() {
           transition
           className="fixed inset-0 bg-neutral-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
         />
-
         <div className="fixed inset-0 flex">
           <DialogPanel
             transition
-            className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-[closed]:-tranneutral-x-full"
+            className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-[closed]:-translate-x-full"
           >
             <TransitionChild>
               <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
@@ -77,20 +78,21 @@ export default function Example() {
                     <ul role="list" className="-mx-2 space-y-1">
                       {navigation.map((item) => (
                         <li key={item.name}>
-                          <a
+                          <Link
+                            to={item.link}
                             className={classNames(
-                              location.pathname === item.href
+                              location.pathname === item.link
                                 ? 'bg-neutral-800 text-white'
-                                : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
-                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                                : 'hover:bg-neutral-800',
+                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-white'
                             )}
                           >
                             <item.icon
                               aria-hidden="true"
-                              className="h-6 w-6 shrink-0"
+                              className="h-6 w-6 shrink-0 text-white"
                             />
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -117,21 +119,21 @@ export default function Example() {
                 <ul role="list" className="-mx-2 space-y-1">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.link}
                         className={classNames(
-                          location.pathname === item.href
+                          location.pathname === `/dashboard/${item.link}`
                             ? 'bg-neutral-800 text-white'
-                            : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
-                          'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                            : 'hover:bg-neutral-800',
+                          'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-white'
                         )}
                       >
                         <item.icon
                           aria-hidden="true"
-                          className="h-6 w-6 shrink-0"
+                          className="h-6 w-6 shrink-0 text-white"
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -148,11 +150,8 @@ export default function Example() {
           className="-m-2.5 p-2.5 text-neutral-400 lg:hidden"
         >
           <span className="sr-only">Open sidebar</span>
-          <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+          <Bars3Icon aria-hidden="true" className="h-6 w-6 text-white" />
         </button>
-        <div className="flex-1 text-sm font-semibold leading-6 text-white">
-          {location.pathname === '/dashboard' ? 'Dashboard' : 'Library'}
-        </div>
       </div>
     </>
   );

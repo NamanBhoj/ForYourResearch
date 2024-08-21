@@ -287,12 +287,7 @@ export default function Library() {
                                 <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
                                   <RelevanceDropdown
                                     relevance={paper.relevance}
-                                    onRelevanceChange={(newRelevance) =>
-                                      handleRelevanceChange(
-                                        paper.paperId,
-                                        newRelevance
-                                      )
-                                    }
+                                    isDisabled={true}
                                   />
                                 </td>
                               </tr>

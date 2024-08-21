@@ -10,7 +10,6 @@ function Home() {
       <div className="flex flex-col items-center mt-32 text-center mx-8 md:mx-20 lg:mx-24">
         <MainSection />
         <FeatureSection />
-        {/* <FeatureSection /> */}
       </div>
       <Footer />
     </div>

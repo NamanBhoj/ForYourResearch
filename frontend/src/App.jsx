@@ -6,10 +6,15 @@ import Library from './pages/Library';
 import PapersTable from './pages/PapersTable';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
 
 function App() {
+  // const router = createBrowserRouter([
+  //   { path: '/', element: <Home /> },
+  //   { path: '/login', element: <Login /> },
+  //   { path: '/signup', element: <Login /> },
+  // ]);
   return (
     <>
       <UserAuthContextProvider>
