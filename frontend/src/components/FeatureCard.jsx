@@ -1,4 +1,4 @@
-export default function FeatureCard(props: any) {
+export default function FeatureCard(props) {
   return (
     <div className="flex flex-col overflow-hidden rounded-lg bg-white shadow w-full">
       <div className="px-4 py-5 sm:px-6 bg-neutral-50">

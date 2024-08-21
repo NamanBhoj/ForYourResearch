@@ -1,5 +1,6 @@
 import Sidebar from '../components/Sidebar';
 import PapersTable from './PapersTable';
+import Library from './Library';
 
 function Dashboard() {
   return (

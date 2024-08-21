@@ -2,9 +2,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../contexts/AuthContext';
 
-export const ProtectedRoute: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const { user, pending } = useUserAuth();
 

@@ -1,18 +1,11 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-type Relevance = 'Irrelevant' | 'Uncertain' | 'Relevant' | 'Untag';
-
-interface RelevanceDropdownProps {
-  relevance?: Relevance;
-  onRelevanceChange: (newRelevance: Relevance) => void;
-}
-
 export default function RelevanceDropdown({
   relevance = 'Untag',
   onRelevanceChange,
-}: RelevanceDropdownProps) {
-  const relevanceOptions: Record<Relevance, string> = {
+}) {
+  const relevanceOptions = {
     Relevant:
       'bg-green-200 text-green-700 ring-green-600/20 hover:bg-green-100 hover:text-green-800',
     Uncertain:
@@ -28,7 +21,7 @@ export default function RelevanceDropdown({
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton
-          className={`inline-flex w-full justify-center gap-x-1.5 rounded-3xl px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset hover:bg-gray-50 ${getColor()}`}
+          className={`cursor-pointer inline-flex w-full justify-center gap-x-1.5 rounded-3xl px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset hover:bg-gray-50 ${getColor()}`}
         >
           {relevance === 'Untag' ? 'Tag Relevance' : relevance}
           <ChevronDownIcon
@@ -44,13 +37,12 @@ export default function RelevanceDropdown({
             <MenuItem key={key}>
               {({ close }) => (
                 <a
-                  href="#"
                   className={
                     'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
                   }
                   onClick={(event) => {
                     event.preventDefault();
-                    onRelevanceChange(key as Relevance);
+                    onRelevanceChange(key);
                     close();
                   }}
                 >

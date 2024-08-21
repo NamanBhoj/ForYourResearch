@@ -1,5 +1,5 @@
-export default function KeywordInputField(props: any) {
-  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+export default function KeywordInputField(props) {
+  const handleKeyword = (e) => {
     props.setKeyword(e.target.value);
   };
 

@@ -8,32 +8,14 @@ import QueryChip from '../components/QueryChip';
 import SortByDropdown from '../components/SortByDropdown';
 
 export default function Library() {
-  interface Paper {
-    title: string;
-    paperId: string;
-    abstract: string;
-    openAccessPdf: { url: string; status: string };
-    year: number;
-    isOpenAccess: string;
-    relevance?: string;
-  }
-
-  interface PaperResponse {
-    data: Paper[];
-    total: number;
-  }
   // const { user, signOut } = useUserAuth();
   const [keyword, setKeyword] = useState('');
-  const [keywordList, setKeywordList] = useState<string[]>([]);
+  const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
-  const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
-    {}
-  );
+  const [paperRelevance, setPaperRelevance] = useState({});
 
-  const [paperObj, setPaperObj] = useState<PaperResponse>({
-    data: [],
-    total: 0,
-  });
+const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
+
   const { user } = useUserAuth();
 
   // const handleLogout = async () => {
@@ -62,7 +44,7 @@ export default function Library() {
     const data = response.data;
     const paperArray = data['papersArray'];
     const newPaperObj = {
-      data: paperArray.map((paper: Paper) => ({
+      data: paperArray.map((paper) => ({
         ...paper,
         relevance: 'Untagged',
       })),
@@ -72,7 +54,7 @@ export default function Library() {
     console.log(newPaperObj);
   };
 
-  const handleDelete = (chip: string) => {
+  const handleDelete = (chip) => {
     const updatedKeywordList = keywordList.filter(
       (keyword) => keyword !== chip
     );
@@ -85,7 +67,7 @@ export default function Library() {
     setQuery('');
   };
 
-  const handleRelevanceChange = (paperId: string, relevance: string) => {
+  const handleRelevanceChange = (paperId, relevance) => {
     setPaperRelevance((prevRelevance) => ({
       ...prevRelevance,
       [paperId]: relevance,
@@ -99,10 +81,9 @@ export default function Library() {
     };
 
     setPaperObj(newPaperObj);
-    console.log(newPaperObj);
   };
 
-  const openPdf = (href: string) => {
+  const openPdf = (href) => {
     window.open(href, '_blank');
   };
 
@@ -133,12 +114,10 @@ export default function Library() {
     });
   };
 
-  const handleSortByRelevance = (sortOrder: any): void => {
-    type Relevance = 'Relevant' | 'Uncertain' | 'Irrelevant' | 'Untagged';
-
+  const handleSortByRelevance = (sortOrder) => {
     const sortedData = paperObj.data.sort((a, b) => {
-      const relevanceA = (paperRelevance[a.paperId] || 'Untagged') as Relevance;
-      const relevanceB = (paperRelevance[b.paperId] || 'Untagged') as Relevance;
+      const relevanceA = paperRelevance[a.paperId] || 'Untagged';
+      const relevanceB = paperRelevance[b.paperId] || 'Untagged';
 
       return sortOrder[relevanceA] - sortOrder[relevanceB];
     });
@@ -294,44 +273,44 @@ export default function Library() {
                       </thead>
 
                       <tbody className="bg-white divide-y divide-neutral-300 bg-neutral-50">
-                        {paperObj.data.map((paper) => (
-                          <tr
-                            key={paper.paperId}
-                            className="hover:bg-neutral-50 transition-colors duration-150"
-                          >
-                            <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
-                              <a
-                                className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
-                                // href={paper.openAccessPdf?.url || ''}
-                                // target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() =>
-                                  openPdf(paper.openAccessPdf?.url || '')
-                                }
-                              >
-                                {paper.title}
-                              </a>
-                            </td>
-                            <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
-                              {paper.abstract}
-                            </td>
+                        {paperObj &&
+                          paperObj.data.map((paper) => (
+                            <tr
+                              key={paper.paperId}
+                              className="hover:bg-neutral-50 transition-colors duration-150"
+                            >
+                              <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
+                                <a
+                                  className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
+                                  // href={paper.openAccessPdf?.url || ''}
+                                  // target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() =>
+                                    openPdf(paper.openAccessPdf?.url || '')
+                                  }
+                                >
+                                  {paper.title}
+                                </a>
+                              </td>
+                              <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
+                                {paper.abstract}
+                              </td>
 
-                            <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                              <RelevanceDropdown
-                                relevance={
-                                  (paperRelevance[paper.paperId] as any) ||
-                                  'Untagged'
-                                }
-                                onRelevanceChange={(newRelevance: any) =>
-                                  handleRelevanceChange(
-                                    paper.paperId,
-                                    newRelevance
-                                  )
-                                }
-                              />
-                            </td>
-                          </tr>
-                        ))}
+                              <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
+                                <RelevanceDropdown
+                                  relevance={
+                                    paperRelevance[paper.paperId] || 'Untagged'
+                                  }
+                                  onRelevanceChange={(newRelevance) =>
+                                    handleRelevanceChange(
+                                      paper.paperId,
+                                      newRelevance
+                                    )
+                                  }
+                                />
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
@@ -340,7 +319,7 @@ export default function Library() {
             </div>
           </div>
         </div>
-      )}{' '}
+      )}
     </>
   );
 }

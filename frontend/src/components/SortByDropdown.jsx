@@ -1,7 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-export default function SortByDropdown(props: any) {
+export default function SortByDropdown(props) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

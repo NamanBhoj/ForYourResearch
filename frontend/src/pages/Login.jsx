@@ -14,7 +14,7 @@ export default function Signup() {
 
   const { signIn } = useUserAuth();
 
-  const handleCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCredentials = (e) => {
     const { name, value } = e.target;
     setUserCredentials((prev) => ({
       ...prev,
@@ -22,7 +22,7 @@ export default function Signup() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     setPending(true);
     e.preventDefault();
     setSignInError(false);
