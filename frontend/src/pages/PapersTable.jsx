@@ -129,7 +129,7 @@ const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
   };
 
   const getTotalNumberOfPapers = () => {
-    return paperObj.total >= 1000 ? 1000 : paperObj.total;
+    return paperObj.data.length >= 1000 ? 1000 : paperObj.data.length;
   };
 
   const handleSaveToLibrary = async () => {

@@ -25,7 +25,7 @@ export default function RelevanceDropdown({
           disabled={isDisabled}
           className={`cursor-pointer inline-flex w-full justify-center gap-x-1.5 rounded-3xl px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset hover:bg-gray-50 ${getColor()}`}
         >
-          {relevance === 'Untag' ? 'Tag Relevance' : relevance}
+          {relevance === 'Untag' ? 'Untagged' : relevance}
           {!isDisabled && (
             <ChevronDownIcon
               aria-hidden="true"

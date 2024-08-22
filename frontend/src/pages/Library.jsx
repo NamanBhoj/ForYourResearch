@@ -92,9 +92,10 @@ export default function Library() {
   //   }
   // };
 
-  const getPapersToDisplay = () => {
-    const papersToDisplay = paperObj[selectedQuery];
-    return papersToDisplay;
+  const getTotalNumberOfPapers = () => {
+    return paperObj[selectedQuery].length >= 1000
+      ? 1000
+      : paperObj[selectedQuery].length;
   };
 
   const handleAddKeyword = () => {
@@ -224,10 +225,18 @@ export default function Library() {
                   />
                 </div>
 
-                <div className="mr-auto">
-                  <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    {/* Total Papers: {getTotalNumberOfPapers()} */}
+                <div className="flex flex-col items-start mr-auto space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg font-semibold text-gray-800">
+                      Query:
+                    </span>
+                    <span> {selectedQuery} </span>
+                  </div>
+
+                  <span className="text-lg font-semibold text-gray-800">
+                    Total papers: {getTotalNumberOfPapers}
                   </span>
+                  <span> {getTotalNumberOfPapers()} </span>
                 </div>
               </div>
               <div className="mt-8 flow-root">

@@ -9,7 +9,7 @@ export default function KeywordInputField(props) {
         htmlFor="email"
         className="block text-sm font-medium leading-6 text-neutral-900"
       >
-        Add Keyword for query formulation
+        Add keyword for query formulation
       </label>
       <div className="mt-2">
         <input
