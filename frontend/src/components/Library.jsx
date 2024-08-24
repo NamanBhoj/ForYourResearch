@@ -6,7 +6,6 @@ import SortByDropdown from '../components/Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
 import SearchQueryDropdown from '../components/SearchQueryDropdown';
 import Loader from './Shared/Loader';
-import Autocomplete from './Autocomplete';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -139,7 +138,6 @@ export default function Library() {
               queriesList={fetchedQueryArray}
               setSelectedQuery={setSelectedQuery}
             />
-            <Autocomplete people={fetchedQueryArray} />
           </>
         )}
       </div>
