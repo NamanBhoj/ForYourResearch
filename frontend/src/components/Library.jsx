@@ -9,8 +9,7 @@ import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
-  const lambdaUrl =
-    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
   const [loading, setLoading] = useState(false);
 
   // const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
