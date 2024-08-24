@@ -52,10 +52,7 @@ export default function Library() {
           }
         }
         setFetchedQueryArray(queryArray);
-        setPapersToDisplay(res);
-        // console.log(res);
         setPaperObj(resObj);
-        console.log(resObj);
       } catch (error) {
         console.error('Error fetching user library:', error);
       } finally {
