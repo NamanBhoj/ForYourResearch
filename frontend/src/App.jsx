@@ -5,8 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Library from './components/Library';
 import PapersTable from './components/PapersTable';
 import ProtectedRoute from './components/Layout/ProtectedRoute';
-import './App.css';
-import { createBrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
 
 function App() {
