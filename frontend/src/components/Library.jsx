@@ -1,28 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useUserAuth } from '../contexts/AuthContext';
-import KeywordInputField from '../components/KeywordInputField';
-import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
-import RelevanceDropdown from '../components/RelevanceDropdown';
-import QueryChip from '../components/QueryChip';
-import SortByDropdown from '../components/SortByDropdown';
+import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
+import SortByDropdown from '../components/Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
 import SearchQueryDropdown from '../components/SearchQueryDropdown';
 
 export default function Library() {
-  // interface Paper {
-  //   title: string;
-  //   paperId: string;
-  //   abstract: string;
-  //   openAccessPdf: { url: string; status: string };
-  //   year: number;
-  //   isOpenAccess: string;
-  // }
-
-  // interface PaperResponse {
-  //   data: { data: Paper };
-  //   // total: number;
-  // }
   // const { user, signOut } = useUserAuth();
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState([]);
@@ -32,13 +16,11 @@ export default function Library() {
   //   {}
   // );
   const [paperRelevance, setPaperRelevance] = useState({});
-  // const [paperObj, setPaperObj] = useState<PaperResponse[]>([]);
   const [paperObj, setPaperObj] = useState([]);
 
   // using these
   const [selectedQuery, setSelectedQuery] = useState('');
   const [fetchedQueryArray, setFetchedQueryArray] = useState([]);
-  const [fetchedPapersToDisplay, setFetchedPapersToDisplay] = useState([]);
 
   const { user } = useUserAuth();
 
@@ -46,7 +28,7 @@ export default function Library() {
     const fetchUserLibrary = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/fetchUserLibrary/?uid=${user?.uid}`
+          `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/fetchUserLibrary/?uid=${user?.uid}`
         );
 
         const modifiedData = response.data.map((paper) => ({
@@ -80,10 +62,6 @@ export default function Library() {
     fetchUserLibrary();
   }, [user?.uid, setPaperObj]);
 
-  useEffect(() => {
-    // console.log(paperObj[0].data);
-  }, [paperObj]);
-
   // const handleLogout = async () => {
   //   try {
   //     await signOut();
@@ -96,40 +74,6 @@ export default function Library() {
     return paperObj[selectedQuery].length >= 1000
       ? 1000
       : paperObj[selectedQuery].length;
-  };
-
-  const handleAddKeyword = () => {
-    if (keyword.trim() !== '') {
-      const updatedKeywordList = [...keywordList, keyword];
-      setKeywordList(updatedKeywordList);
-      setQuery(updatedKeywordList.join(' '));
-      setKeyword('');
-    }
-  };
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
-      );
-      // setPaperObj(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error fetching papers:', error);
-    }
-  };
-
-  const handleDelete = (chip) => {
-    const updatedKeywordList = keywordList.filter(
-      (keyword) => keyword !== chip
-    );
-    setKeywordList(updatedKeywordList);
-    setQuery(updatedKeywordList.join(' '));
-  };
-
-  const handleDeleteQuery = () => {
-    setKeywordList([]);
-    setQuery('');
   };
 
   const handleRelevanceChange = (paperId, relevance) => {
@@ -179,23 +123,6 @@ export default function Library() {
       ...prevPaperObj,
       data: sortedData,
     }));
-  };
-
-  // const getTotalNumberOfPapers = () => {
-  //   return paperObj.total >= 1000 ? 1000 : paperObj.total;
-  // };
-
-  const handleSaveToLibrary = async () => {
-    const json = {
-      uid: user?.uid,
-      data: paperObj,
-    };
-    const response = await axios.post(
-      `http://127.0.0.1:8000/saveToLibrary/`,
-      json
-    );
-
-    console.log(response);
   };
 
   // const getQueriesList = () => {};

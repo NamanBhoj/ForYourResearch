@@ -5,7 +5,7 @@ import {
 } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useUserAuth } from '../contexts/AuthContext';
+import { useUserAuth } from '../../contexts/AuthContext';
 
 export default function Example() {
   const { user } = useUserAuth();

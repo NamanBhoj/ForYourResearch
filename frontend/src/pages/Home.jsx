@@ -1,7 +1,7 @@
-import Footer from '../components/Footer';
+import Footer from '../components/Layout/Footer';
 import MainSection from '../components/MainSection';
-import Navbar from '../components/Navbar';
-import FeatureSection from '../components/FeatureSection';
+import Navbar from '../components/Layout/Navbar';
+import FeatureSection from '../components/FeatureSection/FeatureSection';
 
 function Home() {
   return (

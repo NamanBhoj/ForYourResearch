@@ -1,6 +1,6 @@
-import Analyse from '../assets/svg/Analyse';
-import Answer from '../assets/svg/Answer';
-import Collect from '../assets/svg/Collect';
+import Analyse from '../../assets/svg/Analyse';
+import Answer from '../../assets/svg/Answer';
+import Collect from '../../assets/svg/Collect';
 
 const features = [
   {

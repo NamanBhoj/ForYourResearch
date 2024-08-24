@@ -3,9 +3,9 @@ import { useUserAuth } from '../contexts/AuthContext';
 import KeywordInputField from '../components/KeywordInputField';
 import KeywordChip from '../components/KeywordChip';
 import axios from 'axios';
-import RelevanceDropdown from '../components/RelevanceDropdown';
+import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
 import QueryChip from '../components/QueryChip';
-import SortByDropdown from '../components/SortByDropdown';
+import SortByDropdown from '../components/Shared/SortByDropdown';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -14,7 +14,7 @@ export default function Library() {
   const [query, setQuery] = useState('');
   const [paperRelevance, setPaperRelevance] = useState({});
 
-const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
+  const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
 
   const { user } = useUserAuth();
 
@@ -37,10 +37,14 @@ const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
 
   const handleSearch = async () => {
     // try {
+    // const response = await axios.get(
+    //   `http://127.0.0.1:8000/search/?query=${keywordList.join(' ')}`
+    // );
     const response = await axios.get(
-      `http://127.0.0.1:8000/search/?query=${keywordList.join('+')}`
+      `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/search/?query=${keywordList.join(
+        ' '
+      )}&limit=100`
     );
-
     const data = response.data;
     const paperArray = data['papersArray'];
     const newPaperObj = {
@@ -51,7 +55,7 @@ const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
       total: data.length,
     };
     setPaperObj(newPaperObj);
-    console.log(newPaperObj);
+    console.log(response);
   };
 
   const handleDelete = (chip) => {
@@ -139,7 +143,7 @@ const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
       searchQuery: query,
     };
     const response = await axios.post(
-      `http://127.0.0.1:8000/saveToLibrary/`,
+      `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/saveToLibrary`,
       json
     );
 
