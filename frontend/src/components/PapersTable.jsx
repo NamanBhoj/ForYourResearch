@@ -6,6 +6,7 @@ import axios from 'axios';
 import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
 import QueryChip from '../components/QueryChip';
 import SortByDropdown from '../components/Shared/SortByDropdown';
+import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -13,7 +14,7 @@ export default function Library() {
   const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
   const [paperRelevance, setPaperRelevance] = useState({});
-
+  const [loading, setLoading] = useState(false);
   const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
 
   const { user } = useUserAuth();
@@ -36,6 +37,7 @@ export default function Library() {
   };
 
   const handleSearch = async () => {
+    setLoading(true);
     // try {
     // const response = await axios.get(
     //   `http://127.0.0.1:8000/search/?query=${keywordList.join(' ')}`
@@ -55,6 +57,7 @@ export default function Library() {
       total: data.length,
     };
     setPaperObj(newPaperObj);
+    setLoading(false);
     console.log(response);
   };
 
@@ -213,6 +216,11 @@ export default function Library() {
           </div>
         </div>
       </div>
+      {loading && (
+        <div className="mt-12 flex justify-center">
+          <Loader />
+        </div>
+      )}
       {/* TABLE */}
       {paperObj.data.length > 0 && (
         <div className="bg-white py-10">

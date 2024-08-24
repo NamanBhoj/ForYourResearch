@@ -5,13 +5,13 @@ import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
 import SortByDropdown from '../components/Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
 import SearchQueryDropdown from '../components/SearchQueryDropdown';
+import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
-  const [keyword, setKeyword] = useState('');
-  const [keywordList, setKeywordList] = useState([]);
-  const [papersToDisplay, setPapersToDisplay] = useState([]);
-  const [query, setQuery] = useState('');
+
+  const [loading, setLoading] = useState(false);
+
   // const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
   //   {}
   // );
@@ -26,6 +26,7 @@ export default function Library() {
 
   useEffect(() => {
     const fetchUserLibrary = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/fetchUserLibrary/?uid=${user?.uid}`
@@ -56,6 +57,8 @@ export default function Library() {
         console.log(resObj);
       } catch (error) {
         console.error('Error fetching user library:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -129,14 +132,16 @@ export default function Library() {
   return (
     <>
       <div className="flex justify-center items-center mb-32 mt-12">
-        <SearchQueryDropdown
-          queriesList={fetchedQueryArray}
-          setSelectedQuery={setSelectedQuery}
-        />
+        {loading ? (
+          <Loader />
+        ) : (
+          <SearchQueryDropdown
+            queriesList={fetchedQueryArray}
+            setSelectedQuery={setSelectedQuery}
+          />
+        )}
       </div>
-      {/* <div>{selectedQuery}</div> */}
-      {/* TABLE */}
-      {/* {paperObj.length > 0 && ( */}
+
       {selectedQuery && (
         <div className="bg-white py-10">
           <div className="mx-auto max-w-7xl">
