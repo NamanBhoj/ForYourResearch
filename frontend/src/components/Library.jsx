@@ -32,7 +32,7 @@ export default function Library() {
         const response = await axios.get(
           `${lambdaUrl}/fetchUserLibrary/?uid=${user?.uid}`
         );
-
+        // console.log(response)
         const modifiedData = response.data.map((paper) => ({
           ...paper,
           uniqueKey: uuidv4(),
@@ -52,10 +52,7 @@ export default function Library() {
           }
         }
         setFetchedQueryArray(queryArray);
-        setPapersToDisplay(res);
-        // console.log(res);
         setPaperObj(resObj);
-        console.log(resObj);
       } catch (error) {
         console.error('Error fetching user library:', error);
       } finally {
