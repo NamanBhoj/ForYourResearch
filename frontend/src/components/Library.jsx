@@ -6,6 +6,7 @@ import SortByDropdown from '../components/Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
 import SearchQueryDropdown from '../components/SearchQueryDropdown';
 import Loader from './Shared/Loader';
+import Autocomplete from './Autocomplete';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -32,7 +33,7 @@ export default function Library() {
         const response = await axios.get(
           `${lambdaUrl}/fetchUserLibrary/?uid=${user?.uid}`
         );
-        // console.log(response)
+
         const modifiedData = response.data.map((paper) => ({
           ...paper,
           uniqueKey: uuidv4(),
@@ -133,10 +134,13 @@ export default function Library() {
         {loading ? (
           <Loader />
         ) : (
-          <SearchQueryDropdown
-            queriesList={fetchedQueryArray}
-            setSelectedQuery={setSelectedQuery}
-          />
+          <>
+            <SearchQueryDropdown
+              queriesList={fetchedQueryArray}
+              setSelectedQuery={setSelectedQuery}
+            />
+            <Autocomplete people={fetchedQueryArray} />
+          </>
         )}
       </div>
 
@@ -155,18 +159,22 @@ export default function Library() {
                   />
                 </div>
 
-                <div className="flex flex-col items-start mr-auto space-y-2">
+                <div className="flex flex-col items-start mr-auto space-y-2 mt-4">
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg font-semibold text-gray-800">
+                    <span className="text-m font-semibold text-gray-800">
                       Query:
                     </span>
-                    <span> {selectedQuery} </span>
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-m mt-auto font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                      {selectedQuery}
+                    </span>{' '}
                   </div>
 
-                  <span className="text-lg font-semibold text-gray-800">
-                    Total papers: {getTotalNumberOfPapers}
+                  <span className="text-m font-semibold text-gray-800">
+                    Total papers:{' '}
+                    <span className="font-normal">
+                      {getTotalNumberOfPapers()}
+                    </span>
                   </span>
-                  <span> {getTotalNumberOfPapers()} </span>
                 </div>
               </div>
               <div className="mt-8 flow-root">
