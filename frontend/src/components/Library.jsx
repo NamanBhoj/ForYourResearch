@@ -9,7 +9,8 @@ import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
-
+  const lambdaUrl =
+    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
   const [loading, setLoading] = useState(false);
 
   // const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
@@ -29,7 +30,7 @@ export default function Library() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/fetchUserLibrary/?uid=${user?.uid}`
+          `${lambdaUrl}/fetchUserLibrary/?uid=${user?.uid}`
         );
 
         const modifiedData = response.data.map((paper) => ({

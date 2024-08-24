@@ -10,6 +10,9 @@ import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
+  const lambdaUrl =
+    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
@@ -42,10 +45,9 @@ export default function Library() {
     // const response = await axios.get(
     //   `http://127.0.0.1:8000/search/?query=${keywordList.join(' ')}`
     // );
+    // Lambda - dev
     const response = await axios.get(
-      `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/search/?query=${keywordList.join(
-        ' '
-      )}&limit=100`
+      `${lambdaUrl}/search/?query=${keywordList.join(' ')}&limit=100`
     );
     const data = response.data;
     const paperArray = data['papersArray'];
@@ -145,10 +147,7 @@ export default function Library() {
       data: paperObj,
       searchQuery: query,
     };
-    const response = await axios.post(
-      `https://67twqtz7xded2nvmlwwwjpt4340vhakv.lambda-url.us-east-2.on.aws/saveToLibrary`,
-      json
-    );
+    const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
 
     console.log(response);
   };
