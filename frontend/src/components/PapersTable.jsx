@@ -10,8 +10,7 @@ import Loader from './Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState([]);
