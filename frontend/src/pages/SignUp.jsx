@@ -20,7 +20,7 @@ export default function Signup() {
 
   const { signUp } = useUserAuth();
 
-  const handleCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCredentials = (e) => {
     const { name, value } = e.target;
     setUserCredentials((prev) => ({
       ...prev,
@@ -28,7 +28,7 @@ export default function Signup() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     setPending(true);
     e.preventDefault();
     setPending(true);
@@ -181,9 +181,9 @@ export default function Signup() {
 
           <div>
             <button
-            disabled={pending}
+              disabled={pending}
               type="submit"
-              className="flex w-full justify-center rounded-md bg-slate-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-neutral-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Become a Member
             </button>
