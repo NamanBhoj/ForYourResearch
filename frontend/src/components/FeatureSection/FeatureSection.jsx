@@ -12,19 +12,19 @@ const features = [
   {
     title: 'We Analyse',
     description:
-      'Based on what information you are looking for in papers our AI agent analyses papers and gives you the final set of most relevant papers. ',
+      "Based on the information you're looking for in papers, our AI agent analyzes them and provides you with the final set of the most relevant ones.",
     svgComponent: <Analyse />,
   },
   {
     title: 'We Answer',
-    description: 'Finally we tell you which collected papers answers your Research Question and generate Relevant Citations making it easier for you to write.'
-      ,
+    description:
+      'We identify which collected papers answer your research question and generate relevant citations, making it easier for you to write.',
     svgComponent: <Answer />,
   },
   {
     title: 'We Summarise and Report',
-    description: 'We summarise and generate report of the key findings of your Research Questions from the Literature Review, and generate key insights like Future work and Open Questions.'
-      ,
+    description:
+      'We summarize and generate a report of the key findings related to your research questions from the literature review, along with key insights such as future work and open questions.',
     svgComponent: <Answer />,
   },
 ];
@@ -32,12 +32,13 @@ const features = [
 function App() {
   return (
     <div className="w-screen py-12 bg-gray-100">
-
       <div id="what-we-do" className="space-y-12 px-4 md:px-12 lg:px-24 mt-12">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-gray-800">How we do it!</h1>
+          <h1 className="text-5xl font-extrabold text-gray-800">
+            How we do it
+          </h1>
           <p className="text-lg text-gray-600 mt-4">
-            Fastest way to conduct your Literature Reviews.
+            Streamlining your literature reviews with speed and precision.
           </p>
           <div className="w-24 h-1 mx-auto bg-indigo-600 mt-4 rounded"></div>
         </div>

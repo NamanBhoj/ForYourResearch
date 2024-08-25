@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/16/solid';
 import { useUserAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../components/Layout/Logo';
 export default function Signup() {
   const [userCredentials, setUserCredentials] = useState({
     email: '',
@@ -44,11 +45,15 @@ export default function Signup() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
+          {/* <img
             alt="Your Company"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             className="mx-auto h-10 w-auto"
-          />
+          /> */}
+          <div className="flex justify-center">
+            {' '}
+            <Logo color="#EC4D37" />
+          </div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Resume Conducting Faster Reviews
           </h2>

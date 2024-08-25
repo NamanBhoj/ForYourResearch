@@ -1,11 +1,19 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import {  XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from '@headlessui/react';
+import {
+  XMarkIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 
 export default function Example() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -31,35 +39,46 @@ export default function Example() {
               </button>
             </div>
             <div className="sm:flex sm:items-start">
-              <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                {/* <ExclamationTriangleIcon aria-hidden="true" className="h-6 w-6 text-red-600" /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-</svg>
-
+              <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                <ExclamationTriangleIcon aria-hidden="true" className="h-10 w-10 text-red-600" />
+                {/* <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
+                  />
+                </svg> */}
               </div>
               <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                <DialogTitle as="h3" className="text-base font-bold leading-6 text-gray-900">
+                <DialogTitle
+                  as="h3"
+                  className="text-base font-bold leading-6 text-gray-900"
+                >
                   Get a Free Literature Review done!
                 </DialogTitle>
                 <div className="mt-2">
                   <p className="text-sm text-neutral-900-500">
-                      Submit your research question and get a report with key insights saving atleast <b>100 hours</b> of reading effort. 
+                    Submit your research question and get a report with key
+                    insights saving atleast <b>100 hours</b> of reading effort.
                   </p>
                 </div>
               </div>
             </div>
             <div className="mt-5 ml-14 sm:mt-4 sm:flex sm:flex-row">
-              
               <a href="https://app.youform.com/forms/pvtbohr1" target="_blank">
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="mt-3 inline-flex w-full justify-center animate-bounce rounded-md bg-green-100 px-3 py-2 text-sm font-semibold text-neutral-950 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-200 sm:mt-0 sm:w-auto"
-              >
-                I am in!
-              </button>
-              
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="mt-3 inline-flex w-full justify-center animate-bounce rounded-md bg-green-100 px-3 py-2 text-sm font-semibold text-neutral-950 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-200 sm:mt-0 sm:w-auto"
+                >
+                  I am in!
+                </button>
               </a>
               <button
                 type="button"
@@ -73,5 +92,5 @@ export default function Example() {
         </div>
       </div>
     </Dialog>
-  )
+  );
 }

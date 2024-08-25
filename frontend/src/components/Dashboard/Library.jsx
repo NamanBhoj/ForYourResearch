@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useUserAuth } from '../contexts/AuthContext';
+import { useUserAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
-import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
-import SortByDropdown from '../components/Shared/SortByDropdown';
+import RelevanceDropdown from '../Shared/RelevanceDropdown';
+import SortByDropdown from '../Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
-import SearchQueryDropdown from '../components/SearchQueryDropdown';
-import Loader from './Shared/Loader';
-import Autocomplete from './Autocomplete';
+import SearchQueryDropdown from './SearchQueryDropdown';
+import Loader from '../Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
@@ -139,7 +138,6 @@ export default function Library() {
               queriesList={fetchedQueryArray}
               setSelectedQuery={setSelectedQuery}
             />
-            <Autocomplete people={fetchedQueryArray} />
           </>
         )}
       </div>

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useUserAuth } from '../contexts/AuthContext';
-import KeywordInputField from '../components/KeywordInputField';
-import KeywordChip from '../components/KeywordChip';
+import { useUserAuth } from '../../contexts/AuthContext';
+import KeywordInputField from './KeywordInputField';
+import KeywordChip from './KeywordChip';
 import axios from 'axios';
-import RelevanceDropdown from '../components/Shared/RelevanceDropdown';
-import QueryChip from '../components/QueryChip';
-import SortByDropdown from '../components/Shared/SortByDropdown';
-import Loader from './Shared/Loader';
+import RelevanceDropdown from '../Shared/RelevanceDropdown';
+import QueryChip from './QueryChip';
+import SortByDropdown from '../Shared/SortByDropdown';
+import Loader from '../Shared/Loader';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
