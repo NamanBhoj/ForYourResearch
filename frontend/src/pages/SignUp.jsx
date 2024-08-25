@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/16/solid';
 import { useUserAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../components/Layout/Logo';
+import Logo from '../components/Shared/Logo';
 
 export default function Signup() {
   const navigate = useNavigate();
