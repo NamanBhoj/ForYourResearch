@@ -7,22 +7,25 @@ import { v4 as uuidv4 } from 'uuid';
 import SearchQueryDropdown from '../components/SearchQueryDropdown';
 import Loader from './Shared/Loader';
 import Autocomplete from './Autocomplete';
+import { XCircleIcon } from '@heroicons/react/16/solid';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
   const lambdaUrl =
     'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
   const [loading, setLoading] = useState(false);
+  const data = ['Apple', 'Banana', 'Orange', 'Grapes', 'Pineapple'];
 
   // const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
   //   {}
   // );
   const [paperRelevance, setPaperRelevance] = useState({});
   const [paperObj, setPaperObj] = useState([]);
-
+  const [queryInputValue, setQueryInputValue] = useState('');
   // using these
   const [selectedQuery, setSelectedQuery] = useState('');
   const [fetchedQueryArray, setFetchedQueryArray] = useState([]);
+  const [error, setError] = useState(false);
 
   const { user } = useUserAuth();
 
@@ -85,6 +88,15 @@ export default function Library() {
     }));
   };
 
+  const handleLoadPapers = () => {
+    if (fetchedQueryArray.includes(queryInputValue)) {
+      setSelectedQuery(queryInputValue);
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
   const openPdf = (href) => {
     window.open(href, '_blank');
   };
@@ -127,19 +139,54 @@ export default function Library() {
     }));
   };
 
-  // const getQueriesList = () => {};
   return (
     <>
-      <div className="flex justify-center items-center mb-32 mt-12">
+      <div className="flex flex-col justify-center items-center mb-32 mt-12">
         {loading ? (
           <Loader />
         ) : (
           <>
-            <SearchQueryDropdown
-              queriesList={fetchedQueryArray}
-              setSelectedQuery={setSelectedQuery}
-            />
-            <Autocomplete people={fetchedQueryArray} />
+            <div className="text-center mb-4">
+              <p className="text-gray-700 text-lg font-semibold">
+                Start typing to search and select from your saved searches
+                below:
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-2 w-full max-w-3xl">
+              <div className="flex-grow">
+                <Autocomplete
+                  options={fetchedQueryArray}
+                  setQueryInputValue={setQueryInputValue}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={handleLoadPapers}
+                className="inline-flex items-center justify-center rounded-md bg-green-600 px-4 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
+              >
+                Load
+              </button>
+            </div>
+            {error && (
+              <div className="rounded-md bg-red-50 py-2 px-4 mt-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <XCircleIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 text-red-400"
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">
+                      The entered search query does not exist in your library,
+                      please enter a valid search query that you had previously
+                      saved.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
@@ -170,7 +217,10 @@ export default function Library() {
                   </div>
 
                   <span className="text-m font-semibold text-gray-800">
-                    Total papers: <span className='font-normal'>{getTotalNumberOfPapers()}</span>
+                    Total papers:{' '}
+                    <span className="font-normal">
+                      {getTotalNumberOfPapers()}
+                    </span>
                   </span>
                 </div>
               </div>
