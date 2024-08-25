@@ -6,6 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useUserAuth } from '../../contexts/AuthContext';
+import Logo from './Logo';
 
 export default function Example() {
   const { user } = useUserAuth();
@@ -34,13 +35,9 @@ export default function Example() {
                 />
               </DisclosureButton>
             </div>
-            {/* <div className="flex flex-shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src= "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Red_Color.jpg/1200px-Red_Color.jpg"
-                className="h-8 w-auto"
-              />
-            </div> */}
+            <div className="flex flex-shrink-0 items-center">
+              <Logo color="#EC4D37" textColor="black mt-4" />
+            </div>
             <div className="hidden md:ml-6 md:flex md:space-x-8">
               {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
               <a
