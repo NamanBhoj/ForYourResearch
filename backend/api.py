@@ -76,7 +76,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 800:
+    while total_offset < 700:
         query_params = {
             "query": query,
             "limit": limit,
