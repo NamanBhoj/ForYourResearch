@@ -96,7 +96,3 @@ async def search(query: str):
 
     responseObject = {"papersArray": paperArray, "paperCount": paperCount}
     return responseObject
-
-
-# async def fetchUser(uid:str):
-#     app.
