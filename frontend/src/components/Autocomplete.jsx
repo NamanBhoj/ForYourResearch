@@ -59,7 +59,7 @@ const Autocomplete = ({ options, setQueryInputValue }) => {
               ))}
             </ul>
           ) : (
-            <div className="px-4 py-2 text-gray-500">No options found</div>
+            <div className="px-4 py-2 text-gray-500">No queries found</div>
           )}
         </div>
       )}

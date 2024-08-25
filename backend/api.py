@@ -5,6 +5,7 @@ import firebase_admin
 from firebase_admin import credentials, auth, firestore
 from pydantic import BaseModel
 from mangum import Mangum
+import time, json
 
 
 class RequestObject(BaseModel):
@@ -66,37 +67,42 @@ async def fetchUserLibrary(uid: str):
 
 @app.get("/search/")
 async def search(query: str):
-
-    # Define the API endpoint URL
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
-    # More specific query parameter
-    query_params = {
-        "query": query,
-        "limit": 100,
-        "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
-        "offset": 0,
-    }
-
-    # Directly define the API key (Reminder: Securely handle API keys in production environments)
     api_key = "Gvkbt2QFvx2QZwQBigWqJTzOa5TPS6v1kAdrpaBf"
-
-    # Define headers with API key
     headers = {"x-api-key": api_key}
 
-    # Send the API request
-    response = requests.get(url, params=query_params, headers=headers)
-    print(query)
-    response_data = response.json()
+    total_papers = []
+    total_offset = 0
+    limit = 100
 
-    paperArray = response_data.get("data", [])
+    while total_offset < 800:
+        query_params = {
+            "query": query,
+            "limit": limit,
+            "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
+            "offset": total_offset,
+        }
+        time.sleep(2)
+        response = requests.get(url, params=query_params, headers=headers)
+        response_data = response.json()
 
-    print(response_data["total"])
-    paperCount = response_data.get("total", 0)
+        papers = response_data.get("data", [])
+        total_papers.extend(papers)
 
-    responseObject = {"papersArray": paperArray, "paperCount": paperCount}
-    return responseObject
+        total_offset += limit
 
+        # if returned array has less than 100 papers, it means that there wont be anymore papers in the next array because 
+        # the maximum limit is 100
+        if len(papers) < limit:
+            break
 
-# async def fetchUser(uid:str):
-#     app.
+    paper_count = len(total_papers)
+
+    response_object = {"papersArray": total_papers, "paperCount": paper_count}
+    # with open("papers.json", "w") as f:
+    #     json.dump(
+    #         response_object, f
+    #     )  
+
+    return response_object
