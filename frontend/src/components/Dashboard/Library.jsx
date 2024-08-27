@@ -4,9 +4,8 @@ import axios from 'axios';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
 import SortByDropdown from '../Shared/SortByDropdown';
 import { v4 as uuidv4 } from 'uuid';
-import SearchQueryDropdown from '../components/SearchQueryDropdown';
-import Loader from './Shared/Loader';
-import Autocomplete from './Autocomplete';
+import Loader from '../Shared/Loader';
+import Autocomplete from '../Autocomplete';
 import { XCircleIcon } from '@heroicons/react/16/solid';
 
 export default function Library() {
@@ -41,31 +40,30 @@ export default function Library() {
           ...paper,
           uniqueKey: uuidv4(),
         }));
-        // console.log(modifiedData);
-        let res = [];
+
         let resObj = {};
         let queryArray = [];
-        for (let i = 0; i < modifiedData.length; i++) {
-          if (modifiedData[i].data.data != undefined) {
-            res.push(modifiedData[i].data.data);
-            // searchQuery : results
-            resObj[modifiedData[i].searchQuery] = modifiedData[i].data.data;
-            queryArray.push(modifiedData[i].searchQuery);
-          } else {
-            res.push(modifiedData[i].data);
+        modifiedData.forEach((item) => {
+          if (item.data.data) {
+            resObj[item.searchQuery] = item.data.data;
+            queryArray.push(item.searchQuery);
           }
-        }
+        });
+
         setFetchedQueryArray(queryArray);
         setPaperObj(resObj);
       } catch (error) {
         console.error('Error fetching user library:', error);
       } finally {
-        setLoading(false);
+        // Delay to ensure the loader is shown
+        setTimeout(() => {
+          setLoading(false);
+        }, 500); // Adjust delay as necessary
       }
     };
 
     fetchUserLibrary();
-  }, [user?.uid, setPaperObj]);
+  }, [user?.uid]);
 
   // const handleLogout = async () => {
   //   try {

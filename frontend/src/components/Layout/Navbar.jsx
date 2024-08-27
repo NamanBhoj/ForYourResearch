@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useUserAuth } from '../../contexts/AuthContext';
-import Logo from './Logo';
+import Logo from '../Shared/Logo';
 
 export default function Example() {
   const { user } = useUserAuth();

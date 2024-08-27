@@ -14,7 +14,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { Link, useLocation } from 'react-router-dom';
-// import Logo from './Logo';
+import Logo from '../Shared/Logo';
 
 const navigation = [
   { name: 'Search', link: 'search', icon: MagnifyingGlassIcon, current: true },
@@ -72,7 +72,7 @@ export default function Example() {
                   src={fyrLogo}
                   className="h-8 w-auto"
                 /> */}
-                {/* <Logo color="#EC4D37"/> */}
+                <Logo color="#EC4D37"/>
               </div>
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -114,7 +114,7 @@ export default function Example() {
               src={fyrLogo}
               className="h-8 w-auto"
             /> */}
-            {/* <Logo color="#EC4D37"/> */}
+            <Logo color="#EC4D37" />
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
