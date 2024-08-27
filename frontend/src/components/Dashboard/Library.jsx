@@ -11,7 +11,7 @@ import { XCircleIcon } from '@heroicons/react/16/solid';
 export default function Library() {
   // const { user, signOut } = useUserAuth();
   const lambdaUrl =
-    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
+    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws/';
   const [loading, setLoading] = useState(false);
   const data = ['Apple', 'Banana', 'Orange', 'Grapes', 'Pineapple'];
 
