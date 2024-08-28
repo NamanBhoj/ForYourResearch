@@ -12,9 +12,11 @@ import {
   FolderIcon,
   XMarkIcon,
   MagnifyingGlassIcon,
+  ArrowLeftCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Shared/Logo';
+import { useUserAuth } from '../../contexts/AuthContext';
 
 const navigation = [
   { name: 'Search', link: 'search', icon: MagnifyingGlassIcon, current: true },
@@ -30,9 +32,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const { signOut } = useUserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      const sign = await signOut();
+      console.log(sign);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -67,12 +79,7 @@ export default function Example() {
             </TransitionChild>
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-neutral-900 px-6 pb-2 ring-1 ring-white/10">
               <div className="flex h-16 shrink-0 items-center">
-                {/* <img
-                  alt="Your Company"
-                  src={fyrLogo}
-                  className="h-8 w-auto"
-                /> */}
-                <Logo color="#EC4D37"/>
+                <Logo color="#EC4D37" />
               </div>
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -100,6 +107,20 @@ export default function Example() {
                     </ul>
                   </li>
                 </ul>
+                {/* Sign out button */}
+                <div className="mt-auto flex">
+                  <button
+                    type="button"
+                    onClick={handleSignOut} // Add your sign-out function here
+                    className="group flex w-full items-center gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-white hover:bg-neutral-800"
+                  >
+                    <ArrowLeftCircleIcon
+                      aria-hidden="true"
+                      className="h-6 w-6 shrink-0 text-white"
+                    />
+                    Sign out
+                  </button>
+                </div>
               </nav>
             </div>
           </DialogPanel>
@@ -109,11 +130,6 @@ export default function Example() {
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-neutral-900 px-6">
           <div className="flex h-16 shrink-0 items-center">
-            {/* <img
-              alt="Your Company"
-              src={fyrLogo}
-              className="h-8 w-auto"
-            /> */}
             <Logo color="#EC4D37" />
           </div>
           <nav className="flex flex-1 flex-col">
@@ -142,6 +158,20 @@ export default function Example() {
                 </ul>
               </li>
             </ul>
+            {/* Sign out button */}
+            <div className="mt-auto flex">
+              <button
+                type="button"
+                onClick={handleSignOut} // Add your sign-out function here
+                className="group flex w-full items-center gap-x-3 rounded-md mb-4 p-2 text-sm font-semibold leading-6 text-white hover:bg-neutral-800"
+              >
+                <ArrowLeftCircleIcon
+                  aria-hidden="true"
+                  className="h-6 w-6 shrink-0 text-white"
+                />
+                Sign out
+              </button>
+            </div>
           </nav>
         </div>
       </div>
