@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUserAuth } from '../../contexts/AuthContext';
 import KeywordInputField from './KeywordInputField';
 import KeywordChip from './KeywordChip';
@@ -13,9 +13,10 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
+  // const lambdaUrl =
+  //   'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws/';
   const lambdaUrl =
     'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws/';
-
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
@@ -24,8 +25,27 @@ export default function Library() {
   const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
   const [saving, setSaving] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-
+  const [fetchedQuery, setFetchedQuery] = useState('');
   const { user } = useUserAuth();
+
+  useEffect(() => {
+    const fetchSavedSearchData = async () => {
+      try {
+        const response = await axios.get(
+          `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
+        );
+        if (response.data) {
+          setPaperObj(response.data.searchData);
+          // setFetchedQuery(response.data.searchQuery);
+          setQuery(response.data.searchQuery);
+          console.log(response.data.searchQuery);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSavedSearchData();
+  }, [user?.uid]);
 
   // const handleLogout = async () => {
   //   try {
@@ -64,6 +84,7 @@ export default function Library() {
       total: data.length,
     };
     setPaperObj(newPaperObj);
+    await handleSaveCurrentData(newPaperObj);
     setSearching(false);
     console.log(response);
   };
@@ -159,6 +180,25 @@ export default function Library() {
     setShowNotification(true);
 
     console.log(response);
+  };
+
+  const handleSaveCurrentData = async (paperObj) => {
+    const json = {
+      uid: user?.uid,
+      data: paperObj,
+      searchQuery: query,
+    };
+    const response = await axios.post(
+      `${lambdaUrl}/saveCurrentSearchData`,
+      json
+    );
+  };
+
+  const getKeyword = () => {
+    if (fetchedQuery && keyword === '') {
+      return fetchedQuery;
+    }
+    return keyword;
   };
 
   return (

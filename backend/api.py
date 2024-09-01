@@ -50,11 +50,32 @@ async def saveToLibrary(request: RequestObject):
     user_data = {"userId": request.uid}
     users_collection.set(user_data)
 
+    # modify the incoming search query so we always
+    # store it with a number
+    baseSearchQuery = request.searchQuery + " ⦿ "
     library_collection = (
         db.collection("Users").document(request.uid).collection("Library")
     )
+    library_stream = library_collection.stream()
 
-    library_collection.add({"data": request.data, "searchQuery": request.searchQuery})
+    storedSearchQueries = []
+    for doc in library_stream:
+        docJson = doc.to_dict()
+        storedSearchQuery = docJson["searchQuery"]
+        storedSearchQueries.append(storedSearchQuery)
+
+    max_number = 0
+    for searchQuery in storedSearchQueries:
+        if searchQuery.startswith(baseSearchQuery):
+            numberPart = searchQuery.split(" ⦿ ")[1]
+            number = int(numberPart)
+            if number > max_number:
+                max_number = number
+
+    new_number = max_number + 1
+    uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
+
+    library_collection.add({"data": request.data, "searchQuery": uniqueSearchQuery})
 
 
 @app.get("/fetchUserLibrary/")
@@ -76,7 +97,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 700:
+    while total_offset < 200:
         query_params = {
             "query": query,
             "limit": limit,
@@ -92,7 +113,7 @@ async def search(query: str):
 
         total_offset += limit
 
-        # if returned array has less than 100 papers, it means that there wont be anymore papers in the next array because 
+        # if returned array has less than 100 papers, it means that there wont be anymore papers in the next array because
         # the maximum limit is 100
         if len(papers) < limit:
             break
@@ -100,9 +121,26 @@ async def search(query: str):
     paper_count = len(total_papers)
 
     response_object = {"papersArray": total_papers, "paperCount": paper_count}
-    # with open("papers.json", "w") as f:
-    #     json.dump(
-    #         response_object, f
-    #     )  
 
     return response_object
+
+
+@app.post("/saveCurrentSearchData/")
+async def saveCurrentSearchData(request: RequestObject):
+    users = db.collection("Users")
+    users.document(request.uid).update(
+        {"currentSearchData": request.data, "currentSearchQuery": request.searchQuery}
+    )
+
+
+@app.get("/getCurrentSearchData/")
+async def getCurrentSearchData(uid: str):
+    users = db.collection("Users")
+    user_ref = users.document(uid)
+    doc_snapshot = user_ref.get()
+    response = {}
+    if doc_snapshot.exists:
+        response["searchData"] = doc_snapshot.get("currentSearchData")
+        response["searchQuery"] = doc_snapshot.get("currentSearchQuery")
+        return response
+    return "no"

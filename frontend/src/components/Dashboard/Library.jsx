@@ -12,8 +12,8 @@ export default function Library() {
   // const { user, signOut } = useUserAuth();
   const lambdaUrl =
     'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws/';
+
   const [loading, setLoading] = useState(false);
-  const data = ['Apple', 'Banana', 'Orange', 'Grapes', 'Pineapple'];
 
   // const [paperRelevance, setPaperRelevance] = useState<Record<string, string>>(
   //   {}
