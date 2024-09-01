@@ -3,11 +3,13 @@ import { XCircleIcon } from '@heroicons/react/16/solid';
 import { useUserAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Shared/Logo';
+import axios from 'axios';
 
 export default function Signup() {
   const navigate = useNavigate();
   const [pending, setPending] = useState(false);
-
+  const lambdaUrl =
+    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
@@ -61,9 +63,12 @@ export default function Signup() {
         userCredentials.email,
         userCredentials.password
       );
+      await axios.get(
+        `${lambdaUrl}/generateCurrentDataAndQueryFields/?uid=${userCredential.user.uid}`
+      );
       setPending(false);
       navigate('/login');
-      console.log(userCredential);
+      console.log(userCredential.user.uid);
     } catch (error) {
       console.error(error);
       setPending(false);
