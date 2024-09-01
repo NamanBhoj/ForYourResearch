@@ -34,7 +34,7 @@ export default function Library() {
         const response = await axios.get(
           `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
         );
-        if (response.data) {
+        if (response.data.searchData.data.length > 0) {
           setPaperObj(response.data.searchData);
           // setFetchedQuery(response.data.searchQuery);
           setQuery(response.data.searchQuery);
