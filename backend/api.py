@@ -144,3 +144,9 @@ async def getCurrentSearchData(uid: str):
         response["searchQuery"] = doc_snapshot.get("currentSearchQuery")
         return response
     return "no"
+
+
+@app.get("/generateCurrentDataAndQueryFields/")
+async def generateCurrentDataAndQueryFields(uid: str):
+    users = db.collection("Users")
+    users.document(uid).set({"currentSearchData": {}, "currentSearchQuery": ""})
