@@ -1,0 +1,3 @@
+
+def ParseSearchString(string):
+    pass
