@@ -18,7 +18,7 @@ export default function Library() {
   const lambdaUrl =
     'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
   const [keyword, setKeyword] = useState('');
-  const [keywordList, setKeywordList] = useState([]);
+  // const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
   const [paperRelevance, setPaperRelevance] = useState({});
   const [searching, setSearching] = useState(false);
@@ -55,14 +55,14 @@ export default function Library() {
   //   }
   // };
 
-  const handleAddKeyword = () => {
-    if (keyword.trim() !== '') {
-      const updatedKeywordList = [...keywordList, keyword];
-      setKeywordList(updatedKeywordList);
-      setQuery(updatedKeywordList.join(' '));
-      setKeyword('');
-    }
-  };
+  // const handleAddKeyword = () => {
+  //   if (keyword.trim() !== '') {
+  //     const updatedKeywordList = [...keywordList, keyword];
+  //     setKeywordList(updatedKeywordList);
+  //     setQuery(updatedKeywordList.join(' '));
+  //     setKeyword('');
+  //   }
+  // };
 
   const handleSearch = async () => {
     setSearching(true);
@@ -72,7 +72,7 @@ export default function Library() {
     // );
     // Lambda - dev
     const response = await axios.get(
-      `${lambdaUrl}/search/?query=${keywordList.join(' ')}&limit=100`
+      `${lambdaUrl}/search/?query=${keyword}&limit=100`
     );
     const data = response.data;
     const paperArray = data['papersArray'];
@@ -84,23 +84,24 @@ export default function Library() {
       total: data.length,
     };
     setPaperObj(newPaperObj);
+    console.log(newPaperObj);
     await handleSaveCurrentData(newPaperObj);
     setSearching(false);
-    console.log(response);
+    // console.log(response);
   };
 
-  const handleDelete = (chip) => {
-    const updatedKeywordList = keywordList.filter(
-      (keyword) => keyword !== chip
-    );
-    setKeywordList(updatedKeywordList);
-    setQuery(updatedKeywordList.join(' '));
-  };
+  // const handleDelete = (chip) => {
+  //   const updatedKeywordList = keywordList.filter(
+  //     (keyword) => keyword !== chip
+  //   );
+  //   setKeywordList(updatedKeywordList);
+  //   setQuery(updatedKeywordList.join(' '));
+  // };
 
-  const handleDeleteQuery = () => {
-    setKeywordList([]);
-    setQuery('');
-  };
+  // const handleDeleteQuery = () => {
+  //   setKeywordList([]);
+  //   setQuery('');
+  // };
 
   const handleRelevanceChange = (paperId, relevance) => {
     setPaperRelevance((prevRelevance) => ({
@@ -223,15 +224,16 @@ export default function Library() {
                     ></textarea> */}
                   </div>
                   <button
-                    type="button"
-                    className="mt-auto inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                    onClick={handleAddKeyword}
-                  >
-                    Add Keyword
-                  </button>
+                      type="button"
+                      className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
+                      onClick={handleSearch}
+                      disabled={searching}
+                    >
+                      {searching ? 'Searching' : 'Search'}
+                    </button>
                 </div>
               </div>
-              <div className="px-4 py-5 sm:p-6">
+              {/* <div className="px-4 py-5 sm:p-6">
                 <div className="flex flex-wrap gap-2">
                   {keywordList.map((keyword, index) => (
                     <KeywordChip
@@ -241,8 +243,8 @@ export default function Library() {
                     />
                   ))}
                 </div>
-              </div>
-              <div className="px-4 py-5 sm:p-6">
+              </div> */}
+              {/* <div className="px-4 py-5 sm:p-6">
                 <div className="flex flex-col space-y-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-grow">
@@ -266,7 +268,7 @@ export default function Library() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
