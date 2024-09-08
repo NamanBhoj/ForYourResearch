@@ -1,3 +1,8 @@
+"""
+THIS FILE IS TO MAKE CHANGES TO FIREBASE PROGRAMATICALLY. IT DOESNT AFFECT OUR API.PY
+"""
+
+
 import firebase_admin
 from firebase_admin import credentials, auth, firestore, json
 
