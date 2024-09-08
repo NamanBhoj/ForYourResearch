@@ -1,4 +1,4 @@
-export default function KeywordInputField(props) {
+export default function QueryInputField(props) {
   const handleKeyword = (e) => {
     props.setKeyword(e.target.value);
   };
