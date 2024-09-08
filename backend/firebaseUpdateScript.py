@@ -1,5 +1,5 @@
 import firebase_admin
-from firebase_admin import credentials, auth, firestore
+from firebase_admin import credentials, auth, firestore, json
 
 cred = credentials.Certificate(
     {
@@ -18,18 +18,32 @@ cred = credentials.Certificate(
 )
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-users = db.collection("Users")
-snapshot = users.get()
 # for doc in snapshot:
 #     print(doc.id)
 
+# snapshot = users.get()
 # batch = db.batch()
-# userRef = users.document("VfD6mO6dkx1aQsJUI1gP")
+# users = db.collection("Users")
+# doc = users.document("yhVFeH47C9aJz5e8olVUariTBeP2").collection("Library").stream()
+# for doc in lib:
+#     docJson = doc.id
+#     with open('library.json', 'w') as f:
+#         json.dump(doc.to_dict(), f)
+#     print(docJson)
+users = db.collection("Users")
+doc = users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").get()
+print(doc.get("query"))
+
+
+# doc = doc.get("query")
+# with open('currentSearch.json', 'w') as f:
+#          json.dump(doc, f)
+# print(doc)
 # batch.update(userRef, {"currentSearchData": {}})
 # batch.commit()
 
-currentSearchData = {"name": "dfgdfgd", "age": 12}
-users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").update({"currentSearchData": {}})
+# currentSearchData = {"name": "dfgdfgd", "age": 12}
+# users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").update({"currentSearchData": {}})
 # lib_stream = (users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").collection("Library").stream())
 # for doc in lib_stream:
 #     docJson = doc.to_dict()

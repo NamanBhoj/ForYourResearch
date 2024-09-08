@@ -12,20 +12,19 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
-  // const { user, signOut } = useUserAuth();
   // const lambdaUrl =
   //   'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws/';
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = 'http://127.0.0.1:8000';
+
   const [keyword, setKeyword] = useState('');
   const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
-  const [paperRelevance, setPaperRelevance] = useState({});
   const [searching, setSearching] = useState(false);
   const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
   const [saving, setSaving] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [fetchedQuery, setFetchedQuery] = useState('');
+  const [papers, setPapers] = useState([]);
   const { user } = useUserAuth();
 
   useEffect(() => {
@@ -34,26 +33,16 @@ export default function Library() {
         const response = await axios.get(
           `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
         );
-        if (response.data.searchData.data.length > 0) {
-          setPaperObj(response.data.searchData);
-          // setFetchedQuery(response.data.searchQuery);
-          setQuery(response.data.searchQuery);
-          console.log(response.data.searchQuery);
-        }
+        const json = response.data;
+
+        setPapers(json.papers);
       } catch (error) {
         console.log(error);
       }
     };
     fetchSavedSearchData();
+    console.log(user.uid);
   }, [user?.uid]);
-
-  // const handleLogout = async () => {
-  //   try {
-  //     await signOut();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const handleAddKeyword = () => {
     if (keyword.trim() !== '') {
@@ -66,25 +55,20 @@ export default function Library() {
 
   const handleSearch = async () => {
     setSearching(true);
-    // try {
-    // const response = await axios.get(
-    //   `http://127.0.0.1:8000/search/?query=${keywordList.join(' ')}`
-    // );
-    // Lambda - dev
+
     const response = await axios.get(
       `${lambdaUrl}/search/?query=${keywordList.join(' ')}&limit=100`
     );
-    const data = response.data;
-    const paperArray = data['papersArray'];
-    const newPaperObj = {
-      data: paperArray.map((paper) => ({
-        ...paper,
-        relevance: 'Untagged',
-      })),
-      total: data.length,
-    };
-    setPaperObj(newPaperObj);
-    await handleSaveCurrentData(newPaperObj);
+
+    // This is to get the body of the response from the API
+    // The body of the response will only contain an array of the papers now so can directly map it to display
+    const json = response.data;
+
+    // Setting the papers array that will be displayed in the table
+    setPapers(json);
+
+    await handleSaveCurrentData(json);
+
     setSearching(false);
     console.log(response);
   };
@@ -103,19 +87,14 @@ export default function Library() {
   };
 
   const handleRelevanceChange = (paperId, relevance) => {
-    setPaperRelevance((prevRelevance) => ({
-      ...prevRelevance,
-      [paperId]: relevance,
-    }));
-
-    const newPaperObj = {
-      ...paperObj,
-      data: paperObj.data.map((paper) =>
-        paper.paperId === paperId ? { ...paper, relevance } : paper
-      ),
-    };
-
-    setPaperObj(newPaperObj);
+    const updatedPapers = papers.map((paper) => {
+      if (paper.paperId === paperId) {
+        return { ...paper, Relevance: relevance };
+      }
+      return paper;
+    });
+    console.log(updatedPapers);
+    setPapers(updatedPapers);
   };
 
   const openPdf = (href) => {
@@ -150,21 +129,14 @@ export default function Library() {
   };
 
   const handleSortByRelevance = (sortOrder) => {
-    const sortedData = paperObj.data.sort((a, b) => {
-      const relevanceA = paperRelevance[a.paperId] || 'Untagged';
-      const relevanceB = paperRelevance[b.paperId] || 'Untagged';
+    const sortedPapers = [...papers].sort((a, b) => {
+      const relevanceA = a.Relevance || 'Untagged';
+      const relevanceB = b.Relevance || 'Untagged';
 
       return sortOrder[relevanceA] - sortOrder[relevanceB];
     });
 
-    setPaperObj((prevPaperObj) => ({
-      ...prevPaperObj,
-      data: sortedData,
-    }));
-  };
-
-  const getTotalNumberOfPapers = () => {
-    return paperObj.data.length >= 1000 ? 1000 : paperObj.data.length;
+    setPapers(sortedPapers);
   };
 
   const handleSaveToLibrary = async () => {
@@ -172,7 +144,7 @@ export default function Library() {
 
     const json = {
       uid: user?.uid,
-      data: paperObj,
+      data: papers,
       searchQuery: query,
     };
     const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
@@ -182,16 +154,13 @@ export default function Library() {
     console.log(response);
   };
 
-  const handleSaveCurrentData = async (paperObj) => {
+  const handleSaveCurrentData = async (papers) => {
     const json = {
       uid: user?.uid,
-      data: paperObj,
+      data: papers,
       searchQuery: query,
     };
-    const response = await axios.post(
-      `${lambdaUrl}/saveCurrentSearchData`,
-      json
-    );
+    await axios.post(`${lambdaUrl}/saveCurrentSearchData`, json);
   };
 
   const getKeyword = () => {
@@ -277,7 +246,7 @@ export default function Library() {
         </div>
       )}
       {/* TABLE */}
-      {paperObj.data.length > 0 && (
+      {papers.length > 0 && (
         <div className="bg-white py-10">
           <div className="mx-auto max-w-7xl">
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
@@ -301,7 +270,7 @@ export default function Library() {
                 </button>{' '}
                 <div className="mr-auto">
                   <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    Total Papers: {getTotalNumberOfPapers()}
+                    Total Papers: {papers.length}
                   </span>
                 </div>
               </div>
@@ -341,8 +310,8 @@ export default function Library() {
                       </thead>
 
                       <tbody className="bg-white divide-y divide-neutral-300 bg-neutral-50">
-                        {paperObj &&
-                          paperObj.data.map((paper) => (
+                        {papers &&
+                          papers.map((paper) => (
                             <tr
                               key={paper.paperId}
                               className="hover:bg-neutral-50 transition-colors duration-150"
@@ -366,9 +335,7 @@ export default function Library() {
 
                               <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
                                 <RelevanceDropdown
-                                  relevance={
-                                    paperRelevance[paper.paperId] || 'Untagged'
-                                  }
+                                  relevance={paper.Relevance}
                                   onRelevanceChange={(newRelevance) =>
                                     handleRelevanceChange(
                                       paper.paperId,
