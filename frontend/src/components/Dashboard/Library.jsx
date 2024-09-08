@@ -148,7 +148,7 @@ export default function Library() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center mb-32 mt-12">
+      <div className="flex flex-col justify-center items-center mt-12">
         {loading ? (
           <Loader />
         ) : (
@@ -200,12 +200,12 @@ export default function Library() {
       </div>
 
       {papersToDisplay.length > 0 && (
-        <div className="bg-white py-10">
+        <div className="bg-white py-10 ">
           <div className="mx-auto max-w-7xl">
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
               <div className=" mr-2 flex flex-row-reverse sm:flex sm:items-center">
                 {/* add text for table info */}
-                <div className="z-20 mt-auto">
+                <div className="z-10 mt-auto">
                   {' '}
                   <SortByDropdown
                     handleSortByRelevant={sortRelevantFirst}

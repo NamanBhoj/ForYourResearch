@@ -45,7 +45,7 @@ const Autocomplete = ({ options, setQueryInputValue }) => {
         placeholder='"Cross reality" "Highlighting" "Pointing"...'
       />
       {isOpen && (
-        <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-10">
+        <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-20">
           {filteredOptions.length > 0 ? (
             <ul className="max-h-60 overflow-auto">
               {filteredOptions.map((option, index) => (
