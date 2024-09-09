@@ -28,6 +28,7 @@ export default function QueryInputField(props) {
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            color = "red"
           >
             <path
               stroke-linecap="round"
