@@ -11,7 +11,7 @@ import { XCircleIcon } from '@heroicons/react/16/solid';
 export default function Library() {
   // const { user, signOut } = useUserAuth();
   const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
 
   // const lambdaUrl = 'http://127.0.0.1:8000';
 
@@ -205,7 +205,7 @@ export default function Library() {
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
               <div className=" mr-2 flex flex-row-reverse sm:flex sm:items-center">
                 {/* add text for table info */}
-                <div className="z-10 mt-auto">
+                <div className="z-20 mt-auto">
                   {' '}
                   <SortByDropdown
                     handleSortByRelevant={sortRelevantFirst}

@@ -13,7 +13,8 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
   // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
-  const lambdaUrl = 'http://127.0.0.1:8000';
+  const lambdaUrl =
+    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
 
   const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
@@ -271,7 +272,7 @@ export default function Library() {
                 </button>{' '}
                 <div className="mr-auto">
                   <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    {papers.length} papers
+                    {`Top ${papers.length} papers`}
                     {totalNumberOfPapers > 0 &&
                       ` from a total of ${totalNumberOfPapers} papers`}
                   </span>
