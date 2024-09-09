@@ -13,8 +13,7 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
   // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = 'http://127.0.0.1:8000';
 
   const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
@@ -25,6 +24,7 @@ export default function Library() {
   const [showNotification, setShowNotification] = useState(false);
   const [fetchedQuery, setFetchedQuery] = useState('');
   const [papers, setPapers] = useState([]);
+  const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const { user } = useUserAuth();
 
   useEffect(() => {
@@ -65,9 +65,9 @@ export default function Library() {
     const json = response.data;
 
     // Setting the papers array that will be displayed in the table
-    setPapers(json);
-
-    await handleSaveCurrentData(json);
+    setPapers(json['papers']);
+    setTotalNumberOfPapers(json['number_of_papers']);
+    await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
     // console.log(response);
@@ -271,7 +271,9 @@ export default function Library() {
                 </button>{' '}
                 <div className="mr-auto">
                   <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    Total Papers: {papers.length}
+                    {papers.length} papers
+                    {totalNumberOfPapers > 0 &&
+                      ` from a total of ${totalNumberOfPapers} papers`}
                   </span>
                 </div>
               </div>
