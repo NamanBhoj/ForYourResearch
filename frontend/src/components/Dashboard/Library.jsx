@@ -10,8 +10,8 @@ import { XCircleIcon } from '@heroicons/react/16/solid';
 
 export default function Library() {
   // const { user, signOut } = useUserAuth();
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = 'http://127.0.0.1:8000'
+    // 'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
 
   // const lambdaUrl = 'http://127.0.0.1:8000';
 
@@ -148,7 +148,7 @@ export default function Library() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center mb-32 mt-12">
+      <div className="flex flex-col justify-center items-center mt-12">
         {loading ? (
           <Loader />
         ) : (
@@ -200,12 +200,12 @@ export default function Library() {
       </div>
 
       {papersToDisplay.length > 0 && (
-        <div className="bg-white py-10">
+        <div className="bg-white py-10 ">
           <div className="mx-auto max-w-7xl">
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
               <div className=" mr-2 flex flex-row-reverse sm:flex sm:items-center">
                 {/* add text for table info */}
-                <div className="z-20 mt-auto">
+                <div className="z-10 mt-auto">
                   {' '}
                   <SortByDropdown
                     handleSortByRelevant={sortRelevantFirst}
@@ -223,12 +223,12 @@ export default function Library() {
                 </button>{' '}
                 <div className="flex flex-col items-start mr-auto space-y-2 mt-4">
                   <div className="flex items-center space-x-2">
-                    <span className="text-m font-semibold text-gray-800">
+                    {/* <span className="text-m font-semibold text-gray-800">
                       Query:
                     </span>
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-m mt-auto font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                       {selectedQuery}
-                    </span>{' '}
+                    </span>{' '} */}
                   </div>
 
                   <span className="text-m font-semibold text-gray-800">

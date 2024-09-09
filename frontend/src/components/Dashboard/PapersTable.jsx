@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useUserAuth } from '../../contexts/AuthContext';
-import KeywordInputField from './KeywordInputField';
+import QueryInputField from './QueryInputField';
 import KeywordChip from './KeywordChip';
 import axios from 'axios';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
@@ -11,9 +11,11 @@ import { Transition } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
+
 export default function Library() {
+  // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
   const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+    'http://127.0.0.1:8000';
 
   const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
@@ -43,20 +45,20 @@ export default function Library() {
     console.log(user.uid);
   }, [user?.uid]);
 
-  const handleAddKeyword = () => {
-    if (keyword.trim() !== '') {
-      const updatedKeywordList = [...keywordList, keyword];
-      setKeywordList(updatedKeywordList);
-      setQuery(updatedKeywordList.join(' '));
-      setKeyword('');
-    }
-  };
+  // const handleAddKeyword = () => {
+  //   if (keyword.trim() !== '') {
+  //     const updatedKeywordList = [...keywordList, keyword];
+  //     setKeywordList(updatedKeywordList);
+  //     setQuery(updatedKeywordList.join(' '));
+  //     setKeyword('');
+  //   }
+  // };
 
   const handleSearch = async () => {
     setSearching(true);
 
     const response = await axios.get(
-      `${lambdaUrl}/search/?query=${keyword}&limit=100`
+      `${lambdaUrl}/search/?query=${query}&limit=100`
     );
 
     // This is to get the body of the response from the API
@@ -146,6 +148,8 @@ export default function Library() {
       data: papers,
       searchQuery: query,
     };
+    console.log("LOGGING THE QUERY")
+    console.log(query)
     const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
     setSaving(false);
     setShowNotification(true);
@@ -162,12 +166,12 @@ export default function Library() {
     await axios.post(`${lambdaUrl}/saveCurrentSearchData`, json);
   };
 
-  const getKeyword = () => {
-    if (fetchedQuery && keyword === '') {
-      return fetchedQuery;
-    }
-    return keyword;
-  };
+  // const getKeyword = () => {
+  //   if (fetchedQuery && keyword === '') {
+  //     return fetchedQuery;
+  //   }
+  //   return keyword;
+  // };
 
   return (
     <>
@@ -179,9 +183,9 @@ export default function Library() {
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-grow">
-                    <KeywordInputField
-                      keyword={keyword}
-                      setKeyword={setKeyword}
+                    <QueryInputField
+                      keyword={query}
+                      setKeyword={setQuery}
                     />
                     {/* <textarea
                       className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -190,6 +194,7 @@ export default function Library() {
                       rows="2"
                     ></textarea> */}
                   </div>
+                  
                   <button
                     type="button"
                     className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"

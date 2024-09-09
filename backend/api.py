@@ -7,6 +7,7 @@ from firebase_admin import credentials, auth, firestore
 from pydantic import BaseModel
 from mangum import Mangum
 import time, json
+import helper_functions
 
 
 class RequestObject(BaseModel):
@@ -19,6 +20,7 @@ class RequestObjectWithListData(RequestObject):
     data: List[dict]
 
 
+#firebased cred
 cred = credentials.Certificate(
     {
         "type": "service_account",
@@ -95,6 +97,9 @@ async def fetchUserLibrary(uid: str):
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
+
+    parsed_query = helper_functions.Parse_Query(query)
+    print(parsed_query)
     api_key = "Gvkbt2QFvx2QZwQBigWqJTzOa5TPS6v1kAdrpaBf"
     headers = {"x-api-key": api_key}
 
@@ -104,13 +109,17 @@ async def search(query: str):
 
     while total_offset < 100:
         query_params = {
-            "query": query,
+            "query": parsed_query,
             "limit": limit,
             "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
             "offset": total_offset,
         }
+
+      
         time.sleep(2)
         response = requests.get(url, params=query_params, headers=headers)
+        
+        print(response.url)
         response_data = response.json()
 
         papers = response_data.get("data", [])
