@@ -13,8 +13,7 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
   // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
   const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
@@ -31,6 +30,7 @@ export default function Library() {
   useEffect(() => {
     const fetchSavedSearchData = async () => {
       try {
+        console.log(import.meta.env.VITE_LAMBDA_URL);
         const response = await axios.get(
           `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
         );
