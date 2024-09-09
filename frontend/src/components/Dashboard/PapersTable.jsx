@@ -17,7 +17,7 @@ export default function Library() {
     'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
 
   const [keyword, setKeyword] = useState('');
-  const [keywordList, setKeywordList] = useState([]);
+  // const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
   const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
@@ -70,21 +70,21 @@ export default function Library() {
     await handleSaveCurrentData(json);
 
     setSearching(false);
-    console.log(response);
+    // console.log(response);
   };
 
-  const handleDelete = (chip) => {
-    const updatedKeywordList = keywordList.filter(
-      (keyword) => keyword !== chip
-    );
-    setKeywordList(updatedKeywordList);
-    setQuery(updatedKeywordList.join(' '));
-  };
+  // const handleDelete = (chip) => {
+  //   const updatedKeywordList = keywordList.filter(
+  //     (keyword) => keyword !== chip
+  //   );
+  //   setKeywordList(updatedKeywordList);
+  //   setQuery(updatedKeywordList.join(' '));
+  // };
 
-  const handleDeleteQuery = () => {
-    setKeywordList([]);
-    setQuery('');
-  };
+  // const handleDeleteQuery = () => {
+  //   setKeywordList([]);
+  //   setQuery('');
+  // };
 
   const handleRelevanceChange = (paperId, relevance) => {
     const updatedPapers = papers.map((paper) => {
@@ -201,7 +201,7 @@ export default function Library() {
                   </button>
                 </div>
               </div>
-              <div className="px-4 py-5 sm:p-6">
+              {/* <div className="px-4 py-5 sm:p-6">
                 <div className="flex flex-wrap gap-2">
                   {keywordList.map((keyword, index) => (
                     <KeywordChip
@@ -211,8 +211,8 @@ export default function Library() {
                     />
                   ))}
                 </div>
-              </div>
-              <div className="px-4 py-5 sm:p-6">
+              </div> */}
+              {/* <div className="px-4 py-5 sm:p-6">
                 <div className="flex flex-col space-y-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-grow">
@@ -236,7 +236,7 @@ export default function Library() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
