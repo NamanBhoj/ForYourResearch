@@ -50,7 +50,7 @@ handler = Mangum(app)
 
 @app.post("/saveToLibrary/")
 async def saveToLibrary(request: RequestObjectWithListData):
-    print(request)
+    # print(request)
     users_collection = db.collection("Users").document(request.uid)
     user_data = {"userId": request.uid}
     users_collection.update(user_data)
@@ -79,7 +79,7 @@ async def saveToLibrary(request: RequestObjectWithListData):
 
     new_number = max_number + 1
     uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
-
+    print(uniqueSearchQuery)
     library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
 
 

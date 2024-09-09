@@ -2,7 +2,6 @@
 THIS FILE IS TO MAKE CHANGES TO FIREBASE PROGRAMATICALLY. IT DOESNT AFFECT OUR API.PY
 """
 
-
 import firebase_admin
 from firebase_admin import credentials, auth, firestore, json
 
@@ -36,8 +35,8 @@ db = firestore.client()
 #         json.dump(doc.to_dict(), f)
 #     print(docJson)
 users = db.collection("Users")
-doc = users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").get()
-print(doc.get("query"))
+# doc = users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").get()
+# print(doc.get("query"))
 
 
 # doc = doc.get("query")
@@ -47,12 +46,39 @@ print(doc.get("query"))
 # batch.update(userRef, {"currentSearchData": {}})
 # batch.commit()
 
+
 # currentSearchData = {"name": "dfgdfgd", "age": 12}
 # users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").update({"currentSearchData": {}})
-# lib_stream = (users.document("A7RMmTgk2yfP6zNF0hj1PxBmaWl2").collection("Library").stream())
-# for doc in lib_stream:
-#     docJson = doc.to_dict()
-#     query = docJson["searchQuery"]
-#     print(query)
+def update_library_schema(user_ids):
+    try:
+        for user_id in user_ids:
+            lib_stream = users.document(user_id).collection("Library").stream()
 
-users.document("")
+            for doc in lib_stream:
+                docJson = doc.to_dict()["data"]["data"]
+                for paper in docJson:
+                    paper["Relevance"] = paper.pop("relevance")
+                users.document(user_id).collection("Library").document(doc.id).set(
+                    {"papers": docJson, "query": doc.to_dict()["searchQuery"]}
+                )
+    except:
+        print("no")
+
+
+def update_user_schema(user_ids):
+    try:
+        for user_id in user_ids:
+            users.document(user_id).update({"papers": [], "query": ""})
+    except:
+        print("")
+
+
+user_ids = [
+    "Iy0qSBCo2yWlfgWMB2IDiF26fHC3",
+    "FUWLxtlWrzYYwqojofjOtPfqwEG2",
+    "h7FJ0GEQ9CMiJ3RKO7IEQkJJLU73",
+    "Rn2H5zsgxWdUo9yS3BF82Mo1Xl73",
+]
+
+update_library_schema(user_ids)
+update_user_schema(user_ids)
