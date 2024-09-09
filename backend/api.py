@@ -20,7 +20,7 @@ class RequestObjectWithListData(RequestObject):
     data: List[dict]
 
 
-#firebased cred
+# firebased cred
 cred = credentials.Certificate(
     {
         "type": "service_account",
@@ -97,7 +97,6 @@ async def fetchUserLibrary(uid: str):
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
-
     parsed_query = helper_functions.Parse_Query(query)
     print(parsed_query)
     api_key = "Gvkbt2QFvx2QZwQBigWqJTzOa5TPS6v1kAdrpaBf"
@@ -115,12 +114,12 @@ async def search(query: str):
             "offset": total_offset,
         }
 
-      
         time.sleep(2)
         response = requests.get(url, params=query_params, headers=headers)
-        
+
         print(response.url)
         response_data = response.json()
+        number_of_papers = response_data["total"]
 
         papers = response_data.get("data", [])
         total_papers.extend(papers)
@@ -135,7 +134,7 @@ async def search(query: str):
         paper["Relevance"] = "Untagged"
 
     # total_papers is the list containing all the papers
-    response_object = total_papers
+    response_object = {"papers": total_papers, "number_of_papers": number_of_papers}
 
     return response_object
 
