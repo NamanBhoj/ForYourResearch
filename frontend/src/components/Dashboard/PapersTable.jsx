@@ -12,9 +12,10 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
-  // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
-  const lambdaUrl =
-    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+  
+  const lambdaUrl ='https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
+
+  // const lambdaUrl = 'http://127.0.0.1:8000';
 
   const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
@@ -25,6 +26,7 @@ export default function Library() {
   const [showNotification, setShowNotification] = useState(false);
   const [fetchedQuery, setFetchedQuery] = useState('');
   const [papers, setPapers] = useState([]);
+  const [total_results, setTotalResults] = useState([]);
   const { user } = useUserAuth();
 
   useEffect(() => {
@@ -44,14 +46,6 @@ export default function Library() {
     console.log(user.uid);
   }, [user?.uid]);
 
-  // const handleAddKeyword = () => {
-  //   if (keyword.trim() !== '') {
-  //     const updatedKeywordList = [...keywordList, keyword];
-  //     setKeywordList(updatedKeywordList);
-  //     setQuery(updatedKeywordList.join(' '));
-  //     setKeyword('');
-  //   }
-  // };
 
   const handleSearch = async () => {
     setSearching(true);
@@ -61,30 +55,24 @@ export default function Library() {
     );
 
     // This is to get the body of the response from the API
-    // The body of the response will only contain an array of the papers now so can directly map it to display
+    // The body of the response will only contain an array of the papers and total number of results now so can directly map it to display
+    print(response.data)
     const json = response.data;
+    console.log
 
     // Setting the papers array that will be displayed in the table
-    setPapers(json);
+    setPapers(json['total_papers']);
+    console.log(json['total_number_of_results'])
+    setTotalResults(json['total_number_of_results'])
+  
 
-    await handleSaveCurrentData(json);
+    await handleSaveCurrentData(json['total_papers']);
 
     setSearching(false);
     // console.log(response);
   };
 
-  // const handleDelete = (chip) => {
-  //   const updatedKeywordList = keywordList.filter(
-  //     (keyword) => keyword !== chip
-  //   );
-  //   setKeywordList(updatedKeywordList);
-  //   setQuery(updatedKeywordList.join(' '));
-  // };
-
-  // const handleDeleteQuery = () => {
-  //   setKeywordList([]);
-  //   setQuery('');
-  // };
+  
 
   const handleRelevanceChange = (paperId, relevance) => {
     const updatedPapers = papers.map((paper) => {
@@ -165,12 +153,8 @@ export default function Library() {
     await axios.post(`${lambdaUrl}/saveCurrentSearchData`, json);
   };
 
-  // const getKeyword = () => {
-  //   if (fetchedQuery && keyword === '') {
-  //     return fetchedQuery;
-  //   }
-  //   return keyword;
-  // };
+
+ 
 
   return (
     <>
@@ -271,8 +255,12 @@ export default function Library() {
                 </button>{' '}
                 <div className="mr-auto">
                   <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    Total Papers: {papers.length}
+                  Top {papers.length} papers from total of: <div></div>
+                  
                   </span>
+                  <span className= " mt-2 inline-flex items-center rounded-full ring-1 ring-inset ring-blue-700/10 text-red-500 ml-2 px-2 py-1">{total_results}</span>
+
+                 
                 </div>
               </div>
               <div className="mt-8 flow-root">

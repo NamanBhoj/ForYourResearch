@@ -107,7 +107,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 100:
+    while total_offset < 700:
         query_params = {
             "query": parsed_query,
             "limit": limit,
@@ -122,7 +122,11 @@ async def search(query: str):
         print(response.url)
         response_data = response.json()
 
+        # print(response_data['total'])
+        total_number_of_results = response_data['total']
+
         papers = response_data.get("data", [])
+      
         total_papers.extend(papers)
 
         total_offset += limit
@@ -135,7 +139,9 @@ async def search(query: str):
         paper["Relevance"] = "Untagged"
 
     # total_papers is the list containing all the papers
-    response_object = total_papers
+    response_object = {'total_papers' :total_papers , "total_number_of_results" : total_number_of_results }
+    # print(response_object)
+ 
 
     return response_object
 
