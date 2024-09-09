@@ -7,6 +7,7 @@ import PapersTable from './components/Dashboard/PapersTable';
 import ProtectedRoute from './components/Layout/ProtectedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
+import QueryExplainer from './pages/QueryExplainer';
 
 function App() {
   // const router = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/info" element={<QueryExplainer />} />
           <Route
             path="/dashboard"
             element={

@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import requests
@@ -6,6 +7,7 @@ from firebase_admin import credentials, auth, firestore
 from pydantic import BaseModel
 from mangum import Mangum
 import time, json
+import helper_functions
 
 
 class RequestObject(BaseModel):
@@ -14,6 +16,11 @@ class RequestObject(BaseModel):
     searchQuery: str
 
 
+class RequestObjectWithListData(RequestObject):
+    data: List[dict]
+
+
+#firebased cred
 cred = credentials.Certificate(
     {
         "type": "service_account",
@@ -44,11 +51,11 @@ handler = Mangum(app)
 
 
 @app.post("/saveToLibrary/")
-async def saveToLibrary(request: RequestObject):
-    print(request)
+async def saveToLibrary(request: RequestObjectWithListData):
+    # print(request)
     users_collection = db.collection("Users").document(request.uid)
     user_data = {"userId": request.uid}
-    users_collection.set(user_data)
+    users_collection.update(user_data)
 
     # modify the incoming search query so we always
     # store it with a number
@@ -61,7 +68,7 @@ async def saveToLibrary(request: RequestObject):
     storedSearchQueries = []
     for doc in library_stream:
         docJson = doc.to_dict()
-        storedSearchQuery = docJson["searchQuery"]
+        storedSearchQuery = docJson["query"]
         storedSearchQueries.append(storedSearchQuery)
 
     max_number = 0
@@ -74,8 +81,8 @@ async def saveToLibrary(request: RequestObject):
 
     new_number = max_number + 1
     uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
-
-    library_collection.add({"data": request.data, "searchQuery": uniqueSearchQuery})
+    print(uniqueSearchQuery)
+    library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
 
 
 @app.get("/fetchUserLibrary/")
@@ -90,6 +97,9 @@ async def fetchUserLibrary(uid: str):
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
+
+    parsed_query = helper_functions.Parse_Query(query)
+    print(parsed_query)
     api_key = "Gvkbt2QFvx2QZwQBigWqJTzOa5TPS6v1kAdrpaBf"
     headers = {"x-api-key": api_key}
 
@@ -97,15 +107,19 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 200:
+    while total_offset < 100:
         query_params = {
-            "query": query,
+            "query": parsed_query,
             "limit": limit,
             "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
             "offset": total_offset,
         }
+
+      
         time.sleep(2)
         response = requests.get(url, params=query_params, headers=headers)
+        
+        print(response.url)
         response_data = response.json()
 
         papers = response_data.get("data", [])
@@ -117,36 +131,47 @@ async def search(query: str):
         # the maximum limit is 100
         if len(papers) < limit:
             break
+    for paper in total_papers:
+        paper["Relevance"] = "Untagged"
 
-    paper_count = len(total_papers)
-
-    response_object = {"papersArray": total_papers, "paperCount": paper_count}
+    # total_papers is the list containing all the papers
+    response_object = total_papers
 
     return response_object
 
 
 @app.post("/saveCurrentSearchData/")
-async def saveCurrentSearchData(request: RequestObject):
+async def saveCurrentSearchData(request: RequestObjectWithListData):
     users = db.collection("Users")
     users.document(request.uid).update(
-        {"currentSearchData": request.data, "currentSearchQuery": request.searchQuery}
+        {"papers": request.data, "query": request.searchQuery}
     )
 
 
 @app.get("/getCurrentSearchData/")
 async def getCurrentSearchData(uid: str):
     users = db.collection("Users")
-    user_ref = users.document(uid)
-    doc_snapshot = user_ref.get()
-    response = {}
-    if doc_snapshot.exists:
-        response["searchData"] = doc_snapshot.get("currentSearchData")
-        response["searchQuery"] = doc_snapshot.get("currentSearchQuery")
-        return response
-    return "no"
+    doc = users.document(uid).get()
+    if doc.get("papers"):
+        return {"papers": doc.get("papers"), "query": doc.get("query")}
+    return
 
 
 @app.get("/generateCurrentDataAndQueryFields/")
 async def generateCurrentDataAndQueryFields(uid: str):
     users = db.collection("Users")
-    users.document(uid).set({"currentSearchData": {}, "currentSearchQuery": ""})
+    users.document(uid).set({"papers": {}, "query": ""})
+
+
+@app.post("/updatePaperRelevance")
+async def updatePaperRelevance(request: RequestObjectWithListData):
+    users = db.collection("Users")
+    lib_stream = users.document(request.uid).collection("Library").stream()
+    target_doc_id = ""
+    for doc in lib_stream:
+        if doc.to_dict()["query"] == request.searchQuery:
+            target_doc_id = doc.id
+    target_doc = (
+        users.document(request.uid).collection("Library").document(target_doc_id)
+    )
+    target_doc.update({"papers": request.data})

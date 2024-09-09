@@ -9,7 +9,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [pending, setPending] = useState(false);
   const lambdaUrl =
-    'https://hs4drk3vhdodm66fknnytg4biy0tnjdi.lambda-url.us-east-2.on.aws';
+    'https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws';
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
