@@ -205,7 +205,7 @@ export default function Library() {
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">
               <div className=" mr-2 flex flex-row-reverse sm:flex sm:items-center">
                 {/* add text for table info */}
-                <div className="z-10 mt-auto">
+                <div className="z-20 mt-auto">
                   {' '}
                   <SortByDropdown
                     handleSortByRelevant={sortRelevantFirst}
