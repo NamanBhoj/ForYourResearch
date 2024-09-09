@@ -30,7 +30,6 @@ export default function Library() {
   useEffect(() => {
     const fetchSavedSearchData = async () => {
       try {
-        console.log(import.meta.env.VITE_LAMBDA_URL);
         const response = await axios.get(
           `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
         );
@@ -42,7 +41,6 @@ export default function Library() {
       }
     };
     fetchSavedSearchData();
-    console.log(user.uid);
   }, [user?.uid]);
 
   // const handleAddKeyword = () => {
