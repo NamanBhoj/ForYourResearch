@@ -18,16 +18,16 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
-        run: |
-          python -m venv virtualfyr
-          source virtualfyr/bin/activate
-          pip install -r requirements.txt
-          pip install pytest
+      # - name: Install dependencies
+      #   run: |
+      #     python -m venv virtualfyr
+      #     source virtualfyr/bin/activate
+      #     pip install -r requirements.txt
+      #     pip install pytest
 
       - name: Run tests
         run: |
-          source virtualfyr/bin/activate
+         
           pytest
 
       - name: Deployment to Lmada
