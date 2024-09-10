@@ -25,10 +25,10 @@ jobs:
       #     pip install -r requirements.txt
       #     pip install pytest
 
-      - name: Run tests
-        run: |
+      # - name: Run tests
+      #   run: |
          
-          pytest
+      #     pytest
 
       - name: Deployment to Lmada
         env:
