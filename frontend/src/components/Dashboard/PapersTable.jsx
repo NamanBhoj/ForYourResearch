@@ -316,46 +316,50 @@ export default function Library() {
 
                       <tbody className="bg-white divide-y divide-neutral-300 bg-neutral-50">
                         {papers &&
-                          papers.map((paper) => (
-                            <tr
-                              key={paper.paperId}
-                              className="hover:bg-neutral-50 transition-colors duration-150"
-                            >
-                              <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
-                                <a
-                                  className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
-                                  // href={paper.openAccessPdf?.url || ''}
-                                  // target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() =>
-                                    openPdf(paper.openAccessPdf?.url || '')
-                                  }
+                          papers.map((paper) => {
+                            if (paper.openAccessPdf?.url.length > 0) {
+                              return (
+                                <tr
+                                  key={paper.paperId}
+                                  className="hover:bg-neutral-50 transition-colors duration-150"
                                 >
-                                  {paper.title}
-                                </a>
-                                <span>
-                                <div className='mt-2 text-red-500 font-bold'>Year: {paper.year}</div>
-            
-                                  
-                                  </span>
-                              </td>
-                              <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
-                                {paper.abstract}
-                              </td>
+                                  <td className="py-3 pl-3 pr-2 text-sm font-medium text-neutral-900 sm:pl-4 max-w-[100px] align-top">
+                                    <a
+                                      className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
+                                      // href={paper.openAccessPdf?.url || ''}
+                                      // target="_blank"
+                                      rel="noopener noreferrer"
+                                      onClick={() =>
+                                        openPdf(paper.openAccessPdf?.url || '')
+                                      }
+                                    >
+                                      {paper.title}
+                                    </a>
+                                    <span>
+                                      <div className="mt-2 text-red-500 font-bold">
+                                        Year: {paper.year}
+                                      </div>
+                                    </span>
+                                  </td>
+                                  <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
+                                    {paper.abstract}
+                                  </td>
 
-                              <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                                <RelevanceDropdown
-                                  relevance={paper.Relevance}
-                                  onRelevanceChange={(newRelevance) =>
-                                    handleRelevanceChange(
-                                      paper.paperId,
-                                      newRelevance
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                          ))}
+                                  <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
+                                    <RelevanceDropdown
+                                      relevance={paper.Relevance}
+                                      onRelevanceChange={(newRelevance) =>
+                                        handleRelevanceChange(
+                                          paper.paperId,
+                                          newRelevance
+                                        )
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                              );
+                            }
+                          })}
                       </tbody>
                     </table>
                   </div>
