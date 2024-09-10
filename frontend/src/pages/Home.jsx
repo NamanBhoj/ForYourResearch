@@ -4,6 +4,7 @@ import Navbar from '../components/Layout/Navbar';
 import FeatureSection from '../components/FeatureSection/FeatureSection';
 
 function Home() {
+  console.log(import.meta.env.VITE_LAMBDA_URL);
   return (
     <div>
       <Navbar />
