@@ -63,6 +63,9 @@ export default function Library() {
     // The body of the response will only contain an array of the papers now so can directly map it to display
     const json = response.data;
 
+    // console.log('YOU ARE LOGGING ME')
+    // console.log(json['papers'][0]['year'])
+
     // Setting the papers array that will be displayed in the table
     setPapers(json['papers']);
     setTotalNumberOfPapers(json['number_of_papers']);
@@ -330,6 +333,11 @@ export default function Library() {
                                 >
                                   {paper.title}
                                 </a>
+                                <span>
+                                <div className='mt-2 text-red-500 font-bold'>Year: {paper.year}</div>
+            
+                                  
+                                  </span>
                               </td>
                               <td className="hidden px-2 py-3 text-sm text-black sm:table-cell max-w-[200px]">
                                 {paper.abstract}

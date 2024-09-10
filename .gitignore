@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 virtualfyr
+virtual*
 venv
 __pycache__
