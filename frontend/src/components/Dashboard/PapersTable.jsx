@@ -34,7 +34,7 @@ export default function Library() {
           `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
         );
         const json = response.data;
-
+        console.log(json);
         setPapers(json.papers);
       } catch (error) {
         console.log(error);
@@ -95,7 +95,7 @@ export default function Library() {
       }
       return paper;
     });
-    console.log(updatedPapers);
+    // console.log(updatedPapers);
     setPapers(updatedPapers);
   };
 
@@ -150,12 +150,12 @@ export default function Library() {
       searchQuery: query,
     };
     console.log('LOGGING THE QUERY');
-    console.log(query);
+    // console.log(query);
     const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
     setSaving(false);
     setShowNotification(true);
 
-    console.log(response);
+    // console.log(response);
   };
 
   const handleSaveCurrentData = async (papers) => {
@@ -167,6 +167,26 @@ export default function Library() {
     await axios.post(`${lambdaUrl}/saveCurrentSearchData`, json);
   };
 
+  const getNumberOfTopPapers = () => {
+    // console.log(papers);
+    const hasPaperUrl = (paper) => {
+      if (paper.openAccessPdf?.url.length > 0) {
+        return paper;
+      }
+    };
+
+    // const notHasPaperUrl = (paper) => {
+    //   if (paper.openAccessPdf == null) {
+    //     return paper;
+    //   }
+    // };
+
+    const papersWithLink = papers.filter(hasPaperUrl);
+    // const papersWithoutLink = papers.filter(notHasPaperUrl);
+    // console.log(papersWithLink);
+    // console.log(papersWithoutLink);
+    return papersWithLink.length;
+  };
   // const getKeyword = () => {
   //   if (fetchedQuery && keyword === '') {
   //     return fetchedQuery;
@@ -273,7 +293,7 @@ export default function Library() {
                 </button>{' '}
                 <div className="mr-auto">
                   <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                    {`Top ${papers.length} papers`}
+                    {`Top ${getNumberOfTopPapers()} papers`}
                     {totalNumberOfPapers > 0 &&
                       ` from a total of ${totalNumberOfPapers} papers`}
                   </span>
