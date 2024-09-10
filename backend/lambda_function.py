@@ -12,6 +12,7 @@ import os
 
 in_production = os.getenv("ENV") == "production"
 suffix = "" if in_production else "/"
+print(suffix)
 
 
 # lets see
@@ -54,13 +55,19 @@ app.add_middleware(
 )
 # need allow origins for local only else it gives error in aws
 if not in_production:
-    app.add_middleware(allow_origins=(["*"]))
+    app.add_middleware(
+        CORSMiddleware,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+        allow_origins=(["*"]),
+    )
 
 
 handler = Mangum(app)
 
 
-@app.post(f"/saveToLibrary${suffix}")
+@app.post(f"/saveToLibrary{suffix}")
 async def saveToLibrary(request: RequestObjectWithListData):
     # print(request)
     users_collection = db.collection("Users").document(request.uid)
@@ -95,7 +102,7 @@ async def saveToLibrary(request: RequestObjectWithListData):
     library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
 
 
-@app.get(f"/fetchUserLibrary${suffix}")
+@app.get(f"/fetchUserLibrary{suffix}")
 async def fetchUserLibrary(uid: str):
     library_collection = db.collection("Users").document(uid).collection("Library")
     documents = library_collection.stream()
@@ -103,7 +110,7 @@ async def fetchUserLibrary(uid: str):
     return jsonDocs
 
 
-@app.get(f"/search${suffix}")
+@app.get(f"/search{suffix}")
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
@@ -149,7 +156,7 @@ async def search(query: str):
     return response_object
 
 
-@app.post(f"/saveCurrentSearchData${suffix}")
+@app.post(f"/saveCurrentSearchData{suffix}")
 async def saveCurrentSearchData(request: RequestObjectWithListData):
     users = db.collection("Users")
     users.document(request.uid).update(
@@ -157,7 +164,7 @@ async def saveCurrentSearchData(request: RequestObjectWithListData):
     )
 
 
-@app.get(f"/getCurrentSearchData${suffix}")
+@app.get(f"/getCurrentSearchData{suffix}")
 async def getCurrentSearchData(uid: str):
     users = db.collection("Users")
     doc = users.document(uid).get()
@@ -166,13 +173,13 @@ async def getCurrentSearchData(uid: str):
     return
 
 
-@app.get(f"/generateCurrentDataAndQueryFields${suffix}")
+@app.get(f"/generateCurrentDataAndQueryFields{suffix}")
 async def generateCurrentDataAndQueryFields(uid: str):
     users = db.collection("Users")
     users.document(uid).set({"papers": {}, "query": ""})
 
 
-@app.post(f"/updatePaperRelevance${suffix}")
+@app.post(f"/updatePaperRelevance{suffix}")
 async def updatePaperRelevance(request: RequestObjectWithListData):
     users = db.collection("Users")
     lib_stream = users.document(request.uid).collection("Library").stream()
