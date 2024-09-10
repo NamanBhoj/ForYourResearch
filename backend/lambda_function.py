@@ -159,9 +159,15 @@ async def search(query: str):
 @app.post(f"/saveCurrentSearchData{suffix}")
 async def saveCurrentSearchData(request: RequestObjectWithListData):
     users = db.collection("Users")
-    users.document(request.uid).update(
-        {"papers": request.data, "query": request.searchQuery}
-    )
+    try:
+        users.document(request.uid).update(
+            {"papers": request.data, "query": request.searchQuery}
+        )
+    except:
+        del request.data[-100:]
+        users.document(request.uid).update(
+            {"papers": request.data, "query": request.searchQuery}
+        )
 
 
 @app.get(f"/getCurrentSearchData{suffix}")
