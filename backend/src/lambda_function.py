@@ -42,7 +42,7 @@ db = firestore.client()
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    # allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -50,7 +50,7 @@ app.add_middleware(
 handler = Mangum(app)
 
 
-@app.post("/saveToLibrary/")
+@app.post("/saveToLibrary")
 async def saveToLibrary(request: RequestObjectWithListData):
     # print(request)
     users_collection = db.collection("Users").document(request.uid)
@@ -85,7 +85,7 @@ async def saveToLibrary(request: RequestObjectWithListData):
     library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
 
 
-@app.get("/fetchUserLibrary/")
+@app.get("/fetchUserLibrary")
 async def fetchUserLibrary(uid: str):
     library_collection = db.collection("Users").document(uid).collection("Library")
     documents = library_collection.stream()
@@ -93,7 +93,7 @@ async def fetchUserLibrary(uid: str):
     return jsonDocs
 
 
-@app.get("/search/")
+@app.get("/search")
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
@@ -139,7 +139,7 @@ async def search(query: str):
     return response_object
 
 
-@app.post("/saveCurrentSearchData/")
+@app.post("/saveCurrentSearchData")
 async def saveCurrentSearchData(request: RequestObjectWithListData):
     users = db.collection("Users")
     users.document(request.uid).update(
@@ -147,7 +147,7 @@ async def saveCurrentSearchData(request: RequestObjectWithListData):
     )
 
 
-@app.get("/getCurrentSearchData/")
+@app.get("/getCurrentSearchData")
 async def getCurrentSearchData(uid: str):
     users = db.collection("Users")
     doc = users.document(uid).get()
@@ -156,7 +156,7 @@ async def getCurrentSearchData(uid: str):
     return
 
 
-@app.get("/generateCurrentDataAndQueryFields/")
+@app.get("/generateCurrentDataAndQueryFields")
 async def generateCurrentDataAndQueryFields(uid: str):
     users = db.collection("Users")
     users.document(uid).set({"papers": {}, "query": ""})
