@@ -31,6 +31,11 @@ jobs:
           # Update the Lambda function with the new code
           aws lambda update-function-code --function-name fyr-api --zip-file fileb://lambda_function.zip
 
+      - name: Wait for Lambda Update to Complete
+        run: |
+          echo "Waiting for 30 seconds to ensure Lambda update is complete"
+          sleep 30  # Wait for 30 seconds before attempting to publish the version
+
       - name: Publish New Lambda Version
         id: publish_version
         env:
