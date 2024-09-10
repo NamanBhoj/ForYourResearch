@@ -37,7 +37,7 @@ jobs:
           AWS_REGION: 'us-east-2'
         run: |
           cd backend
-          pip install -r requirements.txt
+         
           zip -r ../lambda_function.zip .
           cd ..
-          aws lambda update-function-code --function-name YOUR_LAMBDA_FUNCTION_NAME --zip-file fileb://lambda_function.zip
+          aws lambda update-function-code --function-name fyr-api --zip-file fileb://lambda_function.zip
