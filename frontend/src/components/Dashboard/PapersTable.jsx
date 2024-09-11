@@ -43,14 +43,7 @@ export default function Library() {
     fetchSavedSearchData();
   }, [user?.uid]);
 
-  // const handleAddKeyword = () => {
-  //   if (keyword.trim() !== '') {
-  //     const updatedKeywordList = [...keywordList, keyword];
-  //     setKeywordList(updatedKeywordList);
-  //     setQuery(updatedKeywordList.join(' '));
-  //     setKeyword('');
-  //   }
-  // };
+ 
 
   const handleSearch = async () => {
     setSearching(true);
@@ -75,18 +68,7 @@ export default function Library() {
     // console.log(response);
   };
 
-  // const handleDelete = (chip) => {
-  //   const updatedKeywordList = keywordList.filter(
-  //     (keyword) => keyword !== chip
-  //   );
-  //   setKeywordList(updatedKeywordList);
-  //   setQuery(updatedKeywordList.join(' '));
-  // };
-
-  // const handleDeleteQuery = () => {
-  //   setKeywordList([]);
-  //   setQuery('');
-  // };
+  
 
   const handleRelevanceChange = (paperId, relevance) => {
     const updatedPapers = papers.map((paper) => {

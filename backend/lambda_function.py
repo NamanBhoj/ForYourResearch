@@ -73,33 +73,40 @@ async def saveToLibrary(request: RequestObjectWithListData):
     users_collection = db.collection("Users").document(request.uid)
     user_data = {"userId": request.uid}
     users_collection.update(user_data)
+    
 
     # modify the incoming search query so we always
     # store it with a number
-    baseSearchQuery = request.searchQuery + " ⦿ "
     library_collection = (
         db.collection("Users").document(request.uid).collection("Library")
     )
-    library_stream = library_collection.stream()
 
-    storedSearchQueries = []
-    for doc in library_stream:
-        docJson = doc.to_dict()
-        storedSearchQuery = docJson["query"]
-        storedSearchQueries.append(storedSearchQuery)
+    for paper in request.data:
+        
+    # Create a unique search query for each paper
+        baseSearchQuery = request.searchQuery + " ⦿ "
+        library_stream = library_collection.stream()
 
-    max_number = 0
-    for searchQuery in storedSearchQueries:
-        if searchQuery.startswith(baseSearchQuery):
-            numberPart = searchQuery.split(" ⦿ ")[1]
-            number = int(numberPart)
-            if number > max_number:
-                max_number = number
+        storedSearchQueries = []
+        for doc in library_stream:
+            docJson = doc.to_dict()
+            storedSearchQuery = docJson["query"]
+            storedSearchQueries.append(storedSearchQuery)
 
-    new_number = max_number + 1
-    uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
-    print(uniqueSearchQuery)
-    library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
+
+    # Add each paper as a separate document
+        print(paper["title"], paper["abstract"] , baseSearchQuery )
+        library_collection.add({
+            "title": paper["title"],
+            "abstract": paper["abstract"],
+            "fullText": '',
+            "query": baseSearchQuery
+        })
+
+        print("Added paper:", paper["title"])
+    print("Library collection updated for user:", request.uid)
+
+    
 
 
 @app.get(f"/fetchUserLibrary{suffix}")
@@ -159,9 +166,14 @@ async def search(query: str):
 @app.post(f"/saveCurrentSearchData{suffix}")
 async def saveCurrentSearchData(request: RequestObjectWithListData):
     users = db.collection("Users")
-    users.document(request.uid).update(
-        {"papers": request.data, "query": request.searchQuery}
-    )
+    for paper in request.data:
+        users.document(request.uid).update(
+            {
+                "title": paper["title"],
+                "abstract": paper["abstract"],
+            }
+        
+        )
 
 
 @app.get(f"/getCurrentSearchData{suffix}")
