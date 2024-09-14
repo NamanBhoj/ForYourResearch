@@ -1,4 +1,4 @@
-from ..database import Base
+from database import Base
 from sqlalchemy import Column, String, Integer, ForeignKey
 
 
@@ -15,6 +15,7 @@ class SearchResult(Base):
     year = Column(Integer, nullable=True)
     url = Column(String, nullable=True)
     paperId = Column(String, nullable=True)
+    fullText = Column(String, nullable=True)
 
     # Relevance that is manually set by the user, manual_overall_relevance is the value of manually tagged papers
     # in our Library and PapersTable on the frontend

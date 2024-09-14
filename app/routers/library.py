@@ -33,6 +33,11 @@ the primary key of the row created in Search table.
 def save_to_library(
     request_model: RequestObjectWithListData, db: Session = Depends(get_db)
 ):
+    """
+    To-do: Before saving the query to database, we need to check if
+    the query already exists with the user's uid so we can add
+    a number next to the query like we do in firebase.
+    """
     search_row = SearchCreate(
         uid=request_model.uid, search_query=request_model.searchQuery, db=db
     )
