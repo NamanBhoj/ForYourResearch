@@ -26,10 +26,10 @@ jobs:
           AWS_REGION: 'us-east-2'
         run: |
           cd app
-          zip -r ../lambda_function.zip .
+          zip -r ../app.zip .
           cd ..
           # Update the Lambda function with the new code
-          aws lambda update-function-code --function-name fyr-api --zip-file fileb://lambda_function.zip
+          aws lambda update-function-code --function-name fyr-api --zip-file fileb://app.zip
 
       - name: Wait for Lambda Update to Complete
         run: |
