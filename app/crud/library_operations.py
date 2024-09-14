@@ -4,10 +4,13 @@ from ..models.search_result import SearchResult, SearchResultCreate
 
 from ..schemas.search import Search as SearchSchema
 from ..schemas.search_result import SearchResult as SearchResultSchema
-
+from ..database_connection import database as db
 
 def save_query(db: Session, search_create: SearchCreate):
+
     row = SearchSchema(uid=search_create.uid, search_query=search_create.search_query)
+    #fetch query
+    #give unique name
     db.add(row)
     db.commit()
     db.refresh(row)
@@ -17,7 +20,7 @@ def save_query(db: Session, search_create: SearchCreate):
 def save_papers(db: Session, papers: list, search_id: int):
     papers_to_add = []
     for paper in papers:
-        row = SearchResultSchema(
+        row = addRowSearchResultSchema(
             search_id=search_id,
             title=paper["title"],
             year=paper["year"],
@@ -29,3 +32,12 @@ def save_papers(db: Session, papers: list, search_id: int):
         papers_to_add.append(row)
     db.add_all(papers_to_add)
     db.commit()
+
+
+
+def retrieve_all_papers(db:Session, uid : int):
+
+    return(db.query(SearchSchema).filter(SearchSchema.uid == uid).all())
+
+
+
