@@ -41,3 +41,14 @@ def retrieve_all_queries(db:Session, uid : int):
 
 
 
+def retrieve_papers_by_query(db:Session,search_id : int) : 
+    #instead of using composite key of (uid+ searchQuery) we create a new field search_id which maps to user uid + searchQuery
+
+    return (db.query(SearchResultSchema).filter(SearchResultSchema.search_id == search_id).all())
+
+
+
+
+
+
+
