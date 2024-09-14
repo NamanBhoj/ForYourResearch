@@ -4,7 +4,7 @@ from ..models.search_result import SearchResult, SearchResultCreate
 
 from ..schemas.search import Search as SearchSchema
 from ..schemas.search_result import SearchResult as SearchResultSchema
-from ..database_connection import database as db
+
 
 def save_query(db: Session, search_create: SearchCreate):
 
@@ -20,7 +20,7 @@ def save_query(db: Session, search_create: SearchCreate):
 def save_papers(db: Session, papers: list, search_id: int):
     papers_to_add = []
     for paper in papers:
-        row = addRowSearchResultSchema(
+        row = SearchResultSchema(
             search_id=search_id,
             title=paper["title"],
             year=paper["year"],
