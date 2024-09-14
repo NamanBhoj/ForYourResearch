@@ -1,4 +1,4 @@
-# from sqlalchemy import create_engine
+# from sqlalchemy import create_engine, and_
 # from sqlalchemy.orm import sessionmaker
 # from ..schemas.search import Search as SearchSchema 
 # from ..schemas.search_result import SearchResult as SearchResultSchema# Import your model
@@ -13,17 +13,15 @@
 
 
 
-# def retrieve_papers_by_query(db:Session,search_id : int) : 
-#     #instead of using composite key of (uid+ searchQuery) we create a new field search_id which maps to user uid + searchQuery
+# def find_search_id(db:Session, uid: str , search_query: str): 
+#     "method to find search id for retreive_papers_by_query method"
 
-#     return (db.query(SearchResultSchema.title, SearchResultSchema.abstract , SearchResultSchema.fullText, SearchResultSchema.year,
-#     SearchResultSchema.url, SearchResultSchema.manual_overall_relevance,
-#     SearchResultSchema.manual_title_relevance, SearchResultSchema.manual_abstract_relevance,
-#     SearchResultSchema.manual_full_text_relevance).filter(SearchResultSchema.search_id == search_id).all())
+#     response = (db.query(SearchSchema.search_id).filter(and_(SearchSchema.uid == uid, SearchSchema.search_query == search_query)).all())
+#     # print(respone)
+#     a = response[0][0]
+#     return a
 
-
-
-# result = (retrieve_papers_by_query(session, 31))
+# result = (find_search_id(session, "kvCvOJoraSbKkAobm8KD8VUnR1k1", '("virtual reality" OR "mixed reality" OR "augmented reality" OR "extended reality") AND "digital twin"'))
 # print(result)
 # # i = 0 
 # # for r in result:
