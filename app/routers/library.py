@@ -20,7 +20,7 @@ if not (helper_functions.is_in_production()):
 
 """GET METHODS"""
 
-@router.get()
+
 
 
 
