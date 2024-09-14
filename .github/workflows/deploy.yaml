@@ -25,7 +25,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-2'
         run: |
-          cd backend
+          cd app
           zip -r ../lambda_function.zip .
           cd ..
           # Update the Lambda function with the new code
