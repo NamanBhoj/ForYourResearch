@@ -7,12 +7,34 @@ from sqlalchemy.orm import Session
 from ..dependencies import get_db
 from ..crud import library_operations
 
+
 router = APIRouter()
 suffix = ""
 
 if not (helper_functions.is_in_production()):
     suffix = "/"
 
+
+
+
+
+"""GET METHODS"""
+
+@router.get()
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""POST METHODS"""
 
 @router.post(f"/saveQuery{suffix}", response_model=SearchCreate)
 def save_query(request_model: SearchCreate, db: Session = Depends(get_db)):
@@ -47,3 +69,5 @@ def save_to_library(
         papers=request_model.data, db=db, search_id=row_ref.search_id
     )
     return row_ref
+
+
