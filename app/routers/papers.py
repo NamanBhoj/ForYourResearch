@@ -44,39 +44,39 @@ db = firestore.client()
 """
 
 
-@router.post(f"/saveToLibrary{suffix}")
-async def saveToLibrary(request: Request):
-    # print(request)
-    users_collection = db.collection("Users").document(request.uid)
-    user_data = {"userId": request.uid}
-    users_collection.update(user_data)
+# @router.post(f"/saveToLibrary{suffix}")
+# async def saveToLibrary(request: Request):
+#     # print(request)
+#     users_collection = db.collection("Users").document(request.uid)
+#     user_data = {"userId": request.uid}
+#     users_collection.update(user_data)
 
-    # modify the incoming search query so we always
-    # store it with a number
-    baseSearchQuery = request.searchQuery + " ⦿ "
-    library_collection = (
-        db.collection("Users").document(request.uid).collection("Library")
-    )
-    library_stream = library_collection.stream()
+#     # modify the incoming search query so we always
+#     # store it with a number
+#     baseSearchQuery = request.searchQuery + " ⦿ "
+#     library_collection = (
+#         db.collection("Users").document(request.uid).collection("Library")
+#     )
+#     library_stream = library_collection.stream()
 
-    storedSearchQueries = []
-    for doc in library_stream:
-        docJson = doc.to_dict()
-        storedSearchQuery = docJson["query"]
-        storedSearchQueries.append(storedSearchQuery)
+#     storedSearchQueries = []
+#     for doc in library_stream:
+#         docJson = doc.to_dict()
+#         storedSearchQuery = docJson["query"]
+#         storedSearchQueries.append(storedSearchQuery)
 
-    max_number = 0
-    for searchQuery in storedSearchQueries:
-        if searchQuery.startswith(baseSearchQuery):
-            numberPart = searchQuery.split(" ⦿ ")[1]
-            number = int(numberPart)
-            if number > max_number:
-                max_number = number
+#     max_number = 0
+#     for searchQuery in storedSearchQueries:
+#         if searchQuery.startswith(baseSearchQuery):
+#             numberPart = searchQuery.split(" ⦿ ")[1]
+#             number = int(numberPart)
+#             if number > max_number:
+#                 max_number = number
 
-    new_number = max_number + 1
-    uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
-    print(uniqueSearchQuery)
-    library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
+#     new_number = max_number + 1
+#     uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
+#     print(uniqueSearchQuery)
+#     library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
 
 
 @router.get(f"/fetchUserLibrary{suffix}")
@@ -100,7 +100,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 700:
+    while total_offset < 100:
         query_params = {
             "query": parsed_query,
             "limit": limit,

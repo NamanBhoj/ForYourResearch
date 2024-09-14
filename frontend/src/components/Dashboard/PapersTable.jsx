@@ -30,12 +30,13 @@ export default function Library() {
   useEffect(() => {
     const fetchSavedSearchData = async () => {
       try {
-        const response = await axios.get(
-          `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
-        );
-        const json = response.data;
-        console.log(json);
-        setPapers(json.papers);
+        // const response = await axios.get(
+        //   `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
+        // );
+        // const json = response.data;
+        // console.log(json);
+        // setPapers(json.papers);
+        // await handleSaveToLibrary();
       } catch (error) {
         console.log(error);
       }
@@ -69,7 +70,7 @@ export default function Library() {
     // Setting the papers array that will be displayed in the table
     setPapers(json['papers']);
     setTotalNumberOfPapers(json['number_of_papers']);
-    await handleSaveCurrentData(json['papers']);
+    // await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
     // console.log(response);
@@ -145,13 +146,14 @@ export default function Library() {
     setSaving(true);
 
     const json = {
-      uid: user?.uid,
+      uid: 'sdfsdf',
       data: papers,
-      searchQuery: query,
+      searchQuery: 'sdfsdf',
     };
     console.log('LOGGING THE QUERY');
     // console.log(query);
     const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
+    console.log(response.data);
     setSaving(false);
     setShowNotification(true);
 
