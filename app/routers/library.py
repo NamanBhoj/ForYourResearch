@@ -16,11 +16,11 @@ from ..crud import library_operations
 router = APIRouter()
 suffix = ""
 
-if not (helper_functions.is_in_production()):
+if helper_functions.is_in_production():
     suffix = "/"
 
 
-@router.post(f"/saveQuery{suffix}", response_model=SearchCreate)
+@router.post(f"/saveQuery", response_model=SearchCreate)
 def save_query(request_model: SearchCreate, db: Session = Depends(get_db)):
     return library_operations.save_query(search_create=request_model, db=db)
 
@@ -35,7 +35,7 @@ the primary key of the row created in Search table.
 """
 
 
-@router.post(f"/saveToLibrary{suffix}", response_model=Search)
+@router.post(f"/saveToLibrary", response_model=Search)
 def save_to_library(
     request_model: RequestObjectWithListData, db: Session = Depends(get_db)
 ):
@@ -55,7 +55,7 @@ def save_to_library(
     return row_ref
 
 
-@router.get(f"/fetchAllQueries{suffix}")
+@router.get(f"/fetchAllQueries")
 def fetch_all_queries(uid: str, db: Session = Depends(get_db)):
     list_queries = library_operations.convert_to_list(
         library_operations.retrieve_all_queries(db=db, uid=uid)
@@ -63,7 +63,7 @@ def fetch_all_queries(uid: str, db: Session = Depends(get_db)):
     return list_queries
 
 
-@router.post(f"/fetchPapersRelatedToQuery{suffix}")
+@router.post(f"/fetchPapersRelatedToQuery")
 def fetch_papers_related_to_query(
     request_model: RequestWithUidAndQuery, db: Session = Depends(get_db)
 ):
@@ -89,7 +89,7 @@ def fetch_papers_related_to_query(
     return papers_list
 
 
-@router.post(f"/updatePaperRelevance{suffix}")
+@router.post(f"/updatePaperRelevance")
 def update_paper_relevance(
     request_model: RequestWithSearchIdTitleRelevanceValue, db: Session = Depends(get_db)
 ):
