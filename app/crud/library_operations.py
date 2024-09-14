@@ -35,7 +35,7 @@ def save_papers(db: Session, papers: list, search_id: int):
 
 
 
-def retrieve_all_papers(db:Session, uid : int):
+def retrieve_all_queries(db:Session, uid : int):
 
     return(db.query(SearchSchema).filter(SearchSchema.uid == uid).all())
 
