@@ -28,7 +28,7 @@ fasteners==0.19
 firebase-admin==6.5.0
 futurist==3.0.0
 google-api-core==2.19.2
-google-api-python-client==2.145.0
+google-api-python-client==2.144.0
 google-auth==2.34.0
 google-auth-httplib2==0.2.0
 google-cloud-core==2.4.1
@@ -98,11 +98,10 @@ platformdirs==4.2.2
 prettytable==3.11.0
 prometheus_client==0.20.0
 proto-plus==1.24.0
-protobuf==5.28.1
+protobuf==5.28.0
 psutil==6.0.0
-psycopg2-binary==2.9.9
-pyasn1==0.6.1
-pyasn1_modules==0.4.1
+pyasn1==0.6.0
+pyasn1_modules==0.4.0
 pycadf==3.1.1
 pycparser==2.22
 pydantic==2.8.2
@@ -137,7 +136,6 @@ rich==13.7.1
 Routes==2.5.1
 rpds-py==0.20.0
 rsa==4.9
-setuptools==74.1.2
 shellingham==1.5.4
 simplegeneric==0.8.1
 six==1.16.0
