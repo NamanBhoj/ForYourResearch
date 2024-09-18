@@ -29,7 +29,11 @@ export default function Library() {
   useEffect(() => {
     const fetchUserLibrary = async () => {
       setLoading(true);
-
+      const res = await axios.get(
+        `${lambdaUrl}/fetchAllQueries/?uid=${user?.uid}`
+      );
+      const comingfromdb = res.data;
+      console.log(res.data);
       try {
         const response = await axios.get(
           `${lambdaUrl}/fetchUserLibrary/?uid=${user?.uid}`
@@ -41,7 +45,7 @@ export default function Library() {
           for (let queryObject of responseData) {
             res[queryObject.query] = queryObject.papers;
           }
-          setFetchedQueryArray(Object.keys(res));
+          setFetchedQueryArray(comingfromdb);
           setPaperObj(res);
         }
         setLoading(false);
@@ -57,29 +61,43 @@ export default function Library() {
     return papersToDisplay.length >= 1000 ? 1000 : papersToDisplay.length;
   };
 
-  const handleRelevanceChange = (paperId, relevance) => {
-    const clonedPaperObj = { ...paperObj };
-    const arrayContainingPaper = clonedPaperObj[selectedQuery];
+  const handleRelevanceChange = async (title, relevance) => {
+    const clonedPapersToDisplay = [...papersToDisplay];
+    // const arrayContainingPaper = clonedPaperObj[selectedQuery];
 
-    const updatedPapers = arrayContainingPaper.map((paper) => {
-      if (paper.paperId === paperId) {
-        return { ...paper, Relevance: relevance };
+    const updatedPapers = clonedPapersToDisplay.map((paper) => {
+      if (paper.title === title) {
+        return { ...paper, relevance: relevance };
       }
       return paper;
     });
-
-    clonedPaperObj[selectedQuery] = updatedPapers;
-    setPaperObj(clonedPaperObj);
-    setPapersToDisplay(clonedPaperObj[selectedQuery]);
-    // console.log(clonedPaperObj[selectedQuery]);
+    setPapersToDisplay(updatedPapers);
+    const json = {
+      title: title,
+      relevance_value: relevance,
+      uid: user.uid,
+      search_query: selectedQuery,
+    };
+    console.log(json);
+    await axios.post(`${lambdaUrl}/updatePaperRelevance`, json);
   };
 
-  const handleLoadPapers = () => {
+  const handleLoadPapers = async () => {
     if (fetchedQueryArray.includes(queryInputValue)) {
       setSelectedQuery(queryInputValue);
-      if (paperObj[queryInputValue]) {
-        setPapersToDisplay(paperObj[queryInputValue]);
-      }
+      const json = {
+        uid: user.uid,
+        search_query: queryInputValue,
+      };
+      const response = await axios.post(
+        `${lambdaUrl}/fetchPapersRelatedToQuery`,
+        json
+      );
+      const papers = response.data;
+      console.log(papers);
+
+      setPapersToDisplay(papers);
+
       setError(false);
     } else {
       setError(true);
@@ -95,7 +113,7 @@ export default function Library() {
       Relevant: 0,
       Uncertain: 1,
       Irrelevant: 2,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
@@ -104,7 +122,7 @@ export default function Library() {
       Relevant: 1,
       Uncertain: 0,
       Irrelevant: 2,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
@@ -113,18 +131,17 @@ export default function Library() {
       Relevant: 2,
       Uncertain: 1,
       Irrelevant: 0,
-      Unselected: 3,
+      Untagged: 3,
     });
   };
 
   const handleSortByRelevance = (sortOrder) => {
     const sortedPapers = [...papersToDisplay].sort((a, b) => {
-      const relevanceA = a.Relevance || 'Untagged';
-      const relevanceB = b.Relevance || 'Untagged';
+      const relevanceA = a.relevance || 'Untagged';
+      const relevanceB = b.relevance || 'Untagged';
 
       return sortOrder[relevanceA] - sortOrder[relevanceB];
     });
-
     setPapersToDisplay(sortedPapers);
   };
 
@@ -212,14 +229,14 @@ export default function Library() {
                     handleSortByIrrelevant={sortIrrelevantFirst}
                   />
                 </div>
-                <button
+                {/* <button
                   type="button"
                   className="mt-auto mr-2 rounded bg-green-600 px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={handleRelevanceUpdateToFirebase}
                   disabled={updating}
                 >
                   {updating ? 'Updating..' : 'Update relevance'}
-                </button>{' '}
+                </button>{' '} */}
                 <div className="flex flex-col items-start mr-auto space-y-2 mt-4">
                   <div className="flex items-center space-x-2">
                     {/* <span className="text-m font-semibold text-gray-800">
@@ -281,9 +298,7 @@ export default function Library() {
                                   <a
                                     className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
                                     rel="noopener noreferrer"
-                                    onClick={() =>
-                                      openPdf(paper.openAccessPdf?.url || '')
-                                    }
+                                    onClick={() => openPdf(paper.url || '')}
                                   >
                                     {paper.title}
                                   </a>
@@ -294,10 +309,10 @@ export default function Library() {
 
                                 <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
                                   <RelevanceDropdown
-                                    relevance={paper.Relevance}
+                                    relevance={paper.relevance}
                                     onRelevanceChange={(newRelevance) =>
                                       handleRelevanceChange(
-                                        paper.paperId,
+                                        paper.title,
                                         newRelevance
                                       )
                                     }
