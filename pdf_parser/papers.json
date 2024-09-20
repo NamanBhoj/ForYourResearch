@@ -1,0 +1,1013 @@
+[
+  {
+    "paperId": "91b131e0aded1d1d316a997c2d7286e751edc389",
+    "title": "A Deep Learning-Based Framework for Uncertainty Quantification in Medical Imaging Using the DropWeak Technique: An Empirical Study with Baresnet",
+    "abstract": "Lung cancer is a leading cause of cancer-related deaths globally. Early detection is crucial for improving patient survival rates. Deep learning (DL) has shown promise in the medical field, but its accuracy must be evaluated, particularly in the context of lung cancer classification. In this study, we conducted uncertainty analysis on various frequently used DL architectures, including Baresnet, to assess the uncertainties in the classification results. This study focuses on the use of deep learning for the classification of lung cancer, which is a critical aspect of improving patient survival rates. The study evaluates the accuracy of various deep learning architectures, including Baresnet, and incorporates uncertainty quantification to assess the level of uncertainty in the classification results. The study presents a novel automatic tumor classification system for lung cancer based on CT images, which achieves a classification accuracy of 97.19% with an uncertainty quantification. The results demonstrate the potential of deep learning in lung cancer classification and highlight the importance of uncertainty quantification in improving the accuracy of classification results. This study’s novelty lies in the incorporation of uncertainty quantification in deep learning for lung cancer classification, which can lead to more reliable and accurate diagnoses in clinical settings.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.mdpi.com/2075-4418/13/4/800/pdf?version=1676893453",
+      "status": "GOLD"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "4300d6082e71e909d3bbd17d60fcbaf4bd9718f5",
+    "title": "Investigating and Improving Latent Density Segmentation Models for Aleatoric Uncertainty Quantification in Medical Imaging",
+    "abstract": "Data uncertainties, such as sensor noise, occlusions or limitations in the acquisition method can introduce irreducible ambiguities in images, which result in varying, yet plausible, semantic hypotheses. In Machine Learning, this ambiguity is commonly referred to as aleatoric uncertainty. In image segmentation, latent density models can be utilized to address this problem. The most popular approach is the Probabilistic U-Net (PU-Net), which uses latent Normal densities to optimize the conditional data log-likelihood Evidence Lower Bound. In this work, we demonstrate that the PU-Net latent space is severely sparse and heavily under-utilized. To address this, we introduce mutual information maximization and entropy-regularized Sinkhorn Divergence in the latent space to promote homogeneity across all latent dimensions, effectively improving gradient-descent updates and latent space informativeness. Our results show that by applying this on public datasets of various clinical segmentation problems, our proposed methodology receives up to 11% performance gains compared against preceding latent variable models for probabilistic segmentation on the Hungarian-Matched Intersection over Union. The results indicate that encouraging a homogeneous latent space significantly improves latent density modeling for medical image segmentation.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "47e2f64ba0487ac5ca538e677abe0be3d44b6cd3",
+    "title": "Uncertainty Quantiﬁcation in End-to-End Implicit Neural Representations for Medical Imaging",
+    "abstract": "Implicit neural representations (INRs) have recently achieved impressive results in image representation. This work explores the uncertainty quantiﬁcation quality of INRs for medical imaging. We propose the ﬁrst uncertainty aware, end-to-end INR architecture for computed tomography (CT) image reconstruction. Four established neural network uncertainty quantiﬁcation techniques – deep ensembles, Monte Carlo dropout, Bayes-by-backpropagation, and Hamiltonian Monte Carlo – are implemented and assessed according to both image reconstruction quality and model calibration. We ﬁnd that these INRs outperform traditional medical image reconstruction algorithms according to predictive accuracy; deep ensembles of Monte Carlo dropout base-learners achieve the best image reconstruction and model calibration among the techniques tested; activation function and random Fourier feature embedding frequency have large effects on model performance; and Bayes-by-backpropogation is ill-suited for sampling from the INR posterior distributions. Preliminary results further indicate that, with adequate tuning, Hamiltonian Monte Carlo may outperform Monte Carlo dropout deep ensembles.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "b5eddacf3667ca2615836ad42b3d01b61bdd6a96",
+    "title": "Analog In-Memory Computing with Uncertainty Quantification for Efficient Edge-based Medical Imaging Segmentation",
+    "abstract": "This work investigates the role of the emerging Analog In-memory computing (AIMC) paradigm in enabling Medical AI analysis and improving the certainty of these models at the edge. It contrasts AIMC's efficiency with traditional digital computing's limitations in power, speed, and scalability. Our comprehensive evaluation focuses on brain tumor analysis, spleen segmentation, and nuclei detection. The study highlights the superior robustness of isotropic architectures, which exhibit a minimal accuracy drop (0.04) in analog-aware training, compared to significant drops (up to 0.15) in pyramidal structures. Additionally, the paper emphasizes IMC's effective data pipelining, reducing latency and increasing throughput as well as the exploitation of inherent noise within AIMC, strategically harnessed to augment model certainty.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "6835ce26dced0ab42960f80d9f0ee77ac23773d3",
+    "title": "Hercules: Deep Hierarchical Attentive Multilevel Fusion Model With Uncertainty Quantification for Medical Image Classification",
+    "abstract": "The automatic and accurate analysis of medical images (e.g., segmentation,detection, classification) are prerequisites for modern disease diagnosis and prognosis. Computer-aided diagnosis (CAD) systems empower accurate and effective detection of various diseases and timely treatment decisions. The past decade witnessed a spur in deep learning (DL)-based CADs showing outstanding performance across many health care applications. Medical imaging is hindered by multiple sources of uncertainty ranging fromnteasurement (aleatoric) errors, physiological variability, and limited medical knowledge (epistemic errors). However, uncertainty quantification (UQ) in most existing DL methods is insufficiently investigated, particularly in medical image analysis. Therefore, to address this gap, in this article, we propose a simple yet novel hierarchical attentive multilevel feature fusion model with an uncertainty-aware module for medical image classification coined Hercules. This approach is tested on several real medical image classification challenges. The proposed Hercules model consists of two main feature fusion blocks, where the former concentrates on attention-based fusion with uncertainty quantification module and the latter uses the raw features. Hercules was evaluated across three medical imaging datasets, i.e., retinal OCT, lung CT, and chest X-ray. Hercules produced the best classification accuracy in retinal OCT (94.21%), lung CT (99.59%), and chest X-ray (96.50%) datasets, respectively, against other state-of-the-art medical image classification methods.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://pure.manchester.ac.uk/ws/files/272563096/Hercules_UncertaintyQuantification_MedicalImageClassification_IEEE_TII2022.pdf",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "65d4cdace8f09a4b3c627cdf0edeeea83aca6a71",
+    "title": "Probabilistic 3D segmentation for aleatoric uncertainty quantification in full 3D medical data",
+    "abstract": "Uncertainty quantification in medical images has become an essential addition to segmentation models for practical application in the real world. Although there are valuable developments in accurate uncertainty quantification methods using 2D images and slices of 3D volumes, in clinical practice, the complete 3D volumes (such as CT and MRI scans) are used to evaluate and plan the medical procedure. As a result, the existing 2D methods miss the rich 3D spatial information when resolving the uncertainty. A popular approach for quantifying the ambiguity in the data is to learn a distribution over the possible hypotheses. In recent work, this ambiguity has been modeled to be strictly Gaussian. Normalizing Flows (NFs) are capable of modelling more complex distributions and thus, better fit the embedding space of the data. To this end, we have developed a 3D probabilistic segmentation framework augmented with NFs, to enable capturing the distributions of various complexity. To test the proposed approach, we evaluate the model on the LIDC-IDRI dataset for lung nodule segmentation and quantify the aleatoric uncertainty introduced by the multi-annotator setting and inherent ambiguity in the CT data. Following this approach, we are the first to present a 3D Squared Generalized Energy Distance (D2 GED) of 0.401 and a high 0.468 Hungarian-matched 3D IoU. The obtained results reveal the value in capturing the 3D uncertainty, using a flexible posterior distribution augmented with a Normalizing Flow. Finally, we present the aleatoric uncertainty in a visual manner with the aim to provide clinicians with additional insight into data ambiguity and facilitating more informed decision-making.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2305.00950",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "8e8f00e5cc9f6460b08f78e51efe5a6d1cd4638f",
+    "title": "Conformal Prediction Masks: Visualizing Uncertainty in Medical Imaging",
+    "abstract": null,
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "ccc5669c24e162993bf89a4109a03ce6a8aaa8b8",
+    "title": "Uncertainty-Aware Ensemble Learning Models for Out-of-Distribution Medical Imaging Analysis",
+    "abstract": "Advanced deep-learning techniques have been employed to develop clinical decision support systems for diagnosis and prognosis using medical images. However, the presence of out-of-distribution (OOD) samples, which deviate from the training data distribution, poses a significant challenge. Accurate quantification of the predictive uncertainty is crucial for ensuring reliable and dependable implementation in medical settings as a clinical decision support system. In this work, we propose an ensemble model to derive predictive uncertainty estimates for uncertainty quantification on OOD medical imaging. Specifically, the models are initialized with ImageNet pre-trained weights and fine-tuned on chest Computed Tomography (CT). Moreover, we utilize Grad-CAM to visualize and interpret the areas of the image that contribute most to the model’s predictions and uncertainty estimates. This visualization technique enhances the in-terpretability of our ensemble model and supports more informed clinical decision-making. Through extensive experiments on three Chest CT datasets, we have demonstrated the effectiveness of our approach in estimating uncertainty under domain shifting. Our results provide valuable insights into the reliability and specificity of deep ensemble uncertainty predictions in medical image analysis. Our Uncertainty-Aware Ensemble (UAE) approach can enable reliable and transparent predictions for safety-critical medical applications.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "0ded8f25e658144a6b99dc466e39b8fee5eb26f0",
+    "title": "Inter-Rater Uncertainty Quantification in Medical Image Segmentation via Rater-Specific Bayesian Neural Networks",
+    "abstract": "Automated medical image segmentation inherently involves a certain degree of uncertainty. One key factor contributing to this uncertainty is the ambiguity that can arise in determining the boundaries of a target region of interest, primarily due to variations in image appearance. On top of this, even among experts in the field, different opinions can emerge regarding the precise definition of specific anatomical structures. This work specifically addresses the modeling of segmentation uncertainty, known as inter-rater uncertainty. Its primary objective is to explore and analyze the variability in segmentation outcomes that can occur when multiple experts in medical imaging interpret and annotate the same images. We introduce a novel Bayesian neural network-based architecture to estimate inter-rater uncertainty in medical image segmentation. Our approach has three key advancements. Firstly, we introduce a one-encoder-multi-decoder architecture specifically tailored for uncertainty estimation, enabling us to capture the rater-specific representation of each expert involved. Secondly, we propose Bayesian modeling for the new architecture, allowing efficient capture of the inter-rater distribution, particularly in scenarios with limited annotations. Lastly, we enhance the rater-specific representation by integrating an attention module into each decoder. This module facilitates focused and refined segmentation results for each rater. We conduct extensive evaluations using synthetic and real-world datasets to validate our technical innovations rigorously. Our method surpasses existing baseline methods in five out of seven diverse tasks on the publicly available \\emph{QUBIQ} dataset, considering two evaluation metrics encompassing different uncertainty aspects. Our codes, models, and the new dataset are available through our GitHub repository: https://github.com/HaoWang420/bOEMD-net .",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2306.16556",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "864c4fb8e4cc4adc3e890307eaa8f48ef5a57e59",
+    "title": "Calibrating Ensembles for Scalable Uncertainty Quantification in Deep Learning-based Medical Segmentation",
+    "abstract": "Uncertainty quantification in automated image analysis is highly desired in many applications. Typically, machine learning models in classification or segmentation are only developed to provide binary answers; however, quantifying the uncertainty of the models can play a critical role for example in active learning or machine human interaction. Uncertainty quantification is especially difficult when using deep learning-based models, which are the state-of-the-art in many imaging applications. The current uncertainty quantification approaches do not scale well in high-dimensional real-world problems. Scalable solutions often rely on classical techniques, such as dropout, during inference or training ensembles of identical models with different random seeds to obtain a posterior distribution. In this paper, we show that these approaches fail to approximate the classification probability. On the contrary, we propose a scalable and intuitive framework to calibrate ensembles of deep learning models to produce uncertainty quantification measurements that approximate the classification probability. On unseen test data, we demonstrate improved calibration, sensitivity (in two out of three cases) and precision when being compared with the standard approaches. We further motivate the usage of our method in active learning, creating pseudo-labels to learn from unlabeled images and human-machine collaboration.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2209.09563",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "1dd948fb902334cd80ef7c0dc27d5dc98e254285",
+    "title": "Uncertainty Quantification and Estimation in Medical Image Classification",
+    "abstract": null,
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "4dfdb67f6ca4c1faa0596779eb6a9721b4f9ea0c",
+    "title": "Bayesian Inference and Uncertainty Quantification for Medical Image Reconstruction with Poisson Data",
+    "abstract": "We provide a complete framework for performing infinite dimensional Bayesian inference and uncertainty quantification for image reconstruction with Poisson data. In particular, we address the follo...",
+    "year": 2020,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://pure-oai.bham.ac.uk/ws/files/90984952/19m1248352.pdf",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "1517327565e00b52e4dd914d054f4c1e5a19bf6c",
+    "title": "Amortized Normalizing Flows for Transcranial Ultrasound with Uncertainty Quantification",
+    "abstract": "We present a novel approach to transcranial ultrasound computed tomography that utilizes normalizing flows to improve the speed of imaging and provide Bayesian uncertainty quantification. Our method combines physics-informed methods and data-driven methods to accelerate the reconstruction of the final image. We make use of a physics-informed summary statistic to incorporate the known ultrasound physics with the goal of compressing large incoming observations. This compression enables efficient training of the normalizing flow and standardizes the size of the data regardless of imaging configurations. The combinations of these methods results in fast uncertainty-aware image reconstruction that generalizes to a variety of transducer configurations. We evaluate our approach with in silico experiments and demonstrate that it can significantly improve the imaging speed while quantifying uncertainty. We validate the quality of our image reconstructions by comparing against the traditional physics-only method and also verify that our provided uncertainty is calibrated with the error.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2303.03478",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c235b9ef2b205a55618e18125159832df55baf00",
+    "title": "Adjoint operators enable fast and amortized machine learning based Bayesian uncertainty quantification",
+    "abstract": "In the context of machine learning for uncertainty quantification (UQ) of inverse problems: we propose to first transform input observations using the adjoint. We demonstrate with two imaging examples (photoacoustic imaging and CT) that firstly: the adjoint partially undoes the physics of the problem resulting in faster convergence of the learning phase and secondly: the final algorithm is now robust to changes in observations such as changing transducer subsampling in photoacoustic imaging and angles in CT. Our adjoint-based method gives point estimates faster than traditional baselines and with higher SSIM metrics, while also providing validated UQ.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://ir.cwi.nl/pub/33012/33012.pdf",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "49e294319811fa4d122dcbd127e15188825d8c8e",
+    "title": "Federated Conformal Predictors for Distributed Uncertainty Quantification",
+    "abstract": "Conformal prediction is emerging as a popular paradigm for providing rigorous uncertainty quantification in machine learning since it can be easily applied as a post-processing step to already trained models. In this paper, we extend conformal prediction to the federated learning setting. The main challenge we face is data heterogeneity across the clients - this violates the fundamental tenet of exchangeability required for conformal prediction. We propose a weaker notion of partial exchangeability, better suited to the FL setting, and use it to develop the Federated Conformal Prediction (FCP) framework. We show FCP enjoys rigorous theoretical guarantees and excellent empirical performance on several computer vision and medical imaging datasets. Our results demonstrate a practical approach to incorporating meaningful uncertainty quantification in distributed and heterogeneous environments. We provide code used in our experiments https://github.com/clu5/federated-conformal.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2305.17564",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c879f498d3baf174861a9935d3c0c28604c4e86d",
+    "title": "Uncertainty for Safe Utilization of Machine Learning in Medical Imaging, and Graphs in Biomedical Image Analysis: Second International Workshop, UNSURE 2020, and Third International Workshop, GRAIL 2020, Held in Conjunction with MICCAI 2020, Lima, Peru, October 8, 2020, Proceedings",
+    "abstract": null,
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "e097dbc10d64af0cee477022e994cf2898935e06",
+    "title": "Uncertainty Quantification in Medical Image Segmentation",
+    "abstract": "In medical images, the observer's manual description of different structures is very different, and it spans a wide range of various structures and pathologies. This variability (which is a characteristic of biological issues, imaging modality and expert annotators) has not been fully considered in the design of computer algorithms for medical image quantification. So far, few people predict the uncertainty of medical image segmentation. In this paper, we designed a V-shaped network to quantify the uncertainty in prostate MRI image segmentation. We have embedded a feature pyramid attention module in the backbone network, which can extract high-level semantic context information at different scales and provide a pixel-level attention to the decoder. At the same time, the module will not bring a large computational burden. In our experiments, we tested the performance of the proposed method on 55 clinical subjects.",
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "7c9dc927d0011dd13de425d8daf77802f92be91a",
+    "title": "Scalable Bayesian Uncertainty Quantification in Imaging Inverse Problems via Convex Optimization",
+    "abstract": "We propose a Bayesian uncertainty quantification method for large-scale imaging inverse problems. Our method applies to all Bayesian models that are log-concave, where maximum-a-posteriori (MAP) estimation is a convex optimization problem. The method is a framework to analyse the confidence in specific structures observed in MAP estimates (e.g., lesions in medical imaging, celestial sources in astronomical imaging), to enable using them as evidence to inform decisions and conclusions. Precisely, following Bayesian decision theory, we seek to assert the structures under scrutiny by performing a Bayesian hypothesis test that proceeds as follows: firstly, it postulates that the structures are not present in the true image, and then seeks to use the data and prior knowledge to reject this null hypothesis with high probability. Computing such tests for imaging problems is generally very difficult because of the high dimensionality involved. A main feature of this work is to leverage probability concentration phenomena and the underlying convex geometry to formulate the Bayesian hypothesis test as a convex problem, that we then efficiently solve by using scalable optimization algorithms. This allows scaling to high-resolution and high-sensitivity imaging problems that are computationally unaffordable for other Bayesian computation approaches. We illustrate our methodology, dubbed BUQO (Bayesian Uncertainty Quantification by Optimization), on a range of challenging Fourier imaging problems arising in astronomy and medicine.",
+    "year": 2018,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/1803.00889",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c885008b63688ab17f0b97dc873e508e3a6d0d19",
+    "title": "Uncertainty Quantification in Astro-Imaging by Optimisation",
+    "abstract": "In our recent work [1], we proposed a Bayesian uncertainty quantification method for large scale imaging inverse problems. It aims to analyse the confidence in specific structures observed in maximum a posteriori (MAP) estimates (e.g., lesions in medical imaging, celestial sources in astronomical imaging), assuming a log-concave Bayesian model. This information can subsequently be used as evidence to inform decisions and conclusions. We propose to perform a hypothesis test on the structures of interest, to assert their uncertainty. The test is formulated as a convex minimisation problem, enabling the use of advanced optimisation algorithms. In this abstract we summarise the proposed Bayesian Uncertainty Quantification by Optimisation (BUQO) method and we provide results obtained on real data in the context of radio-astronomical imaging. I. IMAGING INVERSE PROBLEMS In many imaging inverse problems, the objective is to find an estimate x† ∈ R of an original unknown image x ∈ R from a degraded observation y = Φx + w, where Φ ∈ CM×N is the measurement linear operator and w ∈ C is a realization of a random noise. In this work, we assume that the noise has a bounded energy per block, i.e. there exist (εd)1≤d≤D ∈]0,+∞[ such that ‖wd‖2 ≤ εd, wd ∈ Cd , M = M1 + . . . + Md, and w = (wd)1≤d≤D . The forward model can then be rewritten as yd = Φdx + wd, where Φd ∈ CMd×N is a subpart of Φ mapping x to yd ∈ Cd . A common Bayesian approach consists in modelling x as a random vector with prior distribution p(x) that is log-concave, and using a MAP estimation given by x† ∈ Argmin fy +g, where fy(x) = − log p(y|x) is associated with the forward model and g(x) = − log p(x). In particular, we use fy(x) = ∑D d=1 ιB2(yd,εd)(Φdx). and g(x) = ι[0,+∞[N (x)+λ‖Ψx‖1, where Ψ ∈ RL×N is a sparsity basis and λ > 0. The MAP approach provides a single point estimate that can be easily visually analysed. Nevertheless, in many applications it is necessary to analyse as well the uncertainty in the delivered solutions. We propose to address this point by leveraging probability concentration phenomena and the model’s underlying convex geometry to formulate Bayesian hypothesis tests as convex minimisation problems.",
+    "year": 2019,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "1b0cbf49580883157dc2e674e64270b16656aed3",
+    "title": "Lowering the computational barrier: Partially Bayesian neural networks for transparency in medical imaging AI",
+    "abstract": "Deep Neural Networks (DNNs) can provide clinicians with fast and accurate predictions that are highly valuable for high-stakes medical decision-making, such as in brain tumor segmentation and treatment planning. However, these models largely lack transparency about the uncertainty in their predictions, potentially giving clinicians a false sense of reliability that may lead to grave consequences in patient care. Growing calls for Transparent and Responsible AI have promoted Uncertainty Quantification (UQ) to capture and communicate uncertainty in a systematic and principled manner. However, traditional Bayesian UQ methods remain prohibitively costly for large, million-dimensional tumor segmentation DNNs such as the U-Net. In this work, we discuss a computationally-efficient UQ approach via the partially Bayesian neural networks (pBNN). In pBNN, only a single layer, strategically selected based on gradient-based sensitivity analysis, is targeted for Bayesian inference. We illustrate the effectiveness of pBNN in capturing the full uncertainty for a 7.8-million parameter U-Net. We also demonstrate how practitioners and model developers can use the pBNN's predictions to better understand the model's capabilities and behavior.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.frontiersin.org/articles/10.3389/fcomp.2023.1071174/pdf",
+      "status": "GOLD"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "46fca1bd8514aad2f36ea40e7e5687e30ae925ea",
+    "title": "Uncertainty Quantification for Eosinophil Segmentation",
+    "abstract": "Eosinophilic Esophagitis (EoE) is an allergic condition increasing in prevalence. To diagnose EoE, pathologists must find 15 or more eosinophils within a single high-power field (400X magnification). Determining whether or not a patient has EoE can be an arduous process and any medical imaging approaches used to assist diagnosis must consider both efficiency and precision. We propose an improvement of Adorno et al’s approach for quantifying eosinphils using deep image segmentation. Our new approach leverages Monte Carlo Dropout, a common approach in deep learning to reduce overfitting, to provide uncertainty quantification on current deep learning models. The uncertainty can be visualized in an output image to evaluate model performance, provide insight to how deep learning algorithms function, and assist pathologists in identifying eosinophils.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://dl.acm.org/doi/pdf/10.1145/3632047.3632050",
+      "status": "HYBRID"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "89866217f927dfd018f32c520385e347ed1dbdef",
+    "title": "Edge-aware Multi-task Network for Integrating Quantification Segmentation and Uncertainty Prediction of Liver Tumor on Multi-modality Non-contrast MRI",
+    "abstract": "Simultaneous multi-index quantification, segmentation, and uncertainty estimation of liver tumors on multi-modality non-contrast magnetic resonance imaging (NCMRI) are crucial for accurate diagnosis. However, existing methods lack an effective mechanism for multi-modality NCMRI fusion and accurate boundary information capture, making these tasks challenging. To address these issues, this paper proposes a unified framework, namely edge-aware multi-task network (EaMtNet), to associate multi-index quantification, segmentation, and uncertainty of liver tumors on the multi-modality NCMRI. The EaMtNet employs two parallel CNN encoders and the Sobel filters to extract local features and edge maps, respectively. The newly designed edge-aware feature aggregation module (EaFA) is used for feature fusion and selection, making the network edge-aware by capturing long-range dependency between feature and edge maps. Multi-tasking leverages prediction discrepancy to estimate uncertainty and improve segmentation and quantification performance. Extensive experiments are performed on multi-modality NCMRI with 250 clinical subjects. The proposed model outperforms the state-of-the-art by a large margin, achieving a dice similarity coefficient of 90.01$\\pm$1.23 and a mean absolute error of 2.72$\\pm$0.58 mm for MD. The results demonstrate the potential of EaMtNet as a reliable clinical-aided tool for medical image analysis.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2307.01798",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "0068951933767006cce00c86cdc1a4a836d162f1",
+    "title": "Robust adversarial uncertainty quantification for deep learning fine-tuning",
+    "abstract": null,
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://link.springer.com/content/pdf/10.1007/s11227-023-05087-5.pdf",
+      "status": "HYBRID"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "a651d971206e7b85b46d066e80a9e8ffb1548f09",
+    "title": "Improving Trustworthiness of AI Disease Severity Rating in Medical Imaging with Ordinal Conformal Prediction Sets",
+    "abstract": "The regulatory approval and broad clinical deployment of medical AI have been hampered by the perception that deep learning models fail in unpredictable and possibly catastrophic ways. A lack of statistically rigorous uncertainty quantiﬁcation is a signiﬁcant factor undermining trust in AI results. Recent developments in distribution-free uncertainty quantiﬁcation present practical solutions for these issues by providing reliability guarantees for black-box models on arbitrary data distributions as formally valid ﬁnite-sample prediction intervals. Our work applies these new uncertainty quantiﬁcation methods — speciﬁcally conformal prediction — to a deep-learning model for grading the severity of spinal stenosis in lumbar spine MRI. We demonstrate a technique for forming ordinal prediction sets that are guaranteed to contain the correct stenosis severity within a user-deﬁned probability (conﬁdence interval). On a dataset of 409 MRI exams processed by the deep-learning model, the conformal method provides tight coverage with small prediction set sizes. Further-more, we explore the potential clinical applicability of ﬂagging cases with high uncertainty predictions (large prediction sets) by quantifying an in-crease in the prevalence of signiﬁcant imaging abnormalities (e.g. motion artifacts, metallic artifacts, and tumors) that could degrade conﬁdence in predictive performance when compared to a random sample of cases.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2207.02238",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "40f966a2d49e0d04b57d504db012da9a3b8eb77b",
+    "title": "Structured illumination microscopy with uncertainty quantification",
+    "abstract": "Deep learning shows great potential for super-resolution microscopy, offering biological structures visualization with unprecedented details and high flexibility. An effective pathway toward this goal is structured illumination microscopy (SIM) augmented by deep learning because of its ability to double the resolution beyond the light diffraction limit in real-time. Although the deep-learning-based SIM technique works effectively, it is generally a black box that is difficult to explain the latent principle. Thus, the generated super-resolution biological structures contain unconvinced information for clinical diagnosis. This limitation impedes its further applications in safety-critical fields like medical imaging. In this paper, we report a reliable deep-learning-based SIM technique with uncertainty maps. These uncertainty maps characterize imperfections in various disturbances, such as measurement noise, model error, incomplete training data, and out-of-distribution testing data. Specifically, we employ a Bayesian convolutional neural network to quantify uncertainty and explore its application in SIM. The backbone of the reported neural network is the combination of U-net and Res-net with three low-resolution images from different structured illumination angles as inputs. The outputs are high-resolution images with double resolution beyond the numerical aperture and the pixel-wise confidence intervals quantification of reconstruction images. A series of simulations and experiments validate that the reported uncertainty quantification framework offers reliable uncertainty maps and high-fidelity super resolution images. Our work may promote practical applications of deep-learning-based super-resolution microscopy.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "b34210e216ee4cd9773b0762cd0ad071a22b22e6",
+    "title": "Inferring Object Boundaries and Their Roughness with Uncertainty Quantification",
+    "abstract": null,
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "6bb771673608e62d1f9763d260d4adb449c59530",
+    "title": "Practical uncertainty quantification for brain tumor segmentation",
+    "abstract": "Despite U-Nets being the de-facto standard for medical image segmentation, researchers have identified shortcomings of U-Nets, such as overconfidence and poor out-of-distribution generalization. Several methods for uncertainty quantification try to solve such problems by relying on well-known approximations such as Monte-Carlo Drop-Out, Probabilistic U-Net, and Stochastic Segmentation Networks. We introduce a novel multi-headed Variational U-Net. The proposed approach combines the global exploration capabilities of deep ensembles with the out-of-distribution robustness of Variational Inference. An efficient training strategy and an expressive yet general design ensure superior uncertainty quantification within a reasonable compute requirement. We thoroughly analyze the performance and properties of our approach on the publicly available BRATS2018 dataset. Further, we test our model on four commonly observed distribution shifts. The proposed approach has good uncertainty calibration and is robust to out-of-distribution shifts.",
+    "year": 2022,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "8cba68167e540e63bd0507c5792fcbab5201c862",
+    "title": "Uncertainty Quantification in Machine Learning Based Segmentation: A Post-Hoc Approach for Left Ventricle Volume Estimation in MRI",
+    "abstract": "Recent studies have confirmed cardiovascular diseases remain responsible for highest death toll amongst non-communicable diseases. Accurate left ventricular (LV) volume estimation is critical for valid diagnosis and management of various cardiovascular conditions, but poses significant challenge due to inherent uncertainties associated with segmentation algorithms in magnetic resonance imaging (MRI). Recent machine learning advancements, particularly U-Net-like convolutional networks, have facilitated automated segmentation for medical images, but struggles under certain pathologies and/or different scanner vendors and imaging protocols. This study proposes a novel methodology for post-hoc uncertainty estimation in LV volume prediction using It\\^{o} stochastic differential equations (SDEs) to model path-wise behavior for the prediction error. The model describes the area of the left ventricle along the heart's long axis. The method is agnostic to the underlying segmentation algorithm, facilitating its use with various existing and future segmentation technologies. The proposed approach provides a mechanism for quantifying uncertainty, enabling medical professionals to intervene for unreliable predictions. This is of utmost importance in critical applications such as medical diagnosis, where prediction accuracy and reliability can directly impact patient outcomes. The method is also robust to dataset changes, enabling application for medical centers with limited access to labeled data. Our findings highlight the proposed uncertainty estimation methodology's potential to enhance automated segmentation robustness and generalizability, paving the way for more reliable and accurate LV volume estimation in clinical settings as well as opening new avenues for uncertainty quantification in biomedical image segmentation, providing promising directions for future research.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2a85ce308fdb709378814165df35ed8668cd72ec",
+    "title": "A Comparison of Uncertainty Quantification Methods for Active Learning in Image Classification",
+    "abstract": "The adoption of machine learning (ML) technology in real-world settings like medical imaging is currently hampered by a lack of trust in ML models and a lack of labeled data. These two issues are currently addressed in parallel by two subdisciplines of ML: uncertainty quantification (UQ) is concerned with obtaining reliable estimates of a model's confidence in its outputs, and active learning (AL) deals with efficiently training models in low-data regimes. To date, the usefulness of the new methods emerging from the field of UQ for AL remains under-explored. We here take a step to address this by comparing seven different UQ methods on three image classification data sets. Our experiments confirm previous indications in the AL literature that the ranking of sampling strategies can vary greatly across models and data sets. We find that Concrete Dropout, Least Confidence, Smallest Margin, and Entropy sampling consistently outperform Random sampling across data sets, whereas Ensembles, Monte-Carlo Dropout, and Bayes-by-Backprop do not. We also observe that AL training stability is sensitive to data quality.",
+    "year": 2022,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "65c94ddd3f2e8a01c7387e3893b3c1dbac66e012",
+    "title": "Uncertainty Quantification and Resource-Demanding Computer Vision Applications of Deep Learning",
+    "abstract": "Bringing deep neural networks (DNNs) into safety critical applications such as automated driving, medical imaging and finance, requires a thorough treatment of the model's uncertainties. Training deep neural networks is already resource demanding and so is also their uncertainty quantification. In this overview article, we survey methods that we developed to teach DNNs to be uncertain when they encounter new object classes. Additionally, we present training methods to learn from only a few labels with help of uncertainty quantification. Note that this is typically paid with a massive overhead in computation of an order of magnitude and more compared to ordinary network training. Finally, we survey our work on neural architecture search which is also an order of magnitude more resource demanding then ordinary network training.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2205.14917",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "4043785dacd1c04ed93ec1c08ecf779f4e1717fc",
+    "title": "A Review of Deep Learning in Medical Imaging: Imaging Traits, Technology Trends, Case Studies With Progress Highlights, and Future Promises",
+    "abstract": "Since its renaissance, deep learning (DL) has been widely used in various medical imaging tasks and has achieved remarkable success in many medical imaging applications, thereby propelling us into the so-called artificial intelligence (AI) era. It is known that the success of AI is mostly attributed to the availability of big data with annotations for a single task and the advances in high-performance computing. However, medical imaging presents unique challenges that confront DL approaches. In this survey article, we first present traits of medical imaging, highlight both clinical needs and technical challenges in medical imaging, and describe how emerging trends in DL are addressing these issues. We cover the topics of network architecture, sparse and noisy labels, federating learning, interpretability, uncertainty quantification, and so on. Then, we present several case studies that are commonly found in clinical practice, including digital pathology and chest, brain, cardiovascular, and abdominal imaging. Rather than presenting an exhaustive literature survey, we instead describe some prominent research highlights related to these case study applications. We conclude with a discussion and presentation of promising future directions.",
+    "year": 2020,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c6412d75a820c3b762115471ae03d5ae9089b013",
+    "title": "Direct quantification of epistemic and aleatoric uncertainty in 3D U-net segmentation",
+    "abstract": "Abstract. Purpose: To derive a multinomial probability function and quantitative measures of the data and epistemic uncertainty as direct output of a 3D U-Net segmentation network. Approach: A set of T1 brain MRI images were downloaded from the Connectome Project and segmented using FMRIB’s FAST algorithm to be used as ground truth. A 3D U-Net neural network was trained with sample sizes of 200, 500, and 898 T1 brain images using a loss function defined as the negative logarithm of the likelihood based on a derivation of the definition of the multinomial probability function. From this definition, the epistemic and aleatoric uncertainty equations were derived and used to quantify maps of the uncertainty along with tissue segmentations. Results: Maps of the tissue segmentation along with the epistemic and aleatoric uncertainty, per voxel, are presented. The uncertainty decreased based on the increasing number of training data used to train the neural network. The neural network trained with 898 volumes resulted in uncertainty maps that were high primarily in the tissue boundary regions. The epistemic and aleatoric uncertainty were averaged over all test data (connectome and tumor separately), and the epistemic uncertainty showed a decreasing trend, as expected, with increasing numbers of data used to train the model. The aleatoric uncertainty showed a similar trend which was also expected as the aleatoric uncertainty is not expected to be as dependent on the number of training data. Conclusion: The derived uncertainty equations from a multinomial probability distribution were able to quantify the aleatoric and epistemic uncertainty per voxel and are applicable for all two-dimensional and three-dimensional neural networks.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2ab7cb880d4323323f0da1f63f28b9f169244371",
+    "title": "SoftDropConnect (SDC) - Effective and Efficient Quantification of the Network Uncertainty in Deep MR Image Analysis",
+    "abstract": "Recently, deep learning has achieved remarkable successes in medical image analysis. Although deep neural networks generate clinically important predictions, they have inherent uncertainty. Such uncertainty is a major barrier to report these predictions with confidence. In this paper, we propose a novel yet simple Bayesian inference approach called SoftDropConnect (SDC) to quantify the network uncertainty in medical imaging tasks with gliomas segmentation and metastases classification as initial examples. Our key idea is that during training and testing SDC modulates network parameters continuously so as to allow affected information processing channels still in operation, instead of disabling them as Dropout or DropConnet does. When compared with three popular Bayesian inference methods including Bayes By Backprop, Dropout, and DropConnect, our SDC method (SDC-W after optimization) outperforms the three competing methods with a substantial margin. Quantitatively, our proposed method generates substantial improvements in prediction accuracy (by 3.4%, 2.5%, and 6.7% respectively for whole tumor segmentation in terms of dice score; and by 11.7%, 3.9%, and 8.7% respectively for brain metastases classification) and greatly reduced epistemic and aleatoric uncertainties. Our approach promises to deliver better diagnostic performance and make medical AI imaging more explainable and trustworthy.",
+    "year": 2022,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "bd1cfbd9d5c1eda12483873a083f46865ba0dd25",
+    "title": "Early Exit Ensembles for Uncertainty Quantification",
+    "abstract": "Deep learning is increasingly used for decision-making in health applications. However, commonly used deep learning models are deterministic and are unable to provide any estimate of predictive uncertainty. Quantifying model uncertainty is crucial for reducing the risk of misdiagnosis by informing practitioners of low-confident predictions. To address this issue, we propose early exit ensembles, a novel framework capable of capturing predictive uncertainty via an implicit ensemble of early exits. We evaluate our approach on the task of classification using three state-of-the-art deep learning architectures applied to three medical imaging datasets. Our experiments show that early exit ensembles provide better-calibrated uncertainty compared to Monte Carlo dropout and deep ensembles using just a single forward-pass of the model. Depending on the dataset and base-line, early exit ensembles can improve uncertainty metrics up to 2 × , while increasing accuracy by up to 2% over its single model counter-part. Finally, our results suggest that by providing well-calibrated predictive uncertainty for both in-and out-of-distribution inputs, early exit ensembles have the potential to improve trustworthiness of models in high-risk medical decision-making.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "7baef248882eefb1000c91406cb5f77c49fdc9fa",
+    "title": "A Mean-Field Variational Inference Approach to Deep Image Prior for Inverse Problems in Medical Imaging",
+    "abstract": "Exploiting the deep image prior property of convolutional auto-encoder networks is especially interesting for medical image processing as it avoids hallucinations by omitting supervised learning. Its spectral bias towards lower frequencies makes it suitable for inverse image problems such as denoising and super-resolution, but manual early stopping has to be applied to act as a low-pass ﬁlter. In this paper, we present a novel Bayesian approach to deep image prior using mean-ﬁeld variational inference. This allows for uncertainty quantiﬁcation on a per-pixel level and, given the right prior distribution on the network weights, omits the need for early stopping. We optimize the parameters of the weight prior towards reconstruction accuracy using Bayesian optimization with Gaussian Process regression. We evaluate our approach on diﬀerent inverse tasks on a variety of modalities and demonstrate that an optimized weight prior outperforms former state-of-the-art Bayesian deep image prior approaches. We show that a badly selected prior leads to worse accuracy and calibration and that it is suﬃcient to optimize the weight prior parameter per task domain.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "85b773849f8c3c40a931607f719c84c3e9fa6f9e",
+    "title": "Uncertainty quantification in non-rigid image registration via stochastic gradient Markov chain Monte Carlo",
+    "abstract": "We develop a new Bayesian model for non-rigid registration of three-dimensional medical images, with a focus on uncertainty quantification. Probabilistic registration of large images with calibrated uncertainty estimates is difficult for both computational and modelling reasons. To address the computational issues, we explore connections between the Markov chain Monte Carlo by backpropagation and the variational inference by backpropagation frameworks, in order to efficiently draw samples from the posterior distribution of transformation parameters. To address the modelling issues, we formulate a Bayesian model for image registration that overcomes the existing barriers when using a dense, high-dimensional, and diffeomorphic transformation parametrisation. This results in improved calibration of uncertainty estimates. We compare the model in terms of both image registration accuracy and uncertainty quantification to VoxelMorph, a state-of-the-art image registration model based on deep learning.",
+    "year": 2021,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.melba-journal.org/pdf/2021:016.pdf",
+      "status": "BRONZE"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "30fd30068c0ebf0694244704c07f31631ebdd6bd",
+    "title": "Evolutionary Strategies Enable Systematic and Reliable Uncertainty Quantification: A Proof-of-Concept Pilot Study on Resting-State Functional MRI Language Lateralization.",
+    "abstract": null,
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "22528647f1b09ba6ba7c575614022c4351b6c931",
+    "title": "Use of uncertainty quantification as a surrogate for layer segmentation error in Stargardt disease retinal OCT images",
+    "abstract": "Semantic segmentation methods based on deep learning techniques have transformed the analysis of many medical imaging modalities, including the extraction of retinal layers from ocular optical coherence tomography images. Despite the high accuracy of these methods, the automatic techniques are not free of labelling errors, which means that a clinician may need to engage in the time-consuming process of reviewing the outcome of the segmentation method. Given this shortcoming, having access to segmentation techniques that can provide a confidence metric associated with the output (probability class map) are desirable. In this study, the use of Monte-Carlo dropout combined with a residual U-net architecture is explored as a way to provide segmentation pixel-wise prediction maps as well as corresponding uncertainty maps. While assessing the proposed network on a dataset of subjects with a retinal pathology (Stargardt disease), the uncertainty map exhibited a high correlation with the boundary error metric. Thus, confirming the potential of the technique to extract metrics that are a surrogate of the segmentation error. While the Monte-Carlo dropout seems to have no detrimental effect on performance, the uncertainty metric derived from this technique has potential for a range of important clinical (i.e. ranking of scans to be reviewed by a human expert) and research (i.e. network fine-tuning with a focus on high uncertainty/high error regions) applications.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "4ad686451a9ea504db4bf1615f12fe2a62dedced",
+    "title": "Uncertainty quantification in medical image-based hemodynamic computations",
+    "abstract": "In this paper, we present a framework for uncertainty quantification in medical image-based patient-specific hemodynamic computations. To illustrate the overall methodology, we have used an aortic coarctation model for computing trans-stenotic pressure gradient. Variance-based Sobol sensitivity indices are used to evaluate the relative influence of the various uncertain measurements and model parameters on the global variance of the output. Next, a generalized Polynomial Chaos Expansion (PCE) method is used to quantify the uncertainties in the computed mean and peak pressure gradient in terms of a probability density functions and error bars over a full cardiac cycle.",
+    "year": 2014,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "a00c44d4951b1e2238565335ca2ff1f7313e1693",
+    "title": "Evaluating the Fairness of Deep Learning Uncertainty Estimates in Medical Image Analysis",
+    "abstract": "Although deep learning (DL) models have shown great success in many medical image analysis tasks, deployment of the resulting models into real clinical contexts requires: (1) that they exhibit robustness and fairness across different sub-populations, and (2) that the confidence in DL model predictions be accurately expressed in the form of uncertainties. Unfortunately, recent studies have indeed shown significant biases in DL models across demographic subgroups (e.g., race, sex, age) in the context of medical image analysis, indicating a lack of fairness in the models. Although several methods have been proposed in the ML literature to mitigate a lack of fairness in DL models, they focus entirely on the absolute performance between groups without considering their effect on uncertainty estimation. In this work, we present the first exploration of the effect of popular fairness models on overcoming biases across subgroups in medical image analysis in terms of bottom-line performance, and their effects on uncertainty quantification. We perform extensive experiments on three different clinically relevant tasks: (i) skin lesion classification, (ii) brain tumour segmentation, and (iii) Alzheimer's disease clinical score regression. Our results indicate that popular ML methods, such as data-balancing and distributionally robust optimization, succeed in mitigating fairness issues in terms of the model performances for some of the tasks. However, this can come at the cost of poor uncertainty estimates associated with the model predictions. This tradeoff must be mitigated if fairness models are to be adopted in medical image analysis.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2303.03242",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "575981faad47981954641a439b66f4b9fd499216",
+    "title": "FastSAM-3DSlicer: A 3D-Slicer Extension for 3D Volumetric Segment Anything Model with Uncertainty Quantification",
+    "abstract": "Accurate segmentation of anatomical structures and pathological regions in medical images is crucial for diagnosis, treatment planning, and disease monitoring. While the Segment Anything Model (SAM) and its variants have demonstrated impressive interactive segmentation capabilities on image types not seen during training without the need for domain adaptation or retraining, their practical application in volumetric 3D medical imaging workflows has been hindered by the lack of a user-friendly interface. To address this challenge, we introduce FastSAM-3DSlicer, a 3D Slicer extension that integrates both 2D and 3D SAM models, including SAM-Med2D, MedSAM, SAM-Med3D, and FastSAM-3D. Building on the well-established open-source 3D Slicer platform, our extension enables efficient, real-time segmentation of 3D volumetric medical images, with seamless interaction and visualization. By automating the handling of raw image data, user prompts, and segmented masks, FastSAM-3DSlicer provides a streamlined, user-friendly interface that can be easily incorporated into medical image analysis workflows. Performance evaluations reveal that the FastSAM-3DSlicer extension running FastSAM-3D achieves low inference times of only 1.09 seconds per volume on CPU and 0.73 seconds per volume on GPU, making it well-suited for real-time interactive segmentation. Moreover, we introduce an uncertainty quantification scheme that leverages the rapid inference capabilities of FastSAM-3D for practical implementation, further enhancing its reliability and applicability in medical settings. FastSAM-3DSlicer offers an interactive platform and user interface for 2D and 3D interactive volumetric medical image segmentation, offering a powerful combination of efficiency, precision, and ease of use with SAMs. The source code and a video demonstration are publicly available at https://github.com/arcadelab/FastSAM3D_slicer.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "51f4e3ece854879a1c112a54694634805ab698cf",
+    "title": "Uncertainty Quantification in Deep MRI Reconstruction",
+    "abstract": "Reliable MRI is crucial for accurate interpretation in therapeutic and diagnostic tasks. However, undersampling during MRI acquisition as well as the overparameterized and non-transparent nature of deep learning (DL) leaves substantial uncertainty about the accuracy of DL reconstruction. With this in mind, this study aims to quantify the uncertainty in image recovery with DL models. To this end, we first leverage variational autoencoders (VAEs) to develop a probabilistic reconstruction scheme that maps out (low-quality) short scans with aliasing artifacts to the diagnostic-quality ones. The VAE encodes the acquisition uncertainty in a latent code and naturally offers a posterior of the image from which one can generate pixel variance maps using Monte-Carlo sampling. Accurately predicting risk requires knowledge of the bias as well, for which we leverage Stein’s Unbiased Risk Estimator (SURE) as a proxy for mean-squared-error (MSE). A range of empirical experiments is performed for Knee MRI reconstruction under different training losses (adversarial and pixel-wise) and unrolled recurrent network architectures. Our key observations indicate that: 1) adversarial losses introduce more uncertainty; and 2) recurrent unrolled nets reduce the prediction uncertainty and risk.",
+    "year": 2019,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "d29aebfe855ca9a377537ba5b48d6bbbb1565fb7",
+    "title": "Deep Bayesian segmentation for colon polyps: Well-calibrated predictions in medical imaging",
+    "abstract": "Colorectal polyps are generally benign alterations that, if not identified promptly and managed successfully, can progress to cancer and cause affectations on the colon mucosa, known as adenocarcinoma. Today advances in Deep Learning have demonstrated the ability to achieve significant performance in image classification and detection in medical diagnosis applications. Nevertheless, these models are prone to overfitting, and making decisions based only on point estimations may provide incorrect predictions. Thus, to obtain a more informed decision, we must consider point estimations along with their reliable uncertainty quantification. In this paper, we built different Bayesian neural network approaches based on the flexibility of posterior distribution to develop semantic segmentation of colorectal polyp images. We found that these models not only provide state-of-the-art performance on the segmentation of this medical dataset but also, yield accurate uncertainty estimates. We applied multiplicative normalized flows(MNF) and reparameterization trick on the UNET, FPN, and LINKNET architectures tested with multiple backbones in deterministic and Bayesian versions. We report that the FPN + EfficientnetB7 architecture with MNF is the most promising option given its IOU of 0.94 and Expected Calibration Error (ECE) of 0.004, combined with its superiority in identifying difficult-to-detect colorectal polyps, which is effective in clinical areas where early detection prevents the development of colon cancer.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "37864ddf415599f285d27935cbf46db157bcfb28",
+    "title": "A Staged Approach using Machine Learning and Uncertainty Quantification to Predict the Risk of Hip Fracture",
+    "abstract": "Hip fractures present a significant healthcare challenge, especially within aging populations, where they are often caused by falls. These fractures lead to substantial morbidity and mortality, emphasizing the need for timely surgical intervention. Despite advancements in medical care, hip fractures impose a significant burden on individuals and healthcare systems. This paper focuses on the prediction of hip fracture risk in older and middle-aged adults, where falls and compromised bone quality are predominant factors. We propose a novel staged model that combines advanced imaging and clinical data to improve predictive performance. By using convolutional neural networks (CNNs) to extract features from hip DXA images, along with clinical variables, shape measurements, and texture features, our method provides a comprehensive framework for assessing fracture risk. The study cohort included 547 patients, with 94 experiencing hip fracture. A staged machine learning-based model was developed using two ensemble models: Ensemble 1 (clinical variables only) and Ensemble 2 (clinical variables and DXA imaging features). This staged approach used uncertainty quantification from Ensemble 1 to decide if DXA features are necessary for further prediction. Ensemble 2 exhibited the highest performance, achieving an Area Under the Curve (AUC) of 0.9541, an accuracy of 0.9195, a sensitivity of 0.8078, and a specificity of 0.9427. The staged model also performed well, with an AUC of 0.8486, an accuracy of 0.8611, a sensitivity of 0.5578, and a specificity of 0.9249, outperforming Ensemble 1, which had an AUC of 0.5549, an accuracy of 0.7239, a sensitivity of 0.1956, and a specificity of 0.8343. Furthermore, the staged model suggested that 54.49% of patients did not require DXA scanning. It effectively balanced accuracy and specificity, offering a robust solution when DXA data acquisition is not always feasible. Statistical tests confirmed significant differences between the models, highlighting the advantages of the advanced modeling strategies. Our staged approach offers a cost-effective holistic view of patients’ health. It could identify individuals at risk with a high accuracy but reduce the unnecessary DXA scanning. Our approach has great promise to guide interventions to prevent hip fractures with reduced cost and radiation.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "d60bf7203a56c5f7ed76f9581130656c34edca34",
+    "title": "Inference and uncertainty quantification for noisy matrix completion",
+    "abstract": "Significance Matrix completion finds numerous applications in data science, ranging from information retrieval to medical imaging. While substantial progress has been made in designing estimation algorithms, it remains unknown how to perform optimal statistical inference on the unknown matrix given the obtained estimates—a task at the core of modern decision making. We propose procedures to debias the popular convex and nonconvex estimators and derive distributional characterizations for the resulting debiased estimators. This distributional theory enables valid inference on the unknown matrix. Our procedures 1) yield optimal construction of confidence intervals for missing entries and 2) achieve optimal estimation accuracy in a sharp manner. Noisy matrix completion aims at estimating a low-rank matrix given only partial and corrupted entries. Despite remarkable progress in designing efficient estimation algorithms, it remains largely unclear how to assess the uncertainty of the obtained estimates and how to perform efficient statistical inference on the unknown matrix (e.g., constructing a valid and short confidence interval for an unseen entry). This paper takes a substantial step toward addressing such tasks. We develop a simple procedure to compensate for the bias of the widely used convex and nonconvex estimators. The resulting debiased estimators admit nearly precise nonasymptotic distributional characterizations, which in turn enable optimal construction of confidence intervals/regions for, say, the missing entries and the low-rank factors. Our inferential procedures do not require sample splitting, thus avoiding unnecessary loss of data efficiency. As a byproduct, we obtain a sharp characterization of the estimation accuracy of our debiased estimators in both rate and constant. Our debiased estimators are tractable algorithms that provably achieve full statistical efficiency.",
+    "year": 2019,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.pnas.org/content/pnas/116/46/22931.full.pdf",
+      "status": "HYBRID"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "dd85f47e28667611859d01ee1560409d75f69bf4",
+    "title": "An active learning method for diabetic retinopathy classification with uncertainty quantification",
+    "abstract": null,
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "e31d79968afd67d932e3b3768a426b6d74bae9ea",
+    "title": "Uncertainty Quantification using Variational Inference for Biomedical Image Segmentation",
+    "abstract": "Deep learning motivated by convolutional neural networks has been highly successful in a range of medical imaging problems like image classification, image segmentation, image synthesis etc. However for validation and interpretability, not only do we need the predictions made by the model but also how confident it is while making those predictions. This is important in safety critical applications for the people to accept it. In this work, we used an encoder decoder architecture based on variational inference techniques for segmenting brain tumour images. We evaluate our work on the publicly available BRATS dataset using Dice Similarity Coefficient (DSC) and Intersection Over Union (IOU) as the evaluation metrics. Our model is able to segment brain tumours while taking into account both aleatoric uncertainty and epistemic uncertainty in a principled bayesian manner.",
+    "year": 2020,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.researchsquare.com/article/rs-547766/latest.pdf",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "146f8844a380191a3f883c3584df3d7a6a56a999",
+    "title": "Uncertainty quantification using Bayesian neural networks in classification: Application to ischemic stroke lesion segmentation",
+    "abstract": "Most recent research of neural networks in the ﬁeld of computer vision has fo-cused on improving accuracy of point predictions by developing various network architectures or learning algorithms. Uncertainty quantiﬁcation accompanied by point estimation can lead to a more informed decision, and the quality of prediction can be improved. In medical imaging applications, assessment of uncertainty could potentially reduce untoward outcomes due to suboptimal decisions. In this paper, we invoke a Bayesian neural network and propose a natural way to quantify uncertainty in classiﬁcation problems by decomposing predictive uncertainty into two parts, aleatoric and epistemic uncertainty. The proposed method takes into account discrete nature of the outcome, yielding correct interpretation of each uncertainty. We demonstrate that the proposed uncertainty quantiﬁcation method provides additional insight to the point prediction using images from the Ischemic Stroke Lesion Segmentation Challenge.",
+    "year": 2018,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "10f0f7c3f228827a54c55ea8bd10743ebd27c3e7",
+    "title": "Disentangled Uncertainty and Out of Distribution Detection in Medical Generative Models",
+    "abstract": "Trusting the predictions of deep learning models in safety critical settings such as the medical domain is still not a viable option. Distentangled uncertainty quantiﬁcation in the ﬁeld of medical imaging has received little attention. In this paper, we study disentangled uncertainties in image to image translation tasks in the medical domain. We compare multiple uncertainty quantiﬁcation methods, namely Ensembles, Flipout, Dropout, and DropConnect, while using CycleGAN to convert T1-weighted brain MRI scans to T2-weighted brain MRI scans. We further evaluate uncertainty behavior in the presence of out of distribution data (Brain CT and RGB Face Images), showing that epistemic uncertainty can be used to detect out of distribution inputs, which should increase reliability of model outputs.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2211.06250",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "027e398b797d13b538c23577a41d11b4fb80ec96",
+    "title": "Accepted for Publication in Ieee Transactions on Medical Imaging (preprint) Quantifying Registration Uncertainty with Sparse Bayesian Modelling",
+    "abstract": "—We investigate uncertainty quantification under a sparse Bayesian model of medical image registration. Bayesian modelling has proven powerful to automate the tuning of registration hyperparameters, such as the trade-off between the data and regularization functionals. Sparsity-inducing priors have recently been used to render the parametrization itself adaptive and data-driven. The sparse prior on transformation parameters effectively favors the use of coarse basis functions to capture the global trends in the visible motion while finer, highly localized bases are introduced only in the presence of coherent image information and motion. In earlier work, approximate inference under the sparse Bayesian model was tackled in an efficient Variational Bayes (VB) framework. In this paper we are interested in the theoretical and empirical quality of uncertainty estimates derived under this approximate scheme vs. under the exact model. We implement an (asymptotically) exact inference scheme based on reversible jump Markov Chain Monte Carlo (MCMC) sampling to characterize the posterior distribution of the transformation and compare the predictions of the VB and MCMC based methods. The true posterior distribution under the sparse Bayesian model is found to be meaningful: orders of magnitude for the estimated uncertainty are quantitatively reasonable, the uncertainty is higher in textureless regions and lower in the direction of strong intensity gradients.",
+    "year": null,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "53e5d67262f5a4bd002e7a6a8cd2949e8ab3b250",
+    "title": "Bayesian inference for uncertainty quantification in point-based deformable image registration",
+    "abstract": null,
+    "year": 2019,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "5235b54777930ee5b67d8c8542cf3c02b7419354",
+    "title": "Editorial: Special Issue on Verification, Validation, and Uncertainty Quantification of Cardiovascular Models: Towards Effective VVUQ for Translating Cardiovascular Modelling to Clinical Utility",
+    "abstract": null,
+    "year": 2018,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://link.springer.com/content/pdf/10.1007/s13239-018-00393-z.pdf",
+      "status": "BRONZE"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "15e873d63533e7c4b520e1737777d63c366dc75f",
+    "title": "Efficient Laplace Approximation for Bayesian Registration Uncertainty Quantification",
+    "abstract": null,
+    "year": 2018,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://europepmc.org/articles/pmc6533616?pdf=render",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "b75121d70220f2c5c111ea4b0bc8362d10e3dfc1",
+    "title": "A multilevel Markov Chain Monte Carlo approach for uncertainty quantification in deformable registration",
+    "abstract": "Image guided diagnostics and therapy comprise decisions concerning treatment and intervention based on registered image data of patients in many clinical settings. Therefore, knowledge about the reliability of the registration result is crucial. In this paper, we tackle this issue by estimating the registration uncertainty based on Bayesian analysis, i.e. examining the posterior distribution of parameters describing the underlying transformations. The intractability of posterior distributions allows only an approximation, usually realized by Monte Carlo sampling methods. Conventional Markov Chain Monte Carlo (MCMC) algorithms require a large number of posterior samples to ensure robust estimates, which inflicts a high computational burden. The contribution of this work is the embedding of the MCMC approach into a cost reducing multilevel framework. Multilevel MCMC fits into the multi-resolution framework usually applied for image registration. In this work we evaluate the performance of our method using a B-spline transformation framework, i.e. the B-spline coefficients are the parameters to estimate. We demonstrate its correctness by comparison with a ground-truth of the posterior distribution, evaluate the efficiency through examination of the cost reduction and show the reliability as uncertainty estimator on brain MRI images.",
+    "year": 2018,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "378e00d292d8c93891f1cc94eafc701f6611eec6",
+    "title": "Uncertainty Estimation in Medical Image Denoising with Bayesian Deep Image Prior",
+    "abstract": null,
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "8e48b25b7f485ee155d9b15fe8e8d581ecffc63d",
+    "title": "Uncertainty Quantification for Fluid-Structure Interaction: Application to Aortic Biomechanics",
+    "abstract": "Diseases of the cardiovascular system count to the most common causes of death in the developed countries. There are many open research questions with respect to a better understanding for example of the physiology of the heart and the main arteries or to the determination of the factors for aneurysm or stenosis development of the aorta. Furthermore, on a daily basis, a heart surgeon has to estimate the probability of success for different treatment scenarios as opposed to no intervention. \nIn recent decades, methods of investigation with living probands (in vivo) and artificial experiments (in vitro) have been complemented more and more by computational methods and simulation (in silico). In particular, numerical simulations have the capability to enhance medical imaging modalities with additional information. However, to date, the biomechanical simulation of aortic blood flow given an uncertain data situation represents a major challenge. So far, mostly deterministic models have been used, Yet, measurement data for the configuration of a simulation is subject to measurement inaccuracies. For the choice of model parameters, which are non-measurable in a living body, often imprecise information is available only. \nIn this work, novel development steps for a numerical framework are presented aiming for the simulation and evaluation of aortic biomechanics using methods of Uncertainty Quantification (UQ). The work includes the modelling of the aortic biomechanics as a fluid-structure interaction (FSI) problem with uncertain parameters. By means of a subject-specific workflow, the simulation of different probands, phantoms and, ultimately, patients is enabled. For the solution of the complex partial differential system of equations, they are discretised with the finite element method (FEM) and a novel, parallelly efficient and problem-specific solver is developed. To verify the numerical framework implemented in the course of this work, a novel analytically solvable benchmark for UQ-FSI problems is proposed. Furthermore, the numerical framework is validated by means of a prototypical aortic phantom experiment. Finally, the UQ-FSI simulation enables the evaluation of a stress overload probability. This novel parameter is exemplarily evaluated by means of the simulation of a human aortic bow. \nTherewith, this work represents a new contribution to aspects of the development of simulation methods for the investigation of aortic biomechanics.",
+    "year": 2018,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "e0711a6859646bb571de7c624d548e1998bf22d7",
+    "title": "Automatic Detection and Uncertainty Quantification of Landmarks on Elastic Curves",
+    "abstract": "Abstract A population quantity of interest in statistical shape analysis is the location of landmarks, which are points that aid in reconstructing and representing shapes of objects. We provide an automated, model-based approach to inferring landmarks given a sample of shape data. The model is formulated based on a linear reconstruction of the shape, passing through the specified points, and a Bayesian inferential approach is described for estimating unknown landmark locations. The question of how many landmarks to select is addressed in two different ways: (1) by defining a criterion-based approach and (2) joint estimation of the number of landmarks along with their locations. Efficient methods for posterior sampling are also discussed. We motivate our approach using several simulated examples, as well as data obtained from applications in computer vision, biology, and medical imaging. Supplementary materials for this article, including a standardized description of the materials available for reproducing the work, are available as an online supplement.",
+    "year": 2017,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://europepmc.org/articles/pmc6781625?pdf=render",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c191d0d9e919260eaf995e0a62cd93062941bc08",
+    "title": "Infarct Localization From Myocardial Deformation: Prediction and Uncertainty Quantification by Regression From a Low-Dimensional Space",
+    "abstract": "Diagnosing and localizing myocardial infarct is crucial for early patient management and therapy planning. We propose a new method for predicting the location of myocardial infarct from local wall deformation, which has value for risk stratification from routine examinations such as (3D) echocardiography. The pipeline combines non-linear dimensionality reduction of deformation patterns and two multi-scale kernel regressions. Confidence in the diagnosis is assessed by a map of local uncertainties, which integrates plausible infarct locations generated from the space of reduced dimensionality. These concepts were tested on 500 synthetic cases generated from a realistic cardiac electromechanical model, and 108 pairs of 3D echocardiographic sequences and delayed-enhancement magnetic resonance images from real cases. Infarct prediction is made at a spatial resolution around 4 mm, more than 10 times smaller than the current diagnosis, made regionally. Our method is accurate, and significantly outperforms the clinically-used thresholding of the deformation patterns (on real data: sensitivity/specificity of 0.828/0.804, area under the curve: 0.909 versus 0.742 for the most predictive strain component). Uncertainty adds value to refine the diagnosis and eventually re-examine suspicious cases.",
+    "year": 2016,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "34dcc47d3b58d7069ef9c9ed4e66d70bad871943",
+    "title": "Comparison of Two Different Interval Techniques for Analyzing the Influence of Measurement Uncertainty in Compressed Sensing for Magnet Resonance Imaging",
+    "abstract": "Magnet resonance imaging (MRI) techniques are well known from the field of medical examinations. Possible applications range from the detection of stenoses in blood vessels, cerebral aneurysms, joint and ligament injuries to X-ray-free methods for mammography. In addition to these medical applications, MRI techniques have gained more and more interest by researchers from the fields of fluid mechanics and other engineering disciplines due to their capability for a non-invasive quantification of multi-dimensional velocity and temperature fields. Especially if engineering applications are of interest, not only qualitative results are required, but also quantitative statements about temperature fields and/or velocity distributions together with quality measures allowing for the description of the influence of measurement uncertainty. This paper aims at the comparison of two different techniques based on interval arithmetic for the signal processing-based analysis of measurement uncertainty with an application to real measured data acquired by a compressed sensing scheme from an MRI scanner available at the Institute of Fluid Mechanics at the University of Rostock.",
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "e8c277c21f2135fe0eeafdba6347280fb3380d57",
+    "title": "Infarct localization from myocardial deformation: Prediction and uncertainty quantification by regression from a low-dimensional space.",
+    "abstract": "Diagnosing and localizing myocardial infarct is crucial for early patient management and therapy planning. We propose a new method for predicting the location of myocardial infarct from local wall deformation, which has value for risk stratification from routine examinations such as (3D) echocardiography. The pipeline combines non-linear dimensionality reduction of deformation patterns and two multi-scale kernel regressions. Confidence in the diagnosis is assessed by a map of local uncertainties, which integrates plausible infarct locations generated from the space of reduced dimensionality. These concepts were tested on 500 synthetic cases generated from a realistic cardiac electromechanical model, and 108 pairs of 3D echocardiographic sequences and delayed-enhancement magnetic resonance images from real cases. Infarct prediction is made at a spatial resolution around 4 mm, more than 10 times smaller than the current diagnosis, made regionally. Our method is accurate, and significantly outperforms the clinically-used thresholding of the deformation patterns (on real data: sensitivity / specificity of 0:828=0:804, area under the curve: 0:909 vs. 0:742 for the most predictive strain component). Uncertainty adds value to refine the diagnosis and eventually re-examine suspicious cases.",
+    "year": 2016,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://hal.inria.fr/hal-01314767/file/jDuchateau_TMI_2016_FINALok1.pdf",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c4a96ccde30b8eba15ac7e42367c2f6a839a4f75",
+    "title": "Image-based assessment of uncertainty in quantification of carotid lumen",
+    "abstract": "Measurements of the vessel lumen diameter are often used to determine the degree of atherosclerotic disease in carotid arteries. However, quantification results vary with imaging technique and acquisition settings. In this work, we aim at providing a tool, that quantifies the lumen diameter on different image datasets and gives an estimate of quantification uncertainties, so that they can be taken into consideration when evaluating and comparing measurements. For the segmentation of the vessel lumen we present an algorithm using ray-casting techniques and partial volume correction. We furthermore propose a scheme for analysis and exploration of the lumen diameter. Finally, we present clinically relevant application scenario, in which we explore agreement between lumen diameter estimations in corresponding CTA, CEMRA, TOF and subtraction images of carotid vessels with severe carotid atherosclerotic plaques.",
+    "year": 2018,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "495c870db4fa9610c5659c089d866dc4b8be5197",
+    "title": "Uncertainty Quantification for LDDMM Using a Low-Rank Hessian Approximation",
+    "abstract": null,
+    "year": 2015,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://link.springer.com/content/pdf/10.1007/978-3-319-24571-3_35.pdf",
+      "status": "BRONZE"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "284d952599464c26ef0747ddb1e91f407c953aea",
+    "title": "Uncertainty quantification in brain tumor segmentation using CRFs and random perturbation models",
+    "abstract": "Medical image segmentation is a challenging task and algorithms often struggle with the high variability of inhomogeneous clinical data, demanding different parameter settings or resulting in weak segmentation accuracy across different inputs. Assessing the uncertainty in the resulting segmentation therefore becomes crucial for both communicating with the end-user and calculating further metrics of interest based on it, for example, in tumor volumetry. In this paper, we quantify segmentation uncertainties in a energy minimisation method where computing probabilistic segmentations is non-trivial. We follow recently proposed work on random perturbation models that enables us to sample segmentations efficiently by repeatedly perturbing the energy function of the conditional random field (CRF) followed by maximum a posteriori (MAP) inference. We conduct experiments on brain tumor segmentation, with both voxel and supervoxel perturbations, and demonstrate the benefits of probabilistic segmentations by means of precision-recall curves and uncertainties in tumor volumetry along time.",
+    "year": 2016,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "f9d3bc2d6d60d48efea37f9ec8a15eab1b3416e8",
+    "title": "Uncertainty-aware transformer model for anatomical landmark detection in paraspinal muscle MRIs",
+    "abstract": "Anatomical landmark identification is crucial in the registration of medical images in a wide range of clinical applications. Various machine and deep learning (DL) techniques have been proposed to annotate anatomical landmarks automatically. However, very few have taken advantage of the more recent Transformer models that do not suffer from inductive bias of convolutional neural networks as well as incorporating uncertainty assessments. This paper proposes a novel technique based on the Swin Transformer V2 (Swin-V2) with an uncertainty quantification module for robust anatomical landmark detection in paraspinal muscle MRIs to facilitate muscle morphometric analysis for low back pain (LBP). Specifically, we employ statistical measurements from stochastic sampling using Monte Carlo (MC) dropouts as uncertainty metrics for automatic landmark detection. The proposed method was trained and validated using 350 axial MRI slices of paraspinal muscles at the mid-disc spinal levels commonly associated with LBP. We demonstrate that the selected uncertainty metrics are correlated with automatic landmark detection errors and, in addition, can be used as inputs to grade the quality of the identified landmarks with a lightweight random forest algorithm for a more straightforward interpretation.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "e8cc49678dbd89649daa98f50171bc0f0bd01fc2",
+    "title": "Unsupervised Domain Adaptation for Low-Dose CT Reconstruction via Bayesian Uncertainty Alignment.",
+    "abstract": "Low-dose computed tomography (LDCT) image reconstruction techniques can reduce patient radiation exposure while maintaining acceptable imaging quality. Deep learning (DL) is widely used in this problem, but the performance of testing data (also known as target domain) is often degraded in clinical scenarios due to the variations that were not encountered in training data (also known as source domain). Unsupervised domain adaptation (UDA) of LDCT reconstruction has been proposed to solve this problem through distribution alignment. However, existing UDA methods fail to explore the usage of uncertainty quantification, which is crucial for reliable intelligent medical systems in clinical scenarios with unexpected variations. Moreover, existing direct alignment for different patients would lead to content mismatch issues. To address these issues, we propose to leverage a probabilistic reconstruction framework to conduct a joint discrepancy minimization between source and target domains in both the latent and image spaces. In the latent space, we devise a Bayesian uncertainty alignment to reduce the epistemic gap between the two domains. This approach reduces the uncertainty level of target domain data, making it more likely to render well-reconstructed results on target domains. In the image space, we propose a sharpness-aware distribution alignment (SDA) to achieve a match of second-order information, which can ensure that the reconstructed images from the target domain have similar sharpness to normal-dose CT (NDCT) images from the source domain. Experimental results on two simulated datasets and one clinical low-dose imaging dataset show that our proposed method outperforms other methods in quantitative and visualized performance.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2302.13251",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2331c779514821f33aaec4b87cc13f8b281056c9",
+    "title": "Uncertainty-Aware Null Space Networks for Data-Consistent Image Reconstruction",
+    "abstract": "Reconstructing an image from noisy and incomplete measurements is a central task in several image processing applications. In recent years, state-of-the-art reconstruction methods have been developed based on recent advances in deep learning. Especially for highly underdetermined problems, maintaining data consistency is a key goal. This can be achieved either by iterative network architectures or by a subsequent projection of the network reconstruction. However, for such approaches to be used in safety-critical domains such as medical imaging, the network reconstruction should not only provide the user with a reconstructed image, but also with some level of confidence in the reconstruction. In order to meet these two key requirements, this paper combines deep null-space networks with uncertainty quantification. Evaluation of the proposed method includes image reconstruction from undersampled Radon measurements on a toy CT dataset and accelerated MRI reconstruction on the fastMRI dataset. This work is the first approach to solving inverse problems that additionally models data-dependent uncertainty by estimating an input-dependent scale map, providing a robust assessment of reconstruction quality.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2304.06955",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "72343bdf46ceaddd245ebd2bc98b039d1db71e39",
+    "title": "Estimating Uncertainty in PET Image Reconstruction via Deep Posterior Sampling",
+    "abstract": "Positron emission tomography (PET) is an important functional medical imaging technique often used in the evaluation of certain brain disorders, whose reconstruction problem is ill-posed. The vast majority of reconstruction methods in PET imaging, both iterative and deep learning, return a single estimate without quantifying the associated uncertainty. Due to ill-posedness and noise, a single solution can be misleading or inaccurate. Thus, providing a measure of uncertainty in PET image reconstruction can help medical practitioners in making critical decisions. This paper proposes a deep learning-based method for uncertainty quantification in PET image reconstruction via posterior sampling. The method is based on training a conditional generative adversarial network whose generator approximates sampling from the posterior in Bayesian inversion. The generator is conditioned on reconstruction from a low-dose PET scan obtained by a conventional reconstruction method and a high-quality magnetic resonance image and learned to estimate a corresponding standard-dose PET scan reconstruction. We show that the proposed model generates high-quality posterior samples and yields physically-meaningful uncertainty estimates.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2306.04664",
+      "status": "CLOSED"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2b0f3b58bce687769ef1d694733ff96baba791aa",
+    "title": "Uncertainty Estimation in Contrast-Enhanced Mr Image Translation with Multi-Axis Fusion",
+    "abstract": "In recent years, deep learning has been applied to a wide range of medical imaging and image processing tasks. In this work, we focus on the estimation of epistemic uncertainty for 3D medical image-to-image translation. We propose a novel model uncertainty quantification method, Multi-Axis Fusion (MAF), which relies on the integration of complementary information derived from multiple views on volumetric image data. The proposed approach is applied to the task of synthesizing contrast enhanced T1-weighted images based on native T1, T2 and T2-FLAIR scans. The quantitative findings indicate a strong correlation (ρhealthy = 0.89) between the mean absolute image synthetization error and the mean uncertainty score for our MAF method. Hence, we consider MAF as a promising approach to solve the highly relevant task of detecting synthetization failures at inference time.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2311.12153",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "b950f402f642711d4ec978fbadb95752efdd9b15",
+    "title": "Likelihood Annealing: Fast Calibrated Uncertainty for Regression",
+    "abstract": "Recent advances in deep learning have shown that uncertainty estimation is becoming increasingly important in applications such as medical imaging, natural language processing, and autonomous systems. However, accurately quantifying uncertainty remains a challenging problem, especially in regression tasks where the output space is continuous. Deep learning approaches that allow uncertainty estimation for regression problems often converge slowly and yield poorly calibrated uncertainty estimates that can not be effectively used for quantification. Recently proposed post hoc calibration techniques are seldom applicable to regression problems and often add overhead to an already slow model training phase. This work presents a fast calibrated uncertainty estimation method for regression tasks called Likelihood Annealing, that consistently improves the convergence of deep regression models and yields calibrated uncertainty without any post hoc calibration phase. Unlike previous methods for calibrated uncertainty in regression that focus only on low-dimensional regression problems, our method works well on a broad spectrum of regression problems, including high-dimensional regression.Our empirical analysis shows that our approach is generalizable to various network architectures, including multilayer perceptrons, 1D/2D convolutional networks, and graph neural networks, on five vastly diverse tasks, i.e., chaotic particle trajectory denoising, physical property prediction of molecules using 3D atomistic representation, natural image super-resolution, and medical image translation using MRI.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "0ffcda26acfa1b3cd3846bee7565611d9e80a6e1",
+    "title": "Quantification of the uncertainty in coronary CTA plaque measurements using dynamic cardiac phantom and 3D-printed plaque models",
+    "abstract": "The purpose of this study was to quantify the accuracy of coronary computed tomography angiography (CTA) stenosis measurements using newly developed physical coronary plaque models attached to a base dynamic cardiac phantom (Shelley Medical DHP-01). Coronary plaque models (5 mm diameter, 50% stenosis, and 32 mm long) were designed and 3D-printed with tissue equivalent materials (calcified plaque with iodine enhanced lumen). Realistic cardiac motion was achieved by fitting known cardiac motion vectors to left ventricle volume-time curves to create synchronized heart motion profiles executed by the base cardiac phantom. Realistic coronary CTA acquisition was accomplished by synthesizing corresponding ECG waveforms for gating and reconstruction purposes. All scans were acquired using a retrospective gating technique on a dual-source CT system (Siemens SOMATOM FLASH) with 75ms temporal resolution. Multi-planar reformatted images were reconstructed along vessel centerlines and the enhanced lumens were manually segmented by 5 independent operators. On average, the stenosis measurement accuracy was 0.9% positive bias for the motion free condition (0 bpm). The measurement accuracy monotonically decreased to 18.5% negative bias at 90 bpm. Contrast-tonoise (CNR), vessel circularity, and segmentation conformity also decreased monotonically with increasing heart rate. These results demonstrate successful implementation of the base cardiac phantom with 3D-printed coronary plaque models, adjustable motion profiles, and coordinated ECG waveforms. They further show the utility of the model to ascertain metrics of coronary CT accuracy and image quality under a variety of plaque, motion, and acquisition conditions.",
+    "year": 2017,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "9e11a84f16ceed99584aaf6989aaee183b0b4e27",
+    "title": "Towards Estimating the Uncertainty Associated with Three-Dimensional Geometry Reconstructed from Medical Image Data.",
+    "abstract": "Patient-specific computational modeling is increasingly used to assist with visualization, planning, and execution of medical treatments. This trend is placing more reliance on medical imaging to provide accurate representations of anatomical structures. Digital image analysis is used to extract anatomical data for use in clinical assessment/planning. However, the presence of image artifacts, whether due to interactions between the physical object and the scanning modality or the scanning process, can degrade image accuracy. The process of extracting anatomical structures from the medical images introduces additional sources of variability, e.g., when thresholding or when eroding along apparent edges of biological structures. An estimate of the uncertainty associated with extracting anatomical data from medical images would therefore assist with assessing the reliability of patient-specific treatment plans. To this end, two image datasets were developed and analyzed using standard image analysis procedures. The first dataset was developed by performing a \"virtual voxelization\" of a CAD model of a sphere, representing the idealized scenario of no error in the image acquisition and reconstruction algorithms (i.e., a perfect scan). The second dataset was acquired by scanning three spherical balls using a laboratory-grade CT scanner. For the idealized sphere, the error in sphere diameter was less than or equal to 2% if 5 or more voxels were present across the diameter. The measurement error degraded to approximately 4% for a similar degree of voxelization of the physical phantom. The adaptation of established thresholding procedures to improve segmentation accuracy was also investigated.",
+    "year": 2019,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "407b5a19633d4950f5b597e276cdc71f0a36b269",
+    "title": "Reformulating Optical Flow to Solve Image-Based Inverse Problems and Quantify Uncertainty",
+    "abstract": "From meteorology to medical imaging and cell mechanics, many scientific domains use inverse problems (IPs) to extract physical measurements from image movement. To this end, motion estimation methods such as optical flow (OF) pre-process images into motion data to feed the IP, which then inverts for the measurements through a physical model. However, this combined OFIP pipeline exacerbates the ill-posedness inherent to each technique, propagating errors and preventing uncertainty quantification. We introduce a Bayesian PDE-constrained framework that transforms visual information directly into physical measurements in the context of probability distributions. The posterior mean is a constrained IP that tracks brightness while satisfying the physical model, thereby translating the aperture problem from the motion to the underlying physics; whereas the posterior covariance derives measurement error out of image noise. As we illustrate with traction force microscopy, our approach offers several advantages: more accurate reconstructions; unprecedented flexibility in experiment design (e.g., arbitrary boundary conditions); and the exclusivity of measurement error, central to empirical science, yet still unavailable under the OFIP strategy.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://ieeexplore.ieee.org/ielx7/34/4359286/09870569.pdf",
+      "status": "HYBRID"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "ed0fa47084d06d6110b51c56a266e224abd6c41b",
+    "title": "Interpretability of Uncertainty: Exploring Cortical Lesion Segmentation in Multiple Sclerosis",
+    "abstract": "Uncertainty quantification (UQ) has become critical for evaluating the reliability of artificial intelligence systems, especially in medical image segmentation. This study addresses the interpretability of instance-wise uncertainty values in deep learning models for focal lesion segmentation in magnetic resonance imaging, specifically cortical lesion (CL) segmentation in multiple sclerosis. CL segmentation presents several challenges, including the complexity of manual segmentation, high variability in annotation, data scarcity, and class imbalance, all of which contribute to aleatoric and epistemic uncertainty. We explore how UQ can be used not only to assess prediction reliability but also to provide insights into model behavior, detect biases, and verify the accuracy of UQ methods. Our research demonstrates the potential of instance-wise uncertainty values to offer post hoc global model explanations, serving as a sanity check for the model. The implementation is available at https://github.com/NataliiaMolch/interpret-lesion-unc.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "a4f4bb4e1bfc8f22260fe3934043d5ed8afffd80",
+    "title": "QU-BraTS: MICCAI BraTS 2020 Challenge on Quantifying Uncertainty in Brain Tumor Segmentation - Analysis of Ranking Metrics and Benchmarking Results",
+    "abstract": "Deep learning (DL) models have provided state-of-the-art performance in various medical imaging benchmarking challenges, including the Brain Tumor Segmentation (BraTS) challenges. However, the task of focal pathology multi-compartment segmentation (e.g., tumor and lesion sub-regions) is particularly challenging, and potential errors hinder translating DL models into clinical workflows. Quantifying the reliability of DL model predictions in the form of uncertainties could enable clinical review of the most uncertain regions, thereby building trust and paving the way toward clinical translation. Several uncertainty estimation methods have recently been introduced for DL medical image segmentation tasks. Developing scores to evaluate and compare the performance of uncertainty measures will assist the end-user in making more informed decisions. In this study, we explore and evaluate a score developed during the BraTS 2019 and BraTS 2020 task on uncertainty quantification (QU-BraTS) and designed to assess and rank uncertainty estimates for brain tumor multi-compartment segmentation. This score (1) rewards uncertainty estimates that produce high confidence in correct assertions and those that assign low confidence levels at incorrect assertions, and (2) penalizes uncertainty measures that lead to a higher percentage of under-confident correct assertions. We further benchmark the segmentation uncertainties generated by 14 independent participating teams of QU-BraTS 2020, all of which also participated in the main BraTS segmentation task. Overall, our findings confirm the importance and complementary value that uncertainty estimates provide to segmentation algorithms, highlighting the need for uncertainty quantification in medical image analyses. Finally, in favor of transparency and reproducibility, our evaluation code is made publicly available at https://github.com/RagMeh11/QU-BraTS.",
+    "year": 2021,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.melba-journal.org/pdf/2022:026.pdf",
+      "status": "BRONZE"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2aed222efd2ecec4f0273f8385bf65e03e40ec53",
+    "title": "Uncertainty-aware GAN with Adaptive Loss for Robust MRI Image Enhancement",
+    "abstract": "Image-to-image translation is an ill-posed problem as unique one-to-one mapping may not exist between the source and target images. Learning-based methods proposed in this context often evaluate the performance on test data that is similar to the training data, which may be impractical. This demands robust methods that can quantify uncertainty in the prediction for making informed decisions, especially for critical areas such as medical imaging. Recent works that employ conditional generative adversarial networks (GANs) have shown improved performance in learning photo-realistic image-to-image mappings between the source and the target images. However, these methods do not focus on (i) robustness of the models to out-of-distribution (OOD)-noisy data and (ii) uncertainty quantification. This paper proposes a GAN-based framework that (i) models an adaptive loss function for robustness to OOD-noisy data that automatically tunes the spatially varying norm for penalizing the residuals and (ii) estimates the per-voxel uncertainty in the predictions. We demonstrate our method on two key applications in medical imaging: (i) undersampled magnetic resonance imaging (MRI) reconstruction (ii) MRI modality propagation. Our experiments with two different real-world datasets show that the proposed method (i) is robust to OOD-noisy test data and provides improved accuracy and (ii) quantifies voxel-level uncertainty in the predictions.",
+    "year": 2021,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2110.03343",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "c74ebac00cbec7655f92c1b8fe728442cd28c36f",
+    "title": "PET Denoising and Uncertainty Estimation Based on NVAE Model",
+    "abstract": "The structure of the deep neural network is constantly changing, and its performance is constantly breaking through. Recently, a new network, Nouveau variational auto-encoder (NVAE), has been proposed and gained great attention. In addition to the ability to generate high-quality images, the more important nature of NVAE is that it can generate a distribution that makes it possible to measure the uncertainty. In this work, we proposed to use NVAE for PET image denoising and estimate the uncertainty from both training data and model at the same time. 2.5D training based on 28 patients was performed and quantification based on 7 real patient data showed that NVAE has a good performance for PET denoising, which outperforms the Unet. The variance of 1000 sample output was calculated to show the uncertainty map.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "70568fa3509ccbddc86466189799c3aa80bdbb2d",
+    "title": "Uncertainty Quanti�cation using Variational Inference for Biomedical Image Segmentation",
+    "abstract": "Deep learning motivated by convolutional neural networks has been highly successful in a range of medical imaging problems like image classiﬁcation, image segmentation, image synthesis etc. However for validation and interpretability, not only do we need the predictions made by the model but also how conﬁdent it is while making those predictions. This is important in safety critical applications for the people to accept it. In this work, we used an encoder decoder architecture based on variational inference techniques for segmenting brain tumour images. We compare different backbones architectures like U-Net, V-Net and FCN as sampling data from the conditional distribution for the encoder. We evaluate our work on the publicly available BRATS dataset using Dice Similarity Coefﬁcient (DSC) and Intersection Over Union (IOU) as the evaluation metrics. Our model outperforms previous state of the art results while making use of uncertainty quantiﬁcation in a principled bayesian manner.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "d7b9d294bb1b3200fa82bb37a795a3323cfc4322",
+    "title": "Uncertainty quantification (UQ) in generic MonteCarlo simulations",
+    "abstract": "We present results from a recently launched project to study computational issues related to the quantification of non statistical uncertainties in numerical (Monte Carlo) simulations: they derive from different areas of the process of simulation[1], like e.g. epistemic uncertainties[2], experimental errors in physical data, error propagation from the employed numerical algorithms, etc., This paper addresses the development of methods to predict the effects of a set of correlated, partially correlated or uncorrelated physical uncertainties on the observables produced in a Monte Carlo simulation. It also provides some insight on the computational effort needed and on the possible software solutions to be implemented in the kernel of Monte Carlo codes to facilitate the quantification of uncertainty in experimental use cases.",
+    "year": 2012,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "35d2f0eb6e3c2ff7f61434231f4a59c1f4c9a49b",
+    "title": "A Review of Generative Adversarial Networks in Cancer Imaging: New Applications, New Solutions",
+    "abstract": "Despite technological and medical advances, the detection, interpretation, and treatment of cancer based on imaging data continue to pose significant challenges. These include high inter-observer variability, difficulty of small-sized lesion detection, nodule interpretation and malignancy determination, interand intra-tumour heterogeneity, class imbalance, segmentation inaccuracies, and treatment effect uncertainty. The recent advancements in Generative Adversarial Networks (GANs) in computer vision as well as in medical imaging may provide a basis for enhanced capabilities in cancer detection and analysis. In this review, we assess the potential of GANs to address a number of key challenges of cancer imaging, including data scarcity and imbalance, domain and dataset shifts, data access and privacy, data annotation and quantification, as well as cancer detection, tumour profiling and treatment planning. We provide a critical appraisal of the existing literature of GANs applied to cancer imagery, together with suggestions on future research directions to address these challenges. We analyse and discuss 163 papers that apply adversarial training techniques in the context of cancer imaging and elaborate their methodologies, advantages and limitations. With this work, we strive to bridge the gap between the needs of the clinical cancer imaging community and the current and prospective research on GANs in the artificial intelligence community.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "949fac2a3d4e167f9e11377f3aaac02b6d60bd38",
+    "title": "Data-Efficient Uncertainty Quantification for Radial Cardiac Cine MR Image Reconstruction",
+    "abstract": "Due to the black-box nature of Deep Learning (DL) algorithms, uncertainty quantification (UQ) is a promising approach to assess their risk in medical applications. However, UQ is challenging in imaging techniques like non-Cartesian multi-coil CINE MRI because the data is high-dimensional, and the acquisition process is computationally demanding. In this work, i) we propose to utilize spatio-temporal (ST) networks, demonstrating efficient UQ in a high-dimensional setting, and ii) we show a reduction in uncertainty by adopting the forward model of radial multi-coil 2D cine MR in the reconstruction process. UQ is performed using MCMC dropout with additional aleatoric loss terms.",
+    "year": null,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "0b953d80354c16f58beda3ce60f21c5bf397e01e",
+    "title": "EVIL: Evidential Inference Learning for Trustworthy Semi-Supervised Medical Image Segmentation",
+    "abstract": "Recently, uncertainty-aware methods have attracted increasing attention in semi-supervised medical image segmentation. However, current methods usually suffer from the drawback that it is difficult to balance the computational cost, estimation accuracy, and theoretical support in a unified framework. To alleviate this problem, we introduce the Dempster–Shafer Theory of Evidence (DST) into semi-supervised medical image segmentation, dubbed EVidential Inference Learning (EVIL). EVIL provides a theoretically guaranteed solution to infer accurate uncertainty quantification in a single forward pass. Trustworthy pseudo labels on unlabeled data are generated after uncertainty estimation. The recently proposed consistency regularization-based training paradigm is adopted in our framework, which enforces the consistency on the perturbed predictions to enhance the generalization with few labeled data. Experimental results show that EVIL achieves competitive performance in comparison with several state-of-the-art methods on the public dataset.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2307.08988",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "5dec93e7131a47826178198c715134a8ecb98716",
+    "title": "On Modelling Label Uncertainty in Deep Neural Networks: Automatic Estimation of Intra- Observer Variability in 2D Echocardiography Quality Assessment",
+    "abstract": "Uncertainty of labels in clinical data resulting from intra-observer variability can have direct impact on the reliability of assessments made by deep neural networks. In this paper, we propose a method for modelling such uncertainty in the context of 2D echocardiography (echo), which is a routine procedure for detecting cardiovascular disease at point-of-care. Echo imaging quality and acquisition time is highly dependent on the operator’s experience level. Recent developments have shown the possibility of automating echo image quality quantification by mapping an expert’s assessment of quality to the echo image via deep learning techniques. Nevertheless, the observer variability in the expert’s assessment can impact the quality quantification accuracy. Here, we aim to model the intra-observer variability in echo quality assessment as an aleatoric uncertainty modelling regression problem with the introduction of a novel method that handles the regression problem with categorical labels. A key feature of our design is that only a single forward pass is sufficient to estimate the level of uncertainty for the network output. Compared to the 0.11 ± 0.09 absolute error (in a scale from 0 to 1) archived by the conventional regression method, the proposed method brings the error down to 0.09 ± 0.08, where the improvement is statistically significant and equivalents to 5.7% test accuracy improvement. The simplicity of the proposed approach means that it could be generalized to other applications of deep learning in medical imaging, where there is often uncertainty in clinical labels.",
+    "year": 2019,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/1911.00674",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "5c1f414fb6a8fd0b2ffb50a1b2f5fddcb46666d3",
+    "title": "Risk Quantification in Deep MRI Reconstruction",
+    "abstract": "Reliable medical image recovery is crucial for accurate patient diagnoses, but little prior work has centered on quantifying uncertainty when using non-transparent deep learning approaches to reconstruct high-quality images from limited measured data. In this study, we develop methods to address these concerns, utilizing a VAE as a probabilistic recovery algorithm for pediatric knee MR imaging. Through our use of SURE, which examines the end-to-end network Jacobian, we demonstrate a new and rigorous metric for assessing risk in medical image recovery that applies universally across model architectures",
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "2511ae9802f493790543361ce5b04cd59d17e6e1",
+    "title": "Give me (un)certainty - An exploration of parameters that affect segmentation uncertainty",
+    "abstract": "Segmentation tasks in medical imaging are inherently ambiguous: the boundary of a target structure is oftentimes unclear due to image quality and biological factors. As such, predicted segmentations from deep learning algorithms are inherently ambiguous. Additionally, \"ground truth\" segmentations performed by human annotators are in fact weak labels that further increase the uncertainty of outputs of supervised models developed on these manual labels. To date, most deep learning segmentation studies utilize predicted segmentations without uncertainty quantification. In contrast, we explore the use of Monte Carlo dropout U-Nets for the segmentation with additional quantification of segmentation uncertainty. We assess the utility of three measures of uncertainty (Coefficient of Variation, Mean Pairwise Dice, and Mean Voxelwise Uncertainty) for the segmentation of a less ambiguous target structure (liver) and a more ambiguous one (liver tumors). Furthermore, we assess how the utility of these measures changes with different patch sizes and cost functions. Our results suggest that models trained using larger patches and the weighted categorical cross-entropy as cost function allow the extraction of more meaningful uncertainty measures compared to smaller patches and soft dice loss. Among the three uncertainty measures Mean Pairwise Dice shows the strongest correlation with segmentation quality. Our study serves as a proof-of-concept of how uncertainty measures can be used to assess the quality of a predicted segmentation, potentially serving to flag low quality segmentations from a given model for further human review.",
+    "year": 2019,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "24400a16f5aefb115bba755ba2c195cd1ac33ede",
+    "title": "Evaluation of the Accuracy of Liver Lesion DCEUS Quantification With Respiratory Gating",
+    "abstract": "Confidence in the accuracy of dynamic contrast enhanced ultrasound (DCEUS) quantification parameters is imperative for the correct diagnosis of liver lesion perfusion characteristics. An important source of uncertainty in liver DCEUS acquisitions is artifacts introduced by respiratory motion. The objective of this study is to construct a respiratory motion simulation model (RMSM) of dual contrast imaging mode acquisitions of liver lesions in order to evaluate an algorithm for automatic respiratory gating (ARG). The respiratory kinetics as well as the perfusion models of the liver lesion and parenchyma used by the RMSM were solely derived from clinical data. The quality of fit (of the DCEUS data onto the bolus kinetics model) depends on the respiration amplitude. Similar trends in terms of quality of fit as a function of respiration amplitude were observed from RMSM and clinical data. The errors introduced on the DCEUS quantification under the influence of respiration were evaluated. The RMSM revealed that the error in the liver lesion DCEUS quantification parameters significantly decreased( ) from a maximum of 32.3% to 6.2% when ARG was used. The use of RMSM clearly demonstrates the capability of the ARG algorithm in significantly reducing errors introduced from both in-plane and out-of-plane respiratory motion.",
+    "year": 2016,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "47bce558e48d945a5c2eadf1444971864e27f130",
+    "title": "High-Dimensional Confidence Regions in Sparse MRI",
+    "abstract": "One of the most promising solutions for uncertainty quantification in high-dimensional statistics is the debiased LASSO that relies on unconstrained ℓ1-minimization. The initial works focused on real Gaussian designs as a toy model for this problem. However, in medical imaging applications, such as compressive sensing for MRI, the measurement system is represented by a (subsampled) complex Fourier matrix. The purpose of this work is to extend the method to the MRI case in order to construct confidence intervals for each pixel of an MR image. We show that a sufficient amount of data is $n \\gtrsim \\max \\left\\{ {{s_0}{{\\log }^2}{s_0}\\log p,{s_0}{{\\log }^2}p} \\right\\}$.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "a7ba32fbba2d6decb43a6099376c00add511cb5a",
+    "title": "Empirical Validation of Conformal Prediction for Trustworthy Skin Lesions Classification",
+    "abstract": "BACKGROUND AND OBJECTIVE\nUncertainty quantification is a pivotal field that contributes to realizing reliable and robust systems. It becomes instrumental in fortifying safe decisions by providing complementary information, particularly within high-risk applications. existing studies have explored various methods that often operate under specific assumptions or necessitate substantial modifications to the network architecture to effectively account for uncertainties. The objective of this paper is to study Conformal Prediction, an emerging distribution-free uncertainty quantification technique, and provide a comprehensive understanding of the advantages and limitations inherent in various methods within the medical imaging field.\n\n\nMETHODS\nIn this study, we developed Conformal Prediction, Monte Carlo Dropout, and Evidential Deep Learning approaches to assess uncertainty quantification in deep neural networks. The effectiveness of these methods is evaluated using three public medical imaging datasets focused on detecting pigmented skin lesions and blood cell types.\n\n\nRESULTS\nThe experimental results demonstrate a significant enhancement in uncertainty quantification with the utilization of the Conformal Prediction method, surpassing the performance of the other two methods. Furthermore, the results present insights into the effectiveness of each uncertainty method in handling Out-of-Distribution samples from domain-shifted datasets. Our code is available at: github.com/jfayyad/ConformalDx.\n\n\nCONCLUSIONS\nOur conclusion highlights a robust and consistent performance of conformal prediction across diverse testing conditions. This positions it as the preferred choice for decision-making in safety-critical applications.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "4a548f0f163d31c7a8fecacec1a9afd8ac508641",
+    "title": "Learning from small data sets: Patch-based regularizers in inverse problems for image reconstruction",
+    "abstract": "The solution of inverse problems is of fundamental interest in medical and astronomical imaging, geophysics as well as engineering and life sciences. Recent advances were made by using methods from machine learning, in particular deep neural networks. Most of these methods require a huge amount of data and computer capacity to train the networks, which often may not be available. Our paper addresses the issue of learning from small data sets by taking patches of very few images into account. We focus on the combination of model‐based and data‐driven methods by approximating just the image prior, also known as regularizer in the variational model. We review two methodically different approaches, namely optimizing the maximum log‐likelihood of the patch distribution, and penalizing Wasserstein‐like discrepancies of whole empirical patch distributions. From the point of view of Bayesian inverse problems, we show how we can achieve uncertainty quantification by approximating the posterior using Langevin Monte Carlo methods. We demonstrate the power of the methods in computed tomography, image super‐resolution, and inpainting. Indeed, the approach provides also high‐quality results in zero‐shot super‐resolution, where only a low‐resolution image is available. The article is accompanied by a GitHub repository containing implementations of all methods as well as data examples so that the reader can get their own insight into the performance.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "370c3feda5a34e0e46186267fc967c48c546d23d",
+    "title": "Robust Spectral Denoising for Water-Fat Separation in Magnetic Resonance Imaging",
+    "abstract": null,
+    "year": 2015,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://link.springer.com/content/pdf/10.1007/978-3-319-24571-3_80.pdf",
+      "status": "BRONZE"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "b07c92eb9ab82f61dc1706529d5990b54d881aee",
+    "title": "Bayesian Neural Networks for 2D MRI Segmentation",
+    "abstract": "Uncertainty quantification is vital for safety-critical Deep Learning applications like medical image segmentation. We introduce BA U-Net, an uncertainty-aware model for MRI segmentation that integrates Bayesian Neural Networks with Attention Mechanisms. BA U-Net delivers accurate, interpretable results, crucial for reliable pathology screening. Evaluated on BraTS 2020, this model addresses the critical need for confidence estimation in deep learning-based medical imaging.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "428143c02b3a23e271e1141efb9418e7dd9f463a",
+    "title": "PULASki: Learning inter-rater variability using statistical distances to improve probabilistic segmentation",
+    "abstract": "In the domain of medical imaging, many supervised learning based methods for segmentation face several challenges such as high variability in annotations from multiple experts, paucity of labelled data and class imbalanced datasets. These issues may result in segmentations that lack the requisite precision for clinical analysis and can be misleadingly overconfident without associated uncertainty quantification. We propose the PULASki for biomedical image segmentation that accurately captures variability in expert annotations, even in small datasets. Our approach makes use of an improved loss function based on statistical distances in a conditional variational autoencoder structure (Probabilistic UNet), which improves learning of the conditional decoder compared to the standard cross-entropy particularly in class imbalanced problems. We analyse our method for two structurally different segmentation tasks (intracranial vessel and multiple sclerosis (MS) lesion) and compare our results to four well-established baselines in terms of quantitative metrics and qualitative output. Empirical results demonstrate the PULASKi method outperforms all baselines at the 5\\% significance level. The generated segmentations are shown to be much more anatomically plausible than in the 2D case, particularly for the vessel task. Our method can also be applied to a wide range of multi-label segmentation tasks and and is useful for downstream tasks such as hemodynamic modelling (computational fluid dynamics and data assimilation), clinical decision making, and treatment planning.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "3c886c811050b356d6e3476fea85fef658240693",
+    "title": "Robust Bayesian Inference on Riemannian Submanifold",
+    "abstract": "Non-Euclidean spaces routinely arise in modern statistical applications such as in medical imaging, robotics, and computer vision, to name a few. While traditional Bayesian approaches are applicable to such settings by considering an ambient Euclidean space as the parameter space, we demonstrate the benefits of integrating manifold structure into the Bayesian framework, both theoretically and computationally. Moreover, existing Bayesian approaches which are designed specifically for manifold-valued parameters are primarily model-based, which are typically subject to inaccurate uncertainty quantification under model misspecification. In this article, we propose a robust model-free Bayesian inference for parameters defined on a Riemannian submanifold, which is shown to provide valid uncertainty quantification from a frequentist perspective. Computationally, we propose a Markov chain Monte Carlo to sample from the posterior on the Riemannian submanifold, where the mixing time, in the large sample regime, is shown to depend only on the intrinsic dimension of the parameter space instead of the potentially much larger ambient dimension. Our numerical results demonstrate the effectiveness of our approach on a variety of problems, such as reduced-rank multiple quantile regression, principal component analysis, and Fr\\'{e}chet mean estimation.",
+    "year": 2023,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "d5335e6199764883b8a699084dfaff4923d6b04a",
+    "title": "On the Convergence of Locally Adaptive and Scalable Diffusion-Based Sampling Methods for Deep Bayesian Neural Network Posteriors",
+    "abstract": "Achieving robust uncertainty quantification for deep neural networks represents an important requirement in many real-world applications of deep learning such as medical imaging where it is necessary to assess the reliability of a neural network's prediction. Bayesian neural networks are a promising approach for modeling uncertainties in deep neural networks. Unfortunately, generating samples from the posterior distribution of neural networks is a major challenge. One significant advance in that direction would be the incorporation of adaptive step sizes, similar to modern neural network optimizers, into Monte Carlo Markov chain sampling algorithms without significantly increasing computational demand. Over the past years, several papers have introduced sampling algorithms with claims that they achieve this property. However, do they indeed converge to the correct distribution? In this paper, we demonstrate that these methods can have a substantial bias in the distribution they sample, even in the limit of vanishing step sizes and at full batch size.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "d459341f6f8b8875cdcc007ca849056b6b6518f5",
+    "title": "The Pitfalls and Promise of Conformal Inference Under Adversarial Attacks",
+    "abstract": "In safety-critical applications such as medical imaging and autonomous driving, where decisions have profound implications for patient health and road safety, it is imperative to maintain both high adversarial robustness to protect against potential adversarial attacks and reliable uncertainty quantification in decision-making. With extensive research focused on enhancing adversarial robustness through various forms of adversarial training (AT), a notable knowledge gap remains concerning the uncertainty inherent in adversarially trained models. To address this gap, this study investigates the uncertainty of deep learning models by examining the performance of conformal prediction (CP) in the context of standard adversarial attacks within the adversarial defense community. It is first unveiled that existing CP methods do not produce informative prediction sets under the commonly used $l_{\\infty}$-norm bounded attack if the model is not adversarially trained, which underpins the importance of adversarial training for CP. Our paper next demonstrates that the prediction set size (PSS) of CP using adversarially trained models with AT variants is often worse than using standard AT, inspiring us to research into CP-efficient AT for improved PSS. We propose to optimize a Beta-weighting loss with an entropy minimization regularizer during AT to improve CP-efficiency, where the Beta-weighting loss is shown to be an upper bound of PSS at the population level by our theoretical analysis. Moreover, our empirical study on four image classification datasets across three popular AT baselines validates the effectiveness of the proposed Uncertainty-Reducing AT (AT-UR).",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "bb512726a9e76790668ab2e8de74515ab4d664e7",
+    "title": "PULPo: Probabilistic Unsupervised Laplacian Pyramid Registration",
+    "abstract": "Deformable image registration is fundamental to many medical imaging applications. Registration is an inherently ambiguous task often admitting many viable solutions. While neural network-based registration techniques enable fast and accurate registration, the majority of existing approaches are not able to estimate uncertainty. Here, we present PULPo, a method for probabilistic deformable registration capable of uncertainty quantification. PULPo probabilistically models the distribution of deformation fields on different hierarchical levels combining them using Laplacian pyramids. This allows our method to model global as well as local aspects of the deformation field. We evaluate our method on two widely used neuroimaging datasets and find that it achieves high registration performance as well as substantially better calibrated uncertainty quantification compared to the current state-of-the-art.",
+    "year": 2024,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "7393d5307b1c08066cccd3e7bd663c2831e60f4c",
+    "title": "Stable Deep MRI Reconstruction Using Generative Priors",
+    "abstract": "Data-driven approaches recently achieved remarkable success in magnetic resonance imaging (MRI) reconstruction, but integration into clinical routine remains challenging due to a lack of generalizability and interpretability. In this paper, we address these challenges in a unified framework based on generative image priors. We propose a novel deep neural network based regularizer which is trained in a generative setting on reference magnitude images only. After training, the regularizer encodes higher-level domain statistics which we demonstrate by synthesizing images without data. Embedding the trained model in a classical variational approach yields high-quality reconstructions irrespective of the sub-sampling pattern. In addition, the model shows stable behavior when confronted with out-of-distribution data in the form of contrast variation. Furthermore, a probabilistic interpretation provides a distribution of reconstructions and hence allows uncertainty quantification. To reconstruct parallel MRI, we propose a fast algorithm to jointly estimate the image and the sensitivity maps. The results demonstrate competitive performance, on par with state-of-the-art end-to-end deep learning methods, while preserving the flexibility with respect to sub-sampling patterns and allowing for uncertainty quantification.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "51d0d91522685714f0df6e3472caf6b5cc5bb436",
+    "title": "Is MC Dropout Bayesian?",
+    "abstract": "MC Dropout is a mainstream\"free lunch\"method in medical imaging for approximate Bayesian computations (ABC). Its appeal is to solve out-of-the-box the daunting task of ABC and uncertainty quantification in Neural Networks (NNs); to fall within the variational inference (VI) framework; and to propose a highly multimodal, faithful predictive posterior. We question the properties of MC Dropout for approximate inference, as in fact MC Dropout changes the Bayesian model; its predictive posterior assigns $0$ probability to the true model on closed-form benchmarks; the multimodality of its predictive posterior is not a property of the true predictive posterior but a design artefact. To address the need for VI on arbitrary models, we share a generic VI engine within the pytorch framework. The code includes a carefully designed implementation of structured (diagonal plus low-rank) multivariate normal variational families, and mixtures thereof. It is intended as a go-to no-free-lunch approach, addressing shortcomings of mean-field VI with an adjustable trade-off between expressivity and computational complexity.",
+    "year": 2021,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "22c0b6999237483952921f520436725500f24fb2",
+    "title": "Accelerating innovation with software abstractions for scalable computational geophysics",
+    "abstract": "We present the SLIM (https://github.com/slimgroup) open-source software framework for computational geophysics, and more generally, inverse problems based on the wave-equation (e.g., medical ultrasound). We developed a software environment aimed at scalable research and development by designing multiple layers of abstractions. This environment allows the researchers to easily formulate their problem in an abstract fashion, while still being able to exploit the latest developments in high-performance computing. We illustrate and demonstrate the benefits of our software design on many geophysical applications, including seismic inversion and physics-informed machine learning for geophysics (e.g., loop unrolled imaging, uncertainty quantification), all while facilitating the integration of external software.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2203.15038",
+      "status": "GREEN"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "73ceab285544a095459870aa1b9a54d7b227928d",
+    "title": "Improved Trainable Calibration Method for Neural Networks",
+    "abstract": "Recent works have shown that deep neural networks can achieve super-human performance in a wide range of image classification tasks in the medical imaging domain. However, these works have primarily focused on classification accuracy, ignoring the important role of uncertainty quantification. Empirically, neural networks are often miscalibrated and overconfident in their predictions. This miscalibration could be problematic in any automatic decision-making system, but we focus on the medical field in which neural network miscalibration has the potential to lead to significant treatment errors. We propose a novel calibration approach that maintains the overall classification accuracy while significantly improving model calibration. The proposed approach is based on expected calibration error, which is a common metric for quantifying miscalibration. Our approach can be easily integrated into any classification task as an auxiliary loss term, thus not requiring an explicit training round for calibration. We show that our approach reduces calibration error significantly across various architectures and datasets.",
+    "year": 2020,
+    "isOpenAccess": false,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "92f376d1170457a8fcd209f06b78b6bc78366352",
+    "title": "MIMIR: Deep Regression for Automated Analysis of UK Biobank MRI Scans.",
+    "abstract": "UK Biobank (UKB) has recruited more than 500 000 volunteers from the United Kingdom, collecting health-related information on genetics, lifestyle, blood biochemistry, and more. Ongoing medical imaging of 100 000 participants with 70 000 follow-up sessions will yield up to 170 000 MRI scans, enabling image analysis of body composition, organs, and muscle. This study presents an experimental inference engine for automated analysis of UKB neck-to-knee body 1.5-T MRI scans. This retrospective cross-validation study includes data from 38 916 participants (52% female; mean age, 64 years) to capture baseline characteristics, such as age, height, weight, and sex, as well as measurements of body composition, organ volumes, and abstract properties, such as grip strength, pulse rate, and type 2 diabetes status. Prediction intervals for each end point were generated based on uncertainty quantification. On a subsequent release of UKB data, the proposed method predicted 12 body composition metrics with a 3% median error and yielded mostly well-calibrated individual prediction intervals. The processing of MRI scans from 1000 participants required 10 minutes. The underlying method used convolutional neural networks for image-based mean-variance regression on two-dimensional representations of the MRI data. An implementation was made publicly available for fast and fully automated estimation of 72 different measurements from future releases of UKB image data. Keywords: MRI, Adipose Tissue, Obesity, Metabolic Disorders, Volume Analysis, Whole-Body Imaging, Quantification, Supervised Learning, Convolutional Neural Network (CNN) © RSNA, 2022.",
+    "year": 2022,
+    "isOpenAccess": true,
+    "openAccessPdf": null,
+    "Relevance": "Untagged"
+  }
+]

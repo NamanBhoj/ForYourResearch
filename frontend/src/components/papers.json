@@ -1,0 +1,26 @@
+[
+  {
+    "paperId": "91b131e0aded1d1d316a997c2d7286e751edc389",
+    "title": "A Deep Learning-Based Framework for Uncertainty Quantification in Medical Imaging Using the DropWeak Technique: An Empirical Study with Baresnet",
+    "abstract": "Lung cancer is a leading cause of cancer-related deaths globally. Early detection is crucial for improving patient survival rates. Deep learning (DL) has shown promise in the medical field, but its accuracy must be evaluated, particularly in the context of lung cancer classification. In this study, we conducted uncertainty analysis on various frequently used DL architectures, including Baresnet, to assess the uncertainties in the classification results. This study focuses on the use of deep learning for the classification of lung cancer, which is a critical aspect of improving patient survival rates. The study evaluates the accuracy of various deep learning architectures, including Baresnet, and incorporates uncertainty quantification to assess the level of uncertainty in the classification results. The study presents a novel automatic tumor classification system for lung cancer based on CT images, which achieves a classification accuracy of 97.19% with an uncertainty quantification. The results demonstrate the potential of deep learning in lung cancer classification and highlight the importance of uncertainty quantification in improving the accuracy of classification results. This study’s novelty lies in the incorporation of uncertainty quantification in deep learning for lung cancer classification, which can lead to more reliable and accurate diagnoses in clinical settings.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.mdpi.com/2075-4418/13/4/800/pdf?version=1676893453",
+      "status": "GOLD"
+    },
+    "Relevance": "Untagged"
+  },
+  {
+    "paperId": "91b131e0aded1d1d316a997c2d7286e751edc389",
+    "title": "A Deep Learning-Based Framework for Uncertainty Quantification in Medical Imaging Using the DropWeak Technique: An Empirical Study with Baresnet",
+    "abstract": "Lung cancer is a leading cause of cancer-related deaths globally. Early detection is crucial for improving patient survival rates. Deep learning (DL) has shown promise in the medical field, but its accuracy must be evaluated, particularly in the context of lung cancer classification. In this study, we conducted uncertainty analysis on various frequently used DL architectures, including Baresnet, to assess the uncertainties in the classification results. This study focuses on the use of deep learning for the classification of lung cancer, which is a critical aspect of improving patient survival rates. The study evaluates the accuracy of various deep learning architectures, including Baresnet, and incorporates uncertainty quantification to assess the level of uncertainty in the classification results. The study presents a novel automatic tumor classification system for lung cancer based on CT images, which achieves a classification accuracy of 97.19% with an uncertainty quantification. The results demonstrate the potential of deep learning in lung cancer classification and highlight the importance of uncertainty quantification in improving the accuracy of classification results. This study’s novelty lies in the incorporation of uncertainty quantification in deep learning for lung cancer classification, which can lead to more reliable and accurate diagnoses in clinical settings.",
+    "year": 2023,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.mdpi.com/2075-4418/13/4/800/pdf?version=1676893453",
+      "status": "GOLD"
+    },
+    "Relevance": "Untagged"
+  }
+]

@@ -68,6 +68,7 @@ export default function Library() {
 
     // Setting the papers array that will be displayed in the table
     setPapers(json['papers']);
+    console.log(json['papers']);
     setTotalNumberOfPapers(json['number_of_papers']);
     // await handleSaveCurrentData(json['papers']);
 
