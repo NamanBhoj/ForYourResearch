@@ -21,12 +21,12 @@ const features = [
       'We identify which collected papers answer your research question and generate relevant citations, making it easier for you to write.',
     svgComponent: <Answer />,
   },
-  {
-    title: 'We Summarise and Report',
-    description:
-      'We summarize and generate a report of the key findings related to your research questions from the literature review, along with key insights such as future work and open questions.',
-    svgComponent: <Answer />,
-  },
+  // {
+  //   title: 'We Summarise and Report',
+  //   description:
+  //     'We summarize and generate a report of the key findings related to your research questions from the literature review, along with key insights such as future work and open questions.',
+  //   svgComponent: <Answer />,
+  // },
 ];
 
 function App() {
