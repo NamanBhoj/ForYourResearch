@@ -9,26 +9,24 @@ with open("papers.json", "r") as file:
     # print(data)
 
 def download_pdf_file(papers: list) -> bool:
-    """Download PDF from given URL to local directory.
-
-    :param papers: List of papers with URLs to be downloaded
-    :return: True if PDF file was successfully downloaded, otherwise False.
-    """
+  
     res = []
+    #Connection Pooling so that the same connection can be used for multiple request making it a bit faster
+    session = requests.Session()
+    session.verify = certifi.where()  # Use certifi for certificate verification
+
     # Request URL and get response object
     for paper in papers:
         print(paper)
         try:
             if paper.get("openAccessPdf"):
-                response = requests.get(
-                    paper["openAccessPdf"]["url"], verify=certifi.where()
-                )
+                response = session.get(paper["openAccessPdf"]["url"], stream=True)
 
                 # isolate PDF filename from URL
                 pdf_file_name = os.path.basename(paper["openAccessPdf"]["url"])
                 if response.status_code == 200:
                     # Save in current working directory
-                    filepath = os.path.join(os.getcwd(), f"pdfs/{pdf_file_name}")
+                    filepath = os.path.join(os.getcwd(), f"pdfs/{pdf_file_name}.pdf")
                     with open(filepath, "wb") as pdf_object:
                         pdf_object.write(response.content)
                         print(f"{pdf_file_name} was successfully saved!")
