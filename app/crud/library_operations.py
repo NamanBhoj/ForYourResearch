@@ -5,6 +5,8 @@ from ..models.search_result import SearchResult, SearchResultCreate
 
 from ..schemas.search import Search as SearchSchema
 from ..schemas.search_result import SearchResult as SearchResultSchema
+import os
+import boto3
 
 
 def save_query(db: Session, search_create: SearchCreate):

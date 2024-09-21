@@ -4,8 +4,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from  database import Base
-from schemas.search_result import SearchResult
+from database import Base
+from schemas.search_result_title_abstract import SearchResult
+from schemas.search_result_full_text import SearchResultFullText
 from schemas.search import Search
 
 
