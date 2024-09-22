@@ -34,17 +34,16 @@ jobs:
             cd ForYourResearch
 
             # Pull the latest code
-            git pull origin ${{ github.ref }}
+            git pull origin $BRANCH
 
          
-
             # Create and activate a virtual environment
             python3 -m venv venv
             source venv/bin/activate
 
             #go into app to get requirements.txt
             cd app
-            
+
             # Install requirements
             pip install -r requirements.txt
 
