@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from .schemas.search import Search
 from setproctitle import setproctitle
 
+# test cicd
 app = FastAPI()
 setproctitle("my_uvicorn_app")
 app.add_middleware(
@@ -43,6 +44,8 @@ async def root(db: Session = Depends(get_db)):
     db.refresh(search_row)
     return search_row
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
