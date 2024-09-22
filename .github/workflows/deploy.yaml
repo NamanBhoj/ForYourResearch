@@ -13,35 +13,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2  
 
       - name: Deploy to EC2 Instance
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
-            EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
+            EC2_INSTANCE_ID="${{ secrets.DEV_EC2_INSTANCE_ID }}"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
-            EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
+            EC2_INSTANCE_ID="${{ secrets.PROD_EC2_INSTANCE_ID }}"
           fi
 
-          ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
-            # Start Caddy server
-            sudo caddy start
-
-            # Navigate to the project directory
-            cd ForYourResearch/app
-
-            # Pull the latest code
-            git pull origin ${{ github.ref }}
-
-            # Install requirements
-            pip install -r requirements.txt
-
-            # Kill the existing FastAPI server
-            pkill -f "fastapi run"
-
-            # Start the FastAPI server
-            nohup fastapi run &
-          EOF
+          aws ssm send-command \
+            --instance-ids "$EC2_INSTANCE_ID" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy FastAPI server" \
+            --parameters commands='
+              sudo caddy start;
+              cd ForYourResearch/app;
+              git pull origin ${{ github.ref }};
+              pip install -r requirements.txt;
+              pkill -f "fastapi run";
+              nohup fastapi run &'
