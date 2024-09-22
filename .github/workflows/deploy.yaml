@@ -3,7 +3,7 @@ name: CI/CD for FastAPI Server
 on:
   push:
     branches:
-      - development
+      - test-cicd
       - production
 
 jobs:
@@ -16,11 +16,61 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----
 
+          
       - name: Deploy to EC2 Instance
         run: |
-          if [ "${{ github.ref }}" == "refs/heads/development" ]; then
+          if [ "${{ github.ref }}" == "refs/heads/test-cicd" ]; then
             EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
