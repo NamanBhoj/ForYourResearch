@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey
 import database
 
 
-class SearchResult(database.Base):
+class SearchResultTitleAbstract(database.Base):
     __tablename__ = "search_results_title_abstract"
 
     # Primary and foriegn keys
