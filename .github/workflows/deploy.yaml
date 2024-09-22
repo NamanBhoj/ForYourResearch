@@ -32,6 +32,8 @@ jobs:
             # Start Caddy server
             sudo caddy start
            # Set the branch name
+
+            cd ForYourResearch
             git branch
 
             # Fetch and pull the latest code
@@ -39,7 +41,7 @@ jobs:
             git checkout $BRANCH
 
             # Navigate to the project directory
-            cd ForYourResearch
+            
 
             # Pull code after cd-ing into repository folder
             git pull origin $BRANCH
