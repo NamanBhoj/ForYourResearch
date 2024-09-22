@@ -23,10 +23,10 @@ jobs:
       - name: Deploy to EC2 Instance
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
-            EC2_INSTANCE_ID="${{ secrets.DEV_EC2_INSTANCE_ID }}"
+            EC2_INSTANCE_ID="${{ secrets.DEV_EC2_HOST }}"
             BRANCH="development"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
-            EC2_INSTANCE_ID="${{ secrets.PROD_EC2_INSTANCE_ID }}"
+            EC2_INSTANCE_ID="${{ secrets.PROD_EC2_HOST }}"
             BRANCH="production"
           fi
 
