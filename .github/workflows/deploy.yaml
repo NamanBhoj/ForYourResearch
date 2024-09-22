@@ -60,11 +60,7 @@ jobs:
             #come out from the app folder
             cd ..
 
-            # Kill the existing FastAPI server
-            PID=$(lsof -t -i :8000)  # Get the PID of the process using port 8000
-            if [ -n "$PID" ]; then
-              sudo kill -9 $PID  # Kill the process if found
-            fi
+            
 
             # Start the FastAPI  server
 
