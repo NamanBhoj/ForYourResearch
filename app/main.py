@@ -1,12 +1,12 @@
 from fastapi import Depends, FastAPI
 from mangum import Mangum
-from .routers import papers, library
-from .util.helper_functions import is_in_production
+from routers import papers, library
+from util.helper_functions import is_in_production
 from fastapi.middleware.cors import CORSMiddleware
-from .models.search import SearchCreate
-from .dependencies import get_db
+from models.search import SearchCreate
+from dependencies import get_db
 from sqlalchemy.orm import Session
-from .schemas.search import Search
+from schemas.search import Search
 
 app = FastAPI()
 
