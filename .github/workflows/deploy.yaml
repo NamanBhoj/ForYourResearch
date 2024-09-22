@@ -65,8 +65,9 @@ jobs:
             if [ -n "$PID" ]; then
               sudo kill -9 $PID  # Kill the process if found
             fi
-            
+
             # Start the FastAPI server
             nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &
 
+            exit
           EOF
