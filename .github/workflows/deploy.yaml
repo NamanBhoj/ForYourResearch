@@ -1,74 +1,47 @@
-name: CI-CD for Lambda
+name: CI/CD for FastAPI Server
 
 on:
   push:
     branches:
       - development
-      - main
+      - production
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          python-version: '3.12'
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deployment to Lambda
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-2'
+      - name: Deploy to EC2 Instance
         run: |
-          cd app
-          zip -r ../app.zip .
-          cd ..
-          # Update the Lambda function with the new code
-          aws lambda update-function-code --function-name fyr-api --zip-file fileb://app.zip
+          if [ "${{ github.ref }}" == "refs/heads/development" ]; then
+            EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
+          elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
+            EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
+          fi
 
-      - name: Wait for Lambda Update to Complete
-        run: |
-          echo "Waiting for 30 seconds to ensure Lambda update is complete"
-          sleep 30  # Wait for 30 seconds before attempting to publish the version
+          ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
+            # Start Caddy server
+            sudo caddy start
 
-      - name: Publish New Lambda Version
-        id: publish_version
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-2'
-        run: |
-          # Publish a new Lambda version and capture the version number
-          VERSION=$(aws lambda publish-version --function-name fyr-api --query Version --output text)
-          echo "::set-output name=version::$VERSION"
+            # Navigate to the project directory
+            cd ForYourResearch/app
 
-      - name: Update Development Alias
-        if: github.ref == 'refs/heads/development'
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-2'
-        run: |
-          # Update the development alias to point to the new version
-          aws lambda update-alias \
-            --function-name fyr-api \
-            --name development \
-            --function-version ${{ steps.publish_version.outputs.version }}
+            # Pull the latest code
+            git pull origin ${{ github.ref }}
 
-      - name: Update Production Alias
-        if: github.ref == 'refs/heads/main'
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-2'
-        run: |
-          # Update the production alias to point to the new version
-          aws lambda update-alias \
-            --function-name fyr-api \
-            --name production \
-            --function-version ${{ steps.publish_version.outputs.version }}
+            # Install requirements
+            pip install -r requirements.txt
+
+            # Kill the existing FastAPI server
+            pkill -f "fastapi run"
+
+            # Start the FastAPI server
+            nohup fastapi run &
+          EOF
