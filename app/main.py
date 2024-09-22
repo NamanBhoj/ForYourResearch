@@ -1,12 +1,12 @@
 from fastapi import Depends, FastAPI
 from mangum import Mangum
-from routers import papers, library
-from util.helper_functions import is_in_production
+from .routers import papers, library
+from .util.helper_functions import is_in_production
 from fastapi.middleware.cors import CORSMiddleware
-from models.search import SearchCreate
-from dependencies import get_db
+from .models.search import SearchCreate
+from .dependencies import get_db
 from sqlalchemy.orm import Session
-from schemas.search import Search
+from .schemas.search import Search
 
 app = FastAPI()
 
@@ -41,3 +41,7 @@ async def root(db: Session = Depends(get_db)):
     db.commit()
     db.refresh(search_row)
     return search_row
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

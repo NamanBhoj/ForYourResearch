@@ -1,12 +1,12 @@
 from fastapi import APIRouter
-from app.models.request_with_object import Request
-from app.models.request_with_list import RequestObjectWithListData
+from ..models.request_with_object import Request
+from ..models.request_with_list import RequestObjectWithListData
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 from pydantic import BaseModel
 from mangum import Mangum
 import time
-from app.util.helper_functions import parse_query, is_in_production
+from ..util.helper_functions import parse_query, is_in_production
 import os
 
 from firebase_admin import credentials, auth, firestore
