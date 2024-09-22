@@ -7,9 +7,10 @@ from .models.search import SearchCreate
 from .dependencies import get_db
 from sqlalchemy.orm import Session
 from .schemas.search import Search
+from setproctitle import setproctitle
 
 app = FastAPI()
-
+setproctitle("my_uvicorn_app")
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
