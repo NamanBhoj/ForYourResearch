@@ -31,17 +31,18 @@ jobs:
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
             # Start Caddy server
             sudo caddy start
-
-            # Navigate to the project directory
-            cd ForYourResearch
-
-            # Set the branch name
+           # Set the branch name
             git branch
 
             # Fetch and pull the latest code
             git fetch origin
             git checkout $BRANCH
-            git pull
+            git pull origin $BRANCH
+
+            # Navigate to the project directory
+            cd ForYourResearch
+
+
 
 
             # Create and activate a virtual environment
