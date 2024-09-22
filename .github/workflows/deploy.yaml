@@ -36,6 +36,10 @@ jobs:
             # Pull the latest code
             git pull origin ${{ github.ref }}
 
+            #going into app folder
+
+            cd app
+
             # Create and activate a virtual environment
             python3 -m venv venv
             source venv/bin/activate
