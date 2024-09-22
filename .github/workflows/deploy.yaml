@@ -31,7 +31,7 @@ jobs:
             sudo caddy start
 
             # Navigate to the project directory
-            cd ForYourResearch/app
+            cd ForYourResearch
 
             # Pull the latest code
             git pull origin ${{ github.ref }}
