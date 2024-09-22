@@ -34,11 +34,9 @@ jobs:
             --instance-ids "$EC2_INSTANCE_ID" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploy FastAPI server" \
-            --parameters commands='[
-              "sudo caddy start",
-              "cd ForYourResearch/app",
-              "git pull origin $BRANCH",
-              "pip install -r requirements.txt",
-              "pkill -f \\"fastapi run\\"",
-              "nohup fastapi run &"
-            ]'
+            --parameters commands='sudo caddy start' \
+            --parameters commands='cd ForYourResearch/app' \
+            --parameters commands="git pull origin $BRANCH" \
+            --parameters commands='pip install -r requirements.txt' \
+            --parameters commands='pkill -f "fastapi run"' \
+            --parameters commands='nohup fastapi run &'
