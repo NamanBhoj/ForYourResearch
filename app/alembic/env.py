@@ -5,8 +5,9 @@ from sqlalchemy import pool
 
 from alembic import context
 from database import Base
-from schemas.search_result_title_abstract import SearchResult
+from schemas.search_result_title_abstract import SearchResultTitleAbstract
 from schemas.search_result_full_text import SearchResultFullText
+from schemas import ResearchQuestions
 from schemas.search import Search
 
 
