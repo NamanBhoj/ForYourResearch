@@ -30,7 +30,7 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
             # Start Caddy server
-            # sudo caddy start
+            sudo caddy start &
            # Set the branch name
 
             cd ForYourResearch
