@@ -33,7 +33,12 @@ jobs:
             # Navigate to the project directory
             cd ForYourResearch
 
-            # Pull the latest code
+            # Set the branch name
+            git branch
+
+            # Fetch and pull the latest code
+            git fetch origin
+            git checkout $BRANCH
             git pull origin $BRANCH
 
          
