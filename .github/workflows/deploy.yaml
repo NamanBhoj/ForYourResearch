@@ -41,9 +41,9 @@ jobs:
             # Fetch and pull the latest code
             git fetch origin
             git checkout $BRANCH
-            git pull origin $BRANCH
+            git pull
 
-         
+
             # Create and activate a virtual environment
             python3 -m venv venv
             source venv/bin/activate
