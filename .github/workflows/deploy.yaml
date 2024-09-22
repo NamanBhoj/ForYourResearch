@@ -18,15 +18,15 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Change to your AWS region
+          aws-region: us-east-2 
 
       - name: Deploy to EC2 Instance
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
-            EC2_INSTANCE_ID="${{ secrets.DEV_EC2_HOST }}"
+            EC2_INSTANCE_ID="${{ secrets.DEV_EC2_INSTANCE_ID }}"
             BRANCH="development"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
-            EC2_INSTANCE_ID="${{ secrets.PROD_EC2_HOST }}"
+            EC2_INSTANCE_ID="${{ secrets.PROD_EC2_INSTANCE_ID }}"
             BRANCH="production"
           fi
 
