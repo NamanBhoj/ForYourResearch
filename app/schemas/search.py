@@ -1,9 +1,9 @@
 # from ..database import Base
 from sqlalchemy import Column, String, Integer
-import database
+from ..database import Base
 
 
-class Search(database.Base):
+class Search(Base):
     __tablename__ = "searches"
 
     search_id = Column(Integer, primary_key=True, autoincrement=True)

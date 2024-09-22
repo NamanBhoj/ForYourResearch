@@ -1,12 +1,10 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
 from ..models.search import SearchCreate
-from ..models.search_result import SearchResult, SearchResultCreate
-
 from ..schemas.search import Search as SearchSchema
-from ..schemas.search_result import SearchResult as SearchResultSchema
-import os
-import boto3
+from ..schemas.search_result_title_abstract import (
+    SearchResultTitleAbstract as SearchResultTitleAbstractSchema,
+)
 
 
 def save_query(db: Session, search_create: SearchCreate):
@@ -37,7 +35,7 @@ def save_query(db: Session, search_create: SearchCreate):
 def save_papers(db: Session, papers: list, search_id: int):
     papers_to_add = []
     for paper in papers:
-        row = SearchResultSchema(
+        row = SearchResultTitleAbstractSchema(
             search_id=search_id,
             title=paper["title"],
             year=paper["year"],
@@ -82,8 +80,8 @@ def retrieve_papers_by_query(db: Session, search_id: int):
     # instead of using composite key of (uid+ searchQuery) we create a new field search_id which maps to user uid + searchQuery
 
     return (
-        db.query(SearchResultSchema)
-        .filter(SearchResultSchema.search_id == search_id)
+        db.query(SearchResultTitleAbstractSchema)
+        .filter(SearchResultTitleAbstractSchema.search_id == search_id)
         .all()
     )
 
@@ -98,11 +96,11 @@ def update_manual_paper_relevance(
     # manualrelevancevalue : relevance value send from frontend
 
     paper = (
-        db.query(SearchResultSchema)
+        db.query(SearchResultTitleAbstractSchema)
         .filter(
             and_(
-                SearchResultSchema.search_id == search_id,
-                SearchResultSchema.title == title,
+                SearchResultTitleAbstractSchema.search_id == search_id,
+                SearchResultTitleAbstractSchema.title == title,
             )
         )
         .first()

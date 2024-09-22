@@ -1,9 +1,14 @@
 # from ..database import Base
 from sqlalchemy import Column, String, Integer, ForeignKey
-import database
+
+# Use "..database import Base" when running the server and use:
+# import database
+# database.Base
+# when using alembic to make migrations
+from ..database import Base
 
 
-class SearchResultTitleAbstract(database.Base):
+class SearchResultTitleAbstract(Base):
     __tablename__ = "search_results_title_abstract"
 
     # Primary and foriegn keys
