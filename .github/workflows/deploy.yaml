@@ -90,7 +90,7 @@ jobs:
             # Start the FastAPI server
 
             echo "Starting FastAPI server..."
-            sudo nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+            nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &
 
           EOF
 
