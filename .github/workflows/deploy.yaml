@@ -32,7 +32,7 @@ jobs:
             # Set the branch name
             cd ForYourResearch
             git branch
-            echo "you are on branch $BRANCH"
+            echo "you are on branch $BRANCH somechanges"
             echo {{$BRANCH}}
 
             # Ensure the correct branch is checked out
