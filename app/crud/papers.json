@@ -1,0 +1,857 @@
+[
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Immersive technologies such as Virtual Reality (VR) and Augmented Reality (AR) empower users to experience digital realities. Known as distinct technology classes, the lines between them are becoming increasingly blurry with recent technological advancements. New systems enable users to interact across technology classes or transition between them—referred to as cross-reality systems. Nevertheless, these systems are not well understood. Hence, in this article, we conducted a scoping literature review to classify and analyze cross-reality systems proposed in previous work. First, we define these systems by distinguishing three different types. Thereafter, we compile a literature corpus of 306 relevant publications, analyze the proposed systems, and present a comprehensive classification, including research topics, involved environments, and transition types. Based on the gathered literature, we extract nine guiding principles that can inform the development of cross-reality systems. We conclude with research challenges and opportunities.",
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://dl.acm.org/doi/pdf/10.1145/3616536"
+    },
+    "title": "A Scoping Survey on Cross-reality Systems",
+    "paperId": "cf890b88148111a18d7e09c8d6017e7db99cb2d0",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Cross-reality systems empower users to transition along the reality-virtuality continuum or collaborate with others experiencing different manifestations of it. However, prototyping these systems is challenging, as it requires sophisticated technical skills, time, and often expensive hardware. We present VRception, a concept and toolkit for quick and easy prototyping of cross-reality systems. By simulating all levels of the reality-virtuality continuum entirely in Virtual Reality, our concept overcomes the asynchronicity of realities, eliminating technical obstacles. Our VRception Toolkit leverages this concept to allow rapid prototyping of cross-reality systems and easy remixing of elements from all continuum levels. We replicated six cross-reality papers using our toolkit and presented them to their authors. Interviews with them revealed that our toolkit sufficiently replicates their core functionalities and allows quick iterations. Additionally, remote participants used our toolkit in pairs to collaboratively implement prototypes in about eight minutes that they would have otherwise expected to take days.",
+    "openAccessPdf": {
+      "status": "BRONZE",
+      "url": "https://dl.acm.org/doi/pdf/10.1145/3491102.3501821"
+    },
+    "title": "VRception: Rapid Prototyping of Cross-Reality Systems in Virtual Reality",
+    "paperId": "6923b943d62ae0ca7cd6cfcb4c2b504a5701eecc",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "ABSTRACT Laboratories have long been integral to science and engineering education. They encompass diverse formats, repeatedly engaging students in technical programs. These various forms entail distinct pedagogical approaches, expectations, and technical requirements. Scholarly discourse on laboratory education exhibits both historical context and recurrent debates. Despite the laboratory's potential, the focus often centers on knowledge and skill development rather than forward-looking competencies. This paper categorizes these discussions, providing an overview of laboratories' contributions to learning. It delves into the potential role of laboratories in modern education, covering hands-on and Cross Reality (XR) labs, instructional methods, objectives, and research-based learning. The paper aims to illuminate laboratories' capabilities in enhancing the learning process, and it explores the role of research-based learning in conjunction with the laboratory.",
+    "openAccessPdf": {
+      "status": "BRONZE",
+      "url": "https://www.tandfonline.com/doi/pdf/10.1080/03043797.2023.2248819?needAccess=true"
+    },
+    "title": "Between hands-on experiments and Cross Reality learning environments – contemporary educational approaches in instructional laboratories",
+    "paperId": "20dacf6b2f7e5579b563c2d6c4cb0bda135271bc",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Cross-reality (CR) systems offer different levels of virtuality/physicality to users and enable them to move back and forth between the reality-virtuality continuums in a seamless way. Immersive augmented, virtual, and mixed reality (AR/VR/MR) head-mounted displays (HMDs) have become the main tools that enable cross-reality interaction. However, working with high-dimensional data is challenging due to complex data structures and their dimensionality. The goal of the workshop is to provide an opportunity for researchers from immersive technologies, HCI, and Visualization fields to share their original ideas and work-in-progress thoughts on the design and evaluation of interactive techniques and systems for effective cross-reality visualization, interaction, and collaboration.",
+    "openAccessPdf": null,
+    "title": "Workshop: Mixing Realities: Cross-Reality Visualization, Interaction, and Collaboration",
+    "paperId": "e194fdc00c5d1dea9678556379754d5cab52a211",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "About 30% of autistic people are nonspeakers; they cannot use speech to communicate effectively. Pointing to letters on a letterboard held by a Communication and Regulation Partner (CRP) is one alternative method of expressive communication that some members of this population use. In the training of this method, a CRP delivers engaging and customized lessons. Additionally, the CRP provides regulatory, sensory, and attentional support and also works to strengthen the subject’s pointing skills. The goal of this training is to equip individuals with the required skills to be able to type independently. Recent studies have proposed using AR to provide opportunities for nonspeakers to practice the motor skills involved in typing. To use such systems, however, there needs to be a transition phase where a CRP teaches their subject how to interact with a virtual letterboard. In this paper, we explore the feasibility of using cross-reality, in which a CRP and nonspeaker can interact with the same virtual objects simultaneously, as a possible means of fostering this transition. We report a study involving 5 nonspeaking autistic subjects with diverse motor skills interacting using a virtual HoloLens 2 letterboard system we developed called HoloBoard. All subjects succeeded in pointing to letters correctly or spelling on the virtual board. We report process and design recommendations based on feedback obtained from subjects and their CRPs.",
+    "openAccessPdf": null,
+    "title": "Can Cross-Reality Help Nonspeaking Autistic People Transition to AR Typing?",
+    "paperId": "3c612226a0dbc3690ac6626d0c66edc8a4be264d",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Cross-Reality (CR) is an important topic for the research of multiuser collaborative systems. It allows users to participate in the reality-virtuality continuum and select appropriate interactive systems to work with, such as Virtual Reality Head-Mounted Displays (VR HMDs). However, there is limited work showing how interaction in VR differs from the more commonly used Personal Computers (PCs) and tablet devices in terms of object selection and manipulation. In this paper, we present a comparative study that investigated how users perform and perceive workload on 3D object selection and manipulation tasks using different devices (e.g. PC, tablet, and VR). We recorded the time and accuracy as objective task performance measures, and users' self-reported workload as a subjective measure. Our results revealed that unlike the biased performances of PC and tablet, VR has a balanced performance and great potentials in complex tasks.",
+    "openAccessPdf": null,
+    "title": "Towards Cross-Reality Interaction and Collaboration: A Comparative Study of Object Selection and Manipulation in Reality and Virtuality",
+    "paperId": "ef9d6b11f6836381d37d056b5ba6d2956e1bc799",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Extended Reality (XR) has gained significant attention, offering novel pathways for learning based on the sharing of 3D content. Nevertheless, additional efforts should be spent to understand the advantages set forth by Cross-Reality (CR) scenarios, for example including Augmented Reality (AR) and Mixed Reality (MR) experiences in the context of remote live-streaming classes. In this process, a necessary step entails designing, implementing, and making educational tools available in an open-source format. To this aim, we present HOCTOPUS, a CR system designed to support live remote teaching. HOCTOPUS provides a cross-reality educational experience: an MR application for teachers and an AR mobile app for students. HOCTOPUS lets teachers visualize, manipulate, and share 3D objects in a live-streaming fashion, supporting bidirectional communication and interactions with all students. The MR component is developed for the Hololens 2, offering flexible manipulation capabilities, while the AR component runs on Android mobile devices, providing affordable interactive visualization and manipulation. The proposed tool may be used as a building block to enhance the learning process and is made available to the educational community for its use, assessment, and extension.",
+    "openAccessPdf": null,
+    "title": "HOCTOPUS: An Open-Source Cross-Reality tool to Augment Live-Streaming Remote Classes",
+    "paperId": "f4a44fd338d73279ff591bcf25d0bcd9e7eb2b70",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Cross-reality systems provide visual representations at different levels of virtuality/physicality and offer smooth transitions between them to users. These systems also support multiple modes of interaction, and coordinate collaboration between users with multiple realities. In this paper, we explore a cross-reality 360° video social system, aiming to enable users with different personalities to get a social experience consistent with their psychological changes and behavioral habits when watching 360° video. We designed the prototype system CRVideo, conducted a preliminary user survey and a user study to research the social requirements of users and verify the effectiveness of our cross-reality system. The results show that the social habits of extroverted and introverted users in video platforms differ greatly, and the system across realistic levels can meet the psychological change curve of users in different periods.",
+    "openAccessPdf": null,
+    "title": "CRVideo: Cross-reality 360° Video Social Systems Exploration",
+    "paperId": "f295aa4cb395be50de1ba9fe9df42f495d6463a5",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "The Metaverse comprises technologies to enable virtual twins of the real world, via mixed reality, internet of things, and others. As it matures unique challenges arise such as a lack of strong connections between virtual and physical worlds. This work presents design frameworks for cross-reality hybrid spaces. Contributions include: i) clarifying the metaverse “disconnect”, ii) extended metaverse design frameworks, iii) prototypes, and iv) discussions toward new metaverse smart environments.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://arxiv.org/pdf/2306.01113"
+    },
+    "title": "Cross-Reality for Extending the Metaverse: Designing Hyper-Connected Immersive Environments with XRI",
+    "paperId": "feb1bcf660e158f5372afe5c843a7a9dfe0c6a98",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "This work presents a Mixed Reality (MR)-based asynchronous hybrid cross reality collaborative system which supports recording and playback of user actions in three-dimensional task space at different periods in time. Using this system, an expert user can record a task process such as virtual object placement or assembly, which can then be viewed by other users in either Augmented Reality (AR) or Virtual Reality (VR) views at later points in time to complete the task. In VR, the pre-scanned 3D workspace can be experienced to enhance the understanding of spatial information. Alternatively, AR can provide real-scale information to help the workers manipulate real world objects, and complete the task assignment. Users can also seamlessly move between AR and VR views as desired. In this way the system can contribute to improving task performance and co-presence during asynchronous collaboration.",
+    "openAccessPdf": null,
+    "title": "An Asynchronous Hybrid Cross Reality Collaborative System",
+    "paperId": "9318e44e796aae308aaeb1af01420b747074acb4",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "This work introduces a Mixed Reality (MR)-based hybrid cross-reality collaborative system that enables recording and playback of user actions in a large task space over time. An expert records their actions, such as virtual object placement, that others can view in Augmented Reality (AR) or Virtual Reality (VR) later to complete a task. VR offers a pre-scanned 3D workspace for spatial understanding, while AR gives real-scale information for manipulating real objects. Users can easily switch between AR and VR views, enhancing task performance and co-presence during asynchronous collaboration. The system is showcased in an object assembly scenario with parts retrieved from a storehouse. A pilot study showed that this cross-reality system improved task completion speed with lower workload.",
+    "openAccessPdf": null,
+    "title": "Hybrid Cross-Reality Collaborative System",
+    "paperId": "3c4a6e471858f57e28273fa6564836774c8bd9ad",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Cross-reality (CR) applications allow users to utilize tools for problem solving that reside on different points of the Milgram reality-virtuality spectrum. Design guidelines for such applications are missing. In this paper, we are proposing a design space focusing on single-user Cross Reality applications as a tool for guiding research and development projects.",
+    "openAccessPdf": null,
+    "title": "A Design Space for Single-User Cross-Reality Applications",
+    "paperId": "58c0c7d46e008ed4bc0367326240c6facc64657d",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Cross-Reality (CR) involves interaction between different modalities and levels of immersion such as Virtual and Augmented Reality, as we explore in this paper. Whereas previous work assumed similarity between their respective Virtual and Augmented Environment (VE and AE), we explore the case in which VE and AE are distinct. This gives rise to novel and critical problems, such as how to visualise and interact with the other environment. In this context we investigate the fundamental interaction of transitioning an object across environments, to which we contribute five interaction techniques. Two are inspired by literature: Virtual Magic Lens and Binary Transition; while the other three are entirely novel: Auto Blended Space, Manual Blended Space - Button Transition and Manual Blended Space - Touch Transition. In a study evaluating the first four techniques, we found that participants (N=20) performed a CR object manipulation and transition task significantly faster using our Auto Blended Space technique. We then modified Manual Blended Space - Button Transition into Manual Blended Space - Touch Transition in response to these results, and reassessed the four techniques in a more complex object manipulation task (N=16). We found that this type of task was better suited to manual transition methods rather than automatic methods. Taken together, our final contribution are five blended space design factors, and timely Cross-Reality transition design guidelines.",
+    "openAccessPdf": null,
+    "title": "Blending Spaces: Cross-Reality Interaction Techniques for Object Transitions Between Distinct Virtual and Augmented Realities",
+    "paperId": "23c8d6dbde4d026f5936a0e8d2c0b00e3861a3bc",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "We present and evaluate methods to redirect desktop inputs such as eye gaze and mouse pointing to a VR-embedded avatar. We use these methods to build a novel interface that allows a desktop user to give presentations in remote VR meetings such as conferences or classrooms. Recent work on such VR meetings suggests a substantial number of users continue to use desktop interfaces due to ergonomic or technical factors. Our approach enables desk-top and immersed users to better share virtual worlds, by allowing desktop-based users to have more engaging or present \"cross-reality\" avatars. The described redirection methods consider mouse pointing and drawing for a presentation, eye-tracked gaze towards audience members, hand tracking for gesturing, and associated avatar motions such as head and torso movement. A study compared different levels of desktop avatar control and headset-based control. Study results suggest that users consider the enhanced desktop avatar to be human-like and lively and draw more attention than a conventionally animated desktop avatar, implying that our interface and methods could be useful for future cross-reality remote learning tools.",
+    "openAccessPdf": null,
+    "title": "Redirecting Desktop Interface Input to Animate Cross-Reality Avatars",
+    "paperId": "7f5b33958cef427c653b62fff9200a12ad8f4b9e",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "This paper summarizes the contributions to the AVI 2022 workshop on “Enhancing Cross-reality Applications and User Experiences”.",
+    "openAccessPdf": null,
+    "title": "Enhancing cross-reality applications and user experiences",
+    "paperId": "c936de703fafffad5be270dbc64376119ca69213",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Fig. 1. An example of what a cross-reality GCS experience could look like. Here a conventional GCS controlling UAVs from a remote location is run on a laptop (bottom-center) and is paired with a mixed reality headset to expand its capabilities to display extra virtual screens (upper-middle & bottom-right), UAV information panels (upper-right & upper-left), and a 3D map of the operational environment (bottom-left). Images on the laptop and virtual screens are of the VCSi GCS by Lockheed Martin [8].",
+    "openAccessPdf": null,
+    "title": "A Case for Enhancing UAV Ground Control Stations with Cross Reality",
+    "paperId": "cc0a2da73ebc497e51ef72735cbafa1f8a52db3f",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Virtual reality (VR) devices have a demonstrated capability to make users feel present in a virtual world. Research has shown that, at times, users desire a less immersive system that provides them aware-ness of and the ability to interact with elements from the real world and with a variety of devices. Understanding such cross-reality interactions is an under-explored research area that will become in-creasingly important as immersive devices become more ubiquitous. In this extended abstract, I provide an overview of my previous PhD research on facilitating cross-reality interactions between VR users and nearby non-VR interrupters. I discuss planned future research to investigate the social norms that are complicated by these interactions and design solutions that lead to meaningful interactions. These topics and questions will be discussed at the IEEE VR 2022 Doctoral Consortium.",
+    "openAccessPdf": null,
+    "title": "Balancing Realities by Improving Cross-Reality Interactions",
+    "paperId": "3b9ea08cbf453c258067dc00a409c0607b4935c7",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://link.springer.com/content/pdf/10.1007/s11042-022-13632-2.pdf"
+    },
+    "title": "Engaging educators in the ideation of scenarios for cross-reality game-based learning experiences",
+    "paperId": "18cd0c370f774e561f3100e16fe87877a43d0067",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Cross-reality (CR) is defined as \"the transition between or concurrent usage of multiple systems on the RV continuum.\"[1] Our work aims to develop the guidelines and processes to create the single-user CR application. In this position paper, we present three scenarios derived from the definition of CR, focusing on single-user CR applications. For each scenario, we discuss some challenges that need to be considered in order to enhance the single-user CR experience.",
+    "openAccessPdf": null,
+    "title": "Challenges of Single-User Cross Reality Applications",
+    "paperId": "9655efeeb9811d6e5e31bd7ca47f8506c2700fa6",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Interest in multiplayer games that allow players to connect and play together using different technologies, such as virtual or augmented reality (VR/AR) has increased. Research has shown that in cross-reality gaming experiences (eg. where there are differences in players' abilities, user interface (UI), and methods of interaction) it is possible to achieve an enhanced player experience (PX) through various interdependencies. However, most of the previous work focuses on co-located scenarios, where the space and proximity of the players are local and utilized. In this study we present a cross-reality prototype called LabXscape. Through the prototype we are researching how asymmetries of space, UI, methods of interaction, information access, and narrative impact the PX for players using different technologies (eg. VR, AR, PC). In this cross-reality prototype, players can connect with different devices found on the Milgram and Kishino's Reality-Virtuality Continuum [1]. Their interactions, movements, and information influence and are shared with each other, creating a cross-reality experience [2]. Our observations reveal that there are factors that allow non-VR players to have as engaging experience as VR players, despite using a less immersive device.",
+    "openAccessPdf": null,
+    "title": "LabXscape: A Prototype for Enhancing Player Experience in Cross-Reality Gameplay",
+    "paperId": "029f30293009411a6fc32fb3cf9ed3857a015678",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "The continuous technological advancement of computer simulation, display technology, and the internet of things leads to the opportunities to use cross-reality (XR) technologies in crisis management. XR emphasizes the compositions of different concepts in reality-virtuality continuum under a shared online virtual world, including virtual reality (VR), augmented reality (AR), and mixed reality (MR). It is touted as a promising tool to facilitate crisis management strategies in different stages, including prevention, onsite management, and recovery. This research contributes to the field of research in VR, XR, and crisis management (an essential component of healthcare) in the following four ways: (1) It proposes an idea to apply XR in crisis management. (2) It proposes a framework to connect VR, AR, and MR serving one purpose. (3) It presents a qualitative study to examine the user perception of the XR-based crisis management method. (4) It brings out the challenges and opportunities of using XR in crisis management.",
+    "openAccessPdf": null,
+    "title": "Cross Reality in Crisis Management",
+    "paperId": "46e49cb367ba76f873cc494969ab77c8d0ec3f98",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://link.springer.com/content/pdf/10.1007/978-3-030-58948-6_4.pdf"
+    },
+    "title": "Cross Reality (XR): Challenges and Opportunities Across the Spectrum",
+    "paperId": "cb91cfe60b600bd87fac4d1c6f53cd7f42ace03f",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "The closed design of virtual reality (VR) head-mounted displays substantially limits users’ awareness of their real-world surroundings. This presents challenges when another person in the same physical space needs to interrupt the VR user for a brief conversation. Such interruptions, e.g., tapping a VR user on the shoulder, can cause a disruptive break in presence (BIP), which affects their place and plausibility illusions, and may cause a drop in performance of their virtual activity. Recent findings related to the concept of diegesis, which denotes the internal consistency of an experience/story, suggest potential benefits of integrating registered virtual representations for physical interactors, especially when these appear internally consistent in VR. In this paper, we present a human-subject study we conducted to compare and evaluate five different diegetic and non-diegetic methods to facilitate cross-reality interruptions in a virtual office environment, where a user’s task was briefly interrupted by a physical person. We created a Cross-Reality Interaction Questionnaire (CRIQ) to capture the quality of the interaction from the VR user’s perspective. Our results show that the diegetic representations afforded reasonably high senses of co-presence, the highest quality interactions, the highest place illusions, and caused the least disruption of the participants’ virtual experiences. We discuss our findings as well as implications for practical applications that aim to leverage virtual representations to ease cross-reality interruptions.",
+    "openAccessPdf": null,
+    "title": "Diegetic Representations for Seamless Cross-Reality Interruptions",
+    "paperId": "35caa8572cec9d26f1c0bf218382f1ecc4e28519",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "Transitional interfaces (TIs) and related concepts such as cross-reality (XR) or cross-virtuality (XV) are key topics for future HCI and AR/VR research. Future TIs will enable users to freely move between different locations within the reality-virtuality continuum during work, to choose the best technologies for their task at hand and current information need. Our workshop will explore the core advantages and challenges of TIs and related concepts and address them in presentations and workshop activities at ACM ISS 2021.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "http://kops.uni-konstanz.de/bitstreams/c63e65f1-bd37-4a87-b543-cd470f107a7c/download"
+    },
+    "title": "Transitional Interfaces in Mixed and Cross-Reality: A new frontier?",
+    "paperId": "f60550a2967754d64bf8ffb0b4c95e30f13f9f8c",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "The vision of responsive architecture predicts that human experience can be evoked through the dynamic orchestration of spacedefining elements. Whereas recent studies have robotically actuated furniture for functional goals, little is known how this capability can be deployed meaningfully on an architectural scale. We thus evaluated the spatial impact of a responsive wall on the inhabitants of ordinary apartments. To maintain safety during the COVID-19 pandemic, we developed a novel remote, semi-immersive cross-reality simulation evaluation methodology. Based on the orchestration of three space-defining operations, we define a theoretical framework that suggests how the position of a responsive wall can be determined through five distinct architectural qualities. This framework thus proposes how human-building interaction (HBI) could complement its functional goals with augmenting the well-being of occupants in the physical as well as the virtual realm.CCS CONCEPTS •Human-centered computing $\\rightarrow$Empirical studies in HCI.",
+    "openAccessPdf": {
+      "status": "BRONZE",
+      "url": "https://dl.acm.org/action/downloadSupplement?doi=10.1145%2F3434073.3444643&file=hrifp1006aux.pdf"
+    },
+    "title": "Exploring an Architectural Framework for Human-Building Interaction via a Semi-Immersive Cross-Reality Methodology",
+    "paperId": "4df76ea0a6371e861e02babf452e1839ac2dca87",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "About one in three autistic individuals cannot reliably communi-cate using speech. Such Minimally Verbal Persons (MVPs) can thus benefit from alternative, text based communication techniques such as typing. Many MVPs employ trusted Communication and Regulation Partners (CRPs) who impart training to communicate by pointing at letters on a letter board. The CRP holds the letter board and helps an MVP acquire motor, i.e., pointing, skills while helping the individual with attentional and emotional regulation is-sues. While one-on-one CRP support has helped many individuals move on to independent typing leading to dramatically improved social and educational outcomes, it remains expensive and out of reach for many. Recently, immersive typing training systems have been developed for MVPs. Such systems are designed for an MVP to independently improve their pointing and spelling skills in the context of highly engaging, age-appropriate and customized educational modules. However, to be successful, these systems would benefit from a transitioning period where a CRP imparts training on the use of such systems. We outline the first attempt at developing such a system by leveraging cross reality. We build the cross reality application on top of HoloType, a HoloLens 2 typing training application we developed earlier. With this system, an MVP can interact with an educational lesson delivered by HoloType. Simultaneously, a CRP can join in the session using another HoloLens or a tablet. Both the CRP and the MVP can access the same virtual world, e.g., holographic buttons to interact with a lesson. The CRP can observe how the MVP interacts with the virtual objects. Based on this, the CRP can help the MVP interact with the virtual world better. Our initial trials show that aspects of the traditional CRP-MVP letter board interaction can be simulated by this system thereby improving the likelihood of the adoption of systems such as HoloType by the MVP community.",
+    "openAccessPdf": null,
+    "title": "HoloType-CR: Cross Reality Communication Training for Minimally Verbal Autistic Persons",
+    "paperId": "fadbdc30959b92315e1d03676922378169939d84",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "Fig. 1. A possible example scenario for asynchronous hybrid user interfaces: Users may start their analysis with an overview of aggregated 2D visualizations on the desktop (left), then switch to an immersive environment to make use of the stereoscopic view or investigate the data within its environmental context (right), and then switch back to the desktop to statistically validate their findings (left).",
+    "openAccessPdf": null,
+    "title": "Towards Asynchronous Hybrid User Interfaces for Cross-Reality Interaction",
+    "paperId": "5510a60cf0a1d5d5e8fc983e75ffcf3714d6fbd5",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "Virtual Reality (VR) technology enables users to immerse themselves in artificial worlds. However, it isolates users from the outside world and impedes them from collaborating with other users who might be outside of the VR experience and vice-versa. We implemented two systems where we explore how such an external user in the real world can interact across realities with a user immersed in virtual reality, either locally or remotely, in order to to share pinpoint locations. In the first we investigate three cross-reality techniques for the external user to draw the attention of their VR counterpart on specific objects present in the virtual environment (Voice, Highlight, and Arrow). Participants performed better overall and preferred the Arrow technique, followed by the Highlight technique. In the second system we expand on these two techniques to explore an even starker cross-reality interaction between users in VR and users interacting via a tablet computer to direct each other to pinpoint objects in the scene. We adapted the previous two techniques and implemented two others (Vision cone, Pointing) that support bi-directional communication between users. When it comes to bi-directional pinpointing, VR users still showed preference for the Arrow technique (now described as Pointing in Giant mode), while mobile users were split between the Vision cone and the Highlight techniques.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://lirias.kuleuven.be/bitstream/123456789/675217/2/Pazhayedath_WEVR2021.pdf"
+    },
+    "title": "Exploring Bi-Directional Pinpointing Techniques for Cross-Reality Collaboration",
+    "paperId": "9f8cd80c840d8860b4baab0619f160eaff2b235e",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "This paper discusses online laboratories as cross reality spaces in education. Cross Reality (also XR) as a term is borrowed from the field of gaming and broadly describes the integration of immersive, augmented, mixed, and virtual reality technology within physical reality. Online laboratories form an ideal example, as different realities (the real hands-on world in real labs, the virtual world in simulated labs or even a mixture of both in context with remote labs) are merged. The connection between different realities in laboratory education and their relation to engineering education contexts are discussed by describing a three-dimensional matrix for categorizing (online) laboratories in teaching and displaying current research results in this area. On basis of this, a scholarly research study is discussed, which is making use of a remote lab in mechanical engineering education for an international student body. In this study, the lab and its application are evaluated from the learner, the system, and the course perspective. These three perspectives offer a holistic view of the lab and the students’ learning. The study proofs a positive effect on the students learning experiences. The results also show which current needs and future potentials lie on the intersection of engineering education, internationalization, and digitalization in terms of collaborating and learning in Cross Reality Spaces.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://online-journals.org/index.php/i-joe/article/download/12849/6683"
+    },
+    "title": "Cross Reality Spaces in Engineering Education - Online Laboratories for Supporting International Student Collaboration in Merging Realities",
+    "paperId": "04463e3f7ea36eb5f0fb1ef9780ba859571eaa30",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "Established as separate disciplines, Augmented Reality (AR) and Virtual Reality (VR) have already positioned themselves as strong research disciplines. However, being part of the same Reality-Virtuality continuum, as presented by Paul Milgram, it is possible to envision (i) a smooth transition between systems using different degrees of virtuality or (ii) collaboration between users using different systems with different degrees of virtuality. We refer to these types of systems as cross-reality (XR) systems, which can better fulfil different modalities for a given task or context of use, and potentially enable rich applications in training, education, remote assistance, or emergency response compared to individual closed systems. This workshop will bring together researchers and practitioners that are interested in XR to identify current issues and future directions of research while the long-term goal is to create a strong interdisciplinary research community and foster future development of the discipline and collaborations.",
+    "openAccessPdf": null,
+    "title": "International Workshop on Cross-Reality (XR) Interaction",
+    "paperId": "c7aa5b86b7f5d9c5922e0d0851e0970d3520e008",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "We present XRTeleBridge (XRTB), an application that integrates a Mixed Reality (MR) interface into existing teleconferencing solutions like Zoom. Unlike conventional webcam, XRTB provides a window into the virtual world to demonstrate and visualize content. Participants can join via webcam or via head mounted display (HMD) in a Virtual Reality (VR) environment. It enables users to embody 3D avatars with natural gestures and eye gaze. A camera in the virtual environment operates as a video feed to the teleconferencing software. An interface resembling a tablet mirrors the teleconferencing window inside the virtual environment, thus enabling the participant in the VR environment to see the webcam participants in real-time. This allows the presenter to view and interact with other participants seamlessly. To demonstrate the system’s functionalities, we created a virtual chemistry lab environment and presented an example lesson using the virtual space and virtual objects and effects.",
+    "openAccessPdf": null,
+    "title": "XRTB: A Cross Reality Teleconference Bridge to incorporate 3D interactivity to 2D Teleconferencing",
+    "paperId": "18db1b9bd7cc26f5e7ee76c9b64a92fab10361b0",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2019,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00170-019-03939-0.pdf"
+    },
+    "title": "Cross reality to enhance worker cognition in industrial assembly operations",
+    "paperId": "6b9e2405f1ebaf223a05f777d937dc9dad805591",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "A cross reality wire assembly training system for workers with disabilities",
+    "paperId": "642869592cf9a3250bcb2507cfd8a29ac1285875",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://researchoutreach.org/wp-content/uploads/2021/09/Dominik-May.pdf"
+    },
+    "title": "Online laboratories and Cross-Reality in engineering education",
+    "paperId": "3cad4266ffc8bdd5bdf0a9f0ca03aa9d2835f28c",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2019,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Cross-reality environments in smart buildings to advance STEM cyberlearning",
+    "paperId": "913a338b6de5d455715afeeea5ffd77c76e6684e",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "This paper presents research questions on supporting analytics work using cross reality (CR) and the initial idea of the investigation we want to conduct.",
+    "openAccessPdf": null,
+    "title": "Individual and Collaborative Cross-reality Immersive Analytics - Initial Ideas",
+    "paperId": "91d43c67a6da257b3364a2996bc71fa0325189d2",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "Neonatal endotracheal intubation (ETI) is a resuscitation skill and therefore, requires an effective training regimen with acceptable success rates. However, current training regimen faces some challenges, such as the lack of visualization inside the manikin and quantification of performance, resulting in inaccurate guidance and highly variable manual assessment. We present a Cross Reality (XR) ETI simulation system which registers ETI training tools to their virtual counterparts. Thus, our system can capture all aspects of motions and visualize the entire procedure, offering instructors with sufficient information for assessment. A machine learning approach was developed to automatically evaluate the ETI performance for standardizing assessment protocols by using the performance parameters extracted from the motions and the scores from an expert rater. The classification accuracy of the machine learning algorithm is 83.5%.",
+    "openAccessPdf": null,
+    "title": "Automated Assessment System with Cross Reality for Neonatal Endotracheal Intubation Training",
+    "paperId": "6dbe7265fc20d43682e672bb029169455cd4126f",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "Mit der Digitalisierung ergeben sich nicht nur vielfaltige Anderungen im privaten und gesellschaftlichen Leben, sondern auch im beruflichen Aus- und Weiterbildungsbereich: Besonders die sich dynamisch entwickelnden technologiebasierten Erfahrungswelten Virtual Reality (VR), Augmented Reality (AR), Mixed Reality (MR) sowie Cross Reality bzw. Extended Reality (XR) versprechen zahlreiche neue Moglichkeiten fur das Lehren und Lernen. Virtuelle Lehr- und Lernwelten sollen zunehmend mit realen verschmelzen und multiple innovative Lehr- und Lernformate ermoglichen. Die Autorinnen und Autoren bieten einen Einblick in die theoretischen sowie konzeptionellen Grundlagen des Lehrens und Lernens mit technologiebasierten Erfahrungswelten. Dabei berucksichtigen sie aktuelle Forschungs- und Entwicklungsarbeiten und zeigen konkrete Anwendungsbereiche der Technologien auf. So gelingt es ihnen, sowohl Impulse fur die domanenspezifische Aus- und Weiterbildungspraxis als auch fur die Forschung und Entwicklung zu technologiebasierten Erfahrungswelten zu geben.",
+    "openAccessPdf": null,
+    "title": "Virtual, Augmented und Cross Reality in Praxis und Forschung",
+    "paperId": "f1a6ddf6a0f1a8f0a74bcbc137f3bf75f721a35f",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "This paper discusses elementary, and secondary (K-12) teachers’ perceptions of cross-reality (XR) tools for data visualization and use of sensor data from the built environment in classroom curricula. Our objective was to explore the use of sensor-informed XR in the built environment and civil engineering (BECE) field to support K-12 science, technology, engineering, and mathematics (STEM) experiential learning and foster BECE-related career awareness. We conducted surveys and informal questionnaires with 33 primary and secondary teachers attending an annual two-day university-based teacher professional development workshop as part of a statewide STEM afterschool program serving students in rural communities. We assessed teachers’ familiarity with, knowledge about, and appraisal of using cross-reality platforms and sensor data in classrooms and after school curricula. Findings show that, while all teachers reported relatively high interest in learning about sensor applications and innovative interactive techniques, middle school teachers in particular were most likely to see value in using these applications for teaching and learning. Implications for teacher professional development are discussed.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.mdpi.com/2227-7102/10/9/234/pdf?version=1599218869"
+    },
+    "title": "Teacher Perceptions of Training and Pedagogical Value of Cross-Reality and Sensor Data from Smart Buildings",
+    "paperId": "6a2ea211e41584ba6c0612b21daaa38376461bf3",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "The body plays a communicative function in interaction. It expresses how we respond, experience and interact with the world through action, movement, and gestures. In this paper, we investigate the impact of the body in Cross-Reality Interaction between users of different realities in the Reality-Virtuality continuum. We propose a Framework for Selective Augmented Reality Visualisation of Virtual Objects that enables an external Augmented Reality user to perceive an immersed Virtual Reality user against different levels of information. The augmented reality user may observe the real body of the user in the context of visualised objects from the virtual environment, selected according to three criteria: Proximity Threshold, Field of View, and Importance Ranking. We aim to investigate how much and what type of virtual objects need to be visualised in order to convey clear information on the activity and physical engagement of the immersed Virtual Reality user. Two use cases are presented to which this framework can be applied: vocational training on food hygiene and a virtual exhibition for architecture.",
+    "openAccessPdf": null,
+    "title": "The Body in Cross-Reality: A Framework for Selective Augmented Reality Visualisation of Virtual Objects",
+    "paperId": "f9f37ab7b190d19a9943f44386b3bf7648520891",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "One of the most challenging tasks in cross reality environment simulations is the generation of realistic and attractive worlds. The continuous evolution of computer game industry has a dramatic effect on such tasks as younger generations have higher expectations and demands in terms of realism. Virtual, Augmented, and mixed reality-based museums allow the efficient dissemination of cultural heritage thesaurus and are considered a popular application domain for cross reality environments due to their broad appeal. One of their primary scopes is to enrich user experience by introducing intuitive means of interaction with artefacts while offering knowledge in a more pleasant way than most of the traditional approaches. This chapter focuses on the development aspects of realistic simulations of cross reality environments for cultural heritage applications. It covers aspects related to modern 3D graphics and game engines, 3D digitization, and modelling. It discusses on the combination of these technologies in order to produce realistic, pleasant, and educative environments.",
+    "openAccessPdf": null,
+    "title": "Exploiting Cross-Reality Technologies for Cultural Heritage Dissemination",
+    "paperId": "e568ee5bdb9661afa5ebd386c3360d1c304c52cb",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "This book examines the structure and development of the German XR industry. Where are the companies that produce VR, AR and MR located and why? What do they produce and for whom? Where do they see the potential of XR and the hurdles it presents, especially during the current coronavirus pandemic?\n Based on the first nationwide representative survey on this topic (carried out in 2020) and previous studies, the book examines findings from the perspective of cluster theory or agglomeration research.\n In addition, the authors analyse acceptance of these new technologies by users (end users and companies) through case studies of the adoption of XR in companies and a survey on VR usage by individuals.",
+    "openAccessPdf": null,
+    "title": "Cross Reality (XR) in Deutschland",
+    "paperId": "cb85098300faf7562504f224413ca710f61fa69d",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Cross Reality (XR) in Deutschland",
+    "paperId": "9323fa2314ef1be48b9904c6a6339f0589eeae3b",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "As an integral part of archaeology, archaeometry, employs standard laboratory techniques and ICT tools to examine and analyze art and archaeological materials. Most students involved with cultural heritage and Αrchaeology have a background in the arts or humanities and a minimal, if any, training in the principles and techniques of most natural and engineering sciences. Consequently, when choosing to be enrolled in an archaeometry course, an interdisciplinary field which also requires some background in applied sciences, cross reality labs can be the bridge between archaeology and its sub-disciplines, and “hard science.” In this chapter, the authors focus on the use of virtual environments in the digital cultural heritage field, as well as on applications of cross reality laboratories in archaeometry. Finally, they present some evidence in favor of the simulations, pointing out that VR, AR, and MR labs could train, safely and efficiently, pre-service archaeometrists in the use of specialized laboratory apparatuses and help them take advantage of the full spectrum of modern laboratory tools. Cross-Reality Technologies in Archaeometry Bridge Humanities With “Hard Science”",
+    "openAccessPdf": null,
+    "title": "Cross-Reality Technologies in Archaeometry Bridge Humanities With “Hard Science”",
+    "paperId": "180eb578cd25b9cc2ee6915729d07c76aa732b0a",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2024,
+    "Relevance": "Untagged",
+    "abstract": "The inquiry into the impact of diverse transitions between cross-reality environments on user experience remains a compelling research endeavor. Existing work often offers fragmented perspectives on various techniques or confines itself to a singular segment of the reality-virtuality spectrum, be it virtual reality or augmented reality. This study embarks on bridging this knowledge gap by systematically assessing the effects of six prevalent transitions while users remain immersed in tasks spanning both virtual and physical domains. In particular, we investigate the effect of different transitions while the user is continuously engaged in a demanding task instead of purely focusing on a given transition. As a preliminary step, we evaluate these six transitions within the realm of pure virtual reality to establish a baseline. Our findings reveal a clear preference among participants for brief and efficient transitions in a task-driven experience, instead of transitions that prioritize interactivity and continuity. Subsequently, we extend our investigation into a cross-reality context, encompassing transitions between virtual and physical environments. Once again, our results underscore the prevailing preference for concise and effective transitions. Furthermore, our research offers intriguing insights about the potential mitigation of visual incoherence between virtual and augmented reality environments by utilizing different transitions.",
+    "openAccessPdf": null,
+    "title": "Simple and Efficient? Evaluation of Transitions for Task-Driven Cross-Reality Experiences.",
+    "paperId": "42fda3b12019270821a6d086a3ad63048e05e3ee",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2024,
+    "Relevance": "Untagged",
+    "abstract": "The paper investigates how users want to transfer 3D virtual objects between a standard desktop monitor and an augmented reality head-mounted display setup during a Cross Reality session. An elicitation study with 20 participants was conducted to gather their preferred interactions and input modalities to select 3D virtual objects and trigger the transition. Participants were allowed to propose interactions belonging to various input modalities or a combination of interactions that utilize multiple input modalities. We labeled the observed data and analyzed the resulting 1200 input observations to derive a set of recommended interactions. We found that mid-air hand gestures Drag, Tap, and Grab were the most commonly proposed interactions and should be considered as the primary interaction for CR virtual objects transition assisted with other interactions and input modalities as the supplementary base on different user scenarios.",
+    "openAccessPdf": null,
+    "title": "User Preferences for Interactive 3D Object Transitions in Cross Reality - An Elicitation Study",
+    "paperId": "8475db1ba2d5742b3bcc0eeb16b653b3457a76be",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": "Mixed-reality telepresence allows local and remote users feel as if they are present together in the same space. In this paper we report on a mixed-reality volumetric telepresence system that is adaptable, multi-user and cross-modal, i.e. combining augmented and virtual reality technologies with face-to-face interactions. The system extends state-of-art by creating full-body and environmental volumetric renderings in real-time over local enterprise networks. We report findings of an evaluation in a training scenario which was adapted for remote delivery and led by an industry professional. Analysis of interviews and observed behaviours identify varying attitudes towards virtually mediated full-body experiences and highlight the impact of volumetric mixed-reality telepresence to facilitate personal experiences of co-presence and to ground communication with interlocutors.",
+    "openAccessPdf": null,
+    "title": "Volumetric Mixed Reality Telepresence for Real-time Cross Modality Collaboration",
+    "paperId": "7fb992ae268944c7b91084d4e20d3d8a50a436ca",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": "Recently, web based cross reality (XR) concept embracing virtual reality (VR), augmented reality (AR), and mixed reality (MR) technology has emerged, but user interaction devices for collaborative work supported in web environments are limited. The Virtual-Reality Peripheral Network (VRPN) in the traditional VR environment provides a device-independent and network transparent interface. To promote the development of web based XR applications, a common method is required to support a collaborative interaction space in VR, AR, and MR contexts according to the user environment and various interaction devices that can be used without limitation of XR content in web based XR environments as well. In this paper, we propose a webizing method for a collaborative interaction space that provides user authentication and manages user sessions in XR environments. In addition, the webizing method supports human interface devices and related events via an interaction adaptor that delivers events based on user session and converts event messages according to XR content types such as VRPN messages, X3D sensor data, and HTML DOM events to deal with interaction events.",
+    "openAccessPdf": null,
+    "title": "Webizing collaborative interaction space for cross reality with various human interface devices",
+    "paperId": "e1f635017fe47ea0d2b5828a7c1b871b25af7457",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2024,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Prototyping Cross-Reality Escape Rooms",
+    "paperId": "c0e63ee81f1dd8a46a0e8b43d6403cf8f096ea2f",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "A Toolkit for Creating Cross-Reality Serious Games",
+    "paperId": "69db16f022bbcf5091bc43cc5a1fc0199e7372f8",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2017,
+    "Relevance": "Untagged",
+    "abstract": "Building physical spaces interconnected with virtual worlds is a complex task that requires high technical knowledge and hours of programming and, as a matter of fact, is relegated to the work of expert professionals. The goal of this research is to lower the development threshold through the design of an end-user toolkit that provides a visual integrated environment for the rapid prototyping of cross-reality interactions. A user study with 8 participants showed the effectiveness of our approach and uncovered design opportunities and challenges for supporting the development of cross-reality environments.",
+    "openAccessPdf": null,
+    "title": "End-User Prototyping of Cross-Reality Environments",
+    "paperId": "d8292f8a01391a579e23654f0608a486b6521f73",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2015,
+    "Relevance": "Untagged",
+    "abstract": "This paper presents the La Trobe e-Sanctuary concept, which aims to develop a cross-reality environment where a physical wildlife sanctuary is synchronised in real-time with its virtual counterpart. We outline the concept, research issues in realising this concept, components of our on-going project, and applications.",
+    "openAccessPdf": null,
+    "title": "The La Trobe E-Sanctuary: Building a Cross-Reality Wildlife Sanctuary",
+    "paperId": "87c937d89c5aab06404597de87bbfe8e216604ce",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "This research explores the cross-modal correspondence effect of ambient color on people’s taste perception in virtual reality (VR). To this end, we designed and conducted two experiments to investigate whether and how taste-congruent ambient colors in VR influence taste perception measured by four aspects: 1) taste ratings of a neutral drink; 2) taste association with virtual environments; 3) associated scenarios when immersed in these virtual environments; and 4) participants’ liking of these environments. In Experiment 1, participants adjusted the ambient light with different cross-modal-related colors in the immersive environments and reported their scaling of the Virtual Reality Sickness Questionnaire (VRSQ). Comfortable light intensity for each ambient color was obtained and color recognition problems were observed. In Experiment 2, participants tasted black tea (as the neutral drink), after being exposed to eight different virtual environments with different ambient colors. Results showed that the pink ambient color significantly increased the sweetness ratings. Differences in the color-taste association and environment liking were also observed in the ambient color conditions. Our results provide new insights into the cross-modal correspondence effect on ambient color and taste perception not found in prior work in VR scenarios.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.frontiersin.org/articles/10.3389/frvir.2022.1056782/pdf"
+    },
+    "title": "Examining cross-modal correspondence between ambient color and taste perception in virtual reality",
+    "paperId": "8d8b8080b2aba186f7000fd9190b52a3f6f2576d",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "While eXtended Reality (XR) ha s been shown to provide rich promise, its adoption within the educational context for student created games is still limited. Recent advances in XR technology, especially in mobile XR tools, have made XR more accessible. These advances have also enabled the development of student-created XR experiences that provide opportunities for integrating learning with technology skills development. Through the integration of critical digital skills across the curriculum, students can demonstrate a range of learning outcomes across many different learning areas. In this study, we explore how the affordances of XR can be leveraged to enable new learning opportunities, specifically in enabling students to design their own XR learning experiences. We also explore how the added context of XR games provides additional benefits to engage and motivate learners. In this article, we identify and explore twelve affordances framed in the notions of engagement, authenticity and contextualisation. These affordances have been identified in the literature to highlight the benefits of XR and were explored in terms of how the added context of student-created games leveraged these affordances. Drawing on a wider research project, we identify three scenarios that were adopted by three teachers (Mathematics, Science and Language teacher) to teach a range of subjects that drew on XR student-created games. From this analysis, we conclude with six proposed design principles that could be adopted by other teachers to help guide them in applying a similar approach in their teaching.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.frontiersin.org/articles/10.3389/frvir.2022.888689/pdf"
+    },
+    "title": "The integration of extended reality for student-developed games to support cross-curricular learning",
+    "paperId": "e744e922237c15bdfad393a915a8d8614a84115f",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2022,
+    "Relevance": "Untagged",
+    "abstract": "Collaboration and guidance are key aspects of many software tasks. In traditional desktop software, such aspects are well supported through built-in collaboration functions or general-purpose techniques such as screen and video sharing. In Mixed Reality environments, where users carry out actions in a three-dimensional space, collaboration and guidance may also be required. However, other users may or may not be using the same Mixed Reality interface. Users may not have access to the same information, the same visual representation, or the same interaction affordances. These asymmetries make communication and collaboration between users harder. To address asymmetries in Mixed Reality environments, we introduce Interactive Mixed-Dimensional Media. In these media, the visual representation of information streams can be changed between 2D and 3D. Different representations can be chosen automatically, based on context, or through associated interaction techniques that give users control over exploring spatial, temporal, and dimensional levels of detail. This ensures that any information or interaction makes sense across different dimensions, interfaces and spaces. We have deployed these techniques in three different contexts: mixed-reality telepresence for physical task instruction, video-based instruction for VR tasks, and live interaction between a VR user and a non-VR user. From these works, we show that Mixed Reality environments that provide users with interactive mixed-dimensional media interfaces improve performance and user experience in collaboration and guidance tasks.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.frontiersin.org/articles/10.3389/frvir.2022.766336/pdf"
+    },
+    "title": "Interactive Mixed-Dimensional Media for Cross-Dimensional Collaboration in Mixed Reality Environments",
+    "paperId": "371b48fba93aa2fe08d24a241bd6b44362f73979",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2014,
+    "Relevance": "Untagged",
+    "abstract": "We present the cross reality [Lifton 2007] system 'Mirrorshades', which enables a user to be present and aware of both a virtual reality environment and the real world at the same time. In so doing the challenge of the vacancy problem is addressed by lightening the cognitive load needed to switch between realities and to navigate the virtual environment. We present a case study in the context of a cultural heritage application wherein users are able to compare a reconstruction of an important 15th century chapel with its present day instantiation, whilst walking through them.",
+    "openAccessPdf": null,
+    "title": "A view from the hill: where cross reality meets virtual worlds",
+    "paperId": "dac77d9d120f0cc8ccc59056066cb20bd7330466",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "In this paper, we provide an approach on using behavioral biometrics to perform cross-system high-assurance authentication of users in virtual reality (VR) environments. VR is currently being explored as a critical tool to ensure seamless delivery of essential services, such as education, healthcare, and personal finance, while enabling users to work from home environments. Due to the sensitive nature of personal data generated, VR applications for essential services need to provide secure access. Traditional PIN or password-based credentials can be breached by malicious impostors, or be handed over by an intended user of a VR system to a confederate to assist the intended user in completing a task, e.g., an exam or a physical therapy routine. Existing approaches that use the behavior of the user in VR as a biometric signature fail when users provide enrollment and use-time data on different VR systems. We use Siamese neural networks to learn a distance function that characterizes the systematic differences between data provided across pairs of dissimilar VR systems. Our approach provides average equal error rates (EERs) ranging from 1.38% to 3.86% for authentication using a benchmark dataset that consists of 41 users performing a ball-throwing task with 3 VR systems-an Oculus Quest, an HTC Vive, and an HTC Vive Cosmos. To compare to prior approaches in VR biometrics, we also obtain average accuracies for the task of identification, where given an input user's trajectory in a use-time VR system, we use Siamese networks to return the user with the top matching trajectory in an enrollment VR system as the label. We report identification results ranging from 87.82% to 98.53% with average improvements of 29.78%±8.58% and 30.78%±3.68% over existing approaches that use generic distance matching and fully convolutional networks on the enrollment dataset respectively.",
+    "openAccessPdf": null,
+    "title": "Using Siamese Neural Networks to Perform Cross-System Behavioral Authentication in Virtual Reality",
+    "paperId": "e1a2fb956b451d22197fb7065c8477c3c32a11c9",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Cross-cultural learning in virtual reality environment: facilitating cross-cultural understanding, trait emotional intelligence, and sense of presence",
+    "paperId": "ac4c784b7a1cc9157687cf6d7a50be0428ca37bd",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2013,
+    "Relevance": "Untagged",
+    "abstract": "Widespread adoption of smartphones and tablets has enabled people to multiplex their physical reality, where they engage in face-to-face social interaction, with Web-based social networks and apps, whilst emerging 3D Web technologies hold promise for networks of parallel 3D virtual environments to emerge. Although current technologies allow this multiplexing of physical reality and 2D Web, in a situation called PolySocial Reality, the same cannot yet be achieved with 3D content. Cross Reality was proposed to address this issue; however so far it has focused on the use of fixed links between physical and virtual environments in closed lab settings, limiting investigation of the explorative and social aspects. This paper presents an architecture and implementation that addresses these shortcomings using a tablet computer and the Pangolin virtual world viewer to provide a mobile interface to a corresponding 3D virtual environment. Motivation for this project stemmed from a desire to enable students to interact with existing virtual reconstructions of cultural heritage sites in tandem with exploration of the corresponding real locations, avoiding the adverse temporal separation caused otherwise by interacting with the virtual content only within the classroom. The accuracy of GPS tracking emerged as a constraint on this style of interaction.",
+    "openAccessPdf": null,
+    "title": "Mobile Cross Reality for cultural heritage",
+    "paperId": "4a84c746d7c1b4a28c33b260a3f9d698bce7066c",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Psychological and physiological effects of a green wall on occupants: A cross-over study in virtual reality",
+    "paperId": "54c3ddbb4bac93f1d4e5dbb71af1fbaa80176d11",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2021,
+    "Relevance": "Untagged",
+    "abstract": "This paper describes a modular framework developed to facilitate the design space exploration of cross-device Augmented Reality (AR) interfaces that combine an AR head-mounted display (HMD) with a smartphone. Currently, there is a growing interest in how AR HMDs can be used with smartphones to improve the user’s AR experience. In this work, we describe a framework that enables rapid prototyping and evaluation of an interface. Our system enables different modes of interaction, content placement, and simulated AR HMD field of view to assess which combination is best suited to inform future researchers on design recommendations. We provide examples of how the framework could be used to create sample applications, the types of the studies which could be supported, and example results from a simple pilot study.",
+    "openAccessPdf": null,
+    "title": "SecondSight: A Framework for Cross-Device Augmented Reality Interfaces",
+    "paperId": "498109a3444a8e28ad497ffed87de4d322660e53",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Do people follow the crowd in building emergency evacuation? A cross-cultural immersive virtual reality-based study",
+    "paperId": "1e456aa88e4fec79ddcf497373277fb4ee090e5b",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "In this paper, we perform the first analysis of behavior-based authentication within and across multiple virtual reality (VR) systems. The proliferation of VR in everyday applications such as healthcare, manufacturing, education, and remote teleoperation necessitates an understanding of operation over multiple VR systems as it is likely that a user will utilize several systems and requiring the user to re-train to a new system is time consuming. We collect the first multi-system dataset for VR biometrics consisting of 46 users performing a ball-throwing interaction using the Oculus Quest, HTC Vive, and HTC Vive Cosmos. Each user provides 10 training samples on the first day and 10 test samples on the second day for each of the three devices. We collect position and orientation data for devices such as the headset, left hand controller, and right hand controller, as well as trigger positions for the dominant hand controller. Our approach uses pairwise matches between trajectory features to represent high intra-user consistency and inter-user discriminative capacity. We analyze within-system and cross-system authentication accuracy for the 41 right-handed users in our 46-user dataset over varying combinations of matches for features such as point positions, device orientations, linear and angular velocities, and trigger grab or release for the right hand controller, left hand controller, and headset. Our approach provides maximum within-system authentication accuracy of 97%, 91%, and 91% when test trajectories are compared to training trajectories for the Vive, Quest, and Cosmos respectively. We provide maximum accuracies of 58% for testing with Cosmos and training with Quest, 70% for testing with Cosmos and training with Vive, and 85% for testing with Quest and training with Vive.",
+    "openAccessPdf": null,
+    "title": "Within-System and Cross-System Behavior-Based Biometric Authentication in Virtual Reality",
+    "paperId": "0b535b49b739997bc09798e82aeabe680011b69b",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2019,
+    "Relevance": "Untagged",
+    "abstract": "Neuroanatomy education is a challenging field which could benefit from modern innovations, such as augmented reality (AR) applications. This study investigates the differences on test scores, cognitive load, and motivation after neuroanatomy learning using AR applications or using cross‐sections of the brain. Prior to two practical assignments, a pretest (extended matching questions, double‐choice questions and a test on cross‐sectional anatomy) and a mental rotation test (MRT) were completed. Sex and MRT scores were used to stratify students over the two groups. The two practical assignments were designed to study (1) general brain anatomy and (2) subcortical structures. Subsequently, participants completed a posttest similar to the pretest and a motivational questionnaire. Finally, a focus group interview was conducted to appraise participants’ perceptions. Medical and biomedical students (n = 31); 19 males (61.3%) and 12 females (38.7%), mean age 19.2 ± 1.7 years participated in this experiment. Students who worked with cross‐sections (n = 16) showed significantly more improvement on test scores than students who worked with GreyMapp‐AR (P = 0.035) (n = 15). Further analysis showed that this difference was primarily caused by significant improvement on the cross‐sectional questions. Students in the cross‐section group, moreover, experienced a significantly higher germane (P = 0.009) and extraneous cognitive load (P = 0.016) than students in the GreyMapp‐AR group. No significant differences were found in motivational scores. To conclude, this study suggests that AR applications can play a role in future anatomy education as an add‐on educational tool, especially in learning three‐dimensional relations of anatomical structures.",
+    "openAccessPdf": {
+      "status": "HYBRID",
+      "url": "https://anatomypubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ase.1912"
+    },
+    "title": "Neuroanatomy Learning: Augmented Reality vs. Cross‐Sections",
+    "paperId": "8f5ea91431e980123908d07ce73cd07638201f00",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2012,
+    "Relevance": "Untagged",
+    "abstract": "Virtual worlds have proven popular in academia as extensible multi-user 3D virtual environments capable of hosting a wide range of experimental scenarios. One of the products of virtual worlds research is the cross reality paradigm; the fusion of ubiquitous sensor/actuator infrastructure and virtual worlds facilitating synchronous bidirectional intercommunication between real and virtual environments, allowing each to reflect, influence and merge with the other. We introduce the ongoing Virtual Time Window project, an application of cross reality to the domain of cultural heritage, that promises to further existing alternate reality work in the field by allowing simultaneous exploration of real and virtual environments; visitors to a cultural heritage site can simultane- ously explore its virtual reconstruction via a tablet computer. Unlike previous augmented reality and virtual reality projects in the field, the virtual reconstruction is also accessible to persons remote to the real site, affording intriguing interactions between visitors at the site and those exploring it from elsewhere.",
+    "openAccessPdf": null,
+    "title": "Virtual Time Windows: Applying Cross Reality to Cultural Heritage",
+    "paperId": "93f30bd27f16b5c03fc51b035238c748105bde21",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "Collaboration in virtual reality (VR) across heterogeneous devices poses challenges for effectively supporting manipulation, navigation, and communication through different interfaces. We explored these in the design and development of a collaborative VR system that allows interaction through a mobile touchscreen device (Handheld User) and a head-mounted display (HMD User). In a qualitative evaluation, we further analyzed how these interfaces affect social roles and user interactions during collaboration. Our observations reveal that Handheld Users achieved presence in the virtual environment, despite the non-immersive interface, and assumed similar spatial positions in a conversational scenario as they would in the real world. In a collaborative building task, we found leadership roles not tied to immersion, but potentially influenced by users’ eye-level. Further, Handheld Users exhibited stronger movement patterns than HMD Users. Based on such behavioral patterns, we contribute a classification framework for Handheld Users that facilitates future analysis of interactions in shared virtual environments through handheld devices. Finally, we offer several design considerations for collaborative cross-device VR, which are based on our observations and exemplified in our presented system.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://pure.au.dk/portal/files/205654639/Olin_et_al_2020_Heterogeneous_Cross_Device_Collaboration_in_VR.pdf"
+    },
+    "title": "Designing for Heterogeneous Cross-Device Collaboration and Social Interaction in Virtual Reality",
+    "paperId": "d68a88824a2543c0120f6f9fea9befc9ab6cac5b",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2019,
+    "Relevance": "Untagged",
+    "abstract": "Virtual reality exposure therapy (VRET) is an efficacious treatment for fear and anxiety and has the potential to solve both logistic issues for therapists and be used for scalable self-help interventions. However, VRET has yet to see large-scale implementation in clinical settings or as a consumer product, and past research suggests that while therapists may acknowledge the many advantages of VRET, they view the technology as technically inaccessible and expensive. We reasoned that after the 2016 release of several consumer virtual reality (VR) platforms and associated public acquaintance with VR, therapists’ concerns about VRET may have evolved. The present study surveyed attitudes toward and familiarity with VR and VRET among practicing cognitive behavior therapists (n = 185) attending a conference. Results showed that therapists had an overall positive attitude toward VRET (pros rated higher than cons) and viewed VR as applicable to conditions other than anxiety. Unlike in earlier research, high financial costs and technical difficulties were no longer top-rated negative aspects. Average negative attitude was a larger negative predictor of self-rated likelihood of future use than positive attitude was a positive predictor and partially mediated the positive association between VRET knowledge and likelihood of future use, suggesting that promotional efforts should focus on addressing concerns. We conclude that therapist’s attitudes toward VRET appear to have evolved in recent years, and no longer appear to constitute a major barrier to implementing the next generation of VR technology in regular clinical practice.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.frontiersin.org/articles/10.3389/fpsyg.2019.00176/pdf"
+    },
+    "title": "Attitudes Toward and Familiarity With Virtual Reality Therapy Among Practicing Cognitive Behavior Therapists: A Cross-Sectional Survey Study in the Era of Consumer VR Platforms",
+    "paperId": "369759f9551d89ac2d04f5d619e332d264dfcce2",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "Background Patient education is crucial in the secondary prevention of cardiovascular disease. Novel technologies such as augmented reality or mixed reality expand the possibilities for providing visual support in this process. Mixed reality creates interactive digital three-dimensional (3D) projections overlaying virtual objects on the real-world environment. While augmented reality only overlays objects, mixed reality not just overlays but anchors virtual objects to the real world. However, research on this technology in the patient domain is scarce. Objective The aim of this study was to understand how patients perceive information provided after myocardial infarction and examine if mixed reality can be supportive in this process. Methods In total, 12 patients that experienced myocardial infarction and 6 health care professionals were enrolled in the study. Clinical, demographic, and qualitative data were obtained through semistructured interviews, with a main focus on patient experiences within the hospital and the knowledge they gained about their disease. These data were then used to map a susceptible timeframe to identify how mixed reality can contribute to patient information and education. Results Knowledge transfer after myocardial infarction was perceived by patients as too extensive, not personal, and inconsistent. Notably, knowledge on anatomy and medication was minimal and was not recognized as crucial by patients, whereas professionals stated the opposite. Patient journey analysis indicated the following four critical phases of knowledge transfer: at hospital discharge, at the first outpatient visit, during rehabilitation, and during all follow-up outpatient visits. Important patient goals were understanding the event in relation to daily life and its implications on resuming daily life. During follow-up, understanding physical limitations and coping with the condition and medication side effects in daily life emerged as the most important patient goals. The professionals’ goals were to improve recovery, enhance medication adherence, and offer coping support. Conclusions There is a remarkable difference between patients’ and professionals’ goals regarding information and education after myocardial infarction. Mixed reality may be a practical tool to unite perspectives of patients and professionals on the disease in a more even manner, and thus optimize knowledge transfer after myocardial infarction. Improving medication knowledge seems to be a feasible target for mixed reality. However, further research is needed to create durable methods for education on medication through mixed reality interventions.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://humanfactors.jmir.org/2020/2/e17147/PDF"
+    },
+    "title": "Perspectives of Patients and Professionals on Information and Education After Myocardial Infarction With Insight for Mixed Reality Implementation: Cross-Sectional Interview Study",
+    "paperId": "756bdf395ec6ee9f94c6a0183e06440145aa1bb6",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2020,
+    "Relevance": "Untagged",
+    "abstract": "With adolescent mass casualty incidents (MCI) on the rise, out‐of‐hospital readiness is critical to optimize disaster response. We sought to test the feasibility and acceptability of a 360 Virtual Reality (360 VR) platform for disaster event decisionmaking.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/emp2.12214"
+    },
+    "title": "360 virtual reality pediatric mass casualty incident: A cross sectional observational study of triage and out‐of‐hospital intervention accuracy at a national conference",
+    "paperId": "ef8d254266118fb52422774a227a3fad2c794bbc",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2019,
+    "Relevance": "Untagged",
+    "abstract": "Background A magnetic resonance image (MRI) is a diagnostic test that requires patients to lie still for prolonged periods within a claustrophobic and noisy environment. This can be difficult for children to tolerate, and often general anesthetic (GA) is required at considerable cost and detriment to patient safety. Virtual reality (VR) is a newly emerging technology that can be implemented at low cost within a health care setting. It has been shown to reduce fear associated with a number of high-anxiety situations and medical procedures. Objective The goal of the research was to develop a VR resource to prepare pediatric patients for MRI, helping to reduce anxieties in children undergoing the procedure. Methods A freely accessible VR preparation resource was developed to prepare pediatric patients for their upcoming MRI. The resource consists of an app and supporting preparation book and used a series of panoramic 360 degree videos of the entire MRI journey, including footage from within the bore of the scanner. The app, deployed via the Android Play Store and iOS App Store, can be viewed on most mobile phones, allowing a child to experience an MRI in VR using an inexpensive Google Cardboard headset. The app contains 360 degree videos within an animated, interactive VR interface designed for 4 to 12-year-olds. The resource was evaluated as part of a clinical audit on 23 patients (aged 4 to 12 years), and feedback was obtained from 10 staff members. In 5 patients, the resource was evaluated as a tool to prepare patients for an awake MRI who otherwise were booked to have an MRI under GA. Results The VR preparation resource has been successfully implemented at 3 UK institutions. Of the 23 patients surveyed, on a scale of 1 to 10, the VR resource was rated with a median score of 8.5 for enjoyment, 8 for helpfulness, and 10 for ease of use. All patients agreed that it made them feel more positive about their MRI, and all suggested they would recommend the resource to other children. When considering their experiences using the resource with pediatric patients, on a scale of 1 to 10, the staff members rated the VR resource a median score of 8.5 for enjoyment, 9 for helpfulness, and 9 for ease of use. All staff believed it could help prepare children for an awake MRI, thus avoiding GA. A successful awake MRI was achieved in 4 of the 5 children for whom routine care would have resulted in an MRI under GA. Conclusions Our VR resource has the potential to relieve anxieties and better prepare patients for an awake MRI. The resource has potential to avoid GA through educating the child about the MRI process.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://jmir.org/api/download?alt_name=pediatrics_v2i1e11684_app1.pdf&filename=13551dd674dfda5f013900fe1b1ed61b.pdf"
+    },
+    "title": "A Free Virtual Reality Experience to Prepare Pediatric Patients for Magnetic Resonance Imaging: Cross-Sectional Questionnaire Study",
+    "paperId": "9c750131697422298c12635e77282c52bffce396",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": "Augmented reality (AR) is increasingly used in cultural heritage tourism sites for the enhancement of the tourist experience. However, behavioral intention to adopt AR is dependent on cultural traits, and close investigation is required on cultural differences. To explore these cultural differences and the effect on AR acceptance in cultural heritage tourism sites, this study aims to focus on the aesthetic and hedonic characteristics of AR applications.,Data were collected in two countries with strong contrasts in Hofstede’s cultural dimensions to explore cultural differences in AR acceptance. In total, 145 questionnaires were collected in Deoksugung Palace, South Korea, and 119 questionnaires were collected in the An Post Museum, Republic of Ireland. Data were analyzed using PLS Graph 3.0.,The findings confirmed that the aesthetics of AR have a strong influence on perceived enjoyment. Furthermore, this study supported the notion that high power distance, collectivism and high uncertainty avoidance culture such as South Korea’s perceives stronger dependence on social influence and the hedonic characteristics of AR.,AR innovation and marketing within the hospitality and tourism industry requires an understanding of cultural differences to ensure successful implementation. In addition, tourism and hospitality managers need to ensure that the needs and requirements of different target markets are met.,This study applied Hofstede’s cultural dimensions to explore the differences between two very distinct countries with regard to AR acceptance. The findings provide important implications for the implementation of tourism AR applications for different countries, especially considering international target markets.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://e-space.mmu.ac.uk/619134/1/Cross-Cultural%20Differences%20in%20Adopting%20Mobile%20Augmented%20Reality%20at%20Cultural%20Heritage%20Tourism%20Sites.pdf"
+    },
+    "title": "Cross-cultural differences in adopting mobile augmented reality at cultural heritage tourism sites",
+    "paperId": "4cb855ef85763e74e86f23f53675bcc97503f071",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": "Auditory spatial localization in humans is performed using a combination of interaural time differences, interaural level differences, as well as spectral cues provided by the geometry of the ear. To render spatialized sounds within a virtual reality (VR) headset, either individualized or generic Head Related Transfer Functions (HRTFs) are usually employed. The former require arduous calibrations, but enable accurate auditory source localization, which may lead to a heightened sense of presence within VR. The latter obviate the need for individualized calibrations, but result in less accurate auditory source localization. Previous research on auditory source localization in the real world suggests that our representation of acoustic space is highly plastic. In light of these findings, we investigated whether auditory source localization could be improved for users of generic HRTFs via cross-modal learning. The results show that pairing a dynamic auditory stimulus, with a spatio-temporally aligned visual counterpart, enabled users of generic HRTFs to improve subsequent auditory source localization. Exposure to the auditory stimulus alone or to asynchronous audiovisual stimuli did not improve auditory source localization. These findings have important implications for human perception as well as the development of VR systems as they indicate that generic HRTFs may be enough to enable good auditory source localization in VR.",
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.frontiersin.org/articles/10.3389/fnins.2018.00021/pdf"
+    },
+    "title": "Generic HRTFs May be Good Enough in Virtual Reality. Improving Source Localization through Cross-Modal Plasticity",
+    "paperId": "a08a2d24c01f2114637695ebddba4fa388d4e022",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2010,
+    "Relevance": "Untagged",
+    "abstract": "We introduce TwinSpace, a flexible software infrastructure for combining interactive workspaces and collaborative virtual worlds. Its design is grounded in the need to support deep connectivity and flexible mappings between virtual and real spaces to effectively support collaboration. This is achieved through a robust connectivity layer linking heterogeneous collections of physical and virtual devices and services, and a centralized service to manage and control mappings between physical and virtual. In this paper we motivate and present the architecture of TwinSpace, discuss our experiences and lessons learned in building a generic framework for collaborative cross-reality, and illustrate the architecture using two implemented examples that highlight its flexibility and range, and its support for rapid prototyping.",
+    "openAccessPdf": null,
+    "title": "TwinSpace: an infrastructure for cross-reality team spaces",
+    "paperId": "5572d92d72e6d99337560dc49b2156d55e3fb78a",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": "Sri Ramakrishna (1836–1886) has been variously considered a mystic, a prophet, a devotee, and an early modern propounder of the harmony of religions. However, this spiritual luminary has seldom been considered a philosopher. Academic engagements with his life and precepts have been negligible. In Infinite Paths to Infinite Reality: Sri Ramakrishna and Cross-Cultural Philosophy of Religion, Ayon Maharaj ventures to correct this problem by writing “the first scholarly book in English on Sri Ramakrishna’s philosophy” (2), which “combines detailed exegesis with cross-cultural philosophical investigation” (3). (http://www.facebook.com/readingreligion)",
+    "openAccessPdf": null,
+    "title": "Infinite Paths to Infinite Reality: Sri Ramakrishna and Cross-Cultural Philosophy of Religion",
+    "paperId": "0b4318028ede0a97b73a1e0e73c91eaa6e275567",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2017,
+    "Relevance": "Untagged",
+    "abstract": "OBJECTIVE\nDescribe the clinical use of virtual reality (VR)/active videogaming (AVG) by physical therapists (PTs) and occupational therapists (OTs) in Canada, identify usage barriers and facilitators, evaluate factors that predict intention to use VR/AVGs, and determine therapists' learning needs.\n\n\nDESIGN\nCross-sectional survey.\n\n\nMATERIALS AND METHODS\nOnline survey of therapists in Canada who were members of 1 of 26 professional PT or OT colleges or associations using the Assessing Determinants Of Prospective Take-up of Virtual Reality (ADOPT-VR2) Instrument.\n\n\nRESULTS\nWe received 1071 (506 PTs, 562 OTs, 3 dual-trained) responses. Forty-six percent had clinical VR/AVG experience; only 12% reported current use, with the Wii being the most clinically accessible (41%) system. Therapists used VR/AVGs primarily in rehabilitation (32%) and hospital (29%) settings, preferentially targeting balance (39.3%) and physical activity (19.8%) outcomes. Stroke (25.8%), brain injury (15.3%), musculoskeletal (14.9%), and cerebral palsy (10.5%) populations were most frequently treated. Therapists with VR/AVG experience rated all ADOPT-VR2 constructs more highly than did those without experience (P < 0.001). Factors predictive of intention to use VR included the technology's perceived usefulness and therapist self-efficacy in VR/AVG use (P < 0.001). Highest-rated barriers to VR/AVG use were lack of funds, space, time, support staff, and appropriate clients, whereas facilitators included client motivation, therapist knowledge, and management support. Most (76%) respondents were interested in learning more.\n\n\nCONCLUSION\nUnderstanding use, predictors of use, and learning needs is essential for developing knowledge translation initiatives to support clinical integration of VR/AVGs. Results of this first national survey will inform the creation of resources to support therapists in this field.",
+    "openAccessPdf": null,
+    "title": "Virtual Reality and Active Videogame-Based Practice, Learning Needs, and Preferences: A Cross-Canada Survey of Physical Therapists and Occupational Therapists.",
+    "paperId": "93a5e497ea8a879b0708ec3ccf6bdec0ed4afe2c",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2014,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://repository.unab.edu.co/bitstream/20.500.12749/3433/1/2018_Tesis_Santoyo_Diaz_Julian%20_Santiago.pdf"
+    },
+    "title": "Augmented reality in education: a meta-review and cross-media analysis",
+    "paperId": "2f0ed0d45537853b04e711a9cfee0c294205acd3",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2017,
+    "Relevance": "Untagged",
+    "abstract": "Theories about the decline of legitimacy or a legitimacy crisis are as old as democracy itself. Yet, representative democracy still exists, and the empirical evidence for a secular decline of political support in established democracies is limited, questionable, or absent. This lack of conclusive evidence calls into question existing explanatory theories of legitimacy decline. How valid are theories of modernization, globalization, media malaise, social capital, and party decline, if the predicted outcome (i.e. secular decline of political support) does not occur? And which (new) explanations can account for the empirical variation in political support in established democracies? This book systematically evaluates the empirical evidence for legitimacy decline in established democracies, the explanatory power of theories of legitimacy decline, and promises new routes in investigating and assessing political legitimacy. In doing so, the book provides a broad and thorough reflection on the state of the art of legitimacy research, and outlines a new research agenda on legitimacy.",
+    "openAccessPdf": null,
+    "title": "Myth and Reality of the Legitimacy Crisis: Explaining Trends and Cross-National Differences in Established Democracies",
+    "paperId": "d9a692d7779371a3a49e30f433a142a4f765b997",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2009,
+    "Relevance": "Untagged",
+    "abstract": "In this article, we define cross-reality as the union between ubiquitous sensor/actuator networks and shared online virtual worlds-a place where collective human perception meets the machines' view of pervasive computing. We describe how five of the articles in this issue expand on aspects of this theme.",
+    "openAccessPdf": null,
+    "title": "Guest Editors' Introduction: Cross-Reality Environments",
+    "paperId": "e79f59c960b45cc8bc93143b0cd9590f5c8033ca",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2009,
+    "Relevance": "Untagged",
+    "abstract": "Looks at how MIT Media Lab's Responsive Environments Group is exploring ways to bridge networked electronic sensors and human perception through \"cross reality\" implementations that render and manifest phenomena between real world and virtual environments via densely embedded sensor and actuator networks.",
+    "openAccessPdf": {
+      "status": "GREEN",
+      "url": "https://dspace.mit.edu/bitstream/1721.1/59835/1/Lifton-2009-Metaphor%20and%20Manifestation-Cross-Reality%20with%20Ubiquitous%20SensorActuator%20Networks.pdf"
+    },
+    "title": "Metaphor and Manifestation Cross-Reality with Ubiquitous Sensor/Actuator Networks",
+    "paperId": "a3cf988a87dd04628ac402c7ca12829c8fcf9d1f",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2018,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "Cross-objects user interfaces for video interaction in virtual reality museum context",
+    "paperId": "63d89b9827517ea2f50c93a987361ce51d545927",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2010,
+    "Relevance": "Untagged",
+    "abstract": "In this paper, the author presents DynamiCross, a system that enables users to dynamically represent and share information in cross-reality. Recently, designers and meeting attendees have enhanced engagement through a multiple display environments (MDE) [2, 5], which include not only personal objects, such as papers and laptops, but also shared objects, such as large displays, to provide collaborators with a virtual workspace. In this paper, the author describes how DynamiCross can support the user's individual or collaborative information handling with its cross-reality interfaces and multiple displays. In addition, when a user's personal material is placed on a large display, the display becomes a multilayer display that uses augmented reality (AR) technology to show digital contents of the personal object. The author introduces three major functions of the system to explain these capabilities which could be beneficial to similar research on cross-reality collaborations and paper interactions.",
+    "openAccessPdf": null,
+    "title": "DynamiCross: dynamic representation and sharing of information with flexible cross-reality interactions",
+    "paperId": "80d217a49a9c6aa0898388e462a2a0c8215c587a",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2010,
+    "Relevance": "Untagged",
+    "abstract": "Cross reality systems bring together the sensor and actuator networks of ubiquitous computing with the social and creative spaces of virtual worlds. Although the strengths of ubiquitous computing and virtual worlds complement each other, their primary weaknesses are the same: their full utility isn’t realized until the technology is fully developed and deployed, but nobody wants to develop and deploy the technology without benefitting from immediate utility. This paper argues that this classic “chicken and egg” problem will be overcome in fits and starts as consumer expectations evolve. The paper provides a firsthand overview and examples of successes and failures in the cross reality market and offers suggestions for future research directions.",
+    "openAccessPdf": null,
+    "title": "Consumer Adoption of Cross Reality Systems",
+    "paperId": "e2ee059f307b8040a860a053df4f238bff46ce18",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2009,
+    "Relevance": "Untagged",
+    "abstract": "Complex event processing (CEP) is an essential functionality for cross-reality environments. Through CEP, we can turn raw sensor data generated in the real world into more meaningful information that has some significance for the virtual world. In this article, the authors present DejaVu, a general-purpose event processing system built at ETH Zurich. SmartRFLib, a cross-reality application, builds on DejaVu and enables real-time event detection over RFID data streams feeding a virtual library on second life.",
+    "openAccessPdf": null,
+    "title": "Event Processing Support for Cross-Reality Environments",
+    "paperId": "376381c07be7911805d7c233b9659b868ea880b3",
+    "isOpenAccess": false
+  },
+  {
+    "year": 2023,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": {
+      "status": "GOLD",
+      "url": "https://www.nature.com/articles/s41467-023-37322-1.pdf"
+    },
+    "title": "Subjective signal strength distinguishes reality from imagination",
+    "paperId": "68e70ec5b6b14b13a5a0c0575e50daf30de0afb8",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2017,
+    "Relevance": "Untagged",
+    "abstract": null,
+    "openAccessPdf": null,
+    "title": "The reality of cross-disciplinary energy research in the United Kingdom:a social science perspective",
+    "paperId": "92cb19c5bd16a9177cc105e4ad43941aa6749108",
+    "isOpenAccess": true
+  },
+  {
+    "year": 2017,
+    "Relevance": "Untagged",
+    "abstract": "How can we help people and organisations experience the humanitarian consequences of climate change and extreme events? The Red Cross Red Crescent Climate Centre has worked with partners to explore virtual reality (VR) to blend playful interactivity with innovative approaches to data visualisation for risk management.",
+    "openAccessPdf": null,
+    "title": "Virtual reality for a new climate: Red Cross innovations in risk management",
+    "paperId": "fb8c835d6f0ac951682b7a77baf1032d6528c821",
+    "isOpenAccess": false
+  }
+]
