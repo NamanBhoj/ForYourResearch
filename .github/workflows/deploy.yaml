@@ -38,7 +38,7 @@ jobs:
             # Ensure the correct branch is checked out
             git fetch
             git checkout $BRANCH
-            git pull development
+            git pull origin/development
             echo "Pulled from $BRANCH"
 
             # Verify the branch
