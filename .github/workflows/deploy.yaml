@@ -23,59 +23,31 @@ jobs:
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
             BRANCH="development"
             EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
-            ssh -o StrictHostKeyChecking=no root@$EC2_INSTANCE 
-            echo "EC2_INSTANCE: $EC2_INSTANCE"
-            # Set the branch name
-            cd ForYourResearch
-            git branch
-            echo "you are on branch $BRANCH somechanges"
-            echo {{$BRANCH}}
-
-            # Ensure the correct branch is checked out
-            echo "Current remote repository is:"
-            echo "$(git remote -v)"
-            git pull origin development
-            echo "Pulled from $BRANCH"
-
-            # Verify the branch
-            echo "Current branch is: $(git branch --show-current)"
-
-
-            # Set up virtual environment
-            python3 -m venv venv
-            source venv/bin/activate
-
-            # Go into the app directory to install requirements
-            cd app
-            pip install -r requirements.txt
-            cd ..
-
-            # Start the FastAPI server
-
-          
-          
-            
+            USERNAME="root"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
             BRANCH="production"
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
-            ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE 
+            USERNAME="ec2-user"
+          fi
 
-            echo "EC2_INSTANCE: $EC2_INSTANCE"
-            # Set the branch name
+          # Echo the EC2 instance, branch, and username
+          echo "EC2_INSTANCE: $EC2_INSTANCE"
+          echo "BRANCH: $BRANCH"
+          echo "USERNAME: $USERNAME"
+
+          ssh -o StrictHostKeyChecking=no $USERNAME@$EC2_INSTANCE << 'EOF'
             cd ForYourResearch
-            git branch
-            echo "you are on branch $BRANCH somechanges"
-            echo {{$BRANCH}}
-
-            # Ensure the correct branch is checked out
-            echo "Current remote repository is:"
-            echo "$(git remote -v)"
-            git pull origin development
+            echo "Current directory: $(pwd)"
+            echo "Fetching latest changes..."
+            git fetch
+            echo "Checking out branch $BRANCH..."
+            git checkout $BRANCH
+            echo "Pulling latest changes from $BRANCH..."
+            git pull origin $BRANCH
             echo "Pulled from $BRANCH"
 
             # Verify the branch
             echo "Current branch is: $(git branch --show-current)"
-
 
             # Set up virtual environment
             python3 -m venv venv
@@ -87,10 +59,4 @@ jobs:
             cd ..
 
             # Start the FastAPI server
-          
-          fi
-          
-          
-         
-
-
+          EOF
