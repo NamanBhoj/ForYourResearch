@@ -44,8 +44,6 @@ jobs:
             # Verify the branch
             echo "Current branch is: $(git branch --show-current)"
 
-            # Reset hard to ensure no stale files
-            git reset --hard origin/$BRANCH
 
             # Set up virtual environment
             python3 -m venv venv
