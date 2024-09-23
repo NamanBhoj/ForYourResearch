@@ -32,11 +32,13 @@ jobs:
             # Set the branch name
             cd ForYourResearch
             git branch
+            echo "you are on branch $BRANCH"
 
             # Ensure the correct branch is checked out
             git fetch origin
             git checkout $BRANCH
             git pull origin $BRANCH
+            echo "Pulled from $BRANCH"
 
             # Verify the branch
             echo "Current branch is: $(git branch --show-current)"
