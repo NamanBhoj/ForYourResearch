@@ -33,6 +33,7 @@ jobs:
             cd ForYourResearch
             git branch
             echo "you are on branch $BRANCH"
+            echo $BRANCH
 
             # Ensure the correct branch is checked out
             git fetch origin
