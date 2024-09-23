@@ -22,10 +22,10 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
             EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
-            BRANCH="development"
+            BRANCH="origin/development"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
-            BRANCH="production"
+            BRANCH="origin/production"
           fi
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
