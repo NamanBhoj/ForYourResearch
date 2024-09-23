@@ -63,16 +63,40 @@ jobs:
             pip install firebase_admin
             pip install sqlalchemy
             pip install psycopg2-binary
-            pip freeze>r.txt
+            pip freeze>requirements.txt
             cd ..
 
+            echo "Killing the server before staring Caddy"
+            if lsof -i:8000 -t > /dev/null
+            then
+              echo "Server running on port 8000. Stopping it..."
+              kill -9 $(lsof -i:8000 -t)
+            else
+              echo "No server running on port 8000."
+            fi
+
+            if ! pgrep -x "caddy" > /dev/null
+            then
+              echo "Caddy is not running. Starting Caddy..."
+              cd ..
+              caddy start
+              cd ForYourResearch
+            else
+              echo "Caddy is already running."
+            fi
+
             # Start the FastAPI server
+
+            echo "Starting FastAPI server..."
+            nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &> fastapi.log &
+
           EOF
 
 
           #MANUAL STEPS
               #check caddy 
-              # Start server at uvicorn app.main:app --host 0.0.0.0 --port 8000
+              # Start server at  (keep server running even if terminal is closed)
+              
 
 
           #run caddy first and then run server
