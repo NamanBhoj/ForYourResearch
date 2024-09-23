@@ -28,11 +28,13 @@ jobs:
             BRANCH="production"
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
           fi
-          
+
           echo "EC2_INSTANCE: $EC2_INSTANCE"
           echo "BRANCH: $BRANCH"
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
+
+            echo "EC2_INSTANCE: $EC2_INSTANCE"
             # Set the branch name
             cd ForYourResearch
             git branch
