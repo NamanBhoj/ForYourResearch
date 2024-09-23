@@ -21,12 +21,14 @@ jobs:
       - name: Deploy to EC2 Instance
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
-            EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
             BRANCH="development"
+            EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
+            
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
-            EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
             BRANCH="production"
-          fi
+            EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
+            
+          
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
             # Set the branch name
@@ -55,4 +57,6 @@ jobs:
             cd ..
 
             # Start the FastAPI server
+
+            fi
           EOF
