@@ -33,7 +33,7 @@ jobs:
             cd ForYourResearch
             git branch
             echo "you are on branch $BRANCH"
-            echo {$BRANCH}
+            echo {{$BRANCH}}
 
             # Ensure the correct branch is checked out
             echo "Current remote repository is:"
