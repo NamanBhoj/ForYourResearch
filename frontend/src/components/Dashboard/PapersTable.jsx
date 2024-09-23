@@ -54,7 +54,7 @@ export default function Library() {
 
   const handleSearch = async () => {
     setSearching(true);
-
+    // setPapers([]);
     const response = await axios.get(
       `${lambdaUrl}/search/?query=${query}&limit=100`
     );
@@ -62,18 +62,23 @@ export default function Library() {
     // This is to get the body of the response from the API
     // The body of the response will only contain an array of the papers now so can directly map it to display
     const json = response.data;
-
+    console.log(json['papers']);
     // console.log('YOU ARE LOGGING ME')
     // console.log(json['papers'][0]['year'])
 
     // Setting the papers array that will be displayed in the table
     setPapers(json['papers']);
-    setTotalNumberOfPapers(json['number_of_papers']);
+
+    console.log(papers);
+    // setPapers(paperTestArray);
+    // setTotalNumberOfPapers(json['number_of_papers']);
     // await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
     // console.log(response);
   };
+
+  // const setNewPapers
 
   // const handleDelete = (chip) => {
   //   const updatedKeywordList = keywordList.filter(

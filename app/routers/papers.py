@@ -5,8 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 from pydantic import BaseModel
 from mangum import Mangum
-import time
-from ..util.helper_functions import parse_query, is_in_production
+import time, json
+from ..util.helper_functions import parse_query, is_in_production, filter_papers
 import os
 
 from firebase_admin import credentials, auth, firestore
@@ -52,7 +52,7 @@ db = firestore.client()
 #     users_collection.update(user_data)
 
 #     # modify the incoming search query so we always
-#     # store it with a number
+#     # store it js a number
 #     baseSearchQuery = request.searchQuery + " ⦿ "
 #     library_collection = (
 #         db.collection("Users").document(request.uid).collection("Library")
@@ -129,8 +129,7 @@ async def search(query: str):
 
     # total_papers is the list containing all the papers
     response_object = {
-        "papers": total_papers,
-        "papers2": total_papers,
+        "papers": filter_papers(total_papers),
         "number_of_papers": number_of_papers,
     }
 
@@ -156,7 +155,7 @@ async def getCurrentSearchData(uid: str):
     users = db.collection("Users")
     doc = users.document(uid).get()
     if doc.get("papers"):
-        return {"papers": doc.get("papers"), "query": doc.get("query")}
+        return {"papers": filter_papers(doc.get("papers")), "query": doc.get("query")}
     return
 
 
