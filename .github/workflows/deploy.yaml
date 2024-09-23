@@ -29,42 +29,29 @@ jobs:
           fi
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
-            # Start Caddy server
-            sudo caddy start &
-           # Set the branch name
+          # Set the branch name
+          cd ForYourResearch
+          git branch
 
-            cd ForYourResearch
-            git branch
+          # Ensure the correct branch is checked out
+          git fetch origin
+          git checkout $BRANCH
+          git pull origin $BRANCH
 
-            # Fetch and pull the latest code
-            git fetch origin
-            git checkout $BRANCH
+          # Verify the branch
+          echo "Current branch is: $(git branch --show-current)"
 
-            # Navigate to the project directory
-            
+          # Reset hard to ensure no stale files
+          git reset --hard origin/$BRANCH
 
-            # Pull code after cd-ing into repository folder
-            git pull origin $BRANCH
+          # Set up virtual environment
+          python3 -m venv venv
+          source venv/bin/activate
 
+          # Go into the app directory to install requirements
+          cd app
+          pip install -r requirements.txt
+          cd ..
 
-
-            # Create and activate a virtual environment
-            python3 -m venv venv
-            source venv/bin/activate
-
-            #go into app to get requirements.txt
-            cd app
-
-            # Install requirements
-            sudo yum install screen -y
-            pip install -r requirements.txt
-
-            #come out from the app folder
-            cd ..
-
-            
-
-            # Start the FastAPI  server
-
-        
-          EOF
+          # Start the FastAPI server
+      EOF
