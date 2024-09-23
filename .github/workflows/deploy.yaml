@@ -68,14 +68,6 @@ jobs:
             pip freeze>requirements.txt
             cd ..
 
-            echo "Killing the server before staring Caddy"
-            if lsof -i:8000 -t > /dev/null
-            then
-              echo "Server running on port 8000. Stopping it..."
-              kill -9 $(lsof -i:8000 -t)
-            else
-              echo "No server running on port 8000."
-            fi
 
             if ! pgrep -x "caddy" > /dev/null
             then
