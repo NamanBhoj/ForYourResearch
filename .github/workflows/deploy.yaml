@@ -38,7 +38,7 @@ jobs:
             # Ensure the correct branch is checked out
             echo "Current remote repository is:"
             echo "$(git remote -v)"
-            git pull origin/development
+            git pull origin development
             echo "Pulled from $BRANCH"
 
             # Verify the branch
