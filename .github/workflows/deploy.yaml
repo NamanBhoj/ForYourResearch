@@ -50,7 +50,7 @@ jobs:
             echo "Current branch is: $(git branch --show-current)"
 
             # Set up virtual environment
-            python3 -m venv venv:qa
+            python3 -m venv venv
             source venv/bin/activate
 
             # Go into the app directory to install requirements
