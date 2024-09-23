@@ -36,8 +36,8 @@ jobs:
             echo {$BRANCH}
 
             # Ensure the correct branch is checked out
-            git fetch
-            git checkout $BRANCH
+            echo "Current remote repository is:"
+            echo "$(git remote -v)"
             git pull origin/development
             echo "Pulled from $BRANCH"
 
