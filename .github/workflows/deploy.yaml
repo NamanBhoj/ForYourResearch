@@ -54,4 +54,4 @@ jobs:
           cd ..
 
           # Start the FastAPI server
-      EOF
+        EOF
