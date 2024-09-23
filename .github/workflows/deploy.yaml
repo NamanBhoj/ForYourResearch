@@ -27,7 +27,7 @@ jobs:
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
             BRANCH="production"
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
-            
+          fi
           
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
@@ -58,5 +58,5 @@ jobs:
 
             # Start the FastAPI server
 
-            fi
+          
           EOF
