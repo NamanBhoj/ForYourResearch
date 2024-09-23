@@ -29,6 +29,8 @@ jobs:
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
           fi
           
+          echo "EC2_INSTANCE: $EC2_INSTANCE"
+          echo "BRANCH: $BRANCH"
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
             # Set the branch name
