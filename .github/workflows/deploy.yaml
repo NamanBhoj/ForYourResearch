@@ -22,10 +22,10 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/development" ]; then
             EC2_INSTANCE="${{ secrets.DEV_EC2_HOST }}"
-            BRANCH="origin/development"
+            BRANCH="development"
           elif [ "${{ github.ref }}" == "refs/heads/production" ]; then
             EC2_INSTANCE="${{ secrets.PROD_EC2_HOST }}"
-            BRANCH="origin/production"
+            BRANCH="production"
           fi
 
           ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE << 'EOF'
@@ -36,9 +36,9 @@ jobs:
             echo {$BRANCH}
 
             # Ensure the correct branch is checked out
-            git fetch origin
+            git fetch
             git checkout $BRANCH
-            git pull origin development
+            git pull development
             echo "Pulled from $BRANCH"
 
             # Verify the branch
