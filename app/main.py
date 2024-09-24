@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI
 from mangum import Mangum
-from .routers import papers, library, search
+from .routers import library, search
 from .util.helper_functions import is_in_production
 from fastapi.middleware.cors import CORSMiddleware
 from .models.search import SearchCreate
@@ -8,7 +8,6 @@ from .dependencies import get_db
 from sqlalchemy.orm import Session
 from .schemas.search import Search
 
-# from setproctitle import setproctitle
 
 # test cicd
 app = FastAPI()
@@ -29,7 +28,6 @@ if not (is_in_production()):
         allow_origins=(["*"]),
     )
 
-app.include_router(papers.router)
 app.include_router(library.router)
 app.include_router(search.router)
 
