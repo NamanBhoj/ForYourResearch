@@ -3,7 +3,6 @@ import { useUserAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
 import SortByDropdown from '../Shared/SortByDropdown';
-import { v4 as uuidv4 } from 'uuid';
 import Loader from '../Shared/Loader';
 import Autocomplete from '../Autocomplete';
 import { XCircleIcon } from '@heroicons/react/16/solid';
@@ -16,12 +15,10 @@ export default function Library() {
 
   const [loading, setLoading] = useState(false);
 
-  const [paperObj, setPaperObj] = useState([]);
   const [queryInputValue, setQueryInputValue] = useState('');
   const [selectedQuery, setSelectedQuery] = useState('');
   const [fetchedQueryArray, setFetchedQueryArray] = useState([]);
   const [error, setError] = useState(false);
-  const [updating, setUpdating] = useState(false);
   const [papersToDisplay, setPapersToDisplay] = useState([]);
 
   const { user } = useUserAuth();
@@ -29,29 +26,12 @@ export default function Library() {
   useEffect(() => {
     const fetchUserLibrary = async () => {
       setLoading(true);
-      const res = await axios.get(
+      const response = await axios.get(
         `${lambdaUrl}/fetchAllQueries/?uid=${user?.uid}`
       );
-      const comingfromdb = res.data;
-      console.log(res.data);
-      try {
-        const response = await axios.get(
-          `${lambdaUrl}/fetchUserLibrary/?uid=${user?.uid}`
-        );
-
-        const responseData = response.data;
-        let res = {};
-        if (responseData) {
-          for (let queryObject of responseData) {
-            res[queryObject.query] = queryObject.papers;
-          }
-          setFetchedQueryArray(comingfromdb);
-          setPaperObj(res);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching user library:', error);
-      }
+      const papersArray = response.data;
+      setFetchedQueryArray(papersArray);
+      setLoading(false);
     };
 
     fetchUserLibrary();
@@ -63,7 +43,6 @@ export default function Library() {
 
   const handleRelevanceChange = async (title, relevance) => {
     const clonedPapersToDisplay = [...papersToDisplay];
-    // const arrayContainingPaper = clonedPaperObj[selectedQuery];
 
     const updatedPapers = clonedPapersToDisplay.map((paper) => {
       if (paper.title === title) {
@@ -143,23 +122,6 @@ export default function Library() {
       return sortOrder[relevanceA] - sortOrder[relevanceB];
     });
     setPapersToDisplay(sortedPapers);
-  };
-
-  const handleRelevanceUpdateToFirebase = async () => {
-    setUpdating(true);
-    // console.log(paperObj[selectedQuery]);
-    const selectedPapers = papersToDisplay;
-    const json = {
-      uid: user?.uid,
-      data: selectedPapers,
-      searchQuery: selectedQuery,
-    };
-    const response = await axios.post(
-      `${lambdaUrl}/updatePaperRelevance`,
-      json
-    );
-    // console.log(response.data);
-    setUpdating(false);
   };
 
   return (
