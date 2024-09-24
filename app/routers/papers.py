@@ -40,7 +40,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 
-
 @router.get(f"/search{suffix}")
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
@@ -54,7 +53,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 1000:
+    while total_offset < 100:
         query_params = {
             "query": parsed_query,
             "limit": limit,

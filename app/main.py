@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI
 from mangum import Mangum
-from .routers import papers, library
+from .routers import papers, library, search
 from .util.helper_functions import is_in_production
 from fastapi.middleware.cors import CORSMiddleware
 from .models.search import SearchCreate
@@ -31,6 +31,7 @@ if not (is_in_production()):
 
 app.include_router(papers.router)
 app.include_router(library.router)
+app.include_router(search.router)
 
 
 handler = Mangum(app)
