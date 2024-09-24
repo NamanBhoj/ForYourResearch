@@ -3,5 +3,5 @@ from pydantic import BaseModel
 
 class Request(BaseModel):
     uid: str
-    data: dict
+    data: list
     searchQuery: str

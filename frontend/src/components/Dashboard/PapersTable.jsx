@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useUserAuth } from '../../contexts/AuthContext';
 import QueryInputField from './QueryInputField';
-import KeywordChip from './KeywordChip';
 import axios from 'axios';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
-import QueryChip from './QueryChip';
 import SortByDropdown from '../Shared/SortByDropdown';
 import Loader from '../Shared/Loader';
 import { Transition } from '@headlessui/react';
@@ -12,17 +10,12 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function Library() {
-  // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
-  const [keyword, setKeyword] = useState('');
-  // const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
-  const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
   const [saving, setSaving] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-  const [fetchedQuery, setFetchedQuery] = useState('');
   const [papers, setPapers] = useState([]);
   const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const { user } = useUserAuth();
@@ -31,11 +24,11 @@ export default function Library() {
     const fetchSavedSearchData = async () => {
       try {
         const response = await axios.get(
-          `${lambdaUrl}/getCurrentSearchData/?uid=${user?.uid}`
+          `${lambdaUrl}/getCurrentSearchResults/?uid=${user?.uid}`
         );
         const json = response.data;
         console.log(json);
-        setPapers(json.papers);
+        setPapers(json);
       } catch (error) {
         console.log(error);
       }
@@ -43,18 +36,8 @@ export default function Library() {
     fetchSavedSearchData();
   }, [user?.uid]);
 
-  // const handleAddKeyword = () => {
-  //   if (keyword.trim() !== '') {
-  //     const updatedKeywordList = [...keywordList, keyword];
-  //     setKeywordList(updatedKeywordList);
-  //     setQuery(updatedKeywordList.join(' '));
-  //     setKeyword('');
-  //   }
-  // };
-
   const handleSearch = async () => {
     setSearching(true);
-    // setPapers([]);
     const response = await axios.get(
       `${lambdaUrl}/search/?query=${query}&limit=100`
     );
@@ -72,26 +55,11 @@ export default function Library() {
     console.log(papers);
     // setPapers(paperTestArray);
     // setTotalNumberOfPapers(json['number_of_papers']);
-    // await handleSaveCurrentData(json['papers']);
+    await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
     // console.log(response);
   };
-
-  // const setNewPapers
-
-  // const handleDelete = (chip) => {
-  //   const updatedKeywordList = keywordList.filter(
-  //     (keyword) => keyword !== chip
-  //   );
-  //   setKeywordList(updatedKeywordList);
-  //   setQuery(updatedKeywordList.join(' '));
-  // };
-
-  // const handleDeleteQuery = () => {
-  //   setKeywordList([]);
-  //   setQuery('');
-  // };
 
   const handleRelevanceChange = (paperId, relevance) => {
     const updatedPapers = papers.map((paper) => {
@@ -155,12 +123,9 @@ export default function Library() {
       searchQuery: query,
     };
     console.log('LOGGING THE QUERY');
-    // console.log(query);
-    const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
+    await axios.post(`${lambdaUrl}/saveToLibrary`, json);
     setSaving(false);
     setShowNotification(true);
-
-    // console.log(response);
   };
 
   const handleSaveCurrentData = async (papers) => {
@@ -169,35 +134,19 @@ export default function Library() {
       data: papers,
       searchQuery: query,
     };
-    await axios.post(`${lambdaUrl}/saveCurrentSearchData`, json);
+    await axios.post(`${lambdaUrl}/saveCurrentSearchResults`, json);
   };
 
   const getNumberOfTopPapers = () => {
-    // console.log(papers);
     const hasPaperUrl = (paper) => {
       if (paper.openAccessPdf?.url.length > 0) {
         return paper;
       }
     };
 
-    // const notHasPaperUrl = (paper) => {
-    //   if (paper.openAccessPdf == null) {
-    //     return paper;
-    //   }
-    // };
-
     const papersWithLink = papers.filter(hasPaperUrl);
-    // const papersWithoutLink = papers.filter(notHasPaperUrl);
-    // console.log(papersWithLink);
-    // console.log(papersWithoutLink);
     return papersWithLink.length;
   };
-  // const getKeyword = () => {
-  //   if (fetchedQuery && keyword === '') {
-  //     return fetchedQuery;
-  //   }
-  //   return keyword;
-  // };
 
   return (
     <>
@@ -274,7 +223,7 @@ export default function Library() {
         </div>
       )}
       {/* TABLE */}
-      {papers.length > 0 && (
+      {papers && papers.length > 0 && (
         <div className="bg-white py-10">
           <div className="mx-auto max-w-7xl">
             <div className="bg-neutral-100 rounded-lg border px-4 sm:px-6 lg:px-8">

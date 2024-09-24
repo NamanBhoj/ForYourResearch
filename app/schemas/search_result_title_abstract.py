@@ -3,6 +3,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey
 
 # Use "..database import Base" when running the server and use:
 # import database
+
 # database.Base
 # when using alembic to make migrations
 from ..database import Base

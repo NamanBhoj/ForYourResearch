@@ -8,6 +8,7 @@ from database import Base
 from schemas.search_result_title_abstract import SearchResultTitleAbstract
 from schemas.search_result_full_text import SearchResultFullText
 from schemas import ResearchQuestions
+from schemas.current_search_result import CurrentSearchResult
 from schemas.search import Search
 
 
