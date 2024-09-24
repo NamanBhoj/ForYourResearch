@@ -28,7 +28,7 @@ export default function Library() {
         );
         const json = response.data;
         console.log(json);
-        setPapers(json.papers);
+        setPapers(json);
       } catch (error) {
         console.log(error);
       }

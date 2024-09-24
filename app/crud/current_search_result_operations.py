@@ -24,8 +24,10 @@ def get_current_search_results(db: Session, uid: str):
     )
 
 
-def convert_to_list(queries):
-    queries_list = []
-    for (query,) in queries:
-        queries_list.append(query)
-    return queries_list[0]
+def convert_to_list(papers):
+    if not papers:
+        return
+    papers_list = []
+    for (paper,) in papers:
+        papers_list.append(paper)
+    return papers_list[0]
