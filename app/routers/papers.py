@@ -40,52 +40,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 
-"""
-"""
-
-
-# @router.post(f"/saveToLibrary{suffix}")
-# async def saveToLibrary(request: Request):
-#     # print(request)
-#     users_collection = db.collection("Users").document(request.uid)
-#     user_data = {"userId": request.uid}
-#     users_collection.update(user_data)
-
-#     # modify the incoming search query so we always
-#     # store it js a number
-#     baseSearchQuery = request.searchQuery + " ⦿ "
-#     library_collection = (
-#         db.collection("Users").document(request.uid).collection("Library")
-#     )
-#     library_stream = library_collection.stream()
-
-#     storedSearchQueries = []
-#     for doc in library_stream:
-#         docJson = doc.to_dict()
-#         storedSearchQuery = docJson["query"]
-#         storedSearchQueries.append(storedSearchQuery)
-
-#     max_number = 0
-#     for searchQuery in storedSearchQueries:
-#         if searchQuery.startswith(baseSearchQuery):
-#             numberPart = searchQuery.split(" ⦿ ")[1]
-#             number = int(numberPart)
-#             if number > max_number:
-#                 max_number = number
-
-#     new_number = max_number + 1
-#     uniqueSearchQuery = f"{baseSearchQuery}{new_number}"
-#     print(uniqueSearchQuery)
-#     library_collection.add({"papers": request.data, "query": uniqueSearchQuery})
-
-
-@router.get(f"/fetchUserLibrary{suffix}")
-async def fetchUserLibrary(uid: str):
-    library_collection = db.collection("Users").document(uid).collection("Library")
-    documents = library_collection.stream()
-    jsonDocs = [document.to_dict() for document in documents]
-    return jsonDocs
-
 
 @router.get(f"/search{suffix}")
 async def search(query: str):
@@ -128,8 +82,9 @@ async def search(query: str):
         paper["Relevance"] = "Untagged"
 
     # total_papers is the list containing all the papers
+    total_papers = filter_papers(total_papers)
     response_object = {
-        "papers": filter_papers(total_papers),
+        "papers": total_papers,
         "number_of_papers": number_of_papers,
     }
 
@@ -157,23 +112,3 @@ async def getCurrentSearchData(uid: str):
     if doc.get("papers"):
         return {"papers": filter_papers(doc.get("papers")), "query": doc.get("query")}
     return
-
-
-@router.get(f"/generateCurrentDataAndQueryFields{suffix}")
-async def generateCurrentDataAndQueryFields(uid: str):
-    users = db.collection("Users")
-    users.document(uid).set({"papers": {}, "query": ""})
-
-
-@router.post(f"/updatePaperRelevance{suffix}")
-async def updatePaperRelevance(request: RequestObjectWithListData):
-    users = db.collection("Users")
-    lib_stream = users.document(request.uid).collection("Library").stream()
-    target_doc_id = ""
-    for doc in lib_stream:
-        if doc.to_dict()["query"] == request.searchQuery:
-            target_doc_id = doc.id
-    target_doc = (
-        users.document(request.uid).collection("Library").document(target_doc_id)
-    )
-    target_doc.update({"papers": request.data})

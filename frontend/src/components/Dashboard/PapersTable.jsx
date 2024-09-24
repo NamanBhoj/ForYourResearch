@@ -15,14 +15,11 @@ export default function Library() {
   // https://cnycft3yloelqv7wobyjbwahsy0ofgpy.lambda-url.us-east-2.on.aws
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
-  const [keyword, setKeyword] = useState('');
   // const [keywordList, setKeywordList] = useState([]);
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
-  const [paperObj, setPaperObj] = useState({ data: [], total: 0 });
   const [saving, setSaving] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-  const [fetchedQuery, setFetchedQuery] = useState('');
   const [papers, setPapers] = useState([]);
   const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const { user } = useUserAuth();
@@ -43,18 +40,8 @@ export default function Library() {
     fetchSavedSearchData();
   }, [user?.uid]);
 
-  // const handleAddKeyword = () => {
-  //   if (keyword.trim() !== '') {
-  //     const updatedKeywordList = [...keywordList, keyword];
-  //     setKeywordList(updatedKeywordList);
-  //     setQuery(updatedKeywordList.join(' '));
-  //     setKeyword('');
-  //   }
-  // };
-
   const handleSearch = async () => {
     setSearching(true);
-    // setPapers([]);
     const response = await axios.get(
       `${lambdaUrl}/search/?query=${query}&limit=100`
     );
@@ -72,7 +59,7 @@ export default function Library() {
     console.log(papers);
     // setPapers(paperTestArray);
     // setTotalNumberOfPapers(json['number_of_papers']);
-    // await handleSaveCurrentData(json['papers']);
+    await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
     // console.log(response);
@@ -156,7 +143,7 @@ export default function Library() {
     };
     console.log('LOGGING THE QUERY');
     // console.log(query);
-    const response = await axios.post(`${lambdaUrl}/saveToLibrary`, json);
+    await axios.post(`${lambdaUrl}/saveToLibrary`, json);
     setSaving(false);
     setShowNotification(true);
 
