@@ -12,7 +12,7 @@ from ..util.helper_functions import parse_query, filter_papers
 router = APIRouter()
 
 
-@router.get("/search")
+@router.get(f"/search")
 async def search(query: str):
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
@@ -62,7 +62,7 @@ async def search(query: str):
     return response_object
 
 
-@router.post("/saveCurrentSearchResults")
+@router.post(f"/saveCurrentSearchResults")
 def save_current_search_results(
     request_model: RequestObjectWithListData, db: Session = Depends(get_db)
 ):
@@ -74,7 +74,7 @@ def save_current_search_results(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/getCurrentSearchResults")
+@router.get(f"/getCurrentSearchResults")
 def get_current_search_results(uid: str, db: Session = Depends(get_db)):
     results = current_search_result_operations.get_current_search_results(
         db=db, uid=uid
