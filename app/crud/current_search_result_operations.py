@@ -15,7 +15,7 @@ def save_current_search_results(db: Session, papers: list, uid: str):
 
 
 def get_current_search_results(db: Session, uid: str):
-    return convert_to_list(
+    return (
         (
             db.query(CurrentSearchResultSchema.papers)
             .filter(CurrentSearchResultSchema.uid == uid)
