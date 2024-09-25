@@ -74,7 +74,7 @@ def save_current_search_results(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get(f"/getCurrentSearchResults")
+@router.get("/getCurrentSearchResults")
 def get_current_search_results(uid: str, db: Session = Depends(get_db)):
     results = current_search_result_operations.get_current_search_results(
         db=db, uid=uid

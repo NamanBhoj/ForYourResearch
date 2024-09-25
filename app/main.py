@@ -9,11 +9,16 @@ from sqlalchemy.orm import Session
 from .schemas.search import Search
 
 
+origins = [
+    "https://development-for-your-research-five.vercel.app/", 
+    
+]
 # test cicd
 app = FastAPI()
 # setproctitle("my_uvicorn_app")
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
