@@ -36,11 +36,12 @@ def create_index(index_name: str):
             region="us-east-1"
         ))
 
+# Upsert a list of records to the database
 def upsert_records(records: list, index_name: str):
     index = pc.Index(index_name)
     index.upsert(records)
 
-# Generate embeddings for a piece of text using OpenAI's model
+# Generate embeddings for a list of titles/abstracts using the OpenAI embedding model
 def generate_embeddings(texts: list):
     response = openai_client.embeddings.create(
         input=texts,
@@ -50,14 +51,15 @@ def generate_embeddings(texts: list):
     embeddings = [embedding_object.embedding for embedding_object in response.data]
     return embeddings
 
+# Generate embeddings for the text that will be used to query the database
 def generate_embedding_for_query(text: str):
     response = openai_client.embeddings.create(
         input=text,
         model="text-embedding-3-small"
     )
-    # print(response.data.embedding_object)
     return response.data[0].embedding
 
+# Create a list of records where each record contains the embeddings of a paper, metadata and id
 def generate_records(paper_titles: list, user_id: str, search_query: str):
     records = []
     # Generate embeddings for all paper titles in batch otherwise making one request for each paper_title will us down
@@ -65,6 +67,7 @@ def generate_records(paper_titles: list, user_id: str, search_query: str):
     
     for paper_title, embedding in zip(paper_titles, embeddings):
         records.append({
+            # Pinecone does not autogenerate ids so we need to specify a unique id for each paper
             "id": str(uuid.uuid4()),
             "values": embedding,
             "metadata": {
@@ -77,12 +80,14 @@ def generate_records(paper_titles: list, user_id: str, search_query: str):
 
 # Functions to test with JSON
 
+# Read the papers.json file and extract the titles of all papers and return them
 def get_titles():
     with open("./papers.json", 'r', encoding='utf-8') as file:
         papers = json.load(file)
     paper_titles = [paper["title"] for paper in papers]
     return paper_titles
 
+# Query the database using an embedding of the query
 def query_database(embedding_for_query: str, index_name: str, user_id: str, search_query: str):
     index = pc.Index(index_name)
 
@@ -90,6 +95,7 @@ def query_database(embedding_for_query: str, index_name: str, user_id: str, sear
         vector=embedding_for_query,
         top_k = 20,
         include_metadata=True,
+        # Only return the records that are related to the specified search_query, for the user
         filter = {
             "user_id": user_id,
             "search_query": search_query
