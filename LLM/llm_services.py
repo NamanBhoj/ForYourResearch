@@ -4,7 +4,9 @@ import uuid
 import json
 
 pc = Pinecone(api_key="5c5b2cd2-523f-447a-89b7-ae3e92dc4f6e")
-openai_client = OpenAI(api_key="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")
+openai_client = OpenAI(
+    api_key="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"
+)
 """
 Terminology:
 
@@ -27,94 +29,105 @@ Things to research:
 - which metric to use for searching (cosine, dot product etc)
 - which OpenAI embedding model to use
 """
+
+
 # Create an index in the database by passing in the name of the index
 def create_index(index_name: str):
     if index_name not in pc.list_indexes().names():
         print("Creating index:", index_name)
-        pc.create_index(name=index_name, dimension=1536, metric="cosine", spec=ServerlessSpec(
-            cloud="aws",
-            region="us-east-1"
-        ))
+        pc.create_index(
+            name=index_name,
+            dimension=1536,
+            metric="cosine",
+            spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+        )
+
 
 # Upsert a list of records to the database
 def upsert_records(records: list, index_name: str):
     index = pc.Index(index_name)
     index.upsert(records)
 
+
 # Generate embeddings for a list of titles/abstracts using the OpenAI embedding model
 def generate_embeddings(texts: list):
     response = openai_client.embeddings.create(
-        input=texts,
-        model="text-embedding-3-small"
+        input=texts, model="text-embedding-3-small"
     )
 
     embeddings = [embedding_object.embedding for embedding_object in response.data]
     return embeddings
 
+
 # Generate embeddings for the text that will be used to query the database
 def generate_embedding_for_query(text: str):
     response = openai_client.embeddings.create(
-        input=text,
-        model="text-embedding-3-small"
+        input=text, model="text-embedding-3-large"
     )
     return response.data[0].embedding
+
 
 # Create a list of records where each record contains the embeddings of a paper, metadata and id
 def generate_records(paper_titles: list, user_id: str, search_query: str):
     records = []
     # Generate embeddings for all paper titles in batch otherwise making one request for each paper_title will us down
     embeddings = generate_embeddings(paper_titles)
-    
+
     for paper_title, embedding in zip(paper_titles, embeddings):
-        records.append({
-            # Pinecone does not autogenerate ids so we need to specify a unique id for each paper
-            "id": str(uuid.uuid4()),
-            "values": embedding,
-            "metadata": {
-                "user_id": user_id,
-                "search_query": search_query,
-                "paper_title": paper_title
+        records.append(
+            {
+                # Pinecone does not autogenerate ids so we need to specify a unique id for each paper
+                "id": str(uuid.uuid4()),
+                "values": embedding,
+                "metadata": {
+                    "user_id": user_id,
+                    "search_query": search_query,
+                    "paper_title": paper_title,
+                },
             }
-        })
+        )
     return records
+
 
 # Functions to test with JSON
 
+
 # Read the papers.json file and extract the titles of all papers and return them
 def get_titles():
-    with open("./papers.json", 'r', encoding='utf-8') as file:
+    with open("./papers.json", "r", encoding="utf-8") as file:
         papers = json.load(file)
     paper_titles = [paper["title"] for paper in papers]
     return paper_titles
 
+
 # Query the database using an embedding of the query
-def query_database(embedding_for_query: str, index_name: str, user_id: str, search_query: str):
+def query_database(
+    embedding_for_query: str, index_name: str, user_id: str, search_query: str
+):
     index = pc.Index(index_name)
 
     matches = index.query(
         vector=embedding_for_query,
-        top_k = 20,
+        top_k=20,
         include_metadata=True,
         # Only return the records that are related to the specified search_query, for the user
-        filter = {
-            "user_id": user_id,
-            "search_query": search_query
-        }
+        filter={"user_id": user_id, "search_query": search_query},
     )
 
     return matches
+
 
 # paper_titles = get_titles()
 
 
 # records = generate_records(paper_titles=paper_titles, user_id="1234", search_query="virtual reality")
 
-# # # Slicing the records array and upserting it in chunks to stay under the maximum upsert limit set by Pinecone. 
+# # # Slicing the records array and upserting it in chunks to stay under the maximum upsert limit set by Pinecone.
 # slice_size = max(1, len(records) // 3)
 
-# upsert_records(records[:slice_size], "test")            
+# upsert_records(records[:slice_size], "test")
 # upsert_records(records[slice_size:2 * slice_size], "test")
 # upsert_records(records[2 * slice_size:], "test")
 
-embedding_for_query = generate_embedding_for_query("virtual reality")
-print(query_database(embedding_for_query, "test", "1234", "virtual reality"))
+embedding_for_query = generate_embedding_for_query("Augmented Reality")
+print(query_database(embedding_for_query, "test-large", "1234", "virtual reality"))

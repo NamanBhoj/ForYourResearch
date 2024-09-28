@@ -31,19 +31,17 @@ Things to research:
 """
 
 
-# Create an index in the database by passing in the name of the index
-def create_index(index_name: str):
-    if index_name not in pc.list_indexes().names():
-        print("Creating index:", index_name)
-        pc.create_index(
-            name=index_name,
-            dimension=1536,
-            metric="cosine",
-            spec=ServerlessSpec(cloud="aws", region="us-east-1"),
-        )
-
-
-# Upsert a list of records to the database
-def upsert_records(records: list, index_name: str):
+def query_database(
+    embedding_for_query: str, index_name: str, user_id: str, search_query: str
+):
     index = pc.Index(index_name)
-    index.upsert(records)
+
+    matches = index.query(
+        vector=embedding_for_query,
+        top_k=20,
+        include_metadata=True,
+        # Only return the records that are related to the specified search_query, for the user
+        filter={"user_id": user_id, "search_query": search_query},
+    )
+
+    return matches
