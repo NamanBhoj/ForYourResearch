@@ -6,19 +6,19 @@ const features = [
   {
     title: 'We Collect',
     description:
-      'Our AI agent, takes your input and goes to the knowledge sources to collect relevant papers in your own database, which you can then annotate easily by you.',
+      'Our AI agent takes your input, retrieves relevant papers from various knowledge sources, and stores them in your personal library, where you can easily annotate them.',
     svgComponent: <Collect />,
   },
   {
     title: 'We Analyse',
     description:
-      "Based on the information you're looking for in papers, our AI agent analyzes them and provides you with the final set of the most relevant ones.",
+      "Based on the information you're seeking in the papers, our AI agent analyzes them and provides you with a curated set of the most relevant ones.",
     svgComponent: <Analyse />,
   },
   {
     title: 'We Answer',
     description:
-      'We identify which collected papers answer your research question and generate relevant citations, making it easier for you to write.',
+      'We identify which collected papers address your research question and generate relevant citations, making it easier for you to write your literature review.',
     svgComponent: <Answer />,
   },
   // {
