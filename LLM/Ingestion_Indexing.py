@@ -37,9 +37,9 @@ def create_index(index_name: str):
         print("Creating index:", index_name)
         pc.create_index(
             name=index_name,
-            dimension=1536,
+            dimension= 3072,
             metric="cosine",
-            spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+            spec=ServerlessSpec(cloud="aws", region="us-east-2"),
         )
 
 
