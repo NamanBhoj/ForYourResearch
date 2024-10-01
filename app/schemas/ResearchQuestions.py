@@ -1,10 +1,10 @@
 # import database
 
-from database import Base
+from ..database import database
 from sqlalchemy import Column, Integer, ForeignKey, Text
 
 
-class ResearchQuestions(Base):
+class ResearchQuestions(database.Base):
 
     __tablename__ = "research_questions"
 

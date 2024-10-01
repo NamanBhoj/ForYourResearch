@@ -1,12 +1,13 @@
-# from ..database import Base
+from ..database import database
 from sqlalchemy import Column, String, Integer
 
-from ..database import Base
+# import database 
+# from database import Base
 
 # import database
 
 
-class Search(Base):
+class Search(database.Base):
     __tablename__ = "searches"
 
     search_id = Column(Integer, primary_key=True, autoincrement=True)
