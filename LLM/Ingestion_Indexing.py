@@ -39,9 +39,10 @@ def create_index(index_name: str):
             name=index_name,
             dimension= 3072,
             metric="cosine",
-            spec=ServerlessSpec(cloud="aws", region="us-east-2"),
+            spec=ServerlessSpec(cloud="aws", region="us-east-1"),
         )
 
+# create_index("abstract-index")
 
 # Upsert a list of records to the database
 def upsert_records(records: list, index_name: str):

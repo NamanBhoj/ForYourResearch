@@ -35,4 +35,5 @@ reranked_docs = Rerank(SearchQuery, PaperTitle)
 
 reranked_docs.sort(key=lambda x: x['score'], reverse=True)
 print(reranked_docs, len(reranked_docs))
-# print(reranked_docs, len(reranked_docs))
+
+#now these go to abstract -index 
