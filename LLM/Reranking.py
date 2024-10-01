@@ -29,11 +29,12 @@ def Rerank(query: str, docs: list):
         )
         reranked_docs.extend(reranked_chunk.data)
 
-    return reranked_docs
+    reranked_docs.sort(key=lambda x: x['score'], reverse=True)
+    return reranked_docs, query
 
-reranked_docs = Rerank(SearchQuery, PaperTitle)
+reranked_docs, query = Rerank(SearchQuery, PaperTitle)
 
-reranked_docs.sort(key=lambda x: x['score'], reverse=True)
-print(reranked_docs, len(reranked_docs))
+
+
 
 #now these go to abstract -index 
