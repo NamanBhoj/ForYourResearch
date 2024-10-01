@@ -6,10 +6,11 @@ from sqlalchemy import Column, String, Integer, ForeignKey
 
 # database.Base
 # when using alembic to make migrations
-from ..database import Base
+# from app.database import Base
+from ..database import database
 
 
-class SearchResultTitleAbstract(Base):
+class SearchResultTitleAbstract(database.Base):
     __tablename__ = "search_results_title_abstract"
 
     # Primary and foriegn keys

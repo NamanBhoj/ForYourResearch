@@ -1,11 +1,10 @@
-# import database
-
-from ..database import Base
+from ..database import database
+# from ..database import Base
 
 from sqlalchemy import Column, JSON, String
 
 
-class CurrentSearchResult(Base):
+class CurrentSearchResult(database.Base):
 
     __tablename__ = "current_search_result"
 

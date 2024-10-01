@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Text
-import database
+from ..database import database
 
 
 class SearchResultFullText(database.Base):
