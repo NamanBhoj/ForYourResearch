@@ -1,151 +1,34 @@
-import RelevanceChip from './RelevanceChip';
+import { useState } from 'react';
+import RelevanceDropdown from '../Shared/RelevanceDropdown';
 
-const papers = [
-  {
-    title: 'A paper on cross reality',
-    link: 'https://tailwindui.com/components/application-ui/elements/badges',
-    is_title_relevant: true,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Exploring Quantum Computing in AI',
-    link: 'https://quantum-computing.ai/research',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Deep Learning for Natural Language Processing',
-    link: 'https://nlp.ai/deep-learning',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Blockchain Technology in Healthcare',
-    link: 'https://blockchain.healthcare/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Augmented Reality in Retail',
-    link: 'https://ar-retail.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Cybersecurity Threats in Modern Web Applications',
-    link: 'https://cybersecurity.research.web/paper',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'The Future of 5G Networks',
-    link: 'https://5g.future.com/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'The Role of AI in Predictive Maintenance',
-    link: 'https://ai-predictive.com/maintenance-paper',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Climate Change Modeling Using Neural Networks',
-    link: 'https://climate-change.neuralnetworks.ai/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Advancements in Autonomous Vehicles',
-    link: 'https://autonomous-vehicles.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Genomics and Big Data: A New Era in Healthcare',
-    link: 'https://genomics-bigdata.com/healthcare-paper',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Ethical Considerations in AI',
-    link: 'https://ethics.ai/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Virtual Reality in Education',
-    link: 'https://vr-education.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'AI-Driven Drug Discovery',
-    link: 'https://ai-drug-discovery.com/paper',
-    is_title_relevant: true,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Impact of Machine Learning on Climate Science',
-    link: 'https://ml-climate-science.com/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Self-Supervised Learning in Computer Vision',
-    link: 'https://ssl-computer-vision.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Challenges of Data Privacy in AI Systems',
-    link: 'https://dataprivacy.ai/research-paper',
-    is_title_relevant: true,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Wearable Devices in Healthcare',
-    link: 'https://wearable-healthcare.com/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Quantum Cryptography for Secure Communications',
-    link: 'https://quantum-cryptography.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'Applications of AI in Agriculture',
-    link: 'https://ai-agriculture.com/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: false,
-  },
-  {
-    title: 'Sustainability and IoT in Smart Cities',
-    link: 'https://iot-smartcities.com/research',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'AI for Personalized Medicine',
-    link: 'https://ai-personalized-medicine.com/paper',
-    is_title_relevant: true,
-    is_abstract_relevant: true,
-  },
-  {
-    title: 'The Impact of Robotics on the Manufacturing Industry',
-    link: 'https://robotics-manufacturing.com/paper',
-    is_title_relevant: false,
-    is_abstract_relevant: true,
-  },
-];
+export default function ScreeningTable(props) {
+  const [papers, setPapers] = useState(props.papers);
 
-const openPdf = (href) => {
-  window.open(href, '_blank');
-};
+  const openPdf = (href) => {
+    window.open(href, '_blank');
+  };
 
-export default function Example() {
+  const handleRelevanceChange = async (title, newRelevance, relevanceType) => {
+    const clonedPapers = [...papers];
+
+    const updatedPapers = clonedPapers.map((paper) => {
+      if (paper.title === title) {
+        let updatedPaper = { ...paper, [relevanceType]: newRelevance };
+
+        if (
+          relevanceType === 'title_relevance' &&
+          newRelevance === 'Irrelevant'
+        ) {
+          updatedPaper = { ...updatedPaper, abstract_relevance: 'Irrelevant' };
+        }
+        return updatedPaper;
+      }
+      return paper;
+    });
+
+    setPapers(updatedPapers);
+  };
+
   return (
     <div>
       <div className="sm:flex-row sm:items-center">
@@ -168,7 +51,7 @@ export default function Example() {
       </div>
       {/* test */}
       <div className="mt-8 flow-root">
-        <div className="border rounded-lg shadow  overflow-auto max-h-[700px] max-w-[1400px]">
+        <div className="border rounded-lg shadow overflow-auto max-h-[700px] max-w-full">
           <div className="inline-block min-w-full align-middle">
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-neutral-50 sticky top-0 z-10">
@@ -194,24 +77,12 @@ export default function Example() {
                   >
                     ABSTRACT SCREENING
                   </th>
-                  {/* <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      FULL TEXT SCREENING
-                    </th> */}
-                  {/* <th
-                      scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
-                    >
-                      <span className="sr-only">Edit</span>
-                    </th> */}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {papers.map((paper) => (
                   <tr key={paper.title}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                    <td className="whitespace-normal break-words max-w-xs py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                       <a
                         className="cursor-pointer font-medium text-blue-950 underline hover:text-blue-800 dark:text-blue-500 hover:no-underline"
                         rel="noopener noreferrer"
@@ -220,25 +91,30 @@ export default function Example() {
                         {paper.title}
                       </a>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <RelevanceChip relevant={paper.is_title_relevant} />
+                    <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
+                      <RelevanceDropdown
+                        relevance={paper.title_relevance}
+                        onRelevanceChange={(newRelevance) =>
+                          handleRelevanceChange(
+                            paper.title,
+                            newRelevance,
+                            'title_relevance'
+                          )
+                        }
+                      />
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <RelevanceChip relevant={paper.is_abstract_relevant} />
+                    <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
+                      <RelevanceDropdown
+                        relevance={paper.abstract_relevance}
+                        onRelevanceChange={(newRelevance) =>
+                          handleRelevanceChange(
+                            paper.title,
+                            newRelevance,
+                            'abstract_relevance'
+                          )
+                        }
+                      />
                     </td>
-                    {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
-                          Badge
-                        </span>{' '}
-                      </td> */}
-                    {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a
-                          href="#"
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Edit<span className="sr-only">, {person.name}</span>
-                        </a>
-                      </td> */}
                   </tr>
                 ))}
               </tbody>

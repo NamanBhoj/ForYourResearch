@@ -36,7 +36,7 @@ export default function Library() {
         console.log(error);
       }
     };
-    fetchSavedSearchData();
+    // fetchSavedSearchData();
   }, [user?.uid]);
 
   const handleSearch = async () => {
@@ -143,6 +143,8 @@ export default function Library() {
     return papersWithLink.length;
   };
 
+  
+
   return (
     <>
       {/* SEARCH CARD */}
@@ -224,7 +226,7 @@ export default function Library() {
                   <SearchTable papers={papers} />
                 </div>
               ) : activeTable === 'screen' ? (
-                <ScreeningTable />
+                <ScreeningTable papers={papers} />
               ) : (
                 ''
               )}
