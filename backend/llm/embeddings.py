@@ -36,12 +36,13 @@ def retrieve_top_k_records(
     index_name: str,
     user_id: str,
     search_query: str,
+    top_k: int,
 ):
     index = pc.Index(index_name)
 
     matches = index.query(
         vector=embedding_for_query,
-        top_k=100,
+        top_k=top_k,
         include_metadata=True,
         # Only return the records that are related to the specified search_query, for the user
         filter={"user_id": user_id, "search_query": search_query},

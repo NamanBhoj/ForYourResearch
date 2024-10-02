@@ -7,7 +7,7 @@ export default function ScreeningTable(props) {
   const [screening, setScreening] = useState(false);
 
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
-
+  console.log(props.papers);
   const openPdf = (href) => {
     window.open(href, '_blank');
   };
@@ -18,7 +18,6 @@ export default function ScreeningTable(props) {
     const updatedPapers = clonedPapers.map((paper) => {
       if (paper.title === title) {
         let updatedPaper = { ...paper, [relevanceType]: newRelevance };
-
         if (
           relevanceType === 'title_relevance' &&
           newRelevance === 'Irrelevant'
@@ -49,6 +48,17 @@ export default function ScreeningTable(props) {
     setScreening(false);
     console.log(updatedPapers);
   };
+
+  // const getNumberOfTopPapers = () => {
+  //   const hasPaperUrl = (paper) => {
+  //     if (paper.openAccessPdf?.url.length > 0) {
+  //       return paper;
+  //     }
+  //   };
+
+  //   const papersWithLink = papers.filter(hasPaperUrl);
+  //   return papersWithLink.length;
+  // };
 
   return (
     <div>
@@ -85,7 +95,8 @@ export default function ScreeningTable(props) {
                   >
                     COLLECTED PAPERS
                     <p className="mt-2 text-sm">
-                      TOTAL COUNT: <span className="text-blue-600">{23}</span>
+                      TOTAL COUNT:{' '}
+                      <span className="text-blue-600">{papers.length}</span>
                     </p>
                   </th>
                   <th

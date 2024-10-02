@@ -215,7 +215,7 @@ export default function Library() {
                   <div className="mr-2 flex flex-row-reverse sm:flex sm:items-center">
                     <div className="mr-auto">
                       <span className="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-m font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                        {`Top ${getNumberOfTopPapers()} papers`}
+                        {`Top ${papers.length} papers`}
                         {totalNumberOfPapers > 0 &&
                           ` from a total of ${totalNumberOfPapers} papers`}
                       </span>
