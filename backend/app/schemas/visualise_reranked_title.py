@@ -1,5 +1,5 @@
 # from ..database import Base
-from sqlalchemy import Column, String, Integer, ForeignKey,Text, Float
+from sqlalchemy import Column, String, Integer, ForeignKey, Text, Float
 
 # Use "..database import Base" when running the server and use:
 # import database
@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey,Text, Float
 from ..database import database
 
 
-class VisualiseRerankedTtitle(database.Base):
+class VisualiseRerankedTitle(database.Base):
     __tablename__ = "visualise_reranked_title"
 
     # Primary and foriegn keys
@@ -17,5 +17,3 @@ class VisualiseRerankedTtitle(database.Base):
     query = Column(Text, nullable=True)
     score = Column(Float, nullable=True)
     title = Column(Text, nullable=True)
-    
- 

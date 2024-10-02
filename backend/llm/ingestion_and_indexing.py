@@ -3,7 +3,7 @@ from openai import OpenAI
 import uuid
 import json
 
-pc = Pinecone(api_key="5c5b2cd2-523f-447a-89b7-ae3e92dc4f6e")
+# pc = Pinecone(api_key="5c5b2cd2-523f-447a-89b7-ae3e92dc4f6e")
 openai_client = OpenAI(
     api_key="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"
 )
@@ -32,19 +32,18 @@ Things to research:
 
 
 # Create an index in the database by passing in the name of the index
-def create_index(index_name: str):
+def create_index(pc: Pinecone, index_name: str):
     if index_name not in pc.list_indexes().names():
         print("Creating index:", index_name)
         pc.create_index(
             name=index_name,
-            dimension= 3072,
+            dimension=3072,
             metric="cosine",
             spec=ServerlessSpec(cloud="aws", region="us-east-1"),
         )
 
-# create_index("abstract-index")
 
 # Upsert a list of records to the database
-def upsert_records(records: list, index_name: str):
+def upsert_records(pc: Pinecone, records: list, index_name: str):
     index = pc.Index(index_name)
     index.upsert(records)

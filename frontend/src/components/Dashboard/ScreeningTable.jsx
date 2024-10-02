@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
+import axios from 'axios';
 
 export default function ScreeningTable(props) {
   const [papers, setPapers] = useState(props.papers);
+  const [screening, setScreening] = useState(false);
+
+  const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
   const openPdf = (href) => {
     window.open(href, '_blank');
@@ -29,6 +33,23 @@ export default function ScreeningTable(props) {
     setPapers(updatedPapers);
   };
 
+  const handleStartScreening = async () => {
+    setScreening(true);
+    const json = {
+      uid: props.user?.uid,
+      data: papers,
+      searchQuery: props.searchQuery,
+    };
+    const response = await axios.post(
+      `${lambdaUrl}/screenTitlesAndAbstracts`,
+      json
+    );
+    const updatedPapers = response.data;
+    setPapers(updatedPapers);
+    setScreening(false);
+    console.log(updatedPapers);
+  };
+
   return (
     <div>
       <div className="sm:flex-row sm:items-center">
@@ -43,9 +64,11 @@ export default function ScreeningTable(props) {
         <div className="mt-6">
           <button
             type="button"
+            onClick={handleStartScreening}
+            disabled={screening}
             className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
           >
-            Start
+            {screening ? 'Screening..' : 'Start screening'}
           </button>
         </div>
       </div>

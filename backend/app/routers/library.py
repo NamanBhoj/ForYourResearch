@@ -104,3 +104,4 @@ def update_paper_relevance(
         title=request_model.title,
         relevance_value=request_model.relevance_value,
     )
+

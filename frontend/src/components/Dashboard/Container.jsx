@@ -143,8 +143,6 @@ export default function Library() {
     return papersWithLink.length;
   };
 
-  
-
   return (
     <>
       {/* SEARCH CARD */}
@@ -226,7 +224,11 @@ export default function Library() {
                   <SearchTable papers={papers} />
                 </div>
               ) : activeTable === 'screen' ? (
-                <ScreeningTable papers={papers} />
+                <ScreeningTable
+                  papers={papers}
+                  user={user}
+                  searchQuery={query}
+                />
               ) : (
                 ''
               )}

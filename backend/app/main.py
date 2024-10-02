@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI
 from mangum import Mangum
-from .routers import library, search
+from .routers import library, search, llm
 from .util.helper_functions import is_in_production
 from fastapi.middleware.cors import CORSMiddleware
 from .models.search import SearchCreate
@@ -10,8 +10,8 @@ from .schemas.search import Search
 
 
 # origins = [
-#     "https://development-for-your-research-five.vercel.app/", 
-    
+#     "https://development-for-your-research-five.vercel.app/",
+
 # ]
 # test cicd
 app = FastAPI()
@@ -35,6 +35,7 @@ if not (is_in_production()):
 
 app.include_router(library.router)
 app.include_router(search.router)
+app.include_router(llm.router)
 
 
 handler = Mangum(app)
