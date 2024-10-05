@@ -33,6 +33,7 @@ Things to research:
 
 # Create an index in the database by passing in the name of the index
 def create_index(pc: Pinecone, index_name: str):
+    """this create_index function creates new table in pinecone if the table does not exist"""
     if index_name not in pc.list_indexes().names():
         print("Creating index:", index_name)
         pc.create_index(
@@ -45,5 +46,6 @@ def create_index(pc: Pinecone, index_name: str):
 
 # Upsert a list of records to the database
 def upsert_records(pc: Pinecone, records: list, index_name: str):
+    """This upsert_records function inserts records in the table in pinecone"""
     index = pc.Index(index_name)
     index.upsert(records)

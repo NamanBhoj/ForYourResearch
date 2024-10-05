@@ -38,6 +38,8 @@ def retrieve_top_k_records(
     search_query: str,
     top_k: int,
 ):
+
+"""looks into pine conde database and matches top k record for user based on search query"""
     index = pc.Index(index_name)
 
     matches = index.query(
@@ -55,6 +57,9 @@ def retrieve_top_k_records(
 def generate_embedding_for_text(
     texts: list,
 ):
+
+"""generatse embedding for text using text-embedding-3-large model"""
+
     response = openai_client.embeddings.create(
         input=texts, model="text-embedding-3-large"
     )
@@ -68,19 +73,32 @@ def generate_embedding_for_query(
     text: str,
     pc: Pinecone,
 ):
+
+"""1. Preprocess query to remove "" or () or AND or OR or + , -  and find keywords 
+2. Seperate function to generate embedding for query only its ideal to preprocess query"""
+
+
+
+
+    keywords = text.replace('(', '').replace(')', '').replace('"', '').replace(' OR ', ' ').replace(' AND ', ' ').split()
+
+
+    keywords_to_feed = " ".join(((keywords)))
     response = openai_client.embeddings.create(
-        input=text, model="text-embedding-3-large"
+        input=keywords_to_feed, model="text-embedding-3-large"
     )
     return response.data[0].embedding
 
 
 # Create a list of records where each record contains the embeddings of a paper, metadata and id
 def generate_records(
+    
     texts: list,
     user_id: str,
     search_query: str,
     pc: Pinecone,
 ):
+"""create a record in pineconde database and also generate embedding for text in this case asbtract"""
     records = []
     # Generate embeddings for all paper titles in batch otherwise making one request for each paper_title will us down
     embeddings = generate_embedding_for_text(texts)
