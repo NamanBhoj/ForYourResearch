@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from ..models.request_with_list import RequestObjectWithListData
 
 from pinecone import Pinecone
-import time
+import time, json
 
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -52,38 +52,44 @@ def screen_titles_and_abstracts(
         index_name="title-index",
         user_id=request.uid,
         search_query=request.searchQuery,
-        top_k=700,
+        # get top 70% papers
+        top_k=int(0.7 * len(title_records_to_upsert)),
     )
 
     title_records_to_rerank = top_k_titles["matches"]
     title_records_to_rerank = [
         record["metadata"]["text"] for record in title_records_to_rerank
     ]
+    # print(title_records_to_rerank)
+    # reranked_titles = rerank(request.searchQuery, docs=title_records_to_rerank)
 
-    reranked_titles = rerank(request.searchQuery, docs=title_records_to_rerank)
-
-    titles_set = set()
+    titles_set = set(title_records_to_rerank)
     # print(reranked_titles)
-    for record in reranked_titles:
-        """
-        Set the threshold here for title screening
-        """
-        # if record["score"] > 0.4:
-        titles_set.add(record["document"]["text"])
+    # for record in reranked_titles:
+    #     """
+    #     Set the threshold here for title screening
+    #     """
+    #     # if record["score"] > 0.6:
+    #     titles_set.add(record["document"]["text"])
 
     papers = request.data
     relevant_abstracts = []
 
     # Filter papers based on title relevance
+    abstract_present = []
     for paper in papers:
         if paper["title"] in titles_set:
             paper["title_relevance"] = "Relevant"
             if paper["abstract"] and len(paper["abstract"]) > 0:
                 relevant_abstracts.append(paper["abstract"])
+                abstract_present.append("yes")
+            else:
+                abstract_present.append("no")
 
         else:
             paper["title_relevance"] = "Irrelevant"
-
+    with open("abstract_scores.json", "w") as f:
+        json.dump(abstract_present, f)
     # Abstract screening
     if len(relevant_abstracts) > 0:
         abstract_records_to_upsert = generate_records(
@@ -106,25 +112,30 @@ def screen_titles_and_abstracts(
             index_name="abstract-index",
             user_id=request.uid,
             search_query=request.searchQuery,
-            top_k=300,
+            top_k=int(0.3 * len(abstract_records_to_upsert)),
         )
         abstract_records_to_rerank = top_k_abstracts["matches"]
         abstract_records_to_rerank = [
             record["metadata"]["text"] for record in abstract_records_to_rerank
         ]
-        print(abstract_records_to_rerank)
-        reranked_abstracts = rerank(
-            request.searchQuery, docs=abstract_records_to_rerank
-        )
+        # print(abstract_records_to_rerank)
+        # reranked_abstracts = rerank(
+        #     request.searchQuery, docs=abstract_records_to_rerank
+        # )
         # print(reranked_abstracts)
-        abstracts_set = set()
-        for record in reranked_abstracts:
-            """
-            Set the threshold here for abstract screening
-            """
-            if record["score"] > 0.4:
-                abstracts_set.add(record["document"]["text"])
+        abstracts_set = set(abstract_records_to_rerank)
+        # json_to_save = {}
+        # for record in reranked_abstracts:
+        #     """
+        #     Set the threshold here for abstract screening
+        #     """
+        #     if record["score"] > 0.3:
+        #         abstracts_set.add(record["document"]["text"])
+        #         json_to_save[record["document"]["text"]] = record["score"]
 
+        # with open("abstract_scores.json", "w") as f:
+        #     json.dump(json_to_save, f)
+        # print(reranked_abstracts)
         for paper in papers:
             if paper["abstract"] in abstracts_set:
                 paper["abstract_relevance"] = "Relevant"

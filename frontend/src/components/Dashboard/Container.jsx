@@ -10,6 +10,8 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import SearchTable from './SearchTable';
 import ScreeningTable from './ScreeningTable';
+import StatsTable from './StatsTable';
+
 export default function Library() {
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
@@ -20,6 +22,7 @@ export default function Library() {
   const [papers, setPapers] = useState([]);
   const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const [activeTable, setActiveTable] = useState('search');
+  const [paperSources, setPaperSources] = useState({});
 
   const { user } = useUserAuth();
 
@@ -54,11 +57,43 @@ export default function Library() {
 
     // Setting the papers array that will be displayed in the table
     setPapers(json['papers']);
-
+    setPaperSources(getPaperSources(json['papers']));
+    console.log(getPaperSources(json['papers']));
     console.log(papers);
     await handleSaveCurrentData(json['papers']);
 
     setSearching(false);
+  };
+
+  const getPaperSources = (papers) => {
+    let res = {};
+    let total = 0;
+    let new_total = 0;
+    papers.forEach((paper) => {
+      const url = paper.openAccessPdf?.url;
+      if (url != null) {
+        total++;
+        try {
+          new_total++;
+          const parsedUrl = new URL(url);
+          const domain = parsedUrl.hostname
+            .replace(/^www\./, '')
+            .split('.')
+            .slice(0, -1)
+            .join('.');
+          res[domain] = (res[domain] || 0) + 1;
+        } catch (error) {
+          console.error(`Invalid URL: ${url}`);
+        }
+      }
+    });
+    for (const [key, value] of Object.entries(res)) {
+      total += value;
+    }
+    console.log(`from dict ${total}`);
+    console.log(`from counting ${new_total}`);
+
+    return res;
   };
 
   const handleRelevanceChange = (paperId, relevance) => {
@@ -186,6 +221,16 @@ export default function Library() {
               <div className="bg-neutral-100 rounded-lg border px-4 py-2 sm:px-6 lg:px-8 flex space-x-4">
                 <button
                   className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
+                    activeTable === 'stats'
+                      ? 'bg-blue-600 text-white hover:bg-blue-500'
+                      : 'bg-neutral-200 text-gray-700 hover:bg-neutral-300'
+                  }`}
+                  onClick={() => setActiveTable('stats')}
+                >
+                  Stats
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
                     activeTable === 'search'
                       ? 'bg-blue-600 text-white hover:bg-blue-500'
                       : 'bg-neutral-200 text-gray-700 hover:bg-neutral-300'
@@ -229,6 +274,8 @@ export default function Library() {
                   user={user}
                   searchQuery={query}
                 />
+              ) : activeTable === 'stats' ? (
+                <StatsTable paperSources={paperSources} />
               ) : (
                 ''
               )}
