@@ -44,6 +44,7 @@ def screen_titles_and_abstracts(
         )
     # upsert_records(pc=pc, records=title_records_to_upsert, index_name="title-index")
     time.sleep(5)
+    
     embedding_of_query = generate_embedding_for_query(pc=pc, text=request.searchQuery)
 
     top_k_titles = retrieve_top_k_records(

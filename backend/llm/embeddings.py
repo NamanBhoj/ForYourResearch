@@ -3,6 +3,7 @@ from openai import OpenAI
 import uuid
 import json, hashlib
 
+
 openai_client = OpenAI(
     api_key="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"
 )
@@ -85,6 +86,7 @@ def generate_embedding_for_query(
     )
 
     keywords_to_feed = " ".join(((keywords)))
+    print("THESE ARE THE KEYWORDS TO FEED", keywords_to_feed)
     response = openai_client.embeddings.create(
         input=keywords_to_feed, model="text-embedding-3-large"
     )
