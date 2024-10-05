@@ -33,6 +33,7 @@ Things to research:
 
 # Create an index in the database by passing in the name of the index
 def create_index(pc: Pinecone, index_name: str):
+    
     if index_name not in pc.list_indexes().names():
         print("Creating index:", index_name)
         pc.create_index(
