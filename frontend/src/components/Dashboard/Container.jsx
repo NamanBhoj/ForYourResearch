@@ -67,32 +67,26 @@ export default function Library() {
 
   const getPaperSources = (papers) => {
     let res = {};
-    let total = 0;
-    let new_total = 0;
     papers.forEach((paper) => {
       const url = paper.openAccessPdf?.url;
       if (url != null) {
-        total++;
         try {
-          new_total++;
           const parsedUrl = new URL(url);
-          const domain = parsedUrl.hostname
+          const hostname = parsedUrl.hostname;
+          const domain = hostname
             .replace(/^www\./, '')
             .split('.')
             .slice(0, -1)
             .join('.');
-          res[domain] = (res[domain] || 0) + 1;
+          const obj = { domain, hostname };
+          const key = JSON.stringify(obj);
+          res[key] = (res[key] || 0) + 1;
         } catch (error) {
           console.error(`Invalid URL: ${url}`);
         }
       }
     });
-    for (const [key, value] of Object.entries(res)) {
-      total += value;
-    }
-    console.log(`from dict ${total}`);
-    console.log(`from counting ${new_total}`);
-
+    console.log(res);
     return res;
   };
 
