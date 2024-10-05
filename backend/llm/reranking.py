@@ -23,6 +23,8 @@ def rerank(query: str, docs: list):
     """Rerank the documents based on the query; this function uses the re-ranker by pinecone"""
     rerank_name = "bge-reranker-v2-m3"
     reranked_docs = []
+    #assuming that adding does this abstract gives more context information to cross encoder
+    query = "Does this abstract has contextual information about these keywords " + query + "?"
     # because can only rerank 100 at a time, need to chunk and form a limit ideal for now is 2000
     for i in range(0, len(docs), 100):
         chunk = docs[i : i + 100]
