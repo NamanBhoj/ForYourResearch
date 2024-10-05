@@ -20,6 +20,7 @@ pc = PineconeGRPC(api_key=api_key)
 
 
 def rerank(query: str, docs: list):
+    """Rerank the documents based on the query; this function uses the re-ranker by pinecone"""
     rerank_name = "bge-reranker-v2-m3"
     reranked_docs = []
     # because can only rerank 100 at a time, need to chunk and form a limit ideal for now is 2000
@@ -48,6 +49,8 @@ def rerank(query: str, docs: list):
 def save_titles_to_visualize_reranked_title_table(
     reranked_docs: list, search_query: str
 ):
+
+"""helper function to visualise data in the database"""
     most_relevant_titles = []
     for reranked_title in reranked_docs:
         if reranked_title["score"] > 0.90:
