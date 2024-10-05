@@ -5,16 +5,17 @@ Revises: 5e5fbd29e63d
 Create Date: 2024-09-22 12:31:51.429474
 
 """
+
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-from app import schemas
+from backend.app import schemas
 
 
 # revision identifiers, used by Alembic.
-revision: str = '89ba206524c2'
-down_revision: Union[str, None] = '5e5fbd29e63d'
+revision: str = "89ba206524c2"
+down_revision: Union[str, None] = "5e5fbd29e63d"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

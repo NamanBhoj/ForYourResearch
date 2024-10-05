@@ -49,8 +49,7 @@ def rerank(query: str, docs: list):
 def save_titles_to_visualize_reranked_title_table(
     reranked_docs: list, search_query: str
 ):
-
-"""helper function to visualise data in the database"""
+    """helper function to visualise data in the database"""
     most_relevant_titles = []
     for reranked_title in reranked_docs:
         if reranked_title["score"] > 0.90:

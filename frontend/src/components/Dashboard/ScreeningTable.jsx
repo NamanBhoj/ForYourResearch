@@ -3,8 +3,16 @@ import RelevanceDropdown from '../Shared/RelevanceDropdown';
 import axios from 'axios';
 
 export default function ScreeningTable(props) {
-  const [papers, setPapers] = useState(props.papers);
+  const addRelevanceFields = (papers) => {
+    return papers.map((paper) => ({
+      ...paper,
+      title_relevance: 'Untagged',
+      abstract_relevance: 'Untagged',
+    }));
+  };
+  const [papers, setPapers] = useState(addRelevanceFields(props.papers));
   const [screening, setScreening] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
   console.log(props.papers);
@@ -49,16 +57,17 @@ export default function ScreeningTable(props) {
     console.log(updatedPapers);
   };
 
-  // const getNumberOfTopPapers = () => {
-  //   const hasPaperUrl = (paper) => {
-  //     if (paper.openAccessPdf?.url.length > 0) {
-  //       return paper;
-  //     }
-  //   };
-
-  //   const papersWithLink = papers.filter(hasPaperUrl);
-  //   return papersWithLink.length;
-  // };
+  const handleSaveToLibrary = async () => {
+    setSaving(true);
+    const json = {
+      uid: props.user?.uid,
+      data: papers,
+      searchQuery: props.searchQuery,
+    };
+    // console.log(json);
+    await axios.post(`${lambdaUrl}/saveToLibrary`, json);
+    setSaving(false);
+  };
 
   return (
     <div>
@@ -71,7 +80,7 @@ export default function ScreeningTable(props) {
             Press the button to begin the screening process.
           </p>
         </div> */}
-        <div className="mt-6">
+        <div className="flex gap-x-4 sm:justify-start sm:mt-6">
           <button
             type="button"
             onClick={handleStartScreening}
@@ -79,6 +88,14 @@ export default function ScreeningTable(props) {
             className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
           >
             {screening ? 'Screening..' : 'Start screening'}
+          </button>
+          <button
+            type="button"
+            onClick={handleSaveToLibrary}
+            disabled={saving}
+            className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
+          >
+            {saving ? 'Saving..' : 'Save to library'}
           </button>
         </div>
       </div>

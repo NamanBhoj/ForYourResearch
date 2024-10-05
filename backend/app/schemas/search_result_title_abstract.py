@@ -26,13 +26,13 @@ class SearchResultTitleAbstract(database.Base):
     # fullText = Column(String, nullable=True)
     # Relevance that is manually set by the user, manual_overall_relevance is the value of manually tagged papers
     # in our Library and PapersTable on the frontend
-    manual_overall_relevance = Column(String, nullable=True)
-    manual_title_relevance = Column(String, nullable=True)
-    manual_abstract_relevance = Column(String, nullable=True)
+    # manual_overall_relevance = Column(String, nullable=True)
+    title_relevance = Column(String, nullable=True)
+    abstract_relevance = Column(String, nullable=True)
     # manual_full_text_relevance = Column(String, nullable=True)
 
     # Relevance that will be determined by the LLM
     # ai_overall_relevance = Column(String, nullable=True)
-    ai_title_relevance = Column(String, nullable=True)
-    ai_abstract_relevance = Column(String, nullable=True)
+    # ai_title_relevance = Column(String, nullable=True)
+    # ai_abstract_relevance = Column(String, nullable=True)
     # ai_full_text_relevance = Column(String, nullable=True)

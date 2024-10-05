@@ -2,6 +2,7 @@ from pinecone import Index, Pinecone, ServerlessSpec
 from openai import OpenAI
 import uuid
 import json, hashlib
+import logging
 
 openai_client = OpenAI(
     api_key="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"
@@ -74,7 +75,6 @@ def generate_embedding_for_query(
     """1. Preprocess query to remove "" or () or AND or OR or + , -  and find keywords
     2. Seperate function to generate embedding for query only its ideal to preprocess query
     """
-
     keywords = (
         text.replace("(", "")
         .replace(")", "")
@@ -83,12 +83,12 @@ def generate_embedding_for_query(
         .replace(" AND ", " ")
         .split()
     )
-
     keywords_to_feed = " ".join(((keywords)))
+    logging.info(f"THESE ARE THE KEYWORDS TO FEED: {keywords_to_feed}")
     response = openai_client.embeddings.create(
         input=keywords_to_feed, model="text-embedding-3-large"
     )
-    return response.data[0].embedding
+    return response.data[0].embedding, keywords_to_feed
 
 
 # Create a list of records where each record contains the embeddings of a paper, metadata and id

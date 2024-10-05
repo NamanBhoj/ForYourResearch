@@ -83,7 +83,8 @@ def fetch_papers_related_to_query(
                 "url": paper.url,
                 "paperId": paper.paperId,
                 "year": paper.year,
-                "relevance": paper.manual_overall_relevance,
+                "title_relevance": paper.title_relevance,
+                "abstract_relevance": paper.abstract_relevance,
             }
         )
     return papers_list
@@ -104,4 +105,3 @@ def update_paper_relevance(
         title=request_model.title,
         relevance_value=request_model.relevance_value,
     )
-

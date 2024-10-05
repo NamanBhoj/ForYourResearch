@@ -7,13 +7,13 @@ from alembic import context
 
 # import ..database
 # from database import Base
-from app.schemas.search_result_title_abstract import SearchResultTitleAbstract
-from app.schemas.search_result_full_text import SearchResultFullText
-from app.schemas import ResearchQuestions
-from app.schemas import visualise_reranked_title
-from app.schemas.current_search_result import CurrentSearchResult
-from app.schemas.search import Search
-from app.database import database
+from backend.app.schemas.search_result_title_abstract import SearchResultTitleAbstract
+from backend.app.schemas.search_result_full_text import SearchResultFullText
+from backend.app.schemas import ResearchQuestions
+from backend.app.schemas import visualise_reranked_title
+from backend.app.schemas.current_search_result import CurrentSearchResult
+from backend.app.schemas.search import Search
+from backend.app.database import database
 
 
 # this is the Alembic Config object, which provides

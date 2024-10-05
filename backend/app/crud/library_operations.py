@@ -33,19 +33,58 @@ def save_query(db: Session, search_create: SearchCreate):
 
 
 def save_papers(db: Session, papers: list, search_id: int):
+    # Extract all paperIds from the incoming list of papers
+    paper_ids = [paper["paperId"] for paper in papers]
+
+    # Query the database once for all papers with matching paperId and search_id
+    existing_papers = (
+        db.query(SearchResultTitleAbstractSchema)
+        .filter(
+            SearchResultTitleAbstractSchema.paperId.in_(paper_ids),
+            SearchResultTitleAbstractSchema.search_id == search_id,
+        )
+        .all()
+    )
+
+    # Create a dictionary of existing papers keyed by paperId for quick lookups
+    existing_papers_dict = {paper.paperId: paper for paper in existing_papers}
+
     papers_to_add = []
     for paper in papers:
-        row = SearchResultTitleAbstractSchema(
-            search_id=search_id,
-            title=paper["title"],
-            year=paper["year"],
-            abstract=paper["abstract"],
-            manual_overall_relevance=paper["Relevance"],
-            paperId=paper["paperId"],
-            url=paper["openAccessPdf"]["url"] if paper.get("openAccessPdf") else None,
-        )
-        papers_to_add.append(row)
-    db.add_all(papers_to_add)
+        if paper["paperId"] in existing_papers_dict:
+            # Update the existing paper
+            existing_paper = existing_papers_dict[paper["paperId"]]
+            existing_paper.title_relevance = paper["title_relevance"]
+            existing_paper.abstract_relevance = paper["abstract_relevance"]
+            existing_paper.title = paper["title"]
+            existing_paper.year = paper["year"]
+            existing_paper.abstract = paper["abstract"]
+            existing_paper.url = (
+                paper["openAccessPdf"]["url"] if paper.get("openAccessPdf") else None
+            )
+        else:
+            # Add the new paper if it doesn't exist
+            new_paper = SearchResultTitleAbstractSchema(
+                search_id=search_id,
+                title=paper["title"],
+                year=paper["year"],
+                abstract=paper["abstract"],
+                title_relevance=paper["title_relevance"],
+                abstract_relevance=paper["abstract_relevance"],
+                paperId=paper["paperId"],
+                url=(
+                    paper["openAccessPdf"]["url"]
+                    if paper.get("openAccessPdf")
+                    else None
+                ),
+            )
+            papers_to_add.append(new_paper)
+
+    # Bulk insert new papers
+    if papers_to_add:
+        db.add_all(papers_to_add)
+
+    # Commit the transaction after updates and inserts
     db.commit()
 
 
