@@ -126,7 +126,7 @@ def retrieve_papers_by_query(db: Session, search_id: int):
 
 
 def update_manual_paper_relevance(
-    db: Session, search_id: int, title: str, relevance_value: str
+    db: Session, search_id: int, title: str, relevance_value: str, relevance_type: str
 ):
     # functions gets a specific query for a specific user by using search id and then helps change the manual relevance
 
@@ -144,6 +144,10 @@ def update_manual_paper_relevance(
         )
         .first()
     )
-    # print(paper.abstract)
-    paper.manual_overall_relevance = relevance_value
+
+    if relevance_type == "title_relevance":
+        paper.title_relevance = relevance_value
+    elif relevance_type == "abstract_relevance":
+        paper.abstract_relevance = relevance_value
+
     db.commit()

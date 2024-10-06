@@ -4,7 +4,7 @@ function StatsTable(props) {
   const [copied, setCopied] = useState(false);
 
   const sortedPaperSources = Object.entries(props.paperSources).sort(
-    ([keyA], [keyB]) => keyA.localeCompare(keyB)
+    ([keyA, countA], [keyB, countB]) => countB - countA
   );
 
   const handleCopy = () => {

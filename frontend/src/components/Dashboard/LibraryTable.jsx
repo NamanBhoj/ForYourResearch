@@ -3,29 +3,49 @@ import RelevanceDropdown from '../Shared/RelevanceDropdown';
 import axios from 'axios';
 
 function LibraryTable(props) {
-  const [papers, setPapers] = useState(props.papers);
+  const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
   const openPdf = (href) => {
     window.open(href, '_blank');
   };
 
   const handleRelevanceChange = async (title, newRelevance, relevanceType) => {
-    const clonedPapers = [...props.papers];
-
-    const updatedPapers = clonedPapers.map((paper) => {
+    const updatedPapers = props.papers.map((paper) => {
       if (paper.title === title) {
-        let updatedPaper = { ...paper, [relevanceType]: newRelevance };
-        if (
-          relevanceType === 'title_relevance' &&
-          newRelevance === 'Irrelevant'
-        ) {
-          updatedPaper = { ...updatedPaper, abstract_relevance: 'Irrelevant' };
+        if (relevanceType === 'title_relevance') {
+          if (newRelevance === 'Irrelevant') {
+            return {
+              ...paper,
+              title_relevance: newRelevance,
+              abstract_relevance: 'Irrelevant',
+            };
+          }
+          return { ...paper, title_relevance: newRelevance };
+        } else if (relevanceType === 'abstract_relevance') {
+          return { ...paper, abstract_relevance: newRelevance };
         }
-        return updatedPaper;
       }
+
       return paper;
     });
 
-    setPapers(updatedPapers);
+    props.setPapersToDisplay(updatedPapers);
+    await handleRelevanceUpdateToDb(title, newRelevance, relevanceType);
+  };
+
+  const handleRelevanceUpdateToDb = async (
+    title,
+    relevance_value,
+    relevance_type
+  ) => {
+    const json = {
+      title: title,
+      relevance_value: relevance_value,
+      relevance_type: relevance_type,
+      uid: props.user?.uid,
+      search_query: props.searchQuery,
+    };
+    console.log(json);
+    await axios.post(`${lambdaUrl}/updatePaperRelevance`, json);
   };
 
   return (
@@ -62,8 +82,8 @@ function LibraryTable(props) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-neutral-300 bg-neutral-50">
-              {papers &&
-                papers.map((paper) => {
+              {props.papers &&
+                props.papers.map((paper) => {
                   return (
                     <tr
                       key={paper.paperId}

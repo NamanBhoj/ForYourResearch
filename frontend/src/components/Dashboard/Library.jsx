@@ -45,25 +45,25 @@ export default function Library() {
     return papersToDisplay.length >= 1000 ? 1000 : papersToDisplay.length;
   };
 
-  const handleRelevanceChange = async (title, relevance) => {
-    const clonedPapersToDisplay = [...papersToDisplay];
+  // const handleRelevanceChange = async (title, relevance) => {
+  //   const clonedPapersToDisplay = [...papersToDisplay];
 
-    const updatedPapers = clonedPapersToDisplay.map((paper) => {
-      if (paper.title === title) {
-        return { ...paper, relevance: relevance };
-      }
-      return paper;
-    });
-    setPapersToDisplay(updatedPapers);
-    const json = {
-      title: title,
-      relevance_value: relevance,
-      uid: user.uid,
-      search_query: selectedQuery,
-    };
-    // console.log(json);
-    await axios.post(`${lambdaUrl}/updatePaperRelevance`, json);
-  };
+  //   const updatedPapers = clonedPapersToDisplay.map((paper) => {
+  //     if (paper.title === title) {
+  //       return { ...paper, relevance: relevance };
+  //     }
+  //     return paper;
+  //   });
+  //   setPapersToDisplay(updatedPapers);
+  //   const json = {
+  //     title: title,
+  //     relevance_value: relevance,
+  //     uid: user.uid,
+  //     search_query: selectedQuery,
+  //   };
+  //   // console.log(json);
+  //   await axios.post(`${lambdaUrl}/updatePaperRelevance`, json);
+  // };
 
   const handleLoadPapers = async () => {
     if (fetchedQueryArray.includes(queryInputValue)) {
@@ -269,7 +269,12 @@ export default function Library() {
                       </span> */}
                     </div>
                   </div>
-                  <LibraryTable papers={papersToDisplay} />
+                  <LibraryTable
+                    papers={papersToDisplay}
+                    user={user}
+                    searchQuery={selectedQuery}
+                    setPapersToDisplay={setPapersToDisplay}
+                  />
                 </div>
               ) : activeTable === 'stats' ? (
                 <StatsTable paperSources={paperSources} />

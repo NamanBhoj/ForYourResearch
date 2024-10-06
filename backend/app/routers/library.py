@@ -104,4 +104,5 @@ def update_paper_relevance(
         search_id=search_id,
         title=request_model.title,
         relevance_value=request_model.relevance_value,
+        relevance_type=request_model.relevance_type,
     )
