@@ -23,14 +23,32 @@ def rerank(query: str, docs: list):
     """Rerank the documents based on the query; this function uses the re-ranker by pinecone"""
     rerank_name = "bge-reranker-v2-m3"
     reranked_docs = []
-    #assuming that adding does this abstract gives more context information to cross encoder
-    query = "Does this abstract has contextual information about these keywords " + query + "?"
+    # done so that query is formed like does this paragraph contain contextual information about (key1 or key2) and (key3 or key4)
+    # print("original query" + query)
+    # original_query = query
+    removed_quotes_query = (
+        query.replace('"', "")
+        .replace("(", "")
+        .replace(")", "")
+        .replace("AND", "and")
+        .replace("OR", "or")
+    ) # (((virtual OR cross) OAND (augmented OR reality)) OR (pointing OR pointer)
+    print(removed_quotes_query)
+    # query = " ".join(((query)))
+    # assuming that adding does this abstract gives more context information to cross encoder
+    modified_query = f"Does this abstract have any contextual information about {removed_quotes_query}?"
+    # modified_query = (
+    #     f"Does this abstract have any contextual information about medicine?"
+    # )
+
+    # modified_query = "Does this abstract have any contextual information of pointing, pointer, cue or selection in the context of virtual reality, augmented reality, mixed reality or extended reality?"
+    # print(query)
     # because can only rerank 100 at a time, need to chunk and form a limit ideal for now is 2000
     for i in range(0, len(docs), 100):
         chunk = docs[i : i + 100]
         reranked_chunk = pc.inference.rerank(
             model=rerank_name,
-            query=query,
+            query=modified_query,
             documents=chunk,
             parameters={
                 "truncate": "END",  # truncate to max length
@@ -40,7 +58,7 @@ def rerank(query: str, docs: list):
         reranked_docs.extend(reranked_chunk.data)
 
     reranked_docs.sort(key=lambda x: x["score"], reverse=True)
-    return reranked_docs
+    return reranked_docs, modified_query
 
 
 # reranked_docs, query = rerank(SearchQuery, PaperTitle)
