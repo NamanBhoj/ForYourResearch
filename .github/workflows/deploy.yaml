@@ -54,7 +54,7 @@ jobs:
             source venv/bin/activate
 
             # Go into the app directory to install requirements
-            cd app
+            cd backend
 
             pip install -r requirements.txt
             pip install "fastapi[standard]"
