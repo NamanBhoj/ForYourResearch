@@ -90,8 +90,8 @@ jobs:
           EOF
 
 
-          #MANUAL STEPS
-       
+          # MANUAL STEPS
+
               # Start server at  (keep server running even if terminal is closed)
               #nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &
 
