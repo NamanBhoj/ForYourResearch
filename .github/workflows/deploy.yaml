@@ -64,6 +64,8 @@ jobs:
             pip install sqlalchemy
             pip install psycopg2-binary
             pip install uvicorn
+            pip install pinecone-client
+            pip install openai
 
             pip freeze>requirements.txt
             cd ..
