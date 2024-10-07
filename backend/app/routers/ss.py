@@ -22,6 +22,7 @@ def search(query: str):
         "limit": limit,
         "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
         "offset": total_offset,
+        "publicationTypes": "Review,JournalArticle",
     }
 
     time.sleep(2)
