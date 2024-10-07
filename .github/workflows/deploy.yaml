@@ -66,6 +66,7 @@ jobs:
             pip install uvicorn
             pip install pinecone-client
             pip install openai
+            pip install protoc_gen_openapiv2
 
             pip freeze>requirements.txt
             cd ..
