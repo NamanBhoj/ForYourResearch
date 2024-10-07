@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import RelevanceDropdown from '../Shared/RelevanceDropdown';
+import Notification from '../Shared/Notification';
+
 import axios from 'axios';
+import RelevanceChip from './RelevanceChip';
 
 export default function ScreeningTable(props) {
   const addRelevanceFields = (papers) => {
@@ -13,6 +16,10 @@ export default function ScreeningTable(props) {
   const [papers, setPapers] = useState(addRelevanceFields(props.papers));
   const [screening, setScreening] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showScreeningNotification, setShowScreeningNotification] =
+    useState(false);
+  const [showSaveToLibraryNotification, setShowSaveToLibraryNotification] =
+    useState(false);
 
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
   console.log(props.papers);
@@ -54,6 +61,8 @@ export default function ScreeningTable(props) {
     const updatedPapers = response.data;
     setPapers(updatedPapers);
     setScreening(false);
+    setShowSaveToLibraryNotification(false);
+    setShowScreeningNotification(true);
     console.log(updatedPapers);
   };
 
@@ -67,6 +76,8 @@ export default function ScreeningTable(props) {
     // console.log(json);
     await axios.post(`${lambdaUrl}/saveToLibrary`, json);
     setSaving(false);
+    setShowScreeningNotification(false);
+    setShowSaveToLibraryNotification(true);
   };
 
   return (
@@ -143,7 +154,8 @@ export default function ScreeningTable(props) {
                       </a>
                     </td>
                     <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                      <RelevanceDropdown
+                      <RelevanceChip relevant={paper.title_relevance} />
+                      {/* <RelevanceDropdown
                         relevance={paper.title_relevance}
                         onRelevanceChange={(newRelevance) =>
                           handleRelevanceChange(
@@ -152,10 +164,12 @@ export default function ScreeningTable(props) {
                             'title_relevance'
                           )
                         }
-                      />
+                      /> */}
                     </td>
                     <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                      <RelevanceDropdown
+                      <RelevanceChip relevant={paper.abstract_relevance} />
+
+                      {/* <RelevanceDropdown
                         relevance={paper.abstract_relevance}
                         onRelevanceChange={(newRelevance) =>
                           handleRelevanceChange(
@@ -164,7 +178,7 @@ export default function ScreeningTable(props) {
                             'abstract_relevance'
                           )
                         }
-                      />
+                      /> */}
                     </td>
                   </tr>
                 ))}
@@ -172,6 +186,20 @@ export default function ScreeningTable(props) {
             </table>
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-center">
+        <Notification
+          showNotification={showScreeningNotification}
+          setShowNotification={setShowScreeningNotification}
+          headingText={'Papers have been screened!'}
+        />
+      </div>
+      <div className="flex items-center justify-center">
+        <Notification
+          showNotification={showSaveToLibraryNotification}
+          setShowNotification={setShowSaveToLibraryNotification}
+          headingText={'Papers have been saved to library!'}
+        />
       </div>
     </div>
   );
