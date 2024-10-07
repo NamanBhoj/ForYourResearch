@@ -213,7 +213,7 @@ export default function Library() {
           <div className="mx-auto max-w-7xl mb-4">
             <div className="flex justify-center">
               <div className="bg-neutral-100 rounded-lg border px-4 py-2 sm:px-6 lg:px-8 flex space-x-4">
-                <button
+                {/* <button
                   className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
                     activeTable === 'stats'
                       ? 'bg-blue-600 text-white hover:bg-blue-500'
@@ -222,7 +222,7 @@ export default function Library() {
                   onClick={() => setActiveTable('stats')}
                 >
                   Stats
-                </button>
+                </button> */}
                 <button
                   className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
                     activeTable === 'collection'
