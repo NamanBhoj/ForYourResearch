@@ -54,7 +54,7 @@ jobs:
             source venv/bin/activate
 
             # Go into the app directory to install requirements
-            cd app
+            cd backend
 
             pip install -r requirements.txt
             pip install "fastapi[standard]"
@@ -64,6 +64,9 @@ jobs:
             pip install sqlalchemy
             pip install psycopg2-binary
             pip install uvicorn
+            pip install pinecone-client
+            pip install openai
+            pip install protoc_gen_openapiv2
 
             pip freeze>requirements.txt
             cd ..
