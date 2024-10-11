@@ -13,7 +13,7 @@ from ...llm.embeddings import (
     generate_embedding_for_query,
 )
 from ...llm.ingestion_and_indexing import upsert_records, create_index
-from ...llm.reranking import rerank
+from ...llm.reranking import rerank, rerank_using_openai
 
 router = APIRouter()
 
@@ -120,12 +120,16 @@ def screen_titles_and_abstracts(
             record["metadata"]["text"] for record in abstract_records_to_rerank
         ]
         # print(abstract_records_to_rerank)
-        reranked_abstracts, modified_query = rerank(
+        # reranked_abstracts, modified_query = rerank(
+        #     request.searchQuery, docs=abstract_records_to_rerank
+        # )
+
+        reranked_abstracts = rerank_using_openai(
             request.searchQuery, docs=abstract_records_to_rerank
         )
 
         # print("original query: ", original_query)
-        print("modified query: ", modified_query)
+        # print("modified query: ", modified_query)
         abstracts_set = set()
 
         print(reranked_abstracts)
