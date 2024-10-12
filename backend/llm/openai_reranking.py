@@ -13,7 +13,7 @@ Relevant:
 
 def document_relevance(query, document):
     response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {
                 "role": "system",
@@ -22,6 +22,8 @@ def document_relevance(query, document):
             {"role": "user", "content": prompt.format(query=query, document=document)},
         ],
         temperature=0,
+        logprobs=True,
+        logit_bias={3363: 1, 1400: 1},
     )
 
     return response
@@ -36,4 +38,5 @@ query = '"Capture and Replay" AND "XR" AND "Testing"'
 
 for abstract in abstracts:
     response = document_relevance(query, abstract)
-    print(response.choices[0].message.content)
+    # print(response.choices[0].message.content)
+    print(response)
