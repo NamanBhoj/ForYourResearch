@@ -24,8 +24,8 @@ def document_relevance(query, documents):
                 },
                 {"role": "user", "content": prompt.format(query=query, document=document)},
             ],
-            temperature=0,  # Keep temperature low to avoid randomness
-            max_tokens=10  # Limit to short responses
+            temperature=0,
+            max_tokens=10
         )
         current_relevance = float(response.choices[0].message.content)
         relevances.append({document:current_relevance})
