@@ -13,7 +13,8 @@ from ...llm.embeddings import (
     generate_embedding_for_query,
 )
 from ...llm.ingestion_and_indexing import upsert_records, create_index
-from ...llm.reranking import rerank, rerank_using_openai
+from ...llm.reranking import rerank
+from ...llm.openai_reranking import document_relevance
 
 router = APIRouter()
 
@@ -124,21 +125,26 @@ def screen_titles_and_abstracts(
         #     request.searchQuery, docs=abstract_records_to_rerank
         # )
 
-        reranked_abstracts = rerank_using_openai(
-            request.searchQuery, docs=abstract_records_to_rerank
+        reranked_abstracts = document_relevance(
+            request.searchQuery, abstract_records_to_rerank
         )
 
         # print("original query: ", original_query)
         # print("modified query: ", modified_query)
         abstracts_set = set()
+        for i in range(len(abstract_records_to_rerank)):
+            current_abstract = abstract_records_to_rerank[i]
+
+            if reranked_abstracts[i][current_abstract] > 50.0:
+                abstracts_set.add(current_abstract)
 
         print(reranked_abstracts)
-        for record in reranked_abstracts:
-            """
-            Set the threshold here for abstract screening
-            """
-            if record["score"] > 0.1:
-                abstracts_set.add(record["document"]["text"])
+        # for record in reranked_abstracts:
+        #     """
+        #     Set the threshold here for abstract screening
+        #     """
+        #     if record["score"] > 0.1:
+        #         abstracts_set.add(record["document"]["text"])
 
         for paper in papers:
             if paper["abstract"] in abstracts_set:
