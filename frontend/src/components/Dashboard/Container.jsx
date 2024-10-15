@@ -10,6 +10,8 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import SearchTable from './SearchTable';
 import ScreeningTable from './ScreeningTable';
+import ResearchQuestionTable from './ResearchQuestionTable';
+
 import StatsTable from './StatsTable';
 
 export default function Library() {
@@ -245,7 +247,7 @@ export default function Library() {
                 </button>
                 <button
                   className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
-                    activeTable === 'screen'
+                    activeTable === 'rq'
                       ? 'bg-blue-600 text-white hover:bg-blue-500'
                       : 'bg-neutral-200 text-gray-700 hover:bg-neutral-300'
                   }`}
@@ -280,9 +282,13 @@ export default function Library() {
                 />
               ) : activeTable === 'stats' ? (
                 <StatsTable paperSources={paperSources} />
-              ) : (
-                ''
-              )}
+              ) : activeTable === 'rq' ? (
+                <ResearchQuestionTable
+                  papers={papers}
+                  user={user}
+                  searchQuery={query}
+                />
+              ) : null}
             </div>
           </div>
         </div>

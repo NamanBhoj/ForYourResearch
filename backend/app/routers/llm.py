@@ -14,6 +14,7 @@ from ...llm.embeddings import (
 )
 from ...llm.ingestion_and_indexing import upsert_records, create_index
 from ...llm.reranking import rerank, rerank_using_openai
+from ..crud.full_text_operations import upload_papers_to_s3, get_papers_from_s3
 
 router = APIRouter()
 
@@ -147,3 +148,12 @@ def screen_titles_and_abstracts(
                 paper["abstract_relevance"] = "Irrelevant"
 
     return papers
+
+
+@router.post(f"/screenForResearchQuestions")
+def screenForResearchQuestions(request: RequestObjectWithListData):
+    upload_papers_to_s3(request.uid,request.searchQuery,request.data)
+
+    for paper in request.data:
+        if paper.get("openAccessPdf") is not None:
+            url = paper.get("openAccessPdf").get("url")

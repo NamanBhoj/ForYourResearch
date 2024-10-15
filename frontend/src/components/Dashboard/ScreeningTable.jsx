@@ -54,10 +54,12 @@ export default function ScreeningTable(props) {
       data: papers,
       searchQuery: props.searchQuery,
     };
+    
     const response = await axios.post(
       `${lambdaUrl}/screenTitlesAndAbstracts`,
       json
     );
+
     const updatedPapers = response.data;
     setPapers(updatedPapers);
     setScreening(false);
