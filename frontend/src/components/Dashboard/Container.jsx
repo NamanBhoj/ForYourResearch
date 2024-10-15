@@ -12,8 +12,6 @@ import SearchTable from './SearchTable';
 import ScreeningTable from './ScreeningTable';
 import StatsTable from './StatsTable';
 
-
-
 export default function Library() {
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
@@ -243,7 +241,17 @@ export default function Library() {
                   }`}
                   onClick={() => setActiveTable('screen')}
                 >
-                  Screening
+                  Title & Abstract screening
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
+                    activeTable === 'screen'
+                      ? 'bg-blue-600 text-white hover:bg-blue-500'
+                      : 'bg-neutral-200 text-gray-700 hover:bg-neutral-300'
+                  }`}
+                  onClick={() => setActiveTable('rq')}
+                >
+                  Full text & Research Question section
                 </button>
               </div>
             </div>
