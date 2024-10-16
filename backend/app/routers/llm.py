@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from ..models.request_with_list import RequestObjectWithListData
+from ..models.request_for_rq import RequestObjectForRQ
 
 from pinecone import Pinecone
 import time, json
@@ -14,7 +15,11 @@ from ...llm.embeddings import (
 )
 from ...llm.ingestion_and_indexing import upsert_records, create_index
 from ...llm.reranking import rerank, rerank_using_openai
-from ..crud.full_text_operations import upload_papers_to_s3, get_papers_from_s3
+from ..crud.full_text_operations import (
+    upload_papers_to_s3,
+    read_pdfs_from_s3,
+    screen_for_research_questions,
+)
 
 router = APIRouter()
 
@@ -151,9 +156,30 @@ def screen_titles_and_abstracts(
 
 
 @router.post(f"/screenForResearchQuestions")
-def screenForResearchQuestions(request: RequestObjectWithListData):
-    upload_papers_to_s3(request.uid,request.searchQuery,request.data)
+def screenForResearchQuestions(request: RequestObjectForRQ):
+    upload_papers_to_s3(request.uid, request.searchQuery, request.data)
+    pdf_markdowns = read_pdfs_from_s3(request.uid, request.searchQuery)
+    screened_papers = screen_for_research_questions(
+        request.researchQuestions, pdf_markdowns
+    )
+    return screened_papers
 
-    for paper in request.data:
-        if paper.get("openAccessPdf") is not None:
-            url = paper.get("openAccessPdf").get("url")
+    """
+    response format:
+    [
+        {
+            "What is the best technique for review?": [
+                "A Scoping survey",
+                "A Systematic review",
+                "A Meta-analysis",
+                "A Narrative review",
+            ]
+        },
+
+        {"What is worst technique for reading?": [
+                "A Scoping survey", 
+                "Virtual reality"
+            ]
+        },
+    ]
+    """

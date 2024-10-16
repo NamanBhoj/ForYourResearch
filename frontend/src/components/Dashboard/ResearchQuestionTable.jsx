@@ -35,15 +35,21 @@ export default function ScreeningTable(props) {
     }
   };
 
-  const handleScreening = () => {
+  const handleScreening = async () => {
     const json = {
       uid: props.user?.uid,
       data: papers,
       searchQuery: props.searchQuery,
       researchQuestions: researchQuestions,
     };
-    
-    console.log(json);
+
+    const response = await axios.post(
+      `${lambdaUrl}/screenForResearchQuestions`,
+      json
+    );
+
+    const returnedData = response.data;
+    console.log(returnedData);
   };
 
   return (
