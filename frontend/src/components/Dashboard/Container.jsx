@@ -25,6 +25,7 @@ export default function Library() {
   const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const [activeTable, setActiveTable] = useState('search');
   const [paperSources, setPaperSources] = useState({});
+  const [abstractScreenedPapers, setAbstractScreenedPapers] = useState([]);
 
   const { user } = useUserAuth();
 
@@ -246,6 +247,7 @@ export default function Library() {
                   Title & Abstract screening
                 </button>
                 <button
+                  disabled={abstractScreenedPapers.length == 0}
                   className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
                     activeTable === 'rq'
                       ? 'bg-blue-600 text-white hover:bg-blue-500'
@@ -279,12 +281,13 @@ export default function Library() {
                   papers={papers}
                   user={user}
                   searchQuery={query}
+                  setAbstractScreenedPapers={setAbstractScreenedPapers}
                 />
               ) : activeTable === 'stats' ? (
                 <StatsTable paperSources={paperSources} />
               ) : activeTable === 'rq' ? (
                 <ResearchQuestionTable
-                  papers={papers}
+                  papers={abstractScreenedPapers}
                   user={user}
                   searchQuery={query}
                 />

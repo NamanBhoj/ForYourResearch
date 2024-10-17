@@ -27,25 +27,25 @@ export default function ScreeningTable(props) {
     window.open(href, '_blank');
   };
 
-  const handleRelevanceChange = async (title, newRelevance, relevanceType) => {
-    const clonedPapers = [...papers];
+  // const handleRelevanceChange = async (title, newRelevance, relevanceType) => {
+  //   const clonedPapers = [...papers];
 
-    const updatedPapers = clonedPapers.map((paper) => {
-      if (paper.title === title) {
-        let updatedPaper = { ...paper, [relevanceType]: newRelevance };
-        if (
-          relevanceType === 'title_relevance' &&
-          newRelevance === 'Irrelevant'
-        ) {
-          updatedPaper = { ...updatedPaper, abstract_relevance: 'Irrelevant' };
-        }
-        return updatedPaper;
-      }
-      return paper;
-    });
+  //   const updatedPapers = clonedPapers.map((paper) => {
+  //     if (paper.title === title) {
+  //       let updatedPaper = { ...paper, [relevanceType]: newRelevance };
+  //       if (
+  //         relevanceType === 'title_relevance' &&
+  //         newRelevance === 'Irrelevant'
+  //       ) {
+  //         updatedPaper = { ...updatedPaper, abstract_relevance: 'Irrelevant' };
+  //       }
+  //       return updatedPaper;
+  //     }
+  //     return paper;
+  //   });
 
-    setPapers(updatedPapers);
-  };
+  //   setPapers(updatedPapers);
+  // };
 
   const handleStartScreening = async () => {
     setScreening(true);
@@ -54,7 +54,7 @@ export default function ScreeningTable(props) {
       data: papers,
       searchQuery: props.searchQuery,
     };
-    
+
     const response = await axios.post(
       `${lambdaUrl}/screenTitlesAndAbstracts`,
       json
@@ -62,10 +62,21 @@ export default function ScreeningTable(props) {
 
     const updatedPapers = response.data;
     setPapers(updatedPapers);
+    setAbstractScreenedPapers(updatedPapers);
     setScreening(false);
     setShowSaveToLibraryNotification(false);
     setShowScreeningNotification(true);
     console.log(updatedPapers);
+  };
+
+  const setAbstractScreenedPapers = (updatedPapers) => {
+    let screenedPapers = [];
+    for (let paper of updatedPapers) {
+      if (paper.abstract_relevance === 'Relevant') {
+        screenedPapers.push(paper);
+      }
+    }
+    props.setAbstractScreenedPapers(screenedPapers);
   };
 
   const handleSaveToLibrary = async () => {

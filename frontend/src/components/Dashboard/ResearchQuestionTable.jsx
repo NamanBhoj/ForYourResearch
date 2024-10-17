@@ -47,7 +47,7 @@ export default function ScreeningTable(props) {
       `${lambdaUrl}/screenForResearchQuestions`,
       json
     );
-
+    console.log(json);
     const returnedData = response.data;
     console.log(returnedData);
   };

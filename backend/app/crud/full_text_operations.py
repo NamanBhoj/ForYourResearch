@@ -19,37 +19,44 @@ def upload_papers_to_s3(uid: str, search_query: str, papers: list):
     bucket_name = "paper-full-texts"
 
     # User UID folder
-    s3_folder = f"{uid}/"  # Ensure folder path ends with a slash
+    user_folder = f"{uid}/"  # Ensure folder path ends with a slash
 
     # Search string folder
-    search_string = f"{search_query}/"  # Ensure folder path ends with a slash
+    query_folder = f"{search_query}/"  # Ensure folder path ends with a slash
 
     s3 = boto3.client("s3")
 
     res = []
-    # Connection Pooling so that the same connection can be used for multiple requests making it a bit faster
+    # Connection Pooling for multiple requests
     session = requests.Session()
     session.verify = certifi.where()  # Use certifi for certificate verification
+
     for paper in papers:
-
-        if paper.get("openAccessPdf"):
-            response = session.get(paper["openAccessPdf"]["url"], stream=True)
-
-            # Set the name of the pdf to paper's title
-            pdf_file_name = paper["title"] + ".pdf"
-
-            if response.status_code == 200:
-                # Upload directly to S3 with folder structure
-                print(f"Uploading {pdf_file_name} to S3...")
-                s3.upload_fileobj(
-                    response.raw,
-                    bucket_name,
-                    f"{s3_folder}{search_string}{pdf_file_name}",
+        try:
+            if paper.get("openAccessPdf") and paper["openAccessPdf"]["url"] is not None:
+                response = session.get(
+                    paper["openAccessPdf"]["url"], stream=True, timeout=10
                 )
-                print(f"{pdf_file_name} was successfully uploaded to S3!")
-                res.append("yes")
-            else:
-                res.append("no open access")
+
+                # Set the name of the pdf to paper's title
+                pdf_file_name = paper["title"] + ".pdf"
+
+                if response.status_code == 200:
+                    # Upload directly to S3 with folder structure
+                    print(f"Uploading {pdf_file_name} to S3...")
+                    s3.upload_fileobj(
+                        response.raw,
+                        bucket_name,
+                        f"{user_folder}{query_folder}{pdf_file_name}",
+                    )
+                    print(f"{pdf_file_name} was successfully uploaded to S3!")
+                    res.append("yes")
+                else:
+                    res.append("no open access")
+        except requests.exceptions.RequestException as e:
+            print(f"Request failed: {e}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
 # # Test for function: upload_papers_to_s3
@@ -120,7 +127,7 @@ def screen_for_research_questions(research_questions, pdf_markdowns):
             try:
                 # Make the OpenAI API call to assess relevance
                 response = openai.chat.completions.create(
-                    model="gpt-4",
+                    model="gpt-4-1106-preview",
                     messages=[
                         {
                             "role": "system",
@@ -137,15 +144,14 @@ def screen_for_research_questions(research_questions, pdf_markdowns):
                 )
                 print(response.choices[0].message.content)
                 # Extract the model's decision ('Yes' or 'No')
-
                 decision = response.choices[0].message.content.lower()
 
                 if decision == "yes":
                     # If relevant, add the paper filename to the list for this question
-                    relevant_papers.append(paper["filename"])
+                    relevant_papers.append(paper["title"])
 
             except Exception as e:
-                print(f"Error while processing document {paper['filename']}: {e}")
+                print(f"Error while processing document {paper['title']}: {e}")
 
         # Add the result for the current research question if any relevant papers were found
         if relevant_papers:
@@ -174,3 +180,54 @@ pdf_markdowns = [
 
 # response = screen_for_research_questions(research_questions, pdf_markdowns)
 # print(response)
+
+
+def download_pdfs_and_convert_to_markdown(pdfs_list: list) -> list:
+    """
+    Downloads PDFs from a list of URLs and converts them to Markdown.
+
+    Args:
+        pdfs_list (list): A list of dictionaries containing 'title' and 'link'.
+
+    Returns:
+        list: A list of dictionaries with 'title' and 'markdown' for each PDF.
+    """
+    markdowns = []
+
+    for pdf in pdfs_list:
+        pdf_url = pdf.get("link")
+        pdf_title = pdf.get("title")
+
+        if not pdf_url:
+            print(f"No URL provided for title: {pdf_title}. Skipping...")
+            markdowns.append({"title": pdf_title, "markdown": ""})
+            continue
+
+        # Create a temporary file for the PDF
+        with tempfile.NamedTemporaryFile(delete=True, suffix=".pdf") as temp_pdf_file:
+            try:
+                print(f"Downloading PDF '{pdf_title}' from: {pdf_url}")
+                response = requests.get(pdf_url, stream=True)
+                response.raise_for_status()  # Raise an error for bad responses
+
+                # Write the PDF content to the temporary file
+                temp_pdf_file.write(response.content)
+                temp_pdf_file.flush()  # Ensure the file is written before reading
+
+                # Convert the PDF to Markdown
+                print(f"Converting PDF '{pdf_title}' to Markdown...")
+                md_text = pymupdf4llm.to_markdown(temp_pdf_file.name)
+                markdowns.append({"title": pdf_title, "markdown": md_text})
+
+            except Exception as e:
+                print(f"Error downloading PDF '{pdf_title}': {e}")
+                markdowns.append(
+                    {"title": pdf_title, "markdown": ""}
+                )  # Append an empty string for failed downloads
+            except Exception as e:
+                print(f"Error converting PDF '{pdf_title}' to Markdown: {e}")
+                markdowns.append(
+                    {"title": pdf_title, "markdown": ""}
+                )  # Append an empty string for conversion errors
+
+    return markdowns
