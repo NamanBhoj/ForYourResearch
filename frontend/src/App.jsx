@@ -3,7 +3,9 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Library from './components/Dashboard/Library';
-import PapersTable from './components/Dashboard/PapersTable';
+import Container from './components/Dashboard/Container';
+import ScreeningTable from './components/Dashboard/ScreeningTable';
+
 import ProtectedRoute from './components/Layout/ProtectedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
@@ -32,7 +34,8 @@ function App() {
             }
           >
             <Route path="library" element={<Library />} />
-            <Route path="search" element={<PapersTable />} />
+            <Route path="search" element={<Container />} />
+            {/* <Route path="search" element={<ScreeningTable />} /> */}
           </Route>
         </Routes>
       </UserAuthContextProvider>

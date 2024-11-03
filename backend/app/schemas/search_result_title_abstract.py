@@ -1,0 +1,38 @@
+# from ..database import Base
+from sqlalchemy import Column, String, Integer, ForeignKey
+
+# Use "..database import Base" when running the server and use:
+# import database
+
+# database.Base
+# when using alembic to make migrations
+# from app.database import Base
+from ..database import database
+
+
+class SearchResultTitleAbstract(database.Base):
+    __tablename__ = "search_results_title_abstract"
+
+    # Primary and foriegn keys
+    search_result_id = Column(Integer, primary_key=True, autoincrement=True)
+    search_id = Column(Integer, ForeignKey("searches.search_id"), nullable=False)
+
+    # Details of paper that are fetched from the API
+    title = Column(String, nullable=True)
+    abstract = Column(String, nullable=True)
+    year = Column(Integer, nullable=True)
+    url = Column(String, nullable=True)
+    paperId = Column(String, nullable=True)
+    # fullText = Column(String, nullable=True)
+    # Relevance that is manually set by the user, manual_overall_relevance is the value of manually tagged papers
+    # in our Library and PapersTable on the frontend
+    # manual_overall_relevance = Column(String, nullable=True)
+    title_relevance = Column(String, nullable=True)
+    abstract_relevance = Column(String, nullable=True)
+    # manual_full_text_relevance = Column(String, nullable=True)
+
+    # Relevance that will be determined by the LLM
+    # ai_overall_relevance = Column(String, nullable=True)
+    # ai_title_relevance = Column(String, nullable=True)
+    # ai_abstract_relevance = Column(String, nullable=True)
+    # ai_full_text_relevance = Column(String, nullable=True)
