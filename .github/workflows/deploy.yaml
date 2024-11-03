@@ -93,7 +93,8 @@ jobs:
           # MANUAL STEPS
 
               # Start server at  (keep server running even if terminal is closed)
-              #nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+              #run this from root where the is no module in this case ForyourResearch
+              #nohup uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 &
 
 
           #run caddy first and then run server
