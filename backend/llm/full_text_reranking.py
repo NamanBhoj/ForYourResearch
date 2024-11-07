@@ -20,7 +20,7 @@ class Response(BaseModel):
 
 def document_relevance(query, document):
     response = openai.beta.chat.completions.parse(
-        model="gpt-4o-mini",
+        model="o1-mini",
         messages=[
             {
                 "role": "system",
@@ -40,7 +40,7 @@ x = """
 put abstract here
 """
 
-abstracts = [x]
+abstracts = ["Sdfsjkdnfkjsdfskjnkjsnjkndgjknsgkn"]
 query = "What is the future work suggested in the paper?"
 
 for abstract in abstracts:
