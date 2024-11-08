@@ -26,10 +26,10 @@ def process_md_files(md_folder):
 
 
 # Folder path and question to query on each Markdown file
-md_folder = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds"
-# question = "Summarize the key points of this document."
+# md_folder = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds"
+# # question = "Summarize the key points of this document."
 
-# Run the function
-results = process_md_files(md_folder)
+# # Run the function
+# results = process_md_files(md_folder)
 
 # Optionally, you can save or further process `results`

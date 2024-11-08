@@ -10,9 +10,9 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import SearchTable from './SearchTable';
 import ScreeningTable from './ScreeningTable';
+import ResearchQuestionTable from './ResearchQuestionTable';
+
 import StatsTable from './StatsTable';
-
-
 
 export default function Library() {
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
@@ -25,6 +25,7 @@ export default function Library() {
   const [totalNumberOfPapers, setTotalNumberOfPapers] = useState(0);
   const [activeTable, setActiveTable] = useState('search');
   const [paperSources, setPaperSources] = useState({});
+  const [abstractScreenedPapers, setAbstractScreenedPapers] = useState([]);
 
   const { user } = useUserAuth();
 
@@ -243,7 +244,18 @@ export default function Library() {
                   }`}
                   onClick={() => setActiveTable('screen')}
                 >
-                  Screening
+                  Title & Abstract screening
+                </button>
+                <button
+                  // disabled={abstractScreenedPapers.length == 0}
+                  className={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-300 ${
+                    activeTable === 'rq'
+                      ? 'bg-blue-600 text-white hover:bg-blue-500'
+                      : 'bg-neutral-200 text-gray-700 hover:bg-neutral-300'
+                  }`}
+                  onClick={() => setActiveTable('rq')}
+                >
+                  Full text & Research Question section
                 </button>
               </div>
             </div>
@@ -269,12 +281,18 @@ export default function Library() {
                   papers={papers}
                   user={user}
                   searchQuery={query}
+                  setAbstractScreenedPapers={setAbstractScreenedPapers}
                 />
               ) : activeTable === 'stats' ? (
                 <StatsTable paperSources={paperSources} />
-              ) : (
-                ''
-              )}
+              ) : activeTable === 'rq' ? (
+                <ResearchQuestionTable
+                  // papers={abstractScreenedPapers}
+                  papers={papers}
+                  user={user}
+                  searchQuery={query}
+                />
+              ) : null}
             </div>
           </div>
         </div>

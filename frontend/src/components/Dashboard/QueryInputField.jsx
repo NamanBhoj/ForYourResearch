@@ -15,12 +15,7 @@ export default function QueryInputField(props) {
         >
           Enter your search string
         </label>
-        <a
-          className="ml-2 mt-auto"
-          target="_blank"
-          href="/info"
-        >
-          {/* <Link to={'/info'}>info</Link> */}
+        <a className="ml-2 mt-auto" target="_blank" href="/info">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -28,7 +23,7 @@ export default function QueryInputField(props) {
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
-            color = "red"
+            color="red"
           >
             <path
               stroke-linecap="round"

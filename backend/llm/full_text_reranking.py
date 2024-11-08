@@ -36,15 +36,15 @@ def document_relevance(query, document):
     return response
 
 
-x = """
-put abstract here
-"""
+# x = """
+# put abstract here
+# """
 
-abstracts = ["Sdfsjkdnfkjsdfskjnkjsnjkndgjknsgkn"]
-query = "What is the future work suggested in the paper?"
+# abstracts = ["Sdfsjkdnfkjsdfskjnkjsnjkndgjknsgkn"]
+# query = "What is the future work suggested in the paper?"
 
-for abstract in abstracts:
-    response = document_relevance(query, abstract)
-    # print(response.choices[0].message.content)
-    # print(response.choices[0].message.content)
-    print(response.choices[0].message.content)
+# for abstract in abstracts:
+#     response = document_relevance(query, abstract)
+#     # print(response.choices[0].message.content)
+#     # print(response.choices[0].message.content)
+#     print(response.choices[0].message.content)

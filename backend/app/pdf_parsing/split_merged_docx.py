@@ -1,9 +1,12 @@
 import re
 from docx import Document
 from shutil import copyfile
+import os
 
 
 def split_merged_docx_with_formatting(input_docx_path, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+
     # Load the merged DOCX file
     doc = Document(input_docx_path)
     sections = []

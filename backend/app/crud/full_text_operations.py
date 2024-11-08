@@ -38,25 +38,27 @@ def upload_papers_to_s3(uid: str, search_query: str, papers: list):
     session = requests.Session()
     session.verify = certifi.where()  # Use certifi for certificate verification
     for paper in papers:
+        try:
+            if paper.get("openAccessPdf"):
+                response = session.get(paper["openAccessPdf"]["url"], stream=True)
 
-        if paper.get("openAccessPdf"):
-            response = session.get(paper["openAccessPdf"]["url"], stream=True)
+                # Set the name of the pdf to paper's title
+                pdf_file_name = paper["title"] + ".pdf"
 
-            # Set the name of the pdf to paper's title
-            pdf_file_name = paper["title"] + ".pdf"
-
-            if response.status_code == 200:
-                # Upload directly to S3 with folder structure
-                print(f"Uploading {pdf_file_name} to S3...")
-                s3.upload_fileobj(
-                    response.raw,
-                    bucket_name,
-                    f"{s3_folder}{search_string}{pdf_file_name}",
-                )
-                print(f"{pdf_file_name} was successfully uploaded to S3!")
-                res.append("yes")
-            else:
-                res.append("no open access")
+                if response.status_code == 200:
+                    # Upload directly to S3 with folder structure
+                    print(f"Uploading {pdf_file_name} to S3...")
+                    s3.upload_fileobj(
+                        response.raw,
+                        bucket_name,
+                        f"{s3_folder}{search_string}{pdf_file_name}",
+                    )
+                    print(f"{pdf_file_name} was successfully uploaded to S3!")
+                    res.append("yes")
+                else:
+                    res.append("no open access")
+        except:
+            continue
 
 
 # # Test for function: upload_papers_to_s3
@@ -135,7 +137,7 @@ def read_pdfs_from_s3(uid: str, search_query: str, output_path: str):
             print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
 
         # Merge downloaded PDFs with headers
-        merge_pdfs.merge_pdfs_with_headers(temp_dir, output_path)
+        merge_pdfs.merge_pdfs_with_headers(temp_dir, output_path, uid, search_query)
         print(f"Merged PDF with headers saved to {output_path}")
 
 
@@ -159,17 +161,17 @@ docx_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_
 #     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds",
 # )
 
-papers = read_from_md.process_md_files(
-    "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds"
-)
+# papers = read_from_md.process_md_files(
+#     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds"
+# )
 
-questions = [
-    "How does cross reality influence medicine?",
-    "What are the dangers of cross reality?",
-    "What future work recommendations can be made in cross reality?",
-]
+# questions = [
+#     "How does cross reality influence medicine?",
+#     "What are the dangers of cross reality?",
+#     "What future work recommendations can be made in cross reality?",
+# ]
 
-print(document_relevance(queries=questions, documents=papers))
+# print(document_relevance(queries=questions, documents=papers))
 
 # Usage
 # read_pdfs_from_s3("123456", "cross reality")
