@@ -5,18 +5,11 @@ from typing import List, Dict
 openai.api_key = "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"
 
 prompt = '''
-You are a scientific Assistant responsible for determining if the provided document fully answers treating the document as evidence for the given query. If the document evidently answers the question, Output the response in json with response filled with "Yes" and cite field with the exact segments of text that answer the query (in an array) enclosed in quotation marks with confidence calculated based on logs_prob. If the document does not answer the query, respond with "No answer found."
-
+You are a scientific Assistant responsible for determining if the provided document fully answers the given query, treating the document as evidence. If the document evidently answers the question, output "Yes". If not, output "No".
 Query: {query}
 Document: """{document}"""
 Answer:
 '''
-
-
-class Response(BaseModel):
-    response: bool
-    cite: List[str]
-    confidence: List[float]
 
 
 def document_relevance(
@@ -29,11 +22,11 @@ def document_relevance(
             title = doc.get("title", "")
             full_text = doc.get("full_text", "")
             response = openai.beta.chat.completions.parse(
-                model="o1-mini",
+                model="gpt-4o-mini",
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an Assistant responsible for answering questions based strictly on the provided text. If the text contains an answer in context of the question, respond with 'Yes' followed by all segments of the text that answer the question as an array, enclosed in quotation marks. If the text does not answer the question, respond with 'No answer found.'",
+                        "content": "You are an Assistant responsible for answering questions based strictly on the provided text. If the text contains an answer in context of the question, respond with 'Yes'. If the text does not answer the question, respond with 'No'.",
                     },
                     {
                         "role": "user",
@@ -41,10 +34,9 @@ def document_relevance(
                     },
                 ],
                 temperature=0,
-                logprobs=True,
-                response_format=Response,
             )
-            if response.response:
+            answer = response.choices[0].message.content.strip()
+            if answer == "Yes":
                 relevant_documents.append(title)
 
         result.append({query: relevant_documents})

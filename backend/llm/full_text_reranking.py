@@ -20,7 +20,7 @@ class Response(BaseModel):
 
 def document_relevance(query, document):
     response = openai.beta.chat.completions.parse(
-        model="o1-mini",
+        model="gpt-4o-mini",
         messages=[
             {
                 "role": "system",
