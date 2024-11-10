@@ -19,6 +19,7 @@ def merge_pdfs_with_headers(folder_path, output_path, uid, search_query):
 
     merger = PdfMerger()
     pdf_counter = 1
+    paper_titles = []
 
     for item in os.listdir(folder_path):
         if item.endswith(".pdf"):
@@ -37,6 +38,7 @@ def merge_pdfs_with_headers(folder_path, output_path, uid, search_query):
                 merger.append(pdf_path)
 
                 pdf_counter += 1
+                paper_titles.append(item)
             except Exception as e:
                 print(f"Error processing {item}: {e}")
 
@@ -45,6 +47,7 @@ def merge_pdfs_with_headers(folder_path, output_path, uid, search_query):
     try:
         merger.write(final_output_path)
         merger.close()
+        return paper_titles
         print(f"Merged PDF with headers saved to {final_output_path}")
     except Exception as e:
         print(f"Error writing merged PDF: {e}")

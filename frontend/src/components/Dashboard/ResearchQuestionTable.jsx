@@ -31,8 +31,34 @@ export default function ScreeningTable(props) {
     if (currentQuestion.trim()) {
       setResearchQuestions([...researchQuestions, currentQuestion]);
       setCurrentQuestion('');
-      // console.log(researchQuestions);
     }
+  };
+
+  const transformFullTextScreenedData = (input) => {
+    const result = {};
+
+    // Loop through each item in the input array
+    input.forEach((item) => {
+      // For each question and its associated files
+      Object.keys(item).forEach((question) => {
+        item[question].forEach((pdfFile) => {
+          // If the pdfFile isn't already a key in the result, initialize it with an empty array
+          if (!result[pdfFile]) {
+            result[pdfFile] = [];
+          }
+          // Push the current question into the array of that pdfFile
+          result[pdfFile].push(question);
+        });
+      });
+    });
+
+    // Transform the result into the desired array format
+    const transformedArray = Object.keys(result).map((pdfFile) => ({
+      [pdfFile]: result[pdfFile],
+    }));
+
+    return transformedArray;
+
   };
 
   const handleScreening = async () => {
@@ -49,7 +75,10 @@ export default function ScreeningTable(props) {
     );
     console.log(json);
     const returnedData = response.data;
+    const transformedData = transformFullTextScreenedData(returnedData);
     console.log(returnedData);
+    props.setFullTextScreeningDone(true);
+    props.setFullTextScreenedResults(transformedData);
   };
 
   return (
@@ -78,8 +107,9 @@ export default function ScreeningTable(props) {
           </button>
         </div>
       </div>
-      {/* test */}
-      <div className="mt-8 flow-root">
+
+      {/* Research Questions Table */}
+      <div className="mt-8 flow-root mb-4">
         <div className="border rounded-lg shadow overflow-auto max-h-[700px] max-w-full">
           <div className="inline-block min-w-full align-middle">
             <table className="min-w-full divide-y divide-gray-300">
@@ -87,36 +117,36 @@ export default function ScreeningTable(props) {
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-m font-semibold text-gray-900 sm:pl-6"
+                    className="py-3.5 pl-4 pr-3 text-left text-m font-semibold text-gray-900 sm:pl-6 text-center"
                   >
-                    RESEARCH QUESTIONS (RQs)
+                    No.
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="py-3.5 pl-4 pr-3 text-left text-m font-semibold text-gray-900 sm:pl-6 text-center"
                   >
-                    PAPERS ANSWERING RESEARCH QUESTIONS
+                    RESEARCH QUESTIONS (RQs)
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {researchQuestions.map((researchQuestion) => {
-                  return (
-                    <tr key={researchQuestion}>
-                      <td className="whitespace-normal break-words max-w-xs py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        <p>{researchQuestion}</p>
-                      </td>
-                      <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                        [1,2,3,4,5]
-                      </td>
-                    </tr>
-                  );
-                })}
+              <tbody className="divide-y divide-gray-200 bg-white text-center">
+                {researchQuestions.map((researchQuestion, index) => (
+                  <tr key={researchQuestion}>
+                    <td className="py-4 pl-4 pr-3 text-sm font-semibold text-blue-600 sm:pl-6">
+                      RQ {index + 1}
+                    </td>
+                    <td className="whitespace-normal break-words max-w-xs py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      <p>{researchQuestion}</p>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
+
+      {/* Notifications */}
       <div className="flex items-center justify-center">
         <Notification
           showNotification={showScreeningNotification}

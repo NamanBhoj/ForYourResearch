@@ -191,7 +191,7 @@ def screenForResearchQuestions(request: RequestObjectForRQ):
 
     upload_papers_to_s3(request.uid, request.searchQuery, request.data)
 
-    read_pdfs_from_s3(
+    paper_titles = read_pdfs_from_s3(
         request.uid,
         request.searchQuery,
         MERGED_PDF_PATH,
@@ -206,6 +206,7 @@ def screenForResearchQuestions(request: RequestObjectForRQ):
     split_merged_docx_with_formatting(
         f"{MERGED_DOCX_PATH}/{request.uid} - {request.searchQuery}.docx",
         SPLIT_DOCXS_PATH,
+        paper_titles,
     )
 
     convert_folder_docx_to_md(SPLIT_DOCXS_PATH, SPLIT_MDS_PATH)

@@ -1,8 +1,59 @@
+# import openai
+# from typing import List, Dict
+
+# openai.api_key = "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"
+
+# prompt = '''
+# You are a scientific Assistant responsible for determining if the provided document fully answers the given query, treating the document as evidence. If the document evidently answers the question, output "Yes". If not, output "No".
+# Query: {query}
+# Document: """{document}"""
+# Answer:
+# '''
+
+
+# def document_relevance(
+#     queries: List[str], documents: List[Dict[str, str]]
+# ) -> List[Dict[str, List[str]]]:
+#     result = []
+
+#     # A dictionary to collect documents and their relevant research questions
+#     doc_relevance = {}
+
+#     # Loop through all queries
+#     for query in queries:
+#         # Loop through all documents
+#         for doc in documents:
+#             title = doc.get("title", "")
+#             title = title.replace(".md", "")
+
+#             full_text = doc.get("full_text", "")
+
+#             # Check if the document answers the current query
+#             response = openai.completions.create(
+#                 model="gpt-4o-mini",
+#                 prompt=prompt.format(query=query, document=full_text),
+#                 temperature=0,
+#                 max_tokens=50,
+#             )
+#             answer = response.choices[0].text.strip()
+
+#             if answer == "Yes":
+#                 # If the document answers the query, add the query to the document's list
+#                 if title not in doc_relevance:
+#                     doc_relevance[title] = []
+#                 doc_relevance[title].append(query)
+
+#     # Convert the collected document relevance dictionary to a list of dictionaries
+#     for title, questions in doc_relevance.items():
+#         result.append({title: questions})
+
+#     return result
+
 import openai
 from pydantic import BaseModel
 from typing import List, Dict
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 prompt = '''
 You are a scientific Assistant responsible for determining if the provided document fully answers the given query, treating the document as evidence. If the document evidently answers the question, output "Yes". If not, output "No".

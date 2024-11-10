@@ -137,8 +137,11 @@ def read_pdfs_from_s3(uid: str, search_query: str, output_path: str):
             print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
 
         # Merge downloaded PDFs with headers
-        merge_pdfs.merge_pdfs_with_headers(temp_dir, output_path, uid, search_query)
+        paper_titles = merge_pdfs.merge_pdfs_with_headers(
+            temp_dir, output_path, uid, search_query
+        )
         print(f"Merged PDF with headers saved to {output_path}")
+        return paper_titles
 
 
 # Usage

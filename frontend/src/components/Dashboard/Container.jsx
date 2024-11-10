@@ -11,6 +11,7 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 import SearchTable from './SearchTable';
 import ScreeningTable from './ScreeningTable';
 import ResearchQuestionTable from './ResearchQuestionTable';
+import AnswersTable from './AnswersTable';
 
 import StatsTable from './StatsTable';
 
@@ -26,6 +27,8 @@ export default function Library() {
   const [activeTable, setActiveTable] = useState('search');
   const [paperSources, setPaperSources] = useState({});
   const [abstractScreenedPapers, setAbstractScreenedPapers] = useState([]);
+  const [fullTextScreeningDone, setFullTextScreeningDone] = useState(false);
+  const [fullTextScreenedResults, setFullTextScreenedResults] = useState(false);
 
   const { user } = useUserAuth();
 
@@ -286,12 +289,19 @@ export default function Library() {
               ) : activeTable === 'stats' ? (
                 <StatsTable paperSources={paperSources} />
               ) : activeTable === 'rq' ? (
-                <ResearchQuestionTable
-                  // papers={abstractScreenedPapers}
-                  papers={papers}
-                  user={user}
-                  searchQuery={query}
-                />
+                fullTextScreeningDone ? (
+                  <AnswersTable
+                    fullTextScreenedResults={fullTextScreenedResults}
+                  />
+                ) : (
+                  <ResearchQuestionTable
+                    papers={papers}
+                    user={user}
+                    searchQuery={query}
+                    setFullTextScreeningDone={setFullTextScreeningDone}
+                    setFullTextScreenedResults={setFullTextScreenedResults}
+                  />
+                )
               ) : null}
             </div>
           </div>

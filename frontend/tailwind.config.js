@@ -2,10 +2,14 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
+    },
   },
-  plugins: ['@tailwindcss/forms'],
-  animation: {
-    'spin-slow': 'spin 3s linear infinite',
-  },
+  plugins: [
+    ('@tailwindcss/forms'),
+    require('@tailwindcss/typography'), // Adding the typography plugin here
+  ],
 };

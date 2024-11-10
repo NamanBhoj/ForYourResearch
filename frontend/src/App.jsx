@@ -10,6 +10,7 @@ import ProtectedRoute from './components/Layout/ProtectedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './contexts/AuthContext';
 import QueryExplainer from './pages/QueryExplainer';
+import MarkdownViewPage from './pages/MarkdownViewPage';
 
 function App() {
   // const router = createBrowserRouter([
@@ -21,7 +22,9 @@ function App() {
     <>
       <UserAuthContextProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<MarkdownViewPage />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/info" element={<QueryExplainer />} />
