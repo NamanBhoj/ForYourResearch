@@ -1,0 +1,68 @@
+[
+  {
+    "Augmented Reality and Robotics: A Survey and Taxonomy for AR-enhanced Human-Robot Interaction and Robotic Interfaces.pdf.md": {
+      "How can augmented reality be used in medicine?": ["No answer found."]
+    }
+  },
+  {
+    "A Survey of Augmented Reality.pdf.md": {
+      "How can augmented reality be used in medicine?": [
+        "{\"choices\":[{\"content\":\"\\n\\n\\\"Doctors could use Augmented Reality as a visualization and training aid for surgery. It may be possible to collect 3-D datasets of a patient in real time",
+        "using non-invasive sensors like Magnetic Resonance Imaging (MRI)",
+        "Computed Tomography scans (CT)",
+        "or ultrasound imaging. These datasets could then be rendered and combined in real time with a view of the real patient. In effect",
+        "this would give a doctor 'X-ray vision' inside a patient. This would be very useful during minimally-invasive surgery",
+        "which reduces the trauma of an operation by using small incisions or no incisions at all. A problem with minimally-invasive techniques is that they reduce the doctor's ability to see inside the patient",
+        "making surgery more difficult.\\\"\"}]}"
+      ]
+    }
+  },
+  {
+    "Advanced liquid crystal devices for augmented reality and virtual reality displays: principles and applications.pdf.md": {
+      "How can augmented reality be used in medicine?": ["No answer found."]
+    }
+  },
+  {
+    "Augmented Reality in Neurosurgery, State of Art and Future Projections. A Systematic Review.pdf.md": {
+      "How can augmented reality be used in medicine?": ["No answer found."]
+    }
+  },
+  {
+    "XR (Extended Reality: Virtual Reality, Augmented Reality, Mixed Reality) Technology in Spine Medicine: Status Quo and Quo Vadis.pdf.md": {
+      "How can augmented reality be used in medicine?": [
+        "{\"choices\":[{\"content\":\"\\n\\n\\\"In practice",
+        "computer-generated images are overlaid on real-world images and displayed on video projectors",
+        "computers",
+        "or tablets. MR",
+        "a hybrid of AR and VR",
+        "is the result of blending the physical world with the digital world [5,6] and has recently garnered attention",
+        "mitigating the limitations of VR’s exclusion of the real-world environment and AR’s inability to interact with three-dimensional (3D) data packets [7]. VR and MR have primarily been applied in teaching and preparatory roles",
+        "while AR is mainly applied in hands-on surgical settings. The use of MR in spine medicine allows the surgeon to access intraoperative information about the patient’s anatomy and superimpose virtual holographic elements on the superficial anatomy of the actual patient in real-time on the operating table",
+        "enabling holographic-based navigation [8,9].\\\"\"}]}"
+      ]
+    }
+  },
+  {
+    "An Overview of Augmented Reality.pdf.md": {
+      "How can augmented reality be used in medicine?": [
+        "{\"choices\":[{\"content\":\"\\n\\n\\\"AR",
+        "combined with the IoT",
+        "exploiting the integration with WSN (Wireless Sensor Network) and WBAN (Wireless Body Area Network) networks",
+        "has improved various sectors such as healthcare",
+        "school education",
+        "entertainment",
+        "tourism",
+        "and the user’s daily life in general.\\\"\\n\\n\\\"For instance",
+        "in the medical field",
+        "applications that leverage the IoT aim to provide unique functions and services through the use and management of medical databases",
+        "such as the remote monitoring of patients",
+        "identification and prevention of critically ill patients",
+        "and of any pathologies and support for elderly patients who use an intelligent environment.\\\"\\n\\n\\\"The use of AR in the medical sector allows for the diagnosis of pathology in a short time through the use of applications",
+        "including “EyeDecide”",
+        "to facilitate blood sampling through the use of portable scanners that project the exact position of the veins",
+        "to facilitate surgical interventions through three-dimensional visualization of the part of the body to be operated on",
+        "and much more.\\\"\"}]}"
+      ]
+    }
+  }
+]

@@ -178,6 +178,31 @@ export default function Library() {
     return papersWithLink.length;
   };
 
+  const dummyPapers = [
+    {
+      'A Scoping Survey on Cross-reality Systems.pdf.md': {
+        'What future work can be accomplished in cross reality?': [
+          'nWe conclude with research challenges and opportunities for future investigations of cross-reality systems.,nWe identified several research topics that involve multiple users and bystanders (cf. Section 4.1.3)',
+          'which we refer to as Type 3 cross-reality systems.,nWe see numerous research opportunities here that can help to shape the understanding of cross-reality systems and their effects on all involved users.,nWe believe that along these types',
+          'we can establish useful terminology and guidelines for researchers and practitioners in the area of cross-reality systems.,nIn this sense',
+          'we introduced nine guiding principles for the design of cross-reality systems.n]}"}  \n\n\n\n  ]}',
+        ],
+      },
+    },
+    {
+      'VRception: Rapid Prototyping of Cross-Reality Systems in Virtual Reality.pdf.md':
+        {
+          'What future work can be accomplished in cross reality?': [
+            'No answer found.',
+          ],
+        },
+    },
+    {
+      'Cross-Reality for Extending the Metaverse: Designing Hyper-Connected Immersive Environments with XRI.pdf.md':
+        {},
+    },
+  ];
+
   return (
     <>
       {/* SEARCH CARD */}
@@ -292,6 +317,7 @@ export default function Library() {
                 fullTextScreeningDone ? (
                   <AnswersTable
                     fullTextScreenedResults={fullTextScreenedResults}
+                    // fullTextScreenedResults={dummyPapers}
                   />
                 ) : (
                   <ResearchQuestionTable

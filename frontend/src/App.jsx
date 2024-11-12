@@ -22,9 +22,8 @@ function App() {
     <>
       <UserAuthContextProvider>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<MarkdownViewPage />} />
-
+          <Route path="/" element={<Home />} />
+          <Route path="/paper-view" element={<MarkdownViewPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/info" element={<QueryExplainer />} />

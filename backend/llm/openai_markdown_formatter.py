@@ -14,6 +14,7 @@ Please clean up the following markdown content and ensure that headings, lists, 
 
 # Function to call OpenAI's GPT model for formatting Markdown
 def format_markdown(document):
+    
     response = openai.chat.completions.create(
         model="gpt-4o-mini",  # You can change this model to gpt-3.5-turbo if needed
         messages=[

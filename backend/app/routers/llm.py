@@ -1,6 +1,9 @@
+from http.client import HTTPException
 from fastapi import APIRouter
 from ..models.request_with_list import RequestObjectWithListData
 from ..models.request_for_rq import RequestObjectForRQ
+from ..models.request_for_md import RequestForMd
+
 
 from pinecone import Pinecone
 import time
@@ -16,6 +19,8 @@ from ...llm.embeddings import (
 from ...llm.ingestion_and_indexing import upsert_records, create_index
 from ...llm.reranking import rerank
 from ...llm.temp_full_text_reranking import document_relevance
+from ...llm.full_text_reranking import get_rq_answers
+
 from ..crud.full_text_operations import (
     upload_papers_to_s3,
     read_pdfs_from_s3,
@@ -189,33 +194,38 @@ def screenForResearchQuestions(request: RequestObjectForRQ):
     SPLIT_DOCXS_PATH = f"/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_docxs/{request.uid}/{request.searchQuery}"
     SPLIT_MDS_PATH = f"/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds/{request.uid}/{request.searchQuery}"
 
-    upload_papers_to_s3(request.uid, request.searchQuery, request.data)
+    # upload_papers_to_s3(request.uid, request.searchQuery, request.data)
 
-    paper_titles = read_pdfs_from_s3(
-        request.uid,
-        request.searchQuery,
-        MERGED_PDF_PATH,
-    )
+    # paper_titles = read_pdfs_from_s3(
+    #     request.uid,
+    #     request.searchQuery,
+    #     MERGED_PDF_PATH,
+    # )
 
-    convert_pdf_to_docx(
-        f"{request.uid} - {request.searchQuery}",
-        f"{MERGED_PDF_PATH}/{request.uid} - {request.searchQuery}.pdf",
-        MERGED_DOCX_PATH,
-    )
+    # convert_pdf_to_docx(
+    #     f"{request.uid} - {request.searchQuery}",
+    #     f"{MERGED_PDF_PATH}/{request.uid} - {request.searchQuery}.pdf",
+    #     MERGED_DOCX_PATH,
+    # )
 
-    split_merged_docx_with_formatting(
-        f"{MERGED_DOCX_PATH}/{request.uid} - {request.searchQuery}.docx",
-        SPLIT_DOCXS_PATH,
-        paper_titles,
-    )
+    # split_merged_docx_with_formatting(
+    #     f"{MERGED_DOCX_PATH}/{request.uid} - {request.searchQuery}.docx",
+    #     SPLIT_DOCXS_PATH,
+    #     paper_titles,
+    # )
 
-    convert_folder_docx_to_md(SPLIT_DOCXS_PATH, SPLIT_MDS_PATH)
+    # convert_folder_docx_to_md(SPLIT_DOCXS_PATH, SPLIT_MDS_PATH)
     papers = process_md_files(SPLIT_MDS_PATH)
+    titles = [paper["title"] for paper in papers]
 
-    response = document_relevance(queries=request.researchQuestions, documents=papers)
-    print(response)
-
-    return response
+    # response = document_relevance(queries=request.researchQuestions, documents=papers)
+    # print(new_response)
+    print(titles)
+    new_response = get_rq_answers(
+        paper_titles=titles, queries=request.researchQuestions, documents=papers
+    )
+    print(new_response)
+    return new_response
 
     """
     response format:
@@ -225,3 +235,27 @@ def screenForResearchQuestions(request: RequestObjectForRQ):
         {'What are the dangers of virtual reality?': ['output_pdf_4.md']}
     ]
     """
+
+
+import os
+
+
+@router.post(f"/getMarkdown")
+def getMarkdown(request: RequestForMd):
+    folder_path = '/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds/2eYbiBc5shN2ynLx857epU9BOH13/"cross reality"'
+    title = request.title
+    title.replace(".pdf", "")
+    # Construct the file path by joining folder path with title and adding .md extension
+    file_path = os.path.join(folder_path, f"{title}.md")
+    print(title)
+    # Check if the file exists
+    if not os.path.isfile(file_path):
+        raise HTTPException(status_code=404, detail="Markdown file not found")
+
+    # Read the file content and return it as a string
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            content = file.read()
+        return content
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error reading markdown file")

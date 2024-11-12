@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MarkdownViewer from './MarkdownViewer';
 import { HiOutlineChevronRight, HiChevronDown } from 'react-icons/hi';
 import { FaArrowDown } from 'react-icons/fa';
@@ -15,6 +15,25 @@ const colorPalette = [
 ];
 
 const App = () => {
+  const [mdContent, setMdContent] = useState('');
+  const [rqData, setRqData] = useState([]);
+
+  useEffect(() => {
+    // Retrieve data from sessionStorage
+    const storedMarkdownContent = sessionStorage.getItem('markdownContent');
+    const storedRqData = sessionStorage.getItem('rqData');
+    console.log(storedMarkdownContent);
+
+    if (storedMarkdownContent) setMdContent(storedMarkdownContent);
+    if (storedRqData) setRqData(JSON.parse(storedRqData));
+
+    // Clean up sessionStorage
+    return () => {
+      sessionStorage.removeItem('markdownContent');
+      sessionStorage.removeItem('rqData');
+    };
+  }, []);
+  console.log(rqData);
   //   const markdownContent = `
   // ## A Survey of Augmented Reality
 
@@ -87,27 +106,27 @@ MRI, which often require years of clinical experience and a high degree of spati
 Surgeons frequently require the real-time estimation of 3D data from 2D images, and the application of XR technology in spine surgery could facilitate this task, improv- ing patient safety and surgical efficiency. Medical images in spine surgery—even 3D- reconstructed images—can only be viewed on a flat monitor, which can lead to inaccurate spatial perception. Therefore, the intraoperative use of 3D holograms with high spatial awareness is desirable, 
 `;
 
-  const rqData = [
-    { RQ1: ['Abstract text goes here'] },
-    {
-      RQ2: [
-        'AR can be thought of as the "middle ground"',
-        'This is another sample text for RQ3',
-        'This is another sample text for RQ3',
-        'This is another sample text for RQ3',
-        'This is another sample text for RQ3',
-        'This is another sample text for RQ3',
-      ],
-    },
-    {
-      RQ3: [
-        '3D Medical Images and Holograms',
-        'Image Capture in Medical Application Systems Using XR Technology Conventional two-dimensional imaging modalities mainly include X-rays, CT, and',
-      ],
-    }, // Add more RQs here
-    { RQ4: ['This is another sample text for RQ3'] }, // Add more RQs here    { RQ3: ['This is another sample text for RQ3'] }, // Add more RQs here
-    { RQ5: ['This is another sample text for RQ3'] }, // Add more RQs here
-  ];
+  // const rqData = [
+  //   { RQ1: ['Abstract text goes here'] },
+  //   {
+  //     RQ2: [
+  //       'AR can be thought of as the "middle ground"',
+  //       'This is another sample text for RQ3',
+  //       'This is another sample text for RQ3',
+  //       'This is another sample text for RQ3',
+  //       'This is another sample text for RQ3',
+  //       'This is another sample text for RQ3',
+  //     ],
+  //   },
+  //   {
+  //     RQ3: [
+  //       '3D Medical Images and Holograms',
+  //       'Image Capture in Medical Application Systems Using XR Technology Conventional two-dimensional imaging modalities mainly include X-rays, CT, and',
+  //     ],
+  //   }, // Add more RQs here
+  //   { RQ4: ['This is another sample text for RQ3'] }, // Add more RQs here    { RQ3: ['This is another sample text for RQ3'] }, // Add more RQs here
+  //   { RQ5: ['This is another sample text for RQ3'] }, // Add more RQs here
+  // ];
 
   // Function to modify the markdown content by adding ids and colors for each text piece
   const modifyMarkdownContent = (markdownContent, rqData) => {
@@ -126,10 +145,7 @@ Surgeons frequently require the real-time estimation of 3D data from 2D images, 
     return modifiedContent;
   };
 
-  const modifiedMarkdownContent = modifyMarkdownContent(
-    markdownContent,
-    rqData
-  );
+  const modifiedMarkdownContent = modifyMarkdownContent(mdContent, rqData);
 
   const scrollToId = (id) => {
     const element = document.getElementById(id);

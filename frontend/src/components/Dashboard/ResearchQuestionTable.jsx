@@ -34,32 +34,31 @@ export default function ScreeningTable(props) {
     }
   };
 
-  const transformFullTextScreenedData = (input) => {
-    const result = {};
+  function transformFullTextScreenedData(input) {
+    const result = [];
 
-    // Loop through each item in the input array
-    input.forEach((item) => {
-      // For each question and its associated files
-      Object.keys(item).forEach((question) => {
-        item[question].forEach((pdfFile) => {
-          // If the pdfFile isn't already a key in the result, initialize it with an empty array
-          if (!result[pdfFile]) {
-            result[pdfFile] = [];
-          }
-          // Push the current question into the array of that pdfFile
-          result[pdfFile].push(question);
-        });
-      });
+    input.forEach((paperObj) => {
+      const paperTitle = Object.keys(paperObj)[0];
+      const questionsObj = paperObj[paperTitle];
+      const questions = [];
+
+      // Iterate over questions and filter out any "No answer found."
+      for (const question in questionsObj) {
+        const answers = questionsObj[question];
+        if (!answers.includes('No answer found.')) {
+          questions.push(question);
+        }
+      }
+
+      // Format the paper title to use it as the key (removing the ".pdf.md" suffix)
+      const formattedTitle = paperTitle.replace('.pdf.md', '') + '.pdf';
+      if (questions.length > 0) {
+        result.push({ [formattedTitle]: questions });
+      }
     });
 
-    // Transform the result into the desired array format
-    const transformedArray = Object.keys(result).map((pdfFile) => ({
-      [pdfFile]: result[pdfFile],
-    }));
-
-    return transformedArray;
-
-  };
+    return result;
+  }
 
   const handleScreening = async () => {
     const json = {
@@ -78,7 +77,7 @@ export default function ScreeningTable(props) {
     const transformedData = transformFullTextScreenedData(returnedData);
     console.log(returnedData);
     props.setFullTextScreeningDone(true);
-    props.setFullTextScreenedResults(transformedData);
+    props.setFullTextScreenedResults(returnedData);
   };
 
   return (

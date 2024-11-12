@@ -12,15 +12,6 @@ def process_md_files(md_folder):
             with open(file_path, "r") as md_file:
                 content = md_file.read()
                 results.append({"title": filename, "full_text": content})
-                # print(filename, content)
-
-            # Pass content and file name to ChatGPT and get the response
-            # response = query_chatgpt(filename, content, question)
-            # results[filename] = response
-
-            # print(f"Processed {filename}:")
-            # print(response)
-            # print("\n" + "=" * 50 + "\n")  # Separator for readability
 
     return results
 
