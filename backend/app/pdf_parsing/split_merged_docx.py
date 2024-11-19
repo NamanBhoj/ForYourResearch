@@ -4,11 +4,6 @@ from shutil import copyfile
 import os
 
 
-import os
-import re
-from docx import Document
-
-
 def split_merged_docx_with_formatting(input_docx_path, output_dir, paper_titles):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -39,14 +34,18 @@ def split_merged_docx_with_formatting(input_docx_path, output_dir, paper_titles)
     if current_section:
         sections.append(current_section)
 
-    # Ensure the number of titles matches the number of sections
-    if len(paper_titles) != len(sections):
-        raise ValueError(
-            "The number of titles in 'paper_titles' does not match the number of sections in the document."
-        )
+    # Process each section and its corresponding title
+    for i, section in enumerate(sections):
+        # Check if a title exists for this section
+        if i < len(paper_titles):
+            title = paper_titles[i]
+        else:
+            print(
+                f"Warning: No title found for section {i + 1}, skipping this section."
+            )
+            continue  # Skip if there's no title for this section
 
-    # Create individual DOCX files for each section
-    for i, (section, title) in enumerate(zip(sections, paper_titles)):
+        # Create a new document for the section
         output_doc = Document()
 
         for paragraph in section:
@@ -60,6 +59,6 @@ def split_merged_docx_with_formatting(input_docx_path, output_dir, paper_titles)
 
 
 # Example usage:
-# input_docx_path = "./input.docx"
-# output_dir = "./output"
-# split_merged_docx_with_formatting(input_docx_path, output_dir)
+# input_docx_path = '/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/merged_docxs/2eYbiBc5shN2ynLx857epU9BOH13/"naman"/123 - naman.docx'
+# output_dir = "./naman_split_docxs"
+# split_merged_docx_with_formatting(input_docx_path, output_dir, [1,2,3,4,5,6])

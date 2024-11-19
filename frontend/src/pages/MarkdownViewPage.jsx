@@ -129,6 +129,10 @@ Surgeons frequently require the real-time estimation of 3D data from 2D images, 
   // ];
 
   // Function to modify the markdown content by adding ids and colors for each text piece
+  const escapeRegExp = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters
+  };
+
   const modifyMarkdownContent = (markdownContent, rqData) => {
     let modifiedContent = markdownContent;
     rqData.forEach((rq, index) => {
@@ -137,7 +141,8 @@ Surgeons frequently require the real-time estimation of 3D data from 2D images, 
         texts.forEach((text, textIndex) => {
           const id = `${rqKey.toLowerCase()}-text-${textIndex + 1}`;
           const spanTag = `<span id="${id}" class="${rqColor} font-semibold">${text}</span>`;
-          const regex = new RegExp(text, 'g');
+          const escapedText = escapeRegExp(text); // Escape the text
+          const regex = new RegExp(escapedText, 'g');
           modifiedContent = modifiedContent.replace(regex, spanTag);
         });
       });

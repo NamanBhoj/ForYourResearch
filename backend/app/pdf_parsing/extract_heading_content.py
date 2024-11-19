@@ -42,7 +42,7 @@ def convert_folder_docx_to_md(docx_folder, md_folder):
 
 
 # Paths for input folder and output folder
-# docx_folder = "./output/docx_files"
-# md_folder = "./output/md_files"
+# docx_folder = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/naman_split_docxs"
+# md_folder = "./naman_new"
 
 # convert_folder_docx_to_md(docx_folder, md_folder)

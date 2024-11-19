@@ -12,6 +12,9 @@ from ..pdf_parsing import (
     read_from_md,
 )
 from ...llm.temp_full_text_reranking import document_relevance
+import convertapi
+
+convertapi.api_credentials = "secret_bMbn4IxdtxwgSLwr"
 
 # Set AWS credentials as environment variables (optional if using aws configure)
 
@@ -61,56 +64,18 @@ def upload_papers_to_s3(uid: str, search_query: str, papers: list):
             continue
 
 
-# # Test for function: upload_papers_to_s3
-# with open("papers.json", "r") as file:
-#     papers = json.load(file)
+def convert_pdf_to_html(pdf_name, pdf_path, html_path):
+    # Create the HTML path if it doesn't exist
+    os.makedirs(html_path, exist_ok=True)
 
-# upload_papers_to_s3("123456", "cross reality", papers)
-#
-
-
-# def read_pdfs_from_s3(uid: str, search_query: str):
-#     # Bucket name
-#     bucket_name = "paper-full-texts"
-
-#     s3 = boto3.client("s3")
-
-#     # Construct the S3 prefix for the uid and search query
-#     s3_prefix = f"{uid}/{search_query}/"
-
-#     # List objects under the specified prefix
-#     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=s3_prefix)
-
-#     if "Contents" not in response:
-#         print("No PDFs found for the given uid and search_query.")
-#         return
-
-#     for item in response["Contents"]:
-#         pdf_file_key = item["Key"]
-
-#         # Create a temporary file to hold the PDF data
-#         with tempfile.NamedTemporaryFile(delete=False) as temp_pdf_file:
-#             # Download the PDF file directly to the temporary file
-#             s3.download_fileobj(bucket_name, pdf_file_key, temp_pdf_file)
-
-#             # Access the temporary file path
-#             temp_pdf_file_path = temp_pdf_file.name
-
-#         # Convert to Markdown using pymupdf4llm
-#         md_text = pymupdf4llm.to_markdown(temp_pdf_file_path)
-
-#         # Output markdown to console or save it if needed
-#         output_md_path = f"{pdf_file_key.split('/')[-1]}.md"
-#         with open(output_md_path, "wb") as md_file:
-#             md_file.write(md_text.encode())
+    # Convert the PDF to HTML and save to the specified path
+    convertapi.convert(
+        "html", {"File": pdf_path, "Wysiwyg": "false"}, from_format="pdf"
+    ).save_files(f"{html_path}/{pdf_name}.html")
+    print(f"Converted {pdf_name}.pdf to {pdf_name}.html and saved to {html_path}")
 
 
-#         print(
-#             f"Converted {pdf_file_key.split('/')[-1]} to Markdown and saved as {output_md_path}"
-#         )
-#         os.remove(temp_pdf_file_path)
-#         print(f"Deleted temporary file {temp_pdf_file_path}")
-def read_pdfs_from_s3(uid: str, search_query: str, output_path: str):
+def read_pdfs_from_s3(uid: str, search_query: str, output_path: str, html_output_path: str):
     # Bucket name
     bucket_name = "paper-full-texts"
     s3 = boto3.client("s3")
@@ -141,40 +106,14 @@ def read_pdfs_from_s3(uid: str, search_query: str, output_path: str):
             temp_dir, output_path, uid, search_query
         )
         print(f"Merged PDF with headers saved to {output_path}")
+
+        # Path for storing HTML conversions
+        # html_output_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/html_files"
+
+        # Convert all downloaded PDFs to HTML
+        for pdf_path in downloaded_files:
+            pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
+            convert_pdf_to_html(pdf_name, pdf_path, html_output_path)
+
+        print(f"All PDFs converted to HTML and saved to {html_output_path}")
         return paper_titles
-
-
-# Usage
-merged_pdf_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/output/merged.pdf"
-docx_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/downloaded_docxs"
-# read_pdfs_from_s3(
-#     "123456",
-#     "cross reality",
-#     merged_pdf_path,
-# )
-
-# convert_pdf_to_docx.convert_pdf_to_docx("merged", merged_pdf_path, docx_path)
-# split_merged_docx.split_merged_docx_with_formatting(
-#     f"{docx_path}/merged.docx",
-#     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_docxs",
-# )
-
-# extract_heading_content.convert_folder_docx_to_md(
-#     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_docxs",
-#     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds",
-# )
-
-# papers = read_from_md.process_md_files(
-#     "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/split_mds"
-# )
-
-# questions = [
-#     "How does cross reality influence medicine?",
-#     "What are the dangers of cross reality?",
-#     "What future work recommendations can be made in cross reality?",
-# ]
-
-# print(document_relevance(queries=questions, documents=papers))
-
-# Usage
-# read_pdfs_from_s3("123456", "cross reality")

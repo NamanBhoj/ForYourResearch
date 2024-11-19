@@ -15,14 +15,14 @@ export default function ScreeningTable(props) {
   const [papers, setPapers] = useState(addRelevanceFields(props.papers));
   const [researchQuestions, setResearchQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState('');
-
+  const [screening, setScreening] = useState(false);
   const [showScreeningNotification, setShowScreeningNotification] =
     useState(false);
   const [showSaveToLibraryNotification, setShowSaveToLibraryNotification] =
     useState(false);
 
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
-  console.log(props.papers);
+  // console.log(props.papers);
   const openPdf = (href) => {
     window.open(href, '_blank');
   };
@@ -61,6 +61,7 @@ export default function ScreeningTable(props) {
   }
 
   const handleScreening = async () => {
+    setScreening(true);
     const json = {
       uid: props.user?.uid,
       data: papers,
@@ -72,12 +73,13 @@ export default function ScreeningTable(props) {
       `${lambdaUrl}/screenForResearchQuestions`,
       json
     );
-    console.log(json);
+    // console.log(json);
     const returnedData = response.data;
     const transformedData = transformFullTextScreenedData(returnedData);
-    console.log(returnedData);
+    // console.log(returnedData);
     props.setFullTextScreeningDone(true);
     props.setFullTextScreenedResults(returnedData);
+    setScreening(false);
   };
 
   return (
@@ -102,7 +104,8 @@ export default function ScreeningTable(props) {
             onClick={handleScreening}
             className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-auto"
           >
-            {'Start screening'}
+            {/* {'Start screening'} */}
+            {screening ? 'Screening..' : 'Star screening'}
           </button>
         </div>
       </div>

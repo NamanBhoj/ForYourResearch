@@ -1,14 +1,80 @@
 [
   {
-    "3D medical image paper": {
-      "How can 3D medical images be viewed?": [
-        "The most common way to view 3D medical images edited with the above-mentioned high-performance information is with a high-resolution display",
-        "which can take the form of either a traditional monitor or a head-mounted display (HMD) [28–30].",
-        "When combined with a 4 K or 8 K ultra-high-definition monitor system",
-        "it can provide sharper and clearer streaming video",
-        "providing detailed content that resolves information beyond the retina and helps to make a visual diagnosis [16]."
-      ],
-      "What are the risks?": ["No answer found."]
+    "A Scoping Survey on Cross-reality Systems.html": {
+      "What potential future work can be done in this field?": [
+        [
+          "We conclude with research challenges and opportunities for future investigations of cross-reality systems."
+        ],
+        [
+          "In other words, there could be one merged category of devices that supports different manifestations. In the future, this category of devices will form the ultimate cross-reality systems."
+        ],
+        [
+          "we conclude this section by discussing novel prototyping methods of cross-reality systems as an opportunity to make the field more inclusive and allow for quicker iterations (see Section 7.5).",
+          "we recommend investigating visualization methods that enable one to convey the transitions taking place within a cross-reality system.",
+          "we recommend investigating visualization methods; nevertheless, we emphasize that such visualizations need to consider the different actualities of the users involved in Type 3 cross-reality systems.",
+          "we believe that the tendency of immersive VR to blend out the visual information from the real world while auditory or haptic sensations remain perceivable inherently offers more conflict potential, which previous work has aimed to address. Nonetheless, previous work has demonstrated that AR suffers from similar problems—just to a smaller degree [140, 141]. Still, neglecting these issues can cause severe problems, especially when cross-reality systems are operated in more dangerous environments (e.g., while navigating traffic [136]). Hence, more investigations into head-mounted AR systems are needed, especially as these systems already provide the possibility to communicate more easily with bystanders, but the digital content is hidden similar to VR systems."
+        ],
+        [
+          "We extracted promising research challenges and opportunities for future work through our literature review. The field of cross-reality systems is manifold, ranging from introducing implicit transitions that were not part of the underlying research question [159] to bystander inclusion that focuses primarily on immersed users and less on bystanders [305]. Therefore, little is known about their effects on the corresponding scenario. We see numerous research opportunities here that can help to shape the understanding of cross-reality systems and their effects on all involved users."
+        ],
+        [
+          "Here, we address current shortcomings and propose future research perspectives, including visualization and prototyping methods for these systems."
+        ]
+      ]
+    }
+  },
+  {
+    "VRception: Rapid Prototyping of Cross-Reality Systems in Virtual Reality.html": {
+      "What potential future work can be done in this field?": [
+        [
+          "As we re-implement six cross-reality systems with our VRception Toolkit in this paper, we provide a more systematic overview of these systems in Section 5.1 and Table 1.",
+          "Jansen et al. [31] outlined that one of their future aims is to reduce their prototype’s weight.",
+          "Researchers have started to explore new tools that allow non-experts to quickly prototype AR [17, 46, 62] and VR [43, 45] applications without the need for programming or 3D modeling."
+        ],
+        [
+          "The experts saw great value in the VRception Toolkit as a tool to overcome the aforementioned challenges of physical prototyping (P1, P2, P5, P6).",
+          "They further commented that improvements in hardware and software technology would be possible in the future (P1, P4 - P6).",
+          "To overcome these limitations, thereby allowing implementation of a perfect copy of existing prototypes, the experts asked for a number of additional features. P2 and P6 asked for a more realistic real-world simulation using a LIDAR scanner or a 360 recording to address their concern over distinguishability of the VR worlds. Other feature requests include hand tracking (P2, P4), shadows (P2), event-driven transitions (P6), and object alignment (P6).",
+          "P1 further said that the VRception Toolkit enables researchers and designers to focus more on the research itself rather than having to deal with hardware issues."
+        ],
+        [
+          "\"I’m sure that other research areas could apply that same thing, and if your tools could enable that then, maybe that’s a whole subset of research that you’re opening up.\""
+        ],
+        [
+          "We identified five opportunities and implications for future work in cross-reality system and interaction research and practice, which we will outline in the following paragraphs.",
+          "VRception offers researchers and practitioners a novel approach to prototype cross-reality systems and interactions. Essentially, we introduce a tool for the early prototyping phase that allows one to start without physical prototyping. Thus, one can rapidly create and test different solutions without hardware expenses or physical prototyping skills. Moreover, VRception empowers researchers to explore novel systems and interactions that are not yet possible to build with current hardware, allowing them to focus more on users’ needs and less on hardware limitations. For the future, we envision two research directions that would benefit our approach: 1) virtual clones of existing hardware, and 2) comparative evaluations that compare prototypes developed with VRception to their real-world implementations as discussed in the limitations section."
+        ],
+        [
+          "We conclude our work by outlining research opportunities and their implications for the future of cross-reality research. We argue that cross-reality systems and interactions should be addressed further in future prototyping tools since they are becoming a fundamental type of interaction for augmented and virtual reality applications."
+        ]
+      ]
+    }
+  },
+  {
+    "Cross-Reality for Extending the Metaverse: Designing Hyper-Connected Immersive Environments with XRI.html": {
+      "What potential future work can be done in this field?": [
+        [
+          "The problems of the current metaverse platforms have yet to address these models of connection with the physical space in depth, and this work has the potential to elucidate the disconnect problem and to lay the groundwork for future exploration toward seamless immersive engagements in metaverse applications."
+        ],
+        [
+          "future hybrid XRI applications are being developed for applied situations, like education, cyber security, and marketing [2]."
+        ],
+        [
+          "It is noted that evaluating this experience remains for future testing with users."
+        ],
+        [
+          "The current work centered on the design and prototyping of these systems, and a more rigorous evaluation of these concepts is left as a direction for future research.",
+          "For instance, more experimentation is needed to clearly show how cross-reality benefits users.",
+          "Further, this work only considers a single-user cross-reality scenario, and multi-user explorations would be beneficial for proving the concept across different scenarios.",
+          "New forms of representing changes in the physical and virtual environment and new design approaches are needed for users regardless of whether they are physically present, or virtually telepresent, across the entire cross-reality spectrum."
+        ],
+        [
+          "D. Gursoy, S. Malodia, and A. Dhir. The metaverse in the hospitality and tourism industry: An overview of current trends and future research directions. Journal of Hospitality Marketing & Management, pp. 1–8, 2022.",
+          "D. Jo and G. J. Kim. AR enabled IoT for a smart and interactive environment: A survey and future directions. Sensors (Switzerland), 19(19), 2019. doi: 10.3390/s19194330",
+          "D. Jo and G. J. Kim. Iot+ ar: pervasive and augmented environments for “digi-log” shopping experience. Human-centric Computing and Information Sciences, 9(1):1–17, 2019.",
+          "L.-H. Lee, T. Braud, P. Zhou, L. Wang, D. Xu, Z. Lin, A. Kumar, C. Bermejo, and P. Hui. All One Needs to Know about Metaverse: A Complete Survey on Technological Singularity, Virtual Ecosystem, and Research Agenda. 14(8):1–66, 2021."
+        ]
+      ]
     }
   }
 ]

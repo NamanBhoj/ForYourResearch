@@ -3,12 +3,8 @@ import Notification from '../Shared/Notification';
 import axios from 'axios';
 
 export default function ScreeningTable(props) {
-  const [showScreeningNotification, setShowScreeningNotification] =
-    useState(false);
-  const [showSaveToLibraryNotification, setShowSaveToLibraryNotification] =
-    useState(false);
-
   const [transformedResults, setTransformedResults] = useState([]);
+  const [screening, setScreening] = useState(false);
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
 
   useEffect(() => {
@@ -19,11 +15,6 @@ export default function ScreeningTable(props) {
       setTransformedResults(transformedData);
     }
   }, [props.fullTextScreenedResults]);
-
-  // Helper to open a PDF
-  const openPdf = (href) => {
-    window.open(href, '_blank');
-  };
 
   function transformFullTextScreenedData(input) {
     const result = [];
@@ -50,159 +41,7 @@ export default function ScreeningTable(props) {
 
     return result;
   }
-  const fullTextScreenedResults = [
-    {
-      'paper_1.pdf': [
-        'What future work can be conducted in virtual reality?',
-        'What are the dangers of virtual reality?',
-        'How does virtual reality impact social interactions?',
-      ],
-    },
-    {
-      'paper_2.pdf': [
-        'How is virtual reality used in education?',
-        'What are the dangers of virtual reality?',
-      ],
-    },
-    {
-      'paper_3.pdf': [
-        'What future work can be conducted in virtual reality?',
-        'How does virtual reality impact mental health?',
-      ],
-    },
-    {
-      'paper_4.pdf': [
-        'What are the educational benefits of virtual reality?',
-        'How can virtual reality be applied in medical training?',
-      ],
-    },
-    {
-      'paper_5.pdf': [
-        'What are the psychological effects of virtual reality?',
-        'How can virtual reality help with remote work?',
-      ],
-    },
-    {
-      'paper_6.pdf': [
-        'What are the ethical concerns surrounding virtual reality?',
-        'How does virtual reality enhance learning experiences?',
-      ],
-    },
-    {
-      'paper_7.pdf': [
-        'What are the challenges in implementing virtual reality in schools?',
-        'How can virtual reality impact physical therapy?',
-      ],
-    },
-    {
-      'paper_8.pdf': [
-        'What is the future of virtual reality technology?',
-        'What are the risks of addiction in virtual reality usage?',
-      ],
-    },
-    {
-      'paper_9.pdf': [
-        'How can virtual reality improve collaboration in teams?',
-        'What are the environmental impacts of virtual reality?',
-      ],
-    },
-    {
-      'paper_10.pdf': [
-        'What role does virtual reality play in entertainment?',
-        'How can virtual reality be used for mental health treatment?',
-      ],
-    },
-    {
-      'paper_11.pdf': [
-        'What advancements are expected in virtual reality hardware?',
-        'How can virtual reality be integrated into online education?',
-      ],
-    },
-    {
-      'paper_12.pdf': [
-        'What is the impact of virtual reality on children’s development?',
-        'How is virtual reality used in military training?',
-      ],
-    },
-    {
-      'paper_13.pdf': [
-        'What are the privacy concerns with virtual reality?',
-        'How can virtual reality be used for job training?',
-      ],
-    },
-    {
-      'paper_14.pdf': [
-        'What are the potential dangers of virtual reality in gaming?',
-        'How can virtual reality be used to simulate dangerous environments?',
-      ],
-    },
-    {
-      'paper_15.pdf': [
-        'How does virtual reality impact human perception?',
-        'What is the potential of virtual reality in marketing?',
-      ],
-    },
-    {
-      'paper_16.pdf': [
-        'How can virtual reality enhance storytelling?',
-        'What are the cognitive effects of prolonged virtual reality use?',
-      ],
-    },
-    {
-      'paper_17.pdf': [
-        'What are the limitations of current virtual reality technology?',
-        'How can virtual reality be used for remote healthcare consultations?',
-      ],
-    },
-    {
-      'paper_18.pdf': [
-        'What role does virtual reality play in rehabilitation?',
-        'How can virtual reality be used in architectural design?',
-      ],
-    },
-    {
-      'paper_19.pdf': [
-        'What are the ethical implications of using virtual reality for research?',
-        'How can virtual reality be used for public speaking training?',
-      ],
-    },
-    {
-      'paper_20.pdf': [
-        'How does virtual reality affect user behavior?',
-        'What are the future trends in virtual reality gaming?',
-      ],
-    },
-    {
-      'paper_21.pdf': [
-        'What are the challenges in virtual reality content creation?',
-        'How does virtual reality influence spatial awareness?',
-      ],
-    },
-    {
-      'paper_22.pdf': [
-        'How can virtual reality improve empathy?',
-        'What are the cognitive benefits of using virtual reality?',
-      ],
-    },
-    {
-      'paper_23.pdf': [
-        'How is virtual reality being used in professional sports training?',
-        'What are the social implications of virtual reality?',
-      ],
-    },
-    {
-      'paper_24.pdf': [
-        'What is the relationship between virtual reality and artificial intelligence?',
-        'How does virtual reality influence creativity?',
-      ],
-    },
-    {
-      'paper_25.pdf': [
-        'What are the potential health risks of long-term virtual reality usage?',
-        'How can virtual reality enhance the travel experience?',
-      ],
-    },
-  ];
+
   // Generate unique RQs and assign each a unique RQ number
   const uniqueResearchQuestions = useMemo(() => {
     const questionMap = new Map();
@@ -224,12 +63,15 @@ export default function ScreeningTable(props) {
 
   function extractRqAnswers(data, title) {
     const result = [];
-    const paperTitle = `${title}.pdf.md`;
+    const paperTitle = title; // Use the title directly as expected in the input data
+
+    console.log('Extracting RQ Answers:', { data, title });
 
     // Iterate over each paper object to find the target paper by title
     data.forEach((paperObj) => {
-      if (paperObj[paperTitle]) {
-        const questionsObj = paperObj[paperTitle];
+      const paperObjTitle = Object.keys(paperObj)[0];
+      if (paperObjTitle === paperTitle) {
+        const questionsObj = paperObj[paperObjTitle];
         const rqResult = {};
 
         Object.entries(questionsObj).forEach(([question, answers]) => {
@@ -264,26 +106,36 @@ export default function ScreeningTable(props) {
 
     return result;
   }
-  const handlePaperClick = async (paper, markdownContent) => {
-    const response = await axios.post(`${lambdaUrl}/getMarkdown`, {
+
+  const handlePaperClick = async (paper) => {
+    const json = {
       title: paper,
-    });
-    const md = response.data;
-    const titleWithoutMd = paper.replace(/\.md$/, '');
-    const titleWithoutPdf = titleWithoutMd.replace(/\.pdf$/, '');
+      search_query: props.searchQuery,
+      uid: props.user?.uid,
+    };
 
-    console.log(titleWithoutPdf);
-    const rqData = extractRqAnswers(
-      props.fullTextScreenedResults,
-      titleWithoutPdf
-    );
-    console.log(rqData);
-    // Save data to sessionStorage
-    sessionStorage.setItem('markdownContent', md);
-    sessionStorage.setItem('rqData', JSON.stringify(rqData));
+    try {
+      const response = await axios.post(`${lambdaUrl}/getHtml`, json);
+      const md = response.data;
+      const formattedTitle = paper.replace(/\.html$/, '').replace(/\.pdf$/, '');
 
-    // Open new tab
-    window.open(`/paper-view`, '_blank');
+      console.log('Formatted Title for Matching:', formattedTitle);
+      const rqData = extractRqAnswers(
+        props.fullTextScreenedResults,
+        formattedTitle
+      );
+      console.log('Extracted rqData:', rqData);
+
+      // Save data to sessionStorage
+      sessionStorage.setItem('htmlContent', md);
+      sessionStorage.setItem('rqData', JSON.stringify(rqData));
+
+      // Open new tab
+      window.open(`/view-paper`, '_blank');
+    } catch (error) {
+      console.error('Error fetching paper data:', error);
+      Notification.error('Failed to load paper. Please try again later.');
+    }
   };
 
   return (
@@ -336,7 +188,7 @@ export default function ScreeningTable(props) {
                     <tr key={index}>
                       <td className="whitespace-normal break-words max-w-xs py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                         <button
-                          onClick={() => handlePaperClick(paper, 'asd')}
+                          onClick={() => handlePaperClick(paper)}
                           href=""
                           class="text-blue-500 text-md hover:underline hover:text-blue-700 transition duration-300"
                         >

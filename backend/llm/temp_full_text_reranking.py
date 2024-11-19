@@ -92,3 +92,44 @@ def document_relevance(
 
         result.append({query: relevant_documents})
     return result
+
+
+def filter_relevant_abstracts(search_query, abstracts):
+    # Initialize an empty list to store relevant abstracts
+    relevant_abstracts = []
+
+    for abstract in abstracts:
+        # Call OpenAI API to check if the search query is relevant to the abstract
+        try:
+            # Get the completion response with relevance check
+            response = (
+                openai.beta.chat.completions.parse(
+                    model="gpt-4o-mini",
+                    temperature=0,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": "You are an assistant that checks if a search query is relevant to an abstract.",
+                        },
+                        {
+                            "role": "user",
+                            "content": f"Does the abstract: '{abstract}' contain contextual information about the abstract: {abstract}? Respond with either 'yes' if it does, or 'no' if it does not. Respond with 'yes' if you are not sure.",
+                        },
+                    ],
+                ),
+            )
+            # Parse the output to determine relevance
+            # answer = response.choices[0].message.content.strip().lower()
+            # print(answer)
+            response_object = response[0]
+
+            # Now access the message content
+            answer = response_object.choices[0].message.content.strip()
+            # Add to relevant abstracts if the answer is 'yes'
+            if answer == "yes":
+                relevant_abstracts.append(abstract)
+
+        except Exception as e:
+            print(f"Error processing abstract: {e}")
+
+    return relevant_abstracts

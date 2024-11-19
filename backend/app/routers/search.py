@@ -41,7 +41,7 @@ async def search(query: str):
         number_of_papers = response_data["total"]
 
         papers = response_data.get("data", [])
-        total_papers.extend(papers[:10])
+        total_papers.extend(papers)
 
         total_offset += limit
 

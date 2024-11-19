@@ -36,7 +36,7 @@ def merge_pdfs_with_headers(folder_path, output_path, uid, search_query):
                 pdf_path = os.path.join(folder_path, item)
                 print(f"Adding PDF: {pdf_path}")
                 merger.append(pdf_path)
-
+                item.replace(".html", "")
                 pdf_counter += 1
                 paper_titles.append(item)
             except Exception as e:
@@ -54,7 +54,7 @@ def merge_pdfs_with_headers(folder_path, output_path, uid, search_query):
 
 
 # if __name__ == "__main__":
-#     folder_path = "/Users/justn/Downloads/all_pdfs"
-#     output_path = "/Users/justn/Downloads/merged_pdfs/merged_with_headers.pdf"  # Ensure this is a file, not a directory
+#     folder_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/naman_pdfs"
+#     output_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/naman_output/merged_with_headers.pdf"  # Ensure this is a file, not a directory
 
-#     merge_pdfs_with_headers(folder_path, output_path)
+#     merge_pdfs_with_headers(folder_path, output_path, "123", "naman")

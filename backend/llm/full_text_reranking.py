@@ -62,6 +62,8 @@ class ResponseModel(BaseModel):
 
 
 import json
+
+
 def get_rq_answers(paper_titles, queries, documents):
     relevance_results = []
     i = 0
@@ -82,7 +84,7 @@ def get_rq_answers(paper_titles, queries, documents):
                         {
                             "role": "system",
                             "content": """You are an Assistant responsible for answering questions based strictly on the provided text.
-                            If the text contains an answer in context of the question, respond with 'Yes' followed by first 5 lines of all
+                            If the text contains an answer in context of the question, respond with 'Yes' followed by first fullstop of all
                             text segments that answer the question as an array, enclosed in quotation marks. If the text does not answer
                             the question, respond with 'No answer found.'""",
                         },
@@ -107,9 +109,7 @@ def get_rq_answers(paper_titles, queries, documents):
                     if segments:
                         segments[0] = segments[0].lstrip("[").strip('"').strip()
 
-                    paper_data[paper_title][query] = segments[
-                        :5
-                    ]  # limit to first 5 lines
+                    paper_data[paper_title][query] = segments
                 else:
                     paper_data[paper_title][query] = ["No answer found."]
 
