@@ -1,4 +1,5 @@
 from pinecone.grpc import PineconeGRPC
+import openai
 
 # from .Retrieval import get_docs_for_reranking
 
@@ -19,6 +20,8 @@ pc = PineconeGRPC(api_key=api_key)
 # PaperTitle = [i["metadata"]["paper_title"] for i in results]
 
 
+
+
 def rerank(query: str, docs: list):
     """Rerank the documents based on the query; this function uses the re-ranker by pinecone"""
     rerank_name = "bge-reranker-v2-m3"
@@ -32,7 +35,7 @@ def rerank(query: str, docs: list):
         .replace(")", "")
         .replace("AND", "and")
         .replace("OR", "or")
-    ) # (((virtual OR cross) OAND (augmented OR reality)) OR (pointing OR pointer)
+    )  # (((virtual OR cross) OAND (augmented OR reality)) OR (pointing OR pointer)
     print(removed_quotes_query)
     # query = " ".join(((query)))
     # assuming that adding does this abstract gives more context information to cross encoder

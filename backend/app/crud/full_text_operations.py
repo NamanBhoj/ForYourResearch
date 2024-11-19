@@ -2,10 +2,19 @@ import os
 import boto3
 import certifi
 import requests
-import json
-import pymupdf4llm
 import io
 import tempfile
+from ..pdf_parsing import (
+    merge_pdfs,
+    convert_pdf_to_docx,
+    split_merged_docx,
+    extract_heading_content,
+    read_from_md,
+)
+from ...llm.temp_full_text_reranking import document_relevance
+import convertapi
+
+convertapi.api_credentials = "secret_bMbn4IxdtxwgSLwr"
 
 # Set AWS credentials as environment variables (optional if using aws configure)
 
@@ -32,79 +41,79 @@ def upload_papers_to_s3(uid: str, search_query: str, papers: list):
     session = requests.Session()
     session.verify = certifi.where()  # Use certifi for certificate verification
     for paper in papers:
+        try:
+            if paper.get("openAccessPdf"):
+                response = session.get(paper["openAccessPdf"]["url"], stream=True)
 
-        if paper.get("openAccessPdf"):
-            response = session.get(paper["openAccessPdf"]["url"], stream=True)
+                # Set the name of the pdf to paper's title
+                pdf_file_name = paper["title"] + ".pdf"
 
-            # Set the name of the pdf to paper's title
-            pdf_file_name = paper["title"] + ".pdf"
-
-            if response.status_code == 200:
-                # Upload directly to S3 with folder structure
-                print(f"Uploading {pdf_file_name} to S3...")
-                s3.upload_fileobj(
-                    response.raw,
-                    bucket_name,
-                    f"{s3_folder}{search_string}{pdf_file_name}",
-                )
-                print(f"{pdf_file_name} was successfully uploaded to S3!")
-                res.append("yes")
-            else:
-                res.append("no open access")
-
-
-# # Test for function: upload_papers_to_s3
-# with open("papers.json", "r") as file:
-#     papers = json.load(file)
-
-# upload_papers_to_s3("123456", "cross reality", papers)
-#
+                if response.status_code == 200:
+                    # Upload directly to S3 with folder structure
+                    print(f"Uploading {pdf_file_name} to S3...")
+                    s3.upload_fileobj(
+                        response.raw,
+                        bucket_name,
+                        f"{s3_folder}{search_string}{pdf_file_name}",
+                    )
+                    print(f"{pdf_file_name} was successfully uploaded to S3!")
+                    res.append("yes")
+                else:
+                    res.append("no open access")
+        except:
+            continue
 
 
-def read_pdfs_from_s3(uid: str, search_query: str):
+def convert_pdf_to_html(pdf_name, pdf_path, html_path):
+    # Create the HTML path if it doesn't exist
+    os.makedirs(html_path, exist_ok=True)
+
+    # Convert the PDF to HTML and save to the specified path
+    convertapi.convert(
+        "html", {"File": pdf_path, "Wysiwyg": "false"}, from_format="pdf"
+    ).save_files(f"{html_path}/{pdf_name}.html")
+    print(f"Converted {pdf_name}.pdf to {pdf_name}.html and saved to {html_path}")
+
+
+def read_pdfs_from_s3(uid: str, search_query: str, output_path: str, html_output_path: str):
     # Bucket name
     bucket_name = "paper-full-texts"
-
     s3 = boto3.client("s3")
-
-    # Construct the S3 prefix for the uid and search query
     s3_prefix = f"{uid}/{search_query}/"
-
-    # List objects under the specified prefix
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=s3_prefix)
 
     if "Contents" not in response:
         print("No PDFs found for the given uid and search_query.")
         return
 
-    for item in response["Contents"]:
-        pdf_file_key = item["Key"]
+    # Create a temporary directory to store downloaded PDFs
+    with tempfile.TemporaryDirectory() as temp_dir:
+        downloaded_files = []
 
-        # Create a temporary file to hold the PDF data
-        with tempfile.NamedTemporaryFile(delete=False) as temp_pdf_file:
-            # Download the PDF file directly to the temporary file
-            s3.download_fileobj(bucket_name, pdf_file_key, temp_pdf_file)
+        for item in response["Contents"]:
+            pdf_file_key = item["Key"]
 
-            # Access the temporary file path
-            temp_pdf_file_path = temp_pdf_file.name
+            # Download each PDF to the temporary directory
+            temp_pdf_path = os.path.join(temp_dir, pdf_file_key.split("/")[-1])
+            with open(temp_pdf_path, "wb") as temp_pdf_file:
+                s3.download_fileobj(bucket_name, pdf_file_key, temp_pdf_file)
 
-        # Convert to Markdown using pymupdf4llm
-        md_text = pymupdf4llm.to_markdown(temp_pdf_file_path)
+            downloaded_files.append(temp_pdf_path)
+            print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
 
-        # Output markdown to console or save it if needed
-        output_md_path = f"{pdf_file_key.split('/')[-1]}.md"
-        with open(output_md_path, "wb") as md_file:
-            md_file.write(md_text.encode())
-
-        print(
-            f"Converted {pdf_file_key.split('/')[-1]} to Markdown and saved as {output_md_path}"
+        # Merge downloaded PDFs with headers
+        paper_titles = merge_pdfs.merge_pdfs_with_headers(
+            temp_dir, output_path, uid, search_query
         )
-        os.remove(temp_pdf_file_path)
-        print(f"Deleted temporary file {temp_pdf_file_path}")
+        print(f"Merged PDF with headers saved to {output_path}")
 
+        # Path for storing HTML conversions
+        # html_output_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/html_files"
 
-# Usage
-read_pdfs_from_s3("123456", "cross reality")
+        # Convert all downloaded PDFs to HTML
+        for pdf_path in downloaded_files:
+            pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
+            convert_pdf_to_html(pdf_name, pdf_path, html_output_path)
 
-# Usage
-# read_pdfs_from_s3("123456", "cross reality")
+        print(f"All PDFs converted to HTML and saved to {html_output_path}")
+        return paper_titles
