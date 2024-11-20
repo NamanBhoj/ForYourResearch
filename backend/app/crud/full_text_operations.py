@@ -75,7 +75,7 @@ def convert_pdf_to_html(pdf_name, pdf_path, html_path):
     print(f"Converted {pdf_name}.pdf to {pdf_name}.html and saved to {html_path}")
 
 
-def read_pdfs_from_s3(uid: str, search_query: str, output_path: str, html_output_path: str):
+def read_pdfs_from_s3(uid: str, search_query: str, html_output_path: str):
     # Bucket name
     bucket_name = "paper-full-texts"
     s3 = boto3.client("s3")
@@ -102,10 +102,13 @@ def read_pdfs_from_s3(uid: str, search_query: str, output_path: str, html_output
             print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
 
         # Merge downloaded PDFs with headers
-        paper_titles = merge_pdfs.merge_pdfs_with_headers(
-            temp_dir, output_path, uid, search_query
-        )
-        print(f"Merged PDF with headers saved to {output_path}")
+        # paper_titles = merge_pdfs.merge_pdfs_with_headers(
+        #     temp_dir, output_path, uid, search_query
+        # )
+        paper_titles = [
+            os.path.splitext(os.path.basename(file))[0] for file in downloaded_files
+        ]
+        print(f"titles exctracted: {paper_titles}")
 
         # Path for storing HTML conversions
         # html_output_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/html_files"

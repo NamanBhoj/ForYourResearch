@@ -28,6 +28,7 @@ def document_relevance(query, document):
         logit_bias={3363: 1, 1400: 1},
     )
 
+
 #     return response
 
 

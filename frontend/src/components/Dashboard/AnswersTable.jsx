@@ -192,7 +192,7 @@ export default function ScreeningTable(props) {
                           href=""
                           class="text-blue-500 text-md hover:underline hover:text-blue-700 transition duration-300"
                         >
-                          {paper}
+                          {paper.replace('.pdf', '')}
                         </button>
                       </td>
                       <td className="py-3 px-3 text-left text-sm font-medium max-w-[200px] align-top text-center">
