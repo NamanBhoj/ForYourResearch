@@ -310,7 +310,7 @@ export default function Library() {
                   }`}
                   onClick={() => setActiveTable('rq')}
                 >
-                  Full text & Research Question section
+                  Full Text Screening and Answers
                 </button>
               </div>
             </div>
