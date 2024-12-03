@@ -14,7 +14,7 @@ from ..pdf_parsing import (
 from ...llm.temp_full_text_reranking import document_relevance
 import convertapi
 
-convertapi.api_credentials = "secret_bMbn4IxdtxwgSLwr"
+convertapi.api_credentials = "secret_KX72qYpDwkFBPiax"
 
 # Set AWS credentials as environment variables (optional if using aws configure)
 
@@ -76,6 +76,10 @@ def convert_pdf_to_html(pdf_name, pdf_path, html_path):
 
 
 def read_pdfs_from_s3(uid: str, search_query: str, html_output_path: str):
+    import boto3
+    import os
+    import tempfile
+
     # Bucket name
     bucket_name = "paper-full-texts"
     s3 = boto3.client("s3")
@@ -84,7 +88,7 @@ def read_pdfs_from_s3(uid: str, search_query: str, html_output_path: str):
 
     if "Contents" not in response:
         print("No PDFs found for the given uid and search_query.")
-        return
+        return []
 
     # Create a temporary directory to store downloaded PDFs
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -95,28 +99,28 @@ def read_pdfs_from_s3(uid: str, search_query: str, html_output_path: str):
 
             # Download each PDF to the temporary directory
             temp_pdf_path = os.path.join(temp_dir, pdf_file_key.split("/")[-1])
-            with open(temp_pdf_path, "wb") as temp_pdf_file:
-                s3.download_fileobj(bucket_name, pdf_file_key, temp_pdf_file)
+            try:
+                with open(temp_pdf_path, "wb") as temp_pdf_file:
+                    s3.download_fileobj(bucket_name, pdf_file_key, temp_pdf_file)
 
-            downloaded_files.append(temp_pdf_path)
-            print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
+                downloaded_files.append(temp_pdf_path)
+                print(f"Downloaded {pdf_file_key} to {temp_pdf_path}")
+            except Exception as e:
+                print(f"Failed to download {pdf_file_key}: {e}")
 
-        # Merge downloaded PDFs with headers
-        # paper_titles = merge_pdfs.merge_pdfs_with_headers(
-        #     temp_dir, output_path, uid, search_query
-        # )
-        paper_titles = [
-            os.path.splitext(os.path.basename(file))[0] for file in downloaded_files
-        ]
-        print(f"titles exctracted: {paper_titles}")
-
-        # Path for storing HTML conversions
-        # html_output_path = "/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/html_files"
+        # Initialize a list to store successfully converted titles
+        successful_titles = []
 
         # Convert all downloaded PDFs to HTML
         for pdf_path in downloaded_files:
             pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
-            convert_pdf_to_html(pdf_name, pdf_path, html_output_path)
+            try:
+                # Attempt to convert the PDF to HTML
+                convert_pdf_to_html(pdf_name, pdf_path, html_output_path)
+                successful_titles.append(pdf_name)
+                print(f"Successfully converted {pdf_name} to HTML.")
+            except Exception as e:
+                print(f"Failed to convert {pdf_name} to HTML: {e}")
 
-        print(f"All PDFs converted to HTML and saved to {html_output_path}")
-        return paper_titles
+        print(f"All PDFs processed. Successfully converted titles: {successful_titles}")
+        return successful_titles

@@ -25,7 +25,7 @@ async def search(query: str):
     total_offset = 0
     limit = 100
 
-    while total_offset < 100:
+    while total_offset < 1000:
         query_params = {
             "query": parsed_query,
             "limit": limit,
@@ -41,7 +41,7 @@ async def search(query: str):
         number_of_papers = response_data["total"]
 
         papers = response_data.get("data", [])
-        total_papers.extend(papers[:10])
+        total_papers.extend(papers)
 
         total_offset += limit
 

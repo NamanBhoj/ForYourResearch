@@ -20,7 +20,8 @@ export default function ScreeningTable(props) {
     useState(false);
   const [showSaveToLibraryNotification, setShowSaveToLibraryNotification] =
     useState(false);
-
+  const [manualScreenedPapers, setManualScreenedPapers] = useState([]);
+  const [screeningDone, setScreeningDone] = useState(false);
   const lambdaUrl = import.meta.env.VITE_LAMBDA_URL;
   console.log(props.papers);
   const openPdf = (href) => {
@@ -64,6 +65,7 @@ export default function ScreeningTable(props) {
     setPapers(updatedPapers);
     setAbstractScreenedPapers(updatedPapers);
     setScreening(false);
+    setScreeningDone(true);
     setShowSaveToLibraryNotification(false);
     setShowScreeningNotification(true);
     console.log(updatedPapers);
@@ -91,6 +93,20 @@ export default function ScreeningTable(props) {
     setSaving(false);
     setShowScreeningNotification(false);
     setShowSaveToLibraryNotification(true);
+  };
+
+  const handleManualScreening = (paper) => {
+    setManualScreenedPapers((prevPapers) => {
+      if (prevPapers.includes(paper)) {
+        return prevPapers.filter((p) => p !== paper);
+      } else {
+        return [...prevPapers, paper];
+      }
+    });
+
+    setTimeout(() => {
+      console.log(manualScreenedPapers);
+    }, 0);
   };
 
   return (
@@ -152,6 +168,14 @@ export default function ScreeningTable(props) {
                   >
                     ABSTRACT SCREENING
                   </th>
+                  {screeningDone && (
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      ADD/REMOVE PAPERS MANUALLY
+                    </th>
+                  )}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
@@ -193,6 +217,23 @@ export default function ScreeningTable(props) {
                         }
                       /> */}
                     </td>
+                    {paper.abstract_relevance === 'Irrelevant' ? (
+                      <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
+                        <button
+                          type="button"
+                          onClick={() => handleManualScreening(paper)}
+                          className={`rounded px-2 py-1 text-xs font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                            manualScreenedPapers.includes(paper)
+                              ? 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600'
+                              : 'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'
+                          }`}
+                        >
+                          {manualScreenedPapers.includes(paper)
+                            ? 'Remove'
+                            : 'Add'}
+                        </button>
+                      </td>
+                    ) : null}
                   </tr>
                 ))}
               </tbody>

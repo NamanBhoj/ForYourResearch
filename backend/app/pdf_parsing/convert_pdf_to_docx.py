@@ -1,7 +1,7 @@
 import convertapi
 import os
 
-convertapi.api_credentials = "secret_bMbn4IxdtxwgSLwr"
+convertapi.api_credentials = "secret_KX72qYpDwkFBPiax"
 
 
 def convert_pdf_to_docx(pdf_name, pdf_path, docx_path):

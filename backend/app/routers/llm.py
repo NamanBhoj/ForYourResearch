@@ -137,9 +137,7 @@ def screenForResearchQuestions(request: RequestObjectForRQ):
     HTML_PATH = f"/Users/rajamuhammedomar/latest-fyr/ForYourResearch/backend/app/pdf_parsing/html_files/{request.uid}/{request.searchQuery}"
     upload_papers_to_s3(request.uid, request.searchQuery, request.data)
 
-    paper_titles = read_pdfs_from_s3(
-        request.uid, request.searchQuery, HTML_PATH
-    )
+    paper_titles = read_pdfs_from_s3(request.uid, request.searchQuery, HTML_PATH)
 
     # convert_pdf_to_docx(
     #     f"{request.uid} - {request.searchQuery}",
