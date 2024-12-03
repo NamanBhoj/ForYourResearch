@@ -97,4 +97,4 @@ jobs:
               #nohup uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 &
 
 
-          #run caddy first and then run server
+          #run caddy first and then run server in ec2
