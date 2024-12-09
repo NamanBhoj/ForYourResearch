@@ -5,6 +5,19 @@ function SearchTable(props) {
     window.open(href, '_blank');
   };
 
+  function extractWebsiteName(url) {
+    try {
+      const parsedUrl = new URL(url);
+
+      const hostnameParts = parsedUrl.hostname.split('.');
+
+      return hostnameParts.length > 1 ? hostnameParts[1] : null;
+    } catch (error) {
+      console.error('Invalid URL:', error);
+      return 'N/A';
+    }
+  }
+
   return (
     <div className="mt-8 flow-root">
       <div className="border rounded-lg shadow  overflow-auto max-h-[700px] max-w-[1400px]">
@@ -44,6 +57,12 @@ function SearchTable(props) {
                         >
                           {paper.title}
                         </a>
+                        <span>
+                          <div className="mt-2 text-emerald-600 font-bold">
+                            Source:{' '}
+                            {extractWebsiteName(paper.openAccessPdf?.url || '')}
+                          </div>
+                        </span>
                         <span>
                           <div className="mt-2 text-red-500 font-bold">
                             Year: {paper.year}
