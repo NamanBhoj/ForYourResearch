@@ -98,8 +98,15 @@ export default function ScreeningTable(props) {
   const handleManualScreening = (paper) => {
     setManualScreenedPapers((prevPapers) => {
       if (prevPapers.includes(paper)) {
+        props.setAbstractScreenedPapers((prevAbstractPapers) =>
+          prevAbstractPapers.filter((p) => p !== paper)
+        );
         return prevPapers.filter((p) => p !== paper);
       } else {
+        props.setAbstractScreenedPapers((prevAbstractPapers) => [
+          ...prevAbstractPapers,
+          paper,
+        ]);
         return [...prevPapers, paper];
       }
     });
@@ -191,7 +198,11 @@ export default function ScreeningTable(props) {
                       </a>
                     </td>
                     <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                      <RelevanceChip relevant={paper.title_relevance} />
+                      {manualScreenedPapers.includes(paper) ? (
+                        <RelevanceChip relevant="Relevant (Manually Marked)" />
+                      ) : (
+                        <RelevanceChip relevant={paper.title_relevance} />
+                      )}
                       {/* <RelevanceDropdown
                         relevance={paper.title_relevance}
                         onRelevanceChange={(newRelevance) =>
@@ -204,7 +215,11 @@ export default function ScreeningTable(props) {
                       /> */}
                     </td>
                     <td className="py-3 pl-2 pr-3 text-center text-sm font-medium sm:pr-4 max-w-[50px] align-top">
-                      <RelevanceChip relevant={paper.abstract_relevance} />
+                      {manualScreenedPapers.includes(paper) ? (
+                        <RelevanceChip relevant="Relevant (Manually Marked)" />
+                      ) : (
+                        <RelevanceChip relevant={paper.abstract_relevance} />
+                      )}
 
                       {/* <RelevanceDropdown
                         relevance={paper.abstract_relevance}
