@@ -24,7 +24,7 @@ async def search(query: str):
     total_papers = []
     total_offset = 0
     limit = 100
-
+#FAST API Request
     while total_offset < 1000:
         query_params = {
             "query": parsed_query,
@@ -49,6 +49,8 @@ async def search(query: str):
         # the maximum limit is 100
         if len(papers) < limit:
             break
+
+    #Google Scholar Request
     for paper in total_papers:
         paper["Relevance"] = "Untagged"
 

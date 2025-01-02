@@ -12,3 +12,4 @@ def convert_pdf_to_docx(pdf_name, pdf_path, docx_path):
         f"{docx_path}/{pdf_name}.docx"
     )
     print(f"Converted {pdf_name}.pdf to {pdf_name}.docx and saved to {docx_path}")
+

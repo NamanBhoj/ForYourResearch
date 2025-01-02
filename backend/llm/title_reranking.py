@@ -3,11 +3,14 @@ import openai
 openai.api_key = "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"
 
 prompt = """
-You are an Assistant responsible for helping detect whether the title of a paper is relevant to the query. The query can be a boolean expression so evaluate its meaning based on boolean values and then check relevance if that is the case.
+You are an Assistant responsible for helping determine whether the title of a paper is relevant to the query. This is the systematic step to check it:
+1. Check if the title contains atleast 50 percent of the words in the query. If it does, output "Yes" and stop.
+2. If the title does not contain atleast 50 percent of the words in the query. Check if the title has synonyms for the words which are not in query. If including synonys the total percentage is more than 50, output "Yes" and stop.
+3. If the title does not contain atleast 50 percent of the words in the query and does not have any synonyms for the words which are not in query, output "No" and stop.
 
 Query: {query}
 Title: {title}
-Respond only with 'Yes' or 'No'.
+Respond only with 'Yes' or 'No' with the percentage number in the end.
 """
 
 
