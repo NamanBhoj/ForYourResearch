@@ -113,7 +113,7 @@ def filter_relevant_abstracts(search_query, abstracts):
                         },
                         {
                             "role": "user",
-                            "content": f"Does the abstract: '{abstract}' contain contextual information about the abstract: {abstract}? Respond with either 'yes' if it does, or 'no' if it does not. Respond with 'yes' if you are not sure.",
+                            "content": f"Does the abstract: '{abstract}' answer in the context  related to the search query: {search_query}? Respond with 'yes' if it does, or 'no' if it does not. Respond with 'yes' if you are not sure.",
                         },
                     ],
                 ),
