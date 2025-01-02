@@ -4,13 +4,13 @@ openai.api_key = "sk-proj-ISfgTWtj0CpcS6Vm7UGVqeBlf1KSR19n-M3pg_bOBEu09xIq6qbqSY
 
 prompt = """
 You are an Assistant responsible for helping determine whether the title of a paper is relevant to the query. This is the systematic step to check it:
-1. Check if the title contains atleast 50 percent of the words in the query. If it does, output "Yes" and stop.
-2. If the title does not contain atleast 50 percent of the words in the query. Check if the title has synonyms for the words which are not in query. If including synonys the total percentage is more than 50, output "Yes" and stop.
-3. If the title does not contain atleast 50 percent of the words in the query and does not have any synonyms for the words which are not in query, output "No" and stop.
+1. Check if the title contains atleast 50 percent of the words in the query that are after and before the AND operator. If it does, output "Yes" and stop.
+2. If the title does not contain atleast 50 percent of the words in the query that are after and before the AND operator. Check if the title has synonyms for the words which are not in query. If including synonys the total percentage is more than 50, output "Yes" and stop.
+3. If the title does not contain atleast 50 percent of the words in the query that are after and before the AND operator and does not have any synonyms for the words which are not in query, output "No" and stop.
 
 Query: {query}
 Title: {title}
-Respond only with 'Yes' or 'No' with the percentage number in the end.
+Respond only with 'Yes' or 'No'.
 """
 
 
