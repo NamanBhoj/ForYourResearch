@@ -26,5 +26,6 @@ dist-ssr
 virtualfyr
 virtual*
 venv
+.cursorrules
 nohup.out
 __pycache__
