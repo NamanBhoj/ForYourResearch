@@ -14,7 +14,7 @@ router = APIRouter()
 
 @router.get(f"/search")
 async def search(query: str):
-    url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    url = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
 
     parsed_query = parse_query(query)
     print(parsed_query)
@@ -29,12 +29,14 @@ async def search(query: str):
         query_params = {
             "query": parsed_query,
             "limit": limit,
+            # "fields": "title,abstract,year",
             "fields": "title,abstract,year,openAccessPdf,isOpenAccess",
             "offset": total_offset,
         }
 
         time.sleep(2)
         response = requests.get(url, params=query_params, headers=headers)
+        print("this is the url", url)
 
         print(response.url)
         response_data = response.json()

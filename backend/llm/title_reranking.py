@@ -14,6 +14,7 @@ Respond only with 'Yes' or 'No'.
 """
 
 
+
 def screen_titles(titles, query):
     """
     Check the relevance of document titles to a query using GPT with 'Yes' or 'No' responses.
