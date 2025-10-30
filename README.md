@@ -1,2 +1,2 @@
-# Tool to gather Conduct Systematic Literature Reviews
+# Tool to Conduct Systematic Literature Reviews
 
